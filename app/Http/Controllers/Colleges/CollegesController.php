@@ -107,13 +107,19 @@ class CollegesController extends Controller
      */
     public function update(College $college, UpdateCollegeRequest $request)
     {
-        $college->update($request->except('reception', 'add_specialities'));
+        $college->update(
+            $request->except('reception', 'add_specialities')
+        );
 
-        $reception = array_filter(request('reception'));
+        $reception = array_filter(
+            request('reception')
+        );
 
         if (request('reception')) {
             if (! $college->hasReception()) {
-                CollegeReception::create(['college_id' => $college->id]);
+                CollegeReception::create(
+                    ['college_id' => $college->id]
+                );
             }
 
             $college->reception()->update([

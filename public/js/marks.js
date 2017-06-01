@@ -29,8 +29,8 @@ function toggleMark (itemType, itemId) {
 
 function changeText () {
     if ($('#marker').hasClass('marked')) {
-      $('#marker').text('Отмечено')
+      $('#marker').text('Отмечено Вами')
     } else {
-      $('#marker').text('Отметить')
+      $('#marker').text('Отметить для себя')
     }
  }

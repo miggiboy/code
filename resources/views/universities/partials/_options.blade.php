@@ -27,9 +27,14 @@
 
       <a href="#" class="item"
         onclick="event.preventDefault();
-          document.getElementById('delete-university-{{ $university->id }}').submit();">
-        <i class="yellow star icon"></i>  Сделать платником
+          document.getElementById('toggle-model-{{ $university->id }}-status').submit();">
+        <i class="yellow star icon"></i>  Сделать {{ $university->is_paid ? 'не ' : '' }}платником
       </a>
+
+      <form action="{{ route('university.status.toggle', $university) }}" method="post" id="toggle-model-{{ $university->id }}-status">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+      </form>
 
       {{-- Deleting --}}
       <a href="#" class="item"

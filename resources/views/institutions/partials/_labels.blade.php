@@ -8,10 +8,11 @@
 
 <a class="ui basic label{{ $model->markedByCurrentUser ? ' marked' : '' }}"
    id="marker"
-   onclick="event.preventDefault(); toggleMark('{{ class_basename($model) }}', '{{ $model->id }}');">
+   onclick="event.preventDefault(); toggleMark('{{ class_basename($model) }}', '{{ $model->id }}');"
+   title="Оставляйте отметки чтобы вернуться к ним позже">
   @if ($model->markedByCurrentUser)
-    Отмечено
+    Отмечено Вами
   @else
-    Отметить
+    Отметить для себя
   @endif
 </a>

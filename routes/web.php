@@ -226,6 +226,11 @@ Route::group(['prefix' => '/universities', 'namespace' => 'Universities'], funct
 
     Route::get('/{slug}', 'UniversitiesController@show')->name('universities.show');
 
+    /**
+     * University paid status
+     */
+    Route::patch('/{university}/status', 'UniversityPaidStatusController@toggle')->name('university.status.toggle');
+
 
     /**
      * University Specialties
@@ -277,6 +282,11 @@ Route::group(['prefix' => '/colleges', 'namespace' => 'Colleges'], function () {
     Route::patch('/{college}', 'CollegesController@update')->name('colleges.update');
 
     Route::delete('/{college}', 'CollegesController@destroy')->name('colleges.destroy');
+
+    /**
+     * College paid status
+     */
+    Route::patch('/{college}/status', 'CollegePaidStatusController@toggle')->name('college.status.toggle');
 
     /**
      * College specialties

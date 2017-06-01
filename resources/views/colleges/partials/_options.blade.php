@@ -22,6 +22,18 @@
 
     {{-- Deleting --}}
     <div class="divider"></div>
+
+    <a href="#" class="item"
+        onclick="event.preventDefault();
+          document.getElementById('toggle-model-{{ $college->id }}-status').submit();">
+        <i class="yellow star icon"></i>  Сделать {{ $college->is_paid ? 'не ' : '' }}платником
+    </a>
+
+    <form action="{{ route('college.status.toggle', $college) }}" method="post" id="toggle-model-{{ $college->id }}-status">
+      {{ csrf_field() }}
+      {{ method_field('PATCH') }}
+    </form>
+
     <a href="#" class="item" onclick="event.preventDefault();
           document.getElementById('delete-college-{{ $college->id }}').submit();">
       <i class="red delete icon"></i>  Удалить

@@ -1,0 +1,10 @@
+/config
+/database
+/public/vendor
+/public/images
+/public/images
+/public/storage
+/storage
+/vendor
+.env
+artisan

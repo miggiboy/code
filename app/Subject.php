@@ -1,0 +1,48 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Subject extends Model
+{
+    protected $fillable = ['title'];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relations with other tables
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    public function specialities()
+    {
+        return $this->belongsToMany(\App\Models\Specialty\Speciality::class);
+    }
+
+    public function files()
+    {
+        return $this->morphMany('App\Models\File\File', 'fileable');
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function fileCategories()
+    {
+        return $this->belongsToMany(\App\Models\File\FileCategory::class, 'subject_file_category');
+    }
+}

@@ -56,7 +56,7 @@ $('.ui.search.colleges').search({
 
 
 $('article').readmore({
-  collapsedHeight: 192,
+  collapsedHeight: 110,
   speed: 500,
   moreLink: '<a href="#">Показать полностью</a>',
   lessLink: '<a href="#">Свернуть текст</a>'

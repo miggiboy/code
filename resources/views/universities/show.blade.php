@@ -32,18 +32,9 @@
         ['model' => $university]
     )
 
-    <div class="ui purple horizontal label">ID:  {{ $university->id }}</div>
-
-    <a class="ui basic label{{ $university->markedByCurrentUser ? ' marked' : '' }}" id="marker"
-        onclick="event.preventDefault(); toggleMark('University', '{{ $university->id }}');">
-      @if ($university->markedByCurrentUser)
-        Отмечено
-      @else
-        Отметить
-      @endif
-    </a>
-
-
+    @include ('institutions/partials/_labels',
+        ['model' => $university]
+    )
 
     @include ('universities/partials/_university_information')
     @include ('universities/partials/_reception_committee_information')
@@ -62,10 +53,7 @@
     <br>
     <div class="row">
       @include ('institutions/partials/_map',
-          [
-              'model' => $university,
-              'modelType' => 'university'
-          ]
+          ['model' => $university]
       )
     </div>
 

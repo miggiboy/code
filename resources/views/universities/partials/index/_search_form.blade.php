@@ -4,7 +4,13 @@
       <div class="eight wide field">
         <div class="ui fluid search universities">
           <div class="ui right icon input">
-            <input type="text" value="{{ old('query') }}" name = "query" class="prompt" placeholder="Начните вводить название вуза ..." autofocus>
+            <input type="text"
+                   value="{{ old('query') }}"
+                   name = "query"
+                   class="prompt"
+                   placeholder="Начните вводить название вуза ..."
+                   autofocus>
+
             <i class="search icon"></i>
           </div>
         </div>
@@ -51,19 +57,6 @@
                  class="hidden"
                  {{ (request('without_map') == "1") ? 'checked' : '' }}>
           <label>Без карты</label>
-        </div>
-      </div>
-
-
-      <div class="three wide field" style="margin-top: 7px;">
-        <div class="ui checkbox">
-          <input type="checkbox"
-                 name="not_filled"
-                 value="1"
-                 tabindex="0"
-                 class="hidden"
-                 {{ (request('not_filled') == "1") ? 'checked' : '' }}>
-          <label>Незаполненные</label>
         </div>
       </div>
 

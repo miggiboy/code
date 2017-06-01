@@ -4,7 +4,12 @@
     <div class="eight wide field">
       <div class="ui fluid search colleges">
         <div class="ui right icon input">
-          <input type="text" name = "query" value="{{ old('query') }}" class="prompt" placeholder="Начните вводить название колледжа ..." autofocus>
+          <input type="text"
+                 name = "query"
+                 value="{{ old('query') }}"
+                 class="prompt"
+                 placeholder="Начните вводить название колледжа ..."
+                 autofocus>
           <i class="search icon"></i>
         </div>
       </div>

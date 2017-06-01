@@ -4,7 +4,13 @@
       <div class="eight wide field">
         <div class="ui fluid search specialties">
           <div class="ui right icon input">
-            <input type="text" name="query" value="{{ old('query') }}" class="prompt" placeholder="Начните вводить название или код специальности..." autofocus>
+            <input type="text"
+                   name="query"
+                   value="{{ old('query') }}"
+                   class="prompt"
+                   placeholder="Начните вводить название или код специальности..."
+                   autofocus>
+
             <i class="search icon"></i>
           </div>
         </div>

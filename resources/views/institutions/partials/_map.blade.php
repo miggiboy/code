@@ -5,7 +5,11 @@
 
   <button class="ui fluid button" id="replace-map-button" onclick="event.preventDefault(); showMapReplacementForm();">Заменить карту</button>
 
-  <form action="{{ route('map.update', [$modelType, $model->id]) }}" method="post" class="ui form" id="map-update-form">
+  <form action="{{ route('map.update', [strtolower(class_basename($model)), $model->id]) }}"
+        method="post"
+        class="ui form"
+        id="map-update-form">
+
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
     <div class="field">
@@ -17,7 +21,7 @@
 
 @else
   @include  ('layouts.form-errors')
-  <form action="{{ route('map.store', [$modelType, $model->id]) }}" method="post" class="ui form">
+  <form action="{{ route('map.store', [strtolower(class_basename($model)), $model->id]) }}" method="post" class="ui form">
     {{ csrf_field() }}
     <div class="field">
       <label for="source_code">Код карты</label>

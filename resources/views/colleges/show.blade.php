@@ -31,17 +31,9 @@
             ['model' => $college]
         )
 
-        <div class="ui purple horizontal label">ID:  {{ $college->id }}</div>
-
-        <a class="ui basic label{{ $college->markedByCurrentUser ? ' marked' : '' }}" id="marker"
-            onclick="event.preventDefault(); toggleMark('college', '{{ $college->id }}');">
-          @if ($college->markedByCurrentUser)
-            Отмечено
-          @else
-            Отметить
-          @endif
-        </a>
-
+        @include ('institutions/partials/_labels',
+            ['model' => $college]
+        )
 
         @include ('colleges/partials/show/_college_information')
         @include ('colleges/partials/show/_reception_committee_information')

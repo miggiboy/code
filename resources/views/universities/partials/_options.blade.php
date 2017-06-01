@@ -25,6 +25,12 @@
 
       <div class="divider"></div>
 
+      <a href="#" class="item"
+        onclick="event.preventDefault();
+          document.getElementById('delete-university-{{ $university->id }}').submit();">
+        <i class="yellow star icon"></i>  Сделать платником
+      </a>
+
       {{-- Deleting --}}
       <a href="#" class="item"
         onclick="event.preventDefault();

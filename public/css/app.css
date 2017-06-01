@@ -2,11 +2,7 @@
     /*margin-top: 6em;*/
     min-height: 600px;
 }
-.cookie.nag {
-    position: absolute !important;
-    height: 39px;
-    bottom: 0;
-}
+
 .custom .content {
     font-size: 16px;
 }

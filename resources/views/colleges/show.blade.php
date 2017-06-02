@@ -28,7 +28,7 @@
       <div class="nine wide column">
 
         @include ('institutions/partials/_media_gallery',
-            ['model' => $college]
+            ['model' => $college, 'modelType' => 'colleges']
         )
 
         @include ('institutions/partials/_labels',
@@ -68,8 +68,10 @@
   <script src="/js/map.js"></script>
   <script src="/js/marks.js"></script>
 
-  <script type='text/javascript' src='/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
-  <script type='text/javascript' src='/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
+  <script src='/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
+  <script src='/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
+
+  <script src="/js/medialibrary.js"></script>
 
   <script>
     jQuery("#gallery").unitegallery({

@@ -18,4 +18,39 @@ class CollegeMediaController extends Controller
 
         return back()->with('message', 'Изображения добавлены');
     }
+
+    public function destroy($mediaId)
+    {
+        $media = \Spatie\MediaLibrary\Media::find($mediaId);
+        $media->delete();
+
+        return response([
+            null, 200
+        ]);
+    }
+
+    public function toggleLogo($collegeId, $mediaId)
+    {
+        $media = \Spatie\MediaLibrary\Media::find($mediaId);
+
+        if ($media->collection_name == 'logo') {
+            $media->update(['collection_name' => 'images']);
+        } else {
+            $media->update(['collection_name' => 'logo']);
+        }
+
+        $college = College::find($collegeId);
+
+        $logos = $college->getMedia('logo');
+
+        foreach ($logos as $logo) {
+            if ($logo->id !== $media->id) {
+                $logo->update(['collection_name' => 'images']);
+            }
+        }
+
+        return response([
+            null, 200
+        ]);
+    }
 }

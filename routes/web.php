@@ -249,12 +249,16 @@ Route::group(['prefix' => '/universities', 'namespace' => 'Universities'], funct
     });
 
     /**
-     * University Images
+     * University Media
      */
 
-    Route::group(['prefix' => '/{university}/images'], function () {
+    Route::group(['prefix' => '/{university}/media'], function () {
         Route::post('', 'UniversityMediaController@store')->name('university.images.store');
+
+        Route::patch('/{mediaId}', 'UniversityMediaController@toggleLogo');
     });
+
+    Route::delete('/media/{mediaId}', 'UniversityMediaController@destroy')->name('university.images.destroy');
 
 });
 
@@ -304,9 +308,17 @@ Route::group(['prefix' => '/colleges', 'namespace' => 'Colleges'], function () {
         Route::delete('/{speciality}', 'CollegeSpecialtiesController@destroy')->name('college.specialties.destroy');
     });
 
-    Route::group(['prefix' => '/{college}/images'], function () {
+    /**
+     * College Media
+     */
+
+    Route::group(['prefix' => '/{college}/media'], function () {
         Route::post('', 'CollegeMediaController@store')->name('college.images.store');
+
+        Route::patch('/{mediaId}', 'CollegeMediaController@toggleLogo');
     });
+
+    Route::delete('/media/{mediaId}', 'CollegeMediaController@destroy')->name('college.images.destroy');
 
 });
 

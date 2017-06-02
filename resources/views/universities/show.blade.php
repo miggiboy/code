@@ -29,7 +29,7 @@
   <div class="nine wide column" style="margin-right: 46px;">
 
     @include ('institutions/partials/_media_gallery',
-        ['model' => $university]
+        ['model' => $university, 'modelType' => 'universities']
     )
 
     @include ('institutions/partials/_labels',
@@ -74,10 +74,13 @@
   <script src="/js/map.js"></script>
   <script src="/js/marks.js"></script>
 
-  <script type='text/javascript' src='/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
-  <script type='text/javascript' src='/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
+  <script src='/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
+  <script src='/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
+
+  <script src="/js/medialibrary.js"></script>
 
   <script>
+
     jQuery("#gallery").unitegallery({
       tile_width:100,
       tile_height:100,

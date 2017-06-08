@@ -98,19 +98,12 @@
 
           <div class="item"> {{-- Institutions item --}}
 
-            <div class="ui right pointing right floated icon dropdown small basic button content">
-              <i class="ellipsis vertical icon"></i>
-              <div class="menu">
-                <div class="header"><i class="tags icon"></i>  Опции </div>
-                <div class="divider"></div>
-                <a href="{{ route('specialty.professions.create', $specialty) }}" class="item"><i class="circle green add icon"></i>Добавить</a>
-              </div>
-            </div>
-
             <i class="small teal travel middle aligned icon"></i>
             <div class="content">
-            <a href="{{ route('specialty.professions.index', $specialty) }}"
-              class="header">{{ $institutionType = $specialty->getLocalInsitutionType() }} ({{ $specialty->countRelatedInstitutions() }})</a>
+            <a href="{{ route('specialties.institutions.index', [$specialty, 'inst' => request('inst')]) }}"
+              class="header">
+                {{ $institutionType = $specialty->getTranslatedInsitutionType() }} ({{ $specialty->getInstitutions()->count() }})
+            </a>
             </div>
           </div> {{-- End of professions item --}}
         </div> {{-- End of list --}}

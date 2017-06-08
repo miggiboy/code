@@ -102,6 +102,8 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
         Route::delete('/{profession}', 'SpecialtyProfessionsController@destroy')->name('specialty.professions.destroy');
     });
 
+    Route::get('/{specialty}/institutions', 'SpecialtyInstitutionsController@index')->name('specialties.institutions.index');
+
 });
 
 

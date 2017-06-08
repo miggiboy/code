@@ -48,7 +48,7 @@ class Speciality extends Model
 
    public function insitutionType()
    {
-        return ($this->direction->institution == 1)
+        return ($this->direction->institution == '1')
             ? 'universities'
             : 'colleges';
    }
@@ -229,6 +229,12 @@ class Speciality extends Model
     public function universities()
     {
         return $this->belongsToMany(\App\Models\University\University::class)
+            ->withPivot('study_price', 'study_period', 'form');
+    }
+
+    public function colleges()
+    {
+        return $this->belongsToMany(\App\Models\College\College::class)
             ->withPivot('study_price', 'study_period', 'form');
     }
 

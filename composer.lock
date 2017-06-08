@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d8f4f17faa0c1609290266d5e2bb785",
+    "content-hash": "ae378263666c1081a6d4d81b8dcc18f1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1922,6 +1922,53 @@
                 "temporary-directory"
             ],
             "time": "2017-02-02T13:08:42+00:00"
+        },
+        {
+            "name": "sven/artisan-view",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/svenluijten/artisan-view.git",
+                "reference": "5daea7329665dda2e244a79a39f96c0488186995"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/svenluijten/artisan-view/zipball/5daea7329665dda2e244a79a39f96c0488186995",
+                "reference": "5daea7329665dda2e244a79a39f96c0488186995",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.0.* || 5.1.* || 5.2.* || 5.3.* || 5.4.*"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.1",
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sven\\ArtisanView\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sven Luijten",
+                    "email": "svenluijten1995@gmail.com",
+                    "homepage": "https://svenluijten.com"
+                }
+            ],
+            "description": "Manage your views in Laravel projects through artisan",
+            "keywords": [
+                "artisan",
+                "laravel",
+                "templates",
+                "views"
+            ],
+            "time": "2017-02-02T07:53:09+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

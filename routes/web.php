@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Temp
+ */
+
+
+
+/**
  * Home & Feed
  */
 
@@ -82,17 +88,6 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
     Route::patch('/{specialty}', 'SpecialtiesController@update')->name('specialties.update');
 
     Route::delete('/{specialty}', 'SpecialtiesController@destroy')->name('specialties.destroy');
-
-    /**
-     * Specialty Directions
-     */
-
-    Route::group(['prefix' => '/directions'], function () {
-        Route::get('', 'DirectionsController@index')->name('directions');
-        Route::get('/{direction}', 'DirectionsController@show')->name('directions.show');
-
-        Route::post('', 'DirectionsController@store');
-    });
 
     /**
      * Specialty Professions
@@ -227,10 +222,16 @@ Route::group(['prefix' => '/universities', 'namespace' => 'Universities'], funct
     Route::get('/{slug}', 'UniversitiesController@show')->name('universities.show');
 
     /**
-     * University paid status
+     * University Paid Status
      */
     Route::patch('/{university}/status', 'UniversityPaidStatusController@toggle')->name('university.status.toggle');
 
+
+    /**
+     * University Pins
+     */
+     Route::post('/{university}/pin', 'UniversityPinsController@store')->name('universities.pins.store');
+     Route::delete('/{university}/pin', 'UniversityPinsController@destroy')->name('universities.pins.destroy');
 
     /**
      * University Specialties
@@ -452,3 +453,8 @@ Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.st
 Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
 
 
+/**
+ * Advertisement
+ */
+
+Route::resource('advertisements', 'AdvertisementsController');

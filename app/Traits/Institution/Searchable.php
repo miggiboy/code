@@ -21,13 +21,13 @@ trait Searchable
      * Includes institutions which title or acronym
      * is like the given query parameter
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  string $queryString
      * @return \Illuminate\Support\Collection
      */
     public function scopeLike($query, $queryString)
     {
-        $query
+        return $query
             ->where('title', 'like', "%{$queryString}%")
             ->orWhere('acronym', 'like', "%{$queryString}%");
     }
@@ -35,7 +35,7 @@ trait Searchable
     /**
      * Includes institutions which belong to the city
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  string $queryString
      * @return \Illuminate\Support\Collection
      */
@@ -47,7 +47,7 @@ trait Searchable
     /**
      * Includes institutions which have or don't have related specialties
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  boolean $has
      * @return \Illuminate\Support\Collection
      */
@@ -64,7 +64,7 @@ trait Searchable
      * Includes institutions which have
      * or don't have related reception committee
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  boolean $has
      * @return \Illuminate\Support\Collection
      */
@@ -81,7 +81,7 @@ trait Searchable
      * Includes institutions which have
      * or don't have related map
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  boolean $has
      * @return \Illuminate\Support\Collection
      */

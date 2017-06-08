@@ -1,4 +1,4 @@
-<div class="ui modal">
+<div class="ui modal" id="add-media-modal">
   <i class="close icon"></i>
   <div class="header">
     Добавление изображений
@@ -15,13 +15,7 @@
         enctype="multipart/form-data" id="images-form" class="ui form">
         {{ csrf_field() }}
 
-        <div class="field">
-          <label for="">Категория файлов</label>
-          <select class="ui dropdown" name="collection">
-              <option value="images">Не логотипы</option>
-              <option value="logo">Логотипы</option>
-          </select>
-        </div>
+          <input type="hidden" name="collection" value="images">
 
         <div class="field">
           <input type="file" name="images[]" id="" multiple>
@@ -40,7 +34,7 @@
 </div>
 
 <div class="overlay">
-  <a href="" onclick="event.preventDefault(); $('.ui.modal').modal({ inverted: true }).modal('show');"
+  <a href="" onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');"
     class="ui huge purple circular icon button">
     <i class="ui photo icon"></i>
   </a>

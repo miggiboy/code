@@ -37,6 +37,8 @@ class College extends Model implements HasMediaConversions
      */
     protected $guarded = [];
 
+    protected $hidden = ['pin'];
+
     protected $appends = ['markedByCurrentUser'];
 
     /*

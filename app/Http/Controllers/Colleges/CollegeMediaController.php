@@ -13,7 +13,12 @@ class CollegeMediaController extends Controller
     public function store(College $college, ImageRequest $request)
     {
         foreach ($request->file('images') as $image) {
-            $college->addMedia($image)->toMediaCollection($request->collection);
+            $college
+                ->addMedia($image)
+                ->usingFileName(
+                    uniqid(true) . '.' . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION)
+                )
+                ->toMediaCollection($request->collection);
         }
 
         return back()->with('message', 'Изображения добавлены');

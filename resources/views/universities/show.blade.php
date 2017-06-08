@@ -81,6 +81,37 @@
 
   <script>
 
+    function showPin(institutionId)
+    {
+       let pin = {{ $university->pin }}
+
+       //
+    }
+
+    function generatePin(institutionId)
+    {
+
+      axios.post('/' + institutionId + '/pin')
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+
+      showPin()
+    }
+
+    function showPin()
+    {
+        $('#pin-label').text('Пин вуза: ' + {{ $university->pin }})
+    }
+
+    function hidePin()
+    {
+       $('#pin-label').text('Показать пин')
+    }
+
     jQuery("#gallery").unitegallery({
       tile_width:100,
       tile_height:100,

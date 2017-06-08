@@ -53,6 +53,16 @@
         </div>
     @endif
 
+    @if ($university->call_center)
+        <div class="four wide column">
+            <h5 class="ui header">Основн. телефон
+              <div class="sub header">
+                  {{ $university->call_center }}
+              </div>
+            </h5>
+        </div>
+    @endif
+
     @if ($university->web_site)
         <div class="four wide column">
           <h5 class="ui header">Веб сайт:

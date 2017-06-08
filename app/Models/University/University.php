@@ -38,6 +38,11 @@ class University extends Model implements HasMediaConversions
      */
     protected $guarded = [];
 
+    /**
+     * Instituttion representative pin
+     */
+    protected $hidden = ['pin'];
+
     protected $appends = ['markedByCurrentUser'];
 
     /*

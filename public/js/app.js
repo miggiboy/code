@@ -1,6 +1,6 @@
 $('.ui.checkbox').checkbox();
 
-let appUrl = 'selavu.mi:8000';
+let appUrl = 'mustim09.beget.tech';
 
 $('.ui.dropdown').dropdown();
 

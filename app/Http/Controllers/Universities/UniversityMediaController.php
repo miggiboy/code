@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Universities;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ImageRequest;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\University\University;
-
-use App\Http\Requests\ImageRequest;
 
 class UniversityMediaController extends Controller
 {
@@ -16,7 +16,12 @@ class UniversityMediaController extends Controller
         // TODO: Add multiple from request
 
         foreach ($request->file('images') as $image) {
-            $university->addMedia($image)->toMediaCollection($request->collection);
+            $university
+                ->addMedia($image)
+                ->usingFileName(
+                    uniqid(true) . '.' . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION)
+                )
+                ->toMediaCollection($request->collection);
         }
 
         return back()->with('message', 'Изображения добавлены');

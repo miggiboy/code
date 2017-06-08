@@ -207,7 +207,16 @@
         </div>
         <br>
 
-      <button class="ui big teal button" type="submit">Сохранить</button>
+      <div class="ui negative message" style="display: none;" id="error-message">
+        <div class="header">
+          Допущены слудующие ошибки
+        </div>
+        <ul>
+          <li>Количество символов описания превышает максимум</li>
+        </ul>
+      </div>
+
+      <button class="ui big teal button" type="submit" id="form-submit-button">Сохранить</button>
     </form>
     <br><br>
 @endsection
@@ -215,8 +224,19 @@
 @section('script')
   <script>
       CKEDITOR.replace('description', {
-        height: 350
+          height: 350,
+          extraPlugins: 'wordcount',
+          wordcount: {
+              showWordCount: true,
+              showCharCount: true,
+              maxWordCount: -1,
+              maxCharCount: -1,
+              showParagraphs: false,
+              countSpacesAsChars: false,
+              countHTML: false
+          }
       });
+
       CKEDITOR.replace('reception[info]', {
         height: 350
       });

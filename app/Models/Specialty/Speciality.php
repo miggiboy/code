@@ -46,6 +46,29 @@ class Speciality extends Model
     |
     */
 
+   public function insitutionType()
+   {
+        return ($this->direction->institution == 1)
+            ? 'universities'
+            : 'colleges';
+   }
+
+   public function getTranslatedInsitutionType()
+   {
+       return ($this->insitutionType() == 'universities')
+            ? 'Университеты'
+            : 'Колледжи';
+   }
+
+   public function getInstitutions()
+   {
+       $related = ($this->insitutionType() == 'universities')
+            ? $this->universities()
+            : $this->colleges();
+
+        return $related->orderBy('title')->get();
+   }
+
     public static function getDBStudyFormOrFail($key)
     {
         $studyForms = [

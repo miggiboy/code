@@ -50,7 +50,7 @@ class Profession extends Model
      * Filters out professions which title
      * is not like the given query parameter
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  string $queryString
      * @return \Illuminate\Support\Collection
      */
@@ -62,7 +62,7 @@ class Profession extends Model
     /**
      * Filters out professions which don't belong to the given direction
      *
-     * @param  [type] $query
+     * @param  $query
      * @param  integer $direction
      * @return \Illuminate\Support\Collection
      */

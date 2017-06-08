@@ -24,13 +24,15 @@
   <a href="{{ route('professions') }}" class="item">Профессии </a>
   <a href="{{ route('articles') }}" class="item">Статьи </a>
 
-  <div class="ui dropdown item">
+  <a href="{{ route('advertisements.index') }}" class="item">Реклама </a>
+
+  {{-- <div class="ui dropdown item">
     Предметы <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
         <a href="{{ route('subjects') }}" class="item">Предметы </a>
         <a href="{{ route('quizzes') }}" class="item">Тесты </a>
     </div>
-  </div>
+  </div> --}}
 
   {{-- <div class="ui search universities item">
     <form action="{{ route('universities.search') }}" method="GET" class="ui form">
@@ -44,6 +46,7 @@
   <div class="right menu">
 
     @if (Auth::check())
+
       <div class="ui floating dropdown link item">
         <div class="text">
           <img class="logo" src="{{ auth()->user()->identicon }}">

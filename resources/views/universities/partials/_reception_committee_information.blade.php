@@ -19,15 +19,6 @@
         </div>
       @endif
 
-      @if ($university->call_center)
-          <div class="four wide column">
-              <h5 class="ui header">Колл-центр </h5>
-              <div class="content">
-                  {{ $university->call_center }}
-              </div>
-          </div>
-      @endif
-
       @if (isset($university->reception->email))
           <div class="six wide column">
               <h5 class="ui header">Почта приемной ком.</h5>
@@ -36,7 +27,7 @@
       @endif
 
       @if ($university->address)
-            <div class="six wide column">
+            <div class="five wide column">
                 <h5 class="ui header">Адрес университета </h5>
                 <div class="content">
                     {{ $university->address }}
@@ -45,7 +36,7 @@
       @endif
 
       @if (isset($university->reception->address))
-          <div class="six wide column">
+          <div class="column">
               <h5 class="ui header">Адрес приемной ком. </h5>
               <div class="content">{{ $university->reception->address }}</div>
           </div>

@@ -36,6 +36,36 @@
         {{ method_field('PATCH') }}
       </form>
 
+      @if (! $university->pin)
+        <a href="#" class="item"
+          onclick="event.preventDefault();
+            document.getElementById('generate-institution-{{ $university->id }}-pin-form').submit();">
+          <i class="grey privacy icon"></i>  Сгенерировать пин
+        </a>
+
+        <form action="{{ route('universities.pins.store', $university) }}" method="post"
+          id="generate-institution-{{ $university->id }}-pin-form">
+          {{ csrf_field() }}
+        </form>
+
+      @else
+        <a href="#" class="item"
+          onclick="event.preventDefault();
+            document.getElementById('delete-institution-{{ $university->id }}-pin-form').submit();">
+          <i class="brown privacy icon"></i>  Удалить пин
+        </a>
+
+        <form action="{{ route('universities.pins.destroy', $university) }}"
+              method="post"
+              id="delete-institution-{{ $university->id }}-pin-form">
+
+          {{ csrf_field() }}
+          {{ method_field('DELETE') }}
+        </form>
+
+      @endif
+
+
       {{-- Deleting --}}
       <a href="#" class="item"
         onclick="event.preventDefault();

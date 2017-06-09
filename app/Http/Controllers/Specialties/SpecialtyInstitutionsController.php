@@ -11,7 +11,10 @@ class SpecialtyInstitutionsController extends Controller
 {
     public function index(Request $request, Speciality $specialty)
     {
-        $specialty->load([$specialty->insitutionType()]);
+        $specialty->load(
+            [$specialty->insitutionType() . '.' . 'city']
+        );
+
         return view('specialties.institutions.index', compact('specialty'));
     }
 }

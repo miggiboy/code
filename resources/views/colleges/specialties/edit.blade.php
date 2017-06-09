@@ -36,5 +36,5 @@
 @endsection
 
 @section('script')
-    <script src="/js/dynamic-speciality-details.js"></script>
+    <script src="/js/specialty-details.js"></script>
 @endsection

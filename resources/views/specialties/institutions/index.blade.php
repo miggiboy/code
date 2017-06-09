@@ -33,7 +33,7 @@
       Связанные {{ $specialty->getTranslatedInsitutionType() }}
     </h2>
 
-    @if ($specialty->getInstitutions()->count())
+    @if ($institutions = $specialty->colleges ?? $speciality->universities)
       <table class="ui celled striped table">
         <thead>
           <th style="width: 400px;">Учебное заведение</th>
@@ -43,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($specialty->getInstitutions() as $institution)
+          @foreach ($institutions as $institution)
             <tr>
               <td class="collapsing">
                 <h4 class="ui header">

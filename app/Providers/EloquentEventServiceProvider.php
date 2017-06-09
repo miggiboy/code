@@ -19,7 +19,6 @@ class EloquentEventServiceProvider extends ServiceProvider
         \App\Models\Article\Article::observe(\App\Observers\ArticleObserver::class);
         \App\Subject::observe(\App\Observers\SubjectObserver::class);
         \App\Models\Specialty\Speciality::observe(\App\Observers\SpecialtyObserver::class);
-        \App\Advertisement::observe(\App\Observers\AdvertisementObserver::class);
     }
 
     /**

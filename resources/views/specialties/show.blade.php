@@ -12,12 +12,15 @@
   <div class="ui very relaxed grid">
     <div class="ten wide column">
 
+      <div class="ui purple label">ID:  {{ $specialty->id }}</div>
+
       <a class="ui basic label{{ $specialty->markedByCurrentUser ? ' marked' : '' }}" id="marker"
-          onclick="event.preventDefault(); toggleMark('specialty', '{{ $specialty->id }}');">
+          onclick="event.preventDefault(); toggleMark('specialty', '{{ $specialty->id }}');"
+          title="Оставляйте отметки чтобы вернуться к ним позже. Ваши отметки видны только Вам.">
         @if ($specialty->markedByCurrentUser)
-          Отмечено
+          Отмечено Вами
         @else
-          Отметить
+          Отметить для себя
         @endif
       </a>
 

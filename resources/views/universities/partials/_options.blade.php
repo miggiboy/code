@@ -36,7 +36,7 @@
         {{ method_field('PATCH') }}
       </form>
 
-      @if (! $university->pin)
+      {{-- @if (! $university->pin)
         <a href="#" class="item"
           onclick="event.preventDefault();
             document.getElementById('generate-institution-{{ $university->id }}-pin-form').submit();">
@@ -63,7 +63,7 @@
           {{ method_field('DELETE') }}
         </form>
 
-      @endif
+      @endif --}}
 
 
       {{-- Deleting --}}

@@ -17,8 +17,9 @@
   @endif
 </a>
 
-@if ($model->pin)
+{{-- @if ($model->pin)
   <a href="#" class="ui olive label" onmouseover="showPin()" onmouseout="hidePin()" id="pin-label">
     Показать пин
   </a>
 @endif
+ --}}

@@ -29,12 +29,15 @@
 @section ('content')
     <div class="ui container custom">
 
+      <div class="ui purple label">ID:  {{ $profession->id }}</div>
+
       <a class="ui basic label{{ $profession->markedByCurrentUser ? ' marked' : '' }}" id="marker"
-          onclick="event.preventDefault(); toggleMark('profession', '{{ $profession->id }}');">
+          onclick="event.preventDefault(); toggleMark('profession', '{{ $profession->id }}');"
+          title="Оставляйте отметки чтобы вернуться к ним позже. Ваши отметки видны только Вам.">
         @if ($profession->markedByCurrentUser)
-          Отмечено
+          Отмечено Вами
         @else
-          Отметить
+          Отметить для себя
         @endif
       </a><br><br>
 

@@ -4,10 +4,6 @@
  * Temp
  */
 
-Route::get('/bug', function () {
-    $user = App\User::first();
-    $user->lol();
-});
 
 
 /**

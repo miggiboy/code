@@ -17,7 +17,9 @@ class CollegeSpecialtiesController extends Controller
     {
         $this->middleware('role:admin|moderator|developer');
 
-        $this->DBStudyForm = Speciality::getDBStudyFormOrFail(request()->route('studyForm'));
+        $this->DBStudyForm = Speciality::getDBStudyFormOrFail(
+            request()->route('studyForm')
+        );
     }
 
     public function index(College $college, $studyForm)

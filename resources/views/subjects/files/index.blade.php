@@ -32,40 +32,40 @@
     <div class="ui grid">
         <div class="column">
             <div class="ui very relaxed middle aligned selection list">
-              @foreach ($subject->files as $file)
+              @foreach ($subject->getMedia('') as $media)
                 <div class="item">
                   <div class="right floated content">
-                    <a href="{{ $file->path }}" class="ui mini green button"
-                      style="margin-right: 15px; text-decoration: underline;" target="_blank">Скачать</a>
+                    <a href="{{ $media->getUrl() }}" class="ui mini green button"
+                      style="margin-right: 15px; text-decoration: underline;" target="_blank" download>Скачать</a>
                     <a href="#" class="ui mini yellow button"
                       onclick="event.preventDefault();
-                        document.getElementById('destroy-file-{{ $file->id }}-form').submit();">Удалить</a>
-                    <form action="{{ route('subject.file.destroy', [$subject, $file]) }}"
-                            id="destroy-file-{{ $file->id }}-form" method="post">
+                        document.getElementById('destroy-media-{{ $media->id }}-form').submit();">Удалить</a>
+                    <form action="{{ route('subjects.media.destroy', [$subject, $media]) }}"
+                            id="destroy-media-{{ $media->id }}-form" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                     </form>
                   </div>
                   <div class="right floated content">
                     <div style="margin-top: 8px; margin-right: 70px; color: #444; font-size: 12px;">
-                      {{ $file->created_at->format('d.m.y') }}
+                      {{ $media->created_at->format('d.m.y') }}
                     </div>
                   </div>
 
                   <div class="right floated content">
                     <div style="margin-top: 8px; margin-right: 70px; color: #444; font-size: 12px;">
-                      112.1 кб
+                      {{ $media->human_readable_size }}
                     </div>
                   </div>
                   <div class="right floated content">
                     <div style="margin-top: 8px; margin-right: 70px; color: #444; font-size: 12px;">
-                      {{ $file->category->display_title }}
+                      {{ $media->collection_name }}
                     </div>
                   </div>
                   <img class="ui image" src="/images/file-icons/exe.svg" style="width: 37px; height: 37px;">
                   <div class="content">
-                    <a href="" style="color: #444; text-decoration: underline; font-size: 12px;" title="{{ $file->display_name }}">
-                      {{ str_limit($file->display_name, 60) }}
+                    <a href="" style="color: #444; text-decoration: underline; font-size: 12px;" title="{{ $media->name }}">
+                      {{ str_limit($media->name, 60) }}
                     </a>
                   </div>
                 </div>
@@ -87,16 +87,16 @@
           <div class="ui header">Прикрепляем файлы предмету</div>
           <p>Заливать можно по нескольку файлов</p>
           <p>Загрузка займет время поэтому если Вы не хотите ждать то можете нажать на <a href="{{ route('subjects') }}" target="_blank">эту ссылку</a></p><br>
-          <form action="{{ route('subject.files.store', $subject) }}" method="post"
+          <form action="{{ route('subjects.media.store', $subject) }}" method="post"
             enctype="multipart/form-data" id="subject-files" class="ui form">
             {{ csrf_field() }}
 
             <div class="field">
               <label for="">Категория файлов</label>
-              <select class="ui dropdown" name="category_id">
+              <select class="ui dropdown" name="category">
                 <option value="">Тип файла</option>
                 @foreach ($subject->fileCategories as $category)
-                  <option value="{{ $category->id }}">{{ $category->display_title }}</option>
+                  <option value="{{ $category->title }}">{{ $category->display_title }}</option>
                 @endforeach
               </select>
             </div>
@@ -118,7 +118,7 @@
     </div>
 
     <div class="overlay">
-      <a href="" onclick="return; event.preventDefault(); $('.ui.modal').modal({ inverted: true }).modal('show');"
+      <a href="" onclick="event.preventDefault(); $('.ui.modal').modal({ inverted: true }).modal('show');"
         class="ui huge green circular icon button">
         <i class="ui add icon"></i>
       </a>

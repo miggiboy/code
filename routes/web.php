@@ -174,15 +174,15 @@ Route::group(['prefix' => '/subjects', 'namespace' => 'Subjects'], function () {
 
 
     /**
-     * Subject Files
+     * Subject Media
      */
 
-    Route::group(['prefix' => '/{subject}/files'], function () {
-        Route::get('', 'SubjectFilesController@index')->name('subject.files.index');
+    Route::group(['prefix' => '/{subject}/media'], function () {
+        Route::get('', 'SubjectMediaController@index')->name('subjects.media.index');
 
-        Route::post('', 'SubjectFilesController@store')->name('subject.files.store');
+        Route::post('', 'SubjectMediaController@store')->name('subjects.media.store');
 
-        Route::delete('/{file}', 'SubjectFilesController@destroy')->name('subject.file.destroy');
+        Route::delete('/{media}', 'SubjectMediaController@destroy')->name('subjects.media.destroy');
     });
 
 });

@@ -62,7 +62,7 @@ class SubjectsController extends Controller
      */
     public function show(Subject $subject)
     {
-        $subject->load(['files' => function ($query) {
+        $subject->load(['media' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }]);
 

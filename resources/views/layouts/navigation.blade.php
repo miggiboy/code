@@ -24,15 +24,15 @@
   <a href="{{ route('professions') }}" class="item">Профессии </a>
   <a href="{{ route('articles') }}" class="item">Статьи </a>
 
-  <a href="{{ route('advertisements.index') }}" class="item">Реклама </a>
+  {{-- <a href="{{ route('advertisements.index') }}" class="item">Реклама </a> --}}
 
-  {{-- <div class="ui dropdown item">
+  <div class="ui dropdown item">
     Предметы <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
         <a href="{{ route('subjects') }}" class="item">Предметы </a>
         <a href="{{ route('quizzes') }}" class="item">Тесты </a>
     </div>
-  </div> --}}
+  </div>
 
   {{-- <div class="ui search universities item">
     <form action="{{ route('universities.search') }}" method="GET" class="ui form">

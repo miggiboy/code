@@ -4,8 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+
+class Subject extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     protected $fillable = ['title'];
 
     /**
@@ -29,11 +34,6 @@ class Subject extends Model
     public function specialities()
     {
         return $this->belongsToMany(\App\Models\Specialty\Speciality::class);
-    }
-
-    public function files()
-    {
-        return $this->morphMany('App\Models\File\File', 'fileable');
     }
 
     public function quizzes()

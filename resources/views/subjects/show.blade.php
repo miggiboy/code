@@ -22,7 +22,7 @@
 
 @section ('content')
     <div class="ui cards">
-        <a class="ui card" href="{{ route('subject.files.index', $subject) }}">
+        <a class="ui card" href="{{ route('subjects.media.index', $subject) }}">
           <div class="content">
             <h5 class="ui icon header">
               <i class="teal file icon"></i>
@@ -41,7 +41,7 @@
           <div class="extra content">
             <div class="left floated author">
               <i class="file text outline icon"></i>
-              Файлов: {{ count($subject->files) }}
+              Файлов: {{ count($subject->getMedia('')) }}
             </div>
           </div>
         </a>

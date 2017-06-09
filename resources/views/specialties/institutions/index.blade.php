@@ -36,18 +36,28 @@
     @if ($specialty->getInstitutions()->count())
       <table class="ui celled striped table">
         <thead>
-          <th style="width: 400px;">Уч. заведение</th>
+          <th style="width: 400px;">Учебное заведение</th>
+          <th style="width: 120px;">Форма обучения</th>
             <th style="width: 120px;">Цена за год</th>
-            <th style="width: 240px;">Срок обучения</th>
+            <th style="width: 120px;">Срок обучения</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($specialty->getInstitutions() as $institution)
             <tr>
               <td class="collapsing">
-                <a href="{{ route(strtolower(str_plural((class_basename($institution)))) . '.show', $institution->slug) }}">
-                  {{ $institution->title }}
-                </a>
+                <h4 class="ui header">
+                  <div class="content">
+                      <a href="{{ route(strtolower(str_plural((class_basename($institution)))) . '.show', $institution->slug) }}">
+                        {{ $institution->title }}
+                      </a>
+                      <div class="sub header"> {{ $institution->city->title }}
+                    </div>
+                  </div>
+                </h4>
+              </td>
+              <td>
+                {{ ($institution->pivot->form == '1') ? 'очная' : 'заочная' }}
               </td>
               <td>{{ $institution->pivot->price }}</td>
               <td class="right aligned collapsing">{{ $institution->pivot->study_period }}</td>

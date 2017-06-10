@@ -19,6 +19,24 @@
         </div>
       @endif
 
+      @if ($university->call_center)
+          <div class="four wide column">
+              <h5 class="ui header">Основн. телефон</h5>
+              <div class="content">
+                  {{ $university->call_center }}
+              </div>
+          </div>
+      @else
+
+          <div class="four wide column">
+              <h5 class="ui header">Основн. телефон</h5>
+              <div class="content">
+                  Нет
+              </div>
+          </div>
+
+      @endif
+
       @if (isset($university->reception->email))
           <div class="six wide column">
               <h5 class="ui header">Почта приемной ком.</h5>

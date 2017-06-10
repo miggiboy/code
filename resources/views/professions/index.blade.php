@@ -66,6 +66,9 @@
               itemType="profession" itemId="{{ $profession->id }}">
 
                   @include ('professions/partials/_options')
+                  <div class="right floated content">
+                    <div>ID:  {{ $profession->id }}</div>
+                  </div>
                   <i class="teal travel icon"></i>
                   <div class="content">
                     <a class="header" href="{{ route('profession.show', $profession) }}">

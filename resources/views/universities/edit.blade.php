@@ -144,6 +144,13 @@
       <div class="field">
           <label for="description">Описание</label>
           <textarea id="description" name="description">{!! old('description', $university->description) !!}</textarea>
+          <h5 class="ui right aligned header" style="font-weight: lighter; margin-top: 1px;">Описание должно быть в пределах 700 символов</h5>
+       </div>
+      <br><br>
+
+      <div class="field">
+          <label for="extra_description">Дополнительное описание</label>
+          <textarea id="extra_description" name="extra_description">{!! old('extra_description', $university->extra_description) !!}</textarea>
        </div>
       <br><br>
 
@@ -227,7 +234,7 @@
           height: 350,
           extraPlugins: 'wordcount',
           wordcount: {
-              showWordCount: true,
+              showWordCount: false,
               showCharCount: true,
               maxWordCount: -1,
               maxCharCount: -1,
@@ -235,6 +242,10 @@
               countSpacesAsChars: false,
               countHTML: false
           }
+      });
+
+      CKEDITOR.replace('extra_description', {
+        height: 150
       });
 
       CKEDITOR.replace('reception[info]', {

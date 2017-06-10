@@ -2,6 +2,11 @@
 
   <article>
     {!! $college->description !!}
+
+    @if ($college->extra_description)
+        <h3>Дополнительное описание</h3>
+        {!! $college->extra_description !!}
+    @endif
   </article>
 
   <br>

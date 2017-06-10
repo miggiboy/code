@@ -11,10 +11,10 @@ class SpecialtyInstitutionsController extends Controller
 {
     public function index(Request $request, Speciality $specialty)
     {
-        $specialty->load(
-            [$specialty->insitutionType() . '.' . 'city']
-        );
+        $institutions = ($specialty->insitutionType() == 'universities')
+            ? $specialty->universities
+            : $specialty->colleges;
 
-        return view('specialties.institutions.index', compact('specialty'));
+        return view('specialties.institutions.index', compact('specialty', 'institutions'));
     }
 }

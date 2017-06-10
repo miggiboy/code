@@ -33,7 +33,7 @@
       Связанные {{ $specialty->getTranslatedInsitutionType() }}
     </h2>
 
-    @if ($institutions = $specialty->colleges ?? $speciality->universities)
+    @if ($institutions)
       <table class="ui celled striped table">
         <thead>
           <th style="width: 400px;">Учебное заведение</th>

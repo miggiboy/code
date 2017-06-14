@@ -25,7 +25,13 @@ class CollegeSpecialtiesController extends Controller
     public function index(College $college, $studyForm)
     {
         $college->load(['specialities' => function ($query) {
-            $query->wherePivot('form', $this->DBStudyForm)->orderBy('title');
+            request('category') == 'qualifications'
+                ? $query->whereNotNull('parent_id')
+                    ->wherePivot('form', $this->DBStudyForm)
+                    ->orderBy('title')
+                : $query
+                    ->wherePivot('form', $this->DBStudyForm)
+                    ->orderBy('title');
         }]);
 
         return view('colleges.specialties.index', compact('college', 'studyForm'));
@@ -34,10 +40,20 @@ class CollegeSpecialtiesController extends Controller
     public function create(College $college, $studyForm)
     {
         $college->load(['specialities' => function ($query) {
-            $query->wherePivot('form', $this->DBStudyForm);
+            request('category') == 'qualifications'
+                ? $query->whereNotNull('parent_id')
+                    ->wherePivot('form', $this->DBStudyForm)
+                : $query
+                    ->wherePivot('form', $this->DBStudyForm);
         }]);
 
-        $specialties = Speciality::ofCollege()->orderBy('title')->get();
+        $specialties = (request('category') == 'qualifications')
+            ? Speciality::isTypeQualification()
+                ->orderBy('title')
+                ->get()
+            : Speciality::ofCollege()
+                ->orderBy('title')
+                ->get();
 
         return view('colleges.specialties.create', compact('college', 'specialties', 'studyForm'));
     }
@@ -49,7 +65,11 @@ class CollegeSpecialtiesController extends Controller
         session()->flash('message', 'Специальности прикреплены');
 
         if ($studyForm == 'full-time') {
-            return redirect()->route('college.specialties.create', [$college, 'extramural']);
+            return redirect()->route('college.specialties.create', [
+                $college,
+                'extramural',
+                'category' => $request->category
+            ]);
         }
 
         return redirect()->route('colleges.show', $college->slug);
@@ -58,7 +78,11 @@ class CollegeSpecialtiesController extends Controller
     public function edit(College $college, $studyForm)
     {
         $college->load(['specialities' => function ($query) {
-            $query->wherePivot('form', $this->DBStudyForm);
+            request('category') == 'qualifications'
+                ? $query->whereNotNull('parent_id')
+                    ->wherePivot('form', $this->DBStudyForm)
+                : $query
+                    ->wherePivot('form', $this->DBStudyForm);
         }]);
 
         return view('colleges.specialties.edit', compact('college', 'studyForm'));

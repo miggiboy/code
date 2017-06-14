@@ -11,7 +11,7 @@
       <td>
         <h4 class="ui header">
           <div class="content">
-            <a href="{{ route('specialties.show', [$specialty, 'inst' => 1]) }}">
+            <a href="{{ route('specialties.show', [$specialty, 'inst' => 0]) }}">
               {{ $specialty->title }}
             </a>
             <div class="sub header"> {{ $specialty->code }}

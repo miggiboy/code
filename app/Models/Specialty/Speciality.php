@@ -26,7 +26,9 @@ class Speciality extends Model
      */
     protected $guarded = [];
 
-    protected $appends = ['markedByCurrentUser'];
+    protected $appends = [
+        'markedByCurrentUser'
+    ];
 
     /**
      * Get the route key for the model.
@@ -46,8 +48,32 @@ class Speciality extends Model
     |
     */
 
+   public function hasValidParent()
+   {
+       return ! Speciality::find($this->parent_id) == null;
+   }
+
+   public function scopeIsTypeQualification($query)
+   {
+       return $query->where('type', 'qualification');
+   }
+
+   public function scopeIsSpecialty($query)
+   {
+        return $query->where('type', 'specialty');
+   }
+
+   public function isQualification()
+   {
+       return $this->type == 'qualification';
+   }
+
    public function insitutionType()
    {
+        if ($this->isQualification()) {
+            return 'colleges';
+        }
+
         return ($this->direction->institution == '1')
             ? 'universities'
             : 'colleges';
@@ -215,6 +241,16 @@ class Speciality extends Model
     |--------------------------------------------------------------------------
     |
     */
+
+    public function qualifications()
+    {
+        return $this->hasMany(Speciality::class, 'parent_id');
+    }
+
+    public function parentSpecialty()
+    {
+        return $this->belongsTo(Specialty::class, 'parent_id');
+    }
 
     public function subjects()
     {

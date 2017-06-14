@@ -1,8 +1,78 @@
 <?php
 
+use App\Models\Specialty\Speciality;
 /**
  * Temp
  */
+
+Route::get('/load', function () {
+
+    $codes = Speciality::ofCollege()->pluck('code');
+
+
+
+    foreach ($codes as $code) {
+        if (Speciality::where('code', $code)->get()->count() > 1) {
+            $spec = Speciality::where('code', $code)->first();
+
+            \DB::raw('UPDATE college_specialities SET speciality_id = ')
+        }
+    }
+
+    // dd($codes);
+
+    return;
+
+    // $specs = Speciality::where('type', 'qualification')->get();
+
+    // return ['specs' => count($specs)];
+
+    ini_set('max_execution_time', 1900);
+
+    $handle = fopen("qqq.txt", "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            $qualification = explode('___', $line, 2);
+
+            $code = trim(preg_replace('/[\s]+/', '' , $qualification[0]));
+            $code = trim(preg_replace('/\d+[\s]+\d+/', '' , $code));
+
+            if (strlen($code) == 6) {
+                $code = '0' . $code;
+            }
+
+            $title = trim($qualification[1]);
+
+            if (! Speciality::where('code', $code)
+                ->first()
+            ) {
+                $spec = Speciality::create([
+                    'title' => $title,
+                    'code'  => $code,
+                    'type' => 'qualification',
+                    'direction_id' => '404',
+                    'parent_id' => 9999999,
+                ]);
+
+                // $spec->save();
+            }
+        }
+
+        fclose($handle);
+
+    } else {
+        echo "error opening the file.";
+    }
+});
+
+
+/**
+ * Storage linker (Shouldn't be uncommented, deleted or visited)
+ */
+
+// Route::get('/link', function () {
+//     App::make('files')->link(storage_path('app/public'), public_path('storage'));
+// });
 
 
 
@@ -69,12 +139,13 @@ Route::group(['namespace' => 'User'], function () {
 Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], function () {
 
     /**
-     * Article Search
+     * Specialty Search
      */
 
     Route::group(['prefix' => '/search'], function () {
         Route::get('', 'SpecialtiesController@search')->name('specialties.search');
         Route::get('/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
+        Route::get('/college/specialties', 'SpecialtiesController@searchCollegeSpecialties');
     });
 
     Route::get('', 'SpecialtiesController@index')->name('specialties');
@@ -102,6 +173,22 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
         Route::delete('/{profession}', 'SpecialtyProfessionsController@destroy')->name('specialty.professions.destroy');
     });
 
+    /**
+     * Specialty qualifications
+     */
+    Route::get('/{specialty}/qualifications', 'SpecialtyQualificationsController@index')->name('specialties.qualifications.index');
+
+    Route::get('/{specialty}/qualifications/create', 'SpecialtyQualificationsController@create')
+        ->name('specialties.qualifications.create');
+
+    Route::post('/{specialty}/qualifications', 'SpecialtyQualificationsController@store')->name('specialties.qualifications.store');
+
+    Route::delete('/{specialty}/qualifications/{qualification}', 'SpecialtyQualificationsController@destroy')
+        ->name('specialties.qualifications.destroy');
+
+    /**
+     * Specialty related institutions
+     */
     Route::get('/{specialty}/institutions', 'SpecialtyInstitutionsController@index')->name('specialties.institutions.index');
 
 });

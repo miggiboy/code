@@ -28,7 +28,8 @@ class StoreSpecialtyRequest extends FormRequest
             'code'          => 'nullable|alpha_num|unique:specialities|max:255',
             'subject_1_id'  => 'nullable|integer',
             'subject_2_id'  => 'nullable|integer',
-            'direction_id'  => 'required|unique:directions,title',
+            'model_type'    => 'required',
+            'direction_id'  => 'nullable|unique:directions,title',
         ];
     }
 
@@ -45,7 +46,7 @@ class StoreSpecialtyRequest extends FormRequest
             'subject_1_id.integer'  => 'Предмет 1 - неверные данные.',
             'subject_2_id.integer'  => 'Предмет 2 - неверные данные.',
 
-            'direction_id.required' => 'Направление - обязательное поле.',
+            'model_type.required'   => 'Поле тип - обязательное',
         ];
     }
 }

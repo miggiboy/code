@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $college->title }} - специальности
+  {{ $college->title }} - @if (request('category') == 'qualifications') 'квалификации' @else 'специальности' @endif
 @endsection
 
 @section ('styles')
@@ -26,20 +26,21 @@
 @section ('content')
   <div class="ui custom container">
     <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
-      Специальности @if ($studyForm === 'full-time') очной @elseif ($studyForm === 'extramural') заочной  @endif формы колледжа<br>
+      @if (request('category') == 'qualifications') 'Квалификации' @else 'Специальности' @endif
+       @if ($studyForm === 'full-time') очной @elseif ($studyForm === 'extramural') заочной  @endif формы колледжа<br>
 
       <a href="{{ route('colleges.show', $college->slug) }}" target="_blank">
         {{ str_limit($college->title, 50) }}
       </a><br>
       @if ($college->specialities->count())
-        <a href="{{ route('college.specialties.edit', [$college, $studyForm]) }}" class="ui teal button" style="margin-top: 15px;">
+        <a href="{{ route('college.specialties.edit', [$college, $studyForm, 'category' => request('category')]) }}" class="ui teal button" style="margin-top: 15px;">
         Редактировать
         </a>
       @else
-        <a href="{{ route('college.specialties.create', [$college, $studyForm]) }}"
+        <a href="{{ route('college.specialties.create', [$college, $studyForm, 'category' => request('category')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
-          Добавить специальности
+          Добавить @if (request('category') == 'qualifications') 'квалификации' @else 'специальности' @endif
         </a>
       @endif
     </h2>

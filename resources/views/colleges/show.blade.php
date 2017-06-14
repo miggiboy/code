@@ -43,6 +43,7 @@
 
       <div class="six wide column">
         <div class="row">
+          @include ('colleges/partials/show/_college_qualifications')
           @include ('colleges/partials/show/_college_specialties')
         </div>
         <br>

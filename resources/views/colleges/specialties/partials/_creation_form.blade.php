@@ -1,6 +1,7 @@
 <form action="{{ route('college.specialties', [$college, $studyForm]) }}" method="post">
     {{ csrf_field() }}
     <input type="hidden" name="form" value='{{ request('form') }}'>
+    <input type="hidden" name="category" value='{{ request('category') }}'>
 
     <div class="ui form" style="position: relative; margin-bottom: 25px;">
         <select name="specialties[]" class="ui fluid search dropdown" multiple="">

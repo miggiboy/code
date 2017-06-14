@@ -27,7 +27,8 @@
       <a href="{{ route('colleges.show', $college->slug) }}" target="_blank" title="{{ $college->title }}">
         {{ str_limit($college->title, 55) }}
       </a><br>
-      специальности @if ($studyForm === 'full-time') очной @elseif ($studyForm === 'extramural') заочной  @endif формы
+      @if (request('category') == 'qualifications') квалификации @else специальности @endif
+      @if ($studyForm === 'full-time') очной @elseif ($studyForm === 'extramural') заочной  @endif формы
     </h2>
     @include ('colleges/specialties/partials/_edition_form')
   </div>

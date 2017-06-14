@@ -24,18 +24,21 @@ class SpecialtiesController extends Controller
 
     public function index(Request $request)
     {
-        if (! $request->has('inst')) {
-            $directions     = Direction::all()->sortBy('title');
-            $specialties   = Speciality::orderBy('title')->with(['direction', 'marks'])->paginate(15);
-        } else {
-            $directions = Direction::where('institution', (bool) $request->inst)
+        $directions = $request->has('inst')
+            ? Direction::where('institution', (bool) $request->inst)
                 ->orderBy('title')
-                ->get();
+                ->get()
+            : Direction::all()->sortBy('title');
 
-            $specialties = Speciality::ofInstitution($request->inst)->with(['direction', 'marks'])
+        $specialties = $request->has('inst')
+            ? Speciality::ofInstitution($request->inst)->with(['direction', 'marks'])
                 ->orderBy('title')
+                ->isSpecialty()
+                ->paginate(15)
+            : Speciality::with(['direction', 'marks'])
+                ->orderBy('title')
+                ->isSpecialty()
                 ->paginate(15);
-        }
 
         return view('specialties.index', compact('specialties', 'directions'));
     }
@@ -61,8 +64,10 @@ class SpecialtiesController extends Controller
      */
     public function store(StoreSpecialtyRequest $request)
     {
-        if (! is_numeric($request->direction_id)) {
-            $direction = Direction::create(['title' => $request->direction_id]);
+        if ($request->model_type == 'specialty') {
+            if (! is_numeric($request->direction_id)) {
+                $direction = Direction::create(['title' => $request->direction_id]);
+            }
         }
 
         $specialty = Speciality::create([
@@ -70,17 +75,21 @@ class SpecialtiesController extends Controller
             'code'                  => $request->code,
             'description'           => $request->description,
             'short_description'     => $request->short_description,
+            'type'                  => $request->model_type,
+            'parent_id'             => ($request->model_type == 'specialty') ? null : $request->parent_id,
             'direction_id'          => ((isset($direction)) ? $direction->id : $request->direction_id),
         ]);
 
-        if (isset($request->subject_1_id, $request->subject_2_id)) {
-            $specialty->subjects()->attach($request->subject_1_id);
-            $specialty->subjects()->attach($request->subject_2_id);
+        if ($request->model_type === 'specialty') {
+            if (isset($request->subject_1_id, $request->subject_2_id)) {
+                $specialty->subjects()->attach($request->subject_1_id);
+                $specialty->subjects()->attach($request->subject_2_id);
+            }
         }
 
         return redirect()
             ->route('specialties.show', [$specialty, 'inst' => $request->inst])
-            ->with('message', 'Специальность успешно добавлена');
+            ->with('message', 'Успешно добавлено');
     }
 
     /**
@@ -216,5 +225,21 @@ class SpecialtiesController extends Controller
         });
 
         return response()->json(['specialties' => $specialties]);
+    }
+
+    public function searchCollegeSpecialties(Request $request)
+    {
+        $specialties = Speciality::select('id as value', 'title as name')
+            ->like($request->input('query'))
+            ->whereHas('direction', function ($query) use ($request) {
+                $query->where('institution', $request->inst);
+            })
+            ->where('parent_id', null)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'results' => $specialties
+        ]);
     }
 }

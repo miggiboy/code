@@ -9,13 +9,13 @@ class UniqueSlug
         $slug = str_slug($object->title);
         $allSlugs = $this->getAllSlugs($object);
 
-        if (! $allSlugs->contains($slug)) {
+        if (! $allSlugs->contains('slug', $slug)) {
             return $slug;
         }
 
         for ($i = 1; $i <= 100; $i++) {
             $newSlug = $slug . '-' . $i;
-            if (! $allSlugs->contains('slug', $newSlug)) {
+            if (! $this->getAllSlugs($object)->contains('slug', $newSlug)) {
                 return $newSlug;
             }
         }
@@ -25,6 +25,9 @@ class UniqueSlug
 
     private function getAllSlugs($object)
     {
-        return get_class($object)::pluck('slug')->where('id', '!=', $object->id);
+        return get_class($object)::select('slug')
+            ->where('slug', 'like', $object->slug.'%')
+            ->where('id', '<>', $object->id)
+            ->get();
     }
 }

@@ -33,9 +33,12 @@ class SubjectMediaController extends Controller
         foreach ($request->file('files') as $image) {
             $subject
                 ->addMedia($image)
+                ->usingName(
+                    $image->getClientOriginalName()
+                )
                 ->usingFileName(
                     str_slug(
-                        pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME)
+                        $image->getClientOriginalName()
                     )
                     . '.'
                     . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION)

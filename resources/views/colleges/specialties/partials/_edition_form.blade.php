@@ -3,6 +3,8 @@
     {{ method_field('PATCH') }}
     {{ csrf_field() }}
 
+    <input type="hidden" name="category" value="{{ request('category') }}">
+
     <table class="ui celled table">
       <thead>
         <tr>

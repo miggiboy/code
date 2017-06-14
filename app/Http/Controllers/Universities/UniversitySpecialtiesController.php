@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Universities;
 
 use Illuminate\Http\Request;
-use App\Models\Specialty\Speciality;
 use App\Http\Controllers\Controller;
+
+use App\Models\Specialty\Speciality;
 use App\Models\University\University;
 
 use App\Http\Requests\InstitutionSpecialtyRequest as SpecialtyRequest;

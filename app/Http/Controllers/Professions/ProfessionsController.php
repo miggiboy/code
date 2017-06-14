@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Professions;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Models\Profession\{Profession, ProfDirection};
-use App\Http\Requests\Profession\StoreProfessionRequest;
-use App\Http\Requests\Profession\UpdateProfessionRequest;
+
+use App\Http\Requests\Profession\{StoreProfessionRequest, UpdateProfessionRequest};
 
 class ProfessionsController extends Controller
 {

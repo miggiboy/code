@@ -9,7 +9,14 @@ use App\Traits\Marker\Markable;
 
 class Profession extends Model
 {
+    /**
+     * Laravel traits
+     */
     use SoftDeletes;
+
+    /**
+     * Custom traits
+     */
     use Markable;
 
     /**

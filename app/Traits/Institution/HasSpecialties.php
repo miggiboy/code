@@ -3,6 +3,7 @@
 namespace App\Traits\Institution;
 
 use Illuminate\Http\Request;
+
 use App\Models\Specialty\Speciality;
 
 trait HasSpecialties

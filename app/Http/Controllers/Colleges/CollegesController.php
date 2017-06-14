@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Colleges;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\College\{College, CollegeReception};
+
 use App\City;
-use App\Http\Requests\College\StoreCollegeRequest;
-use App\Http\Requests\College\UpdateCollegeRequest;
+use App\Models\College\{College, CollegeReception};
+
+use App\Http\Requests\College\{StoreCollegeRequest, UpdateCollegeRequest};
 
 class CollegesController extends Controller
 {

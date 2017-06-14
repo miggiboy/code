@@ -3,11 +3,11 @@
 namespace App\Models\College;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Institution\{Searchable, HasMap};
 use App\Traits\Institution\{HasReception, HasSpecialties};
-
 use App\Traits\Marker\Markable;
 
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
@@ -15,13 +15,24 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class College extends Model implements HasMediaConversions
 {
+    /**
+     * Laravel traits
+     */
+    use SoftDeletes;
+
+    /**
+     * Package traits
+     */
+    use HasMediaTrait;
+
+    /**
+     * Custom traits
+     */
     use Markable;
     use HasMap;
     use Searchable;
-    use SoftDeletes;
     use HasReception;
     use HasSpecialties;
-    use HasMediaTrait;
 
     /**
      * The attributes that should be mutated to dates.

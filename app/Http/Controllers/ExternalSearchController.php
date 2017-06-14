@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\University\University;
 use App\Models\College\College;
 use App\Models\Profession\Profession;
 use App\Models\Specialty\Speciality;
-
 
 class ExternalSearchController extends Controller
 {

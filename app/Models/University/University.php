@@ -2,9 +2,8 @@
 
 namespace App\Models\University;
 
-use Illuminate\Http\Request;
-
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
@@ -14,15 +13,28 @@ use App\Traits\Institution\{HasReception, HasSpecialties};
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+use Illuminate\Http\Request;
+
 class University extends Model implements HasMediaConversions
 {
+    /**
+     * Laravel traits
+     */
+    use SoftDeletes;
+
+    /**
+     * Package traits
+     */
+    use HasSpecialties;
+    use HasMediaTrait;
+
+    /**
+     * Custom traits
+     */
     use HasMap;
     use Markable;
     use Searchable;
-    use SoftDeletes;
     use HasReception;
-    use HasSpecialties;
-    use HasMediaTrait;
 
     /**
      * The attributes that should be mutated to dates.

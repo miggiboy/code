@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\Universities;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ImageRequest;
-
 use App\Http\Controllers\Controller;
 
 use App\Models\University\University;
+use App\Http\Requests\ImageRequest;
 
 class UniversityMediaController extends Controller
 {
     public function store(University $university, ImageRequest $request)
     {
-        // TODO: Add multiple from request
-
         foreach ($request->file('images') as $image) {
             $university
                 ->addMedia($image)

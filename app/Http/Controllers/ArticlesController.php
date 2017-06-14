@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Article\{Article, Category};
-use App\Http\Requests\Article\StoreArticleRequest;
-use App\Http\Requests\Article\UpdateArticleRequest;
+use App\Http\Requests\Article\{StoreArticleRequest, UpdateArticleRequest};
 
 class ArticlesController extends Controller
 {

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Subjects;
 
-use Storage;
-
-use App\Subject;
-use App\Models\File\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Subject;
 use App\Http\Requests\FileSystem\StoreFileRequest;
 
 use Spatie\MediaLibrary\Media;

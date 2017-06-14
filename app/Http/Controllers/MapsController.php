@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Map;
 use Illuminate\Http\Request;
+
+use App\Map;
 
 class MapsController extends Controller
 {

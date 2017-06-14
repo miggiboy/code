@@ -9,6 +9,9 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class Subject extends Model implements HasMedia
 {
+    /**
+     * Package traits
+     */
     use HasMediaTrait;
 
     protected $fillable = ['title'];

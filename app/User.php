@@ -4,11 +4,19 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
+    /**
+     * Laravel traits
+     */
     use Notifiable;
+
+    /**
+     * Package traits
+     */
     use EntrustUserTrait;
 
     /**

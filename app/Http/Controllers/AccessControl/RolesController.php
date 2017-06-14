@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\AccessControl;
 
-use App\{User, Role, Permission};
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+
+use App\{User, Role, Permission};
 
 class RolesController extends Controller
 {

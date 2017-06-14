@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
+    /**
+     * Laravel traits
+     */
     use SoftDeletes;
 
     /**

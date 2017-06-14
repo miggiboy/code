@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Marker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Marker;
 
 class MarkersController extends Controller
 {

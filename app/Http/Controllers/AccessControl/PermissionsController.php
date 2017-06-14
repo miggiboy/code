@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\AccessControl;
 
-use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Permission;
 
 class PermissionsController extends Controller
 {
@@ -12,6 +13,7 @@ class PermissionsController extends Controller
     {
         $this->middleware('role:developer|admin');
     }
+
     /**
      * Display a listing of the resource.
      *

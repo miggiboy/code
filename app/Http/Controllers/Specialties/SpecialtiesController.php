@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Specialties;
 
-use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Subject;
 use App\Models\Specialty\{Direction, Speciality};
-use App\Http\Requests\Specialty\StoreSpecialtyRequest;
-use App\Http\Requests\Specialty\UpdateSpecialtyRequest;
+
+use App\Http\Requests\Specialty\{StoreSpecialtyRequest, UpdateSpecialtyRequest};
 
 class SpecialtiesController extends Controller
 {

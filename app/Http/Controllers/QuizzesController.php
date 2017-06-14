@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Subject;
 use App\{Quiz, Answer};
 
 use App\Modules\Quiz\{QuizParsing, QuizStoring};
 
-use Illuminate\Http\Request;
 
 class QuizzesController extends Controller
 {

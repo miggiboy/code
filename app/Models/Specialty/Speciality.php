@@ -2,15 +2,26 @@
 
 namespace App\Models\Specialty;
 
-use App\Traits\Specialty\Searchable;
 use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
+use App\Traits\Specialty\Searchable;
+
 
 class Speciality extends Model
 {
-    use SoftDeletes, Searchable, Markable;
+    /**
+     * Laravel traits
+     */
+    use SoftDeletes;
+
+    /**
+     * Custom traits
+     */
+    use Searchable;
+    use Markable;
 
     /**
      * The attributes that should be mutated to dates.

@@ -1,70 +1,80 @@
 <?php
 
-use App\Models\Specialty\Speciality;
 /**
  * Temp
  */
 
-Route::get('/load', function () {
+Route::get('/update', function () {
 
-    $codes = Speciality::ofCollege()->pluck('code');
+    return App\Models\Institution\Institution::ofType('university')->orderBy('title')->get()->count();
+
+    // $maps = App\Map::where('mapable_type', 'App\Models\College\College')->get();
+
+    // foreach ($maps as $m) {
+    //     $newID = $m->mapable_id += 7000;
+
+    //     $m->update([
+    //         'mapable_type' => 'App\Models\University\University',
+    //         'mapable_id' => $newID
+    //     ]);
+    // }
+
+    // $markers = \Spatie\MediaLibrary\Media::where('model_type', 'App\Models\College\College')->get();
+
+    // foreach ($markers as $m) {
+    //     $newID = $m->model_id += 7000;
+
+    //     $m->update([
+    //         'model_type' => 'App\Models\University\University',
+    //         'model_id' => $newID
+    //     ]);
+    // }
+
+    // $markers = App\Marker::where('markable_type', 'App\Models\College\College')->get();
+
+    // foreach ($markers as $m) {
+    //     $newID = $m->markable_id += 7000;
+
+    //     $m->update([
+    //         'markable_type' => 'App\Models\University\University',
+    //         'markable_id' => $newID
+    //     ]);
+    // }
+
+
+    // $specs = DB::select("SELECT id, info, address, email, phone, phone_2, college_id as university_id, created_at, updated_at from college_receptions");
+
+    // foreach($specs as $spec) {
+
+    //     $spec->id +=7000;
+    //     $spec->university_id += 7000;
+
+    //     DB::table("reception_committees")->insert(get_object_vars($spec));
+    // }
 
 
 
-    foreach ($codes as $code) {
-        if (Speciality::where('code', $code)->get()->count() > 1) {
-            $spec = Speciality::where('code', $code)->first();
+    // $specs = DB::select("SELECT college_id as university_id, speciality_id, study_price, study_period, form from college_speciality");
 
-            \DB::raw('UPDATE college_specialities SET speciality_id = ')
-        }
-    }
+    // foreach($specs as $spec) {
 
-    // dd($codes);
+    //     $spec->university_id += 7000;
 
-    return;
+    //     DB::table("speciality_university")->insert(get_object_vars($spec));
+    // }
 
-    // $specs = Speciality::where('type', 'qualification')->get();
 
-    // return ['specs' => count($specs)];
 
-    ini_set('max_execution_time', 1900);
 
-    $handle = fopen("qqq.txt", "r");
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            $qualification = explode('___', $line, 2);
+    // $colleges = DB::select("SELECT * from colleges");
 
-            $code = trim(preg_replace('/[\s]+/', '' , $qualification[0]));
-            $code = trim(preg_replace('/\d+[\s]+\d+/', '' , $code));
+    // foreach($colleges as $college){
 
-            if (strlen($code) == 6) {
-                $code = '0' . $code;
-            }
+    //     $college->id += 7000;
 
-            $title = trim($qualification[1]);
-
-            if (! Speciality::where('code', $code)
-                ->first()
-            ) {
-                $spec = Speciality::create([
-                    'title' => $title,
-                    'code'  => $code,
-                    'type' => 'qualification',
-                    'direction_id' => '404',
-                    'parent_id' => 9999999,
-                ]);
-
-                // $spec->save();
-            }
-        }
-
-        fclose($handle);
-
-    } else {
-        echo "error opening the file.";
-    }
+    //     DB::table("universities")->insert(get_object_vars($college));
+    // }
 });
-
 
 /**
  * Storage linker (Shouldn't be uncommented, deleted or visited)
@@ -83,8 +93,6 @@ Route::get('/load', function () {
 Route::get('', 'NewsController@index')->name('home');
 
 Route::post('/feed', 'NewsController@store')->name('feed');
-
-Route::get('/feed/{news}/destroy', 'NewsController@destroy')->name('news.destroy');
 
 /**
  * User
@@ -120,6 +128,7 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Profile
      */
+
     Route::get('/profile', 'ProfileController@show')->name('profile');
 
     Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
@@ -287,28 +296,28 @@ Route::delete('/cities/{city}', 'CitiesController@destroy')->name('cities.destro
  * Universities
  */
 
-Route::group(['prefix' => '/universities', 'namespace' => 'Universities'], function () {
+Route::group(['prefix' => '/ins/{institutionType}', 'namespace' => 'Institution'], function () {
 
     /**
      * Universities Search
      */
 
     Route::group(['prefix' => '/search'], function () {
-        Route::get('', 'UniversitiesController@search')->name('universities.search');
-        Route::get('/autocomplete', 'UniversitiesController@autocomplete')->name('universities.autocomplete');
+        Route::get('', 'InstitutionsController@search')->name('universities.search');
+        Route::get('/autocomplete', 'InstitutionsController@autocomplete')->name('universities.autocomplete');
     });
 
-    Route::get('', 'UniversitiesController@index')->name('universities');
+    Route::get('', 'InstitutionsController@index')->name('universities');
 
-    Route::get('/create', 'UniversitiesController@create')->name('universities.create');
-    Route::post('', 'UniversitiesController@store');
+    Route::get('/create', 'InstitutionsController@create')->name('universities.create');
+    Route::post('', 'InstitutionsController@store');
 
-    Route::get('/{university}/edit', 'UniversitiesController@edit')->name('universities.edit');
-    Route::patch('/{university}', 'UniversitiesController@update')->name('universities.update');
+    Route::get('/{university}/edit', 'InstitutionsController@edit')->name('universities.edit');
+    Route::patch('/{university}', 'InstitutionsController@update')->name('universities.update');
 
-    Route::delete('/{university}', 'UniversitiesController@destroy')->name('universities.destroy');
+    Route::delete('/{university}', 'InstitutionsController@destroy')->name('universities.destroy');
 
-    Route::get('/{slug}', 'UniversitiesController@show')->name('universities.show');
+    Route::get('/{slug}', 'InstitutionsController@show')->name('universities.show');
 
     /**
      * University Paid Status

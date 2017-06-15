@@ -2,7 +2,7 @@
 
 namespace App\Models\Article;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
@@ -18,24 +18,6 @@ class Article extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
-
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     /*
     |--------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
 
@@ -12,13 +12,6 @@ class News extends Model
      * Package traits
      */
     use LocalizedEloquentTrait;
-
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
 
     public function user()
     {

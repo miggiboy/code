@@ -2,14 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Map extends Model
 {
-    protected $guarded = [];
-
     public function mapable()
     {
-        return $this->morphTo();
+        return $this->belongsTo(App\Models\University\University::class, 'mapable_id');
     }
 }

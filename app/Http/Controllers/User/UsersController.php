@@ -9,11 +9,6 @@ use App\{User, Role};
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     /**
      * Display the specified resource.
      *

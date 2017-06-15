@@ -12,11 +12,6 @@ use App\Http\Requests\Specialty\{StoreSpecialtyRequest, UpdateSpecialtyRequest};
 
 class SpecialtiesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -222,7 +217,7 @@ class SpecialtiesController extends Controller
             ->get();
 
         $specialties = $specialties->each(function ($item, $key) use ($request) {
-            $item->url = env('APP_URL') . '/specialties/' . $item->url . '&inst=' . $request->inst;
+            $item->url = env('APP_URL') . '/specialties/' . $item->url . '?inst=' . $request->inst;
         });
 
         return response()->json(['specialties' => $specialties]);

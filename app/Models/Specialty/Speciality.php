@@ -2,7 +2,7 @@
 
 namespace App\Models\Specialty;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,27 +30,8 @@ class Speciality extends Model
      */
     protected $dates = ['deleted_at'];
 
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
 
-    protected $appends = [
-        'markedByCurrentUser'
-    ];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    protected $appends = ['markedByCurrentUser'];
 
     /*
     |--------------------------------------------------------------------------
@@ -157,8 +138,7 @@ class Speciality extends Model
      */
     public static function getUniversitySpecialities()
     {
-        return static::ofUniversity()->orderBy('title')
-            ->get();
+        return static::ofUniversity()->orderBy('title')->get();
     }
 
     /**
@@ -276,12 +256,14 @@ class Speciality extends Model
     public function universities()
     {
         return $this->belongsToMany(\App\Models\University\University::class)
+            ->where('type', 'university')
             ->withPivot('study_price', 'study_period', 'form');
     }
 
     public function colleges()
     {
         return $this->belongsToMany(\App\Models\College\College::class)
+            ->where('type', 'college')
             ->withPivot('study_price', 'study_period', 'form');
     }
 

@@ -9,10 +9,6 @@ use App\Subject;
 
 class SubjectsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
     /**
      * Display a listing of the resource.
      *

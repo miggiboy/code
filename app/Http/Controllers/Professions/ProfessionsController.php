@@ -11,10 +11,6 @@ use App\Http\Requests\Profession\{StoreProfessionRequest, UpdateProfessionReques
 
 class ProfessionsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
     /**
      * Display a listing of the resource.
      *

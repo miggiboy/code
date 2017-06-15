@@ -8,11 +8,11 @@
   @endif
   <div class="four wide column" style="position: absolute; top: -2px; right: -10px;">
     <div class="ui compact small menu">
-      <a class="item" href="{{ route('universities') }}">
+      <a class="item" href="{{ route('universities', ['institutionType' => request('institutionType')]) }}">
         <i class="teal university icon"></i> Университеты
       </a>
 
-      <a class="item" href="{{ route('universities.create') }}">
+      <a class="item" href="{{ route('universities.create', ['institutionType' => request('institutionType')]) }}">
         <i class="teal circle add icon"></i> Добавить
       </a>
     </div>

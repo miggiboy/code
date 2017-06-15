@@ -25,6 +25,6 @@ trait HasMap
 
     public function map()
     {
-        return $this->morphOne('\App\Map', 'mapable');
+        return $this->hasOne(App\Map::class, 'mapable_id');
     }
 }

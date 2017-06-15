@@ -2,18 +2,10 @@
 
 namespace App\Models\Specialty;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Direction extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
-    protected $fillable = ['title'];
-
     /*
     |--------------------------------------------------------------------------
     | Helpers

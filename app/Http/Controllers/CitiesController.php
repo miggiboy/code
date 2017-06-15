@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class CitiesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-    
     /**
      * Display a listing of the resource.
      *

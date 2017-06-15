@@ -12,11 +12,6 @@ use App\Modules\Quiz\{QuizParsing, QuizStoring};
 
 class QuizzesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer');
-    }
-
     /**
      * Display a listing of the resource.
      *

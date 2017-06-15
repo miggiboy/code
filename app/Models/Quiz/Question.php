@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -20,24 +20,10 @@ class Question extends Model
      */
     protected $dates = ['deleted_at'];
 
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
-
     public function getRightAnswer()
     {
         return $this->answers()->where('is_right', true)->first();
     }
-
-    // public function withShortAnswers($min = 8)
-    // {
-    //     return $query->whereHas('answers', function ($q) {
-    //         $q->where('text')
-    //     });
-    // }
 
     /*
     |--------------------------------------------------------------------------

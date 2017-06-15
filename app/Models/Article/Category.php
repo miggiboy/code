@@ -2,18 +2,10 @@
 
 namespace App\Models\Article;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 class Category extends Model
 {
-
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
-
     /*
     |--------------------------------------------------------------------------
     | Relations with other tables

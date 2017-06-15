@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,13 +19,6 @@ class Answer extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
-
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
 
     public function question()
     {

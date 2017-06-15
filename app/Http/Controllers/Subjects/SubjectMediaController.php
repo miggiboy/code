@@ -12,11 +12,6 @@ use Spatie\MediaLibrary\Media;
 
 class SubjectMediaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     public function index(Subject $subject)
     {
         $subject->load(['fileCategories', 'media' => function ($query) {

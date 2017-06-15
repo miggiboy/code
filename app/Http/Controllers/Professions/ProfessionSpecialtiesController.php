@@ -10,11 +10,6 @@ use App\Models\Profession\Profession;
 
 class ProfessionSpecialtiesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     public function create(Profession $profession)
     {
         $specialties = Speciality::orderBy('title')->get(['id', 'title', 'code']);

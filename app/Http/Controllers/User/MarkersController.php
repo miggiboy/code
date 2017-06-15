@@ -9,11 +9,6 @@ use App\Marker;
 
 class MarkersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     private static $markableTypes = [
         'College'       => '\\App\Models\\College\\College',
         'University'    => '\\App\Models\\University\\University',

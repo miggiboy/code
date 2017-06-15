@@ -9,11 +9,6 @@ use App\Http\Requests\Article\{StoreArticleRequest, UpdateArticleRequest};
 
 class ArticlesController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     /**
      * Display a listing of the resource.
      *

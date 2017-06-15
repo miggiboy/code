@@ -59,7 +59,7 @@
               <td>
                 {{ ($institution->pivot->form == '1') ? 'очная' : 'заочная' }}
               </td>
-              <td>{{ $institution->pivot->price }}</td>
+              <td>{{ $institution->pivot->study_price }}</td>
               <td class="right aligned collapsing">{{ $institution->pivot->study_period }}</td>
             </tr>
           @endforeach

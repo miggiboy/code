@@ -9,11 +9,6 @@ use Vinkla\Pusher\Facades\Pusher;
 
 class NewsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     /**
      * Display a listing of the resource.
      *

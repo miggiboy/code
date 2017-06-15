@@ -2,7 +2,7 @@
 
 namespace App\Models\Profession;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
@@ -26,25 +26,9 @@ class Profession extends Model
      */
     protected $dates = ['deleted_at'];
 
-    /**
-     * The model is mass assignable
-     *
-     * @var array
-     */
-    protected $guarded = [];
+
 
     protected $appends = ['markedByCurrentUser'];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -92,8 +76,6 @@ class Profession extends Model
 
     public function specialities()
     {
-        return $this->belongsToMany(\App\Models\Specialty\Speciality::class)
-            ->select(['id', 'slug', 'title', 'code'])
-            ->orderBy('title');
+        return $this->belongsToMany(\App\Models\Specialty\Speciality::class)->select(['id', 'slug', 'title', 'code']);
     }
 }

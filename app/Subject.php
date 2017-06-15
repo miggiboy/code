@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
@@ -13,19 +13,6 @@ class Subject extends Model implements HasMedia
      * Package traits
      */
     use HasMediaTrait;
-
-    protected $fillable = ['title'];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     /*
     |--------------------------------------------------------------------------

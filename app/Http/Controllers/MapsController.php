@@ -8,11 +8,6 @@ use App\Map;
 
 class MapsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:developer|admin|moderator');
-    }
-
     private static $mapableClasses = [
         'college' => '\\App\\Models\\College\\College',
         'university' => '\\App\\Models\\University\\University',

@@ -19,6 +19,15 @@ class Article extends Model
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Redirects to primary app (vipusknik.kz)
+     */
+
+    public function seeInPrimaryApp()
+    {
+        return config('primary_app.urls.' . 'article') . $this->slug;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relations with other tables

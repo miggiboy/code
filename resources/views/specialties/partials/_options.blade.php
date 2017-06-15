@@ -7,7 +7,7 @@
       <i class="blue edit icon"></i>  Редактировать
     </a>
 
-    <a href="{{ route('google.specialty', $specialty) }}" class="item" target="_blank">
+    <a href="{{ url($specialty->google()) }}" class="item" target="_blank">
       <i class="green google icon"></i> Найти в Google
     </a>
 

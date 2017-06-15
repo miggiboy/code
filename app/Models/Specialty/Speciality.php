@@ -227,6 +227,15 @@ class Speciality extends Model
     }
 
     /**
+     * Redirects to primary app (vipusknik.kz)
+     */
+
+    public function seeInPrimaryApp()
+    {
+        return config('primary_app.urls.' . 'specialty') . $this->slug;
+    }
+
+    /**
      * Google search
      */
 

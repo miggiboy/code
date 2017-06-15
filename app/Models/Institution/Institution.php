@@ -109,6 +109,15 @@ class Institution extends Model implements HasMediaConversions
         return config('google.search.url') . trim($this->title) . ', ' . trim($this->city->title);
     }
 
+    /**
+     * Redirects to primary app (vipusknik.kz)
+     */
+
+    public function seeInPrimaryApp()
+    {
+        return config('primary_app.urls.' . 'institution') . $this->slug;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relations with other tables

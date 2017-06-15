@@ -74,6 +74,20 @@ Route::group(['namespace' => 'User'], function () {
 * Specialties
 */
 
+Route::group(['namespace' => 'Specialties'], function () {
+
+    Route::resource('specialties', 'SpecialtiesController');
+
+    /**
+     * Specialty Professions
+     */
+    Route::resource('specialties.professions', 'SpecialtyProfessionsController')->except(['edit', 'update', 'show']);
+
+
+});
+
+
+
 Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], function () {
 
     /**
@@ -84,31 +98,6 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
         Route::get('', 'SpecialtiesController@search')->name('specialties.search');
         Route::get('/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
         Route::get('/college/specialties', 'SpecialtiesController@searchCollegeSpecialties');
-    });
-
-    Route::get('', 'SpecialtiesController@index')->name('specialties');
-
-    Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
-    Route::post('', 'SpecialtiesController@store');
-
-    Route::get('/{specialty}', 'SpecialtiesController@show')->name('specialties.show');
-    Route::get('/{specialty}/edit', 'SpecialtiesController@edit')->name('specialties.edit');
-
-    Route::patch('/{specialty}', 'SpecialtiesController@update')->name('specialties.update');
-
-    Route::delete('/{specialty}', 'SpecialtiesController@destroy')->name('specialties.destroy');
-
-    /**
-     * Specialty Professions
-     */
-
-    Route::group(['prefix' => '/{specialty}/professions'], function () {
-        Route::get('', 'SpecialtyProfessionsController@index')->name('specialty.professions.index');
-
-        Route::get('/create', 'SpecialtyProfessionsController@create')->name('specialty.professions.create');
-        Route::post('', 'SpecialtyProfessionsController@store');
-
-        Route::delete('/{profession}', 'SpecialtyProfessionsController@destroy')->name('specialty.professions.destroy');
     });
 
     /**
@@ -136,6 +125,15 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
  * Professions
  */
 
+Route::group(['namespace' => 'Professions'], function () {
+    Route::resource('professions', 'ProfessionsController');
+
+    /**
+     * Profession Specialties
+     */
+    Route::resource('professions.specialties', 'ProfessionSpecialtiesController')->except(['edit', 'update', 'show']);
+});
+
 Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], function () {
 
     /**
@@ -146,42 +144,6 @@ Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], functio
         Route::get('/autocomplete', 'ProfessionsController@autocomplete')->name('professions.autocomplete');
         Route::get('', 'ProfessionsController@search')->name('professions.search');
     });
-
-    Route::get('', 'ProfessionsController@index')->name('professions');
-
-    Route::get('/create', 'ProfessionsController@create')->name('professions.create');
-    Route::post('', 'ProfessionsController@store');
-
-    Route::get('/{profession}', 'ProfessionsController@show')->name('profession.show');
-
-    Route::get('/{profession}/edit', 'ProfessionsController@edit')->name('profession.edit');
-    Route::patch('/{profession}', 'ProfessionsController@update')->name('profession.update');
-
-    Route::delete('/{profession}', 'ProfessionsController@destroy')->name('profession.destroy');
-
-
-    /**
-     * Profession Directions
-     */
-
-    Route::group(['prefix' => '/directions'], function () {
-        Route::get('', 'ProfDirectionsController@index')->name('prof-directions');
-
-        Route::get('/create', 'ProfDirectionsController@create')->name('prof-directions.create');
-        Route::post('', 'ProfDirectionsController@store');
-    });
-
-
-    /**
-     * Profession Specialties
-     */
-
-    Route::group(['prefix' => '/{profession}/specialties'], function () {
-        Route::get('/create', 'ProfessionSpecialtiesController@create')->name('profession.specilties.create');
-        Route::post('', 'ProfessionSpecialtiesController@store')->name('profession.specialties.store');
-
-        Route::delete('/{specialty}', 'ProfessionSpecialtiesController@destroy')->name('profession.specilties.destroy');
-    });
 });
 
 
@@ -189,26 +151,15 @@ Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], functio
  * Subjects
  */
 
-Route::group(['prefix' => '/subjects', 'namespace' => 'Subjects'], function () {
-    Route::get('', 'SubjectsController@index')->name('subjects');
+Route::group(['namespace' => 'Subjects'], function () {
 
-    Route::get('/create', 'SubjectsController@create')->name('subject.create');
-    Route::post('', 'SubjectsController@store');
-
-    Route::get('/{subject}', 'SubjectsController@show')->name('subject.show');
-
+    Route::resource('subjects', 'SubjectsController')->except(['edit', 'update', 'show']);
 
     /**
      * Subject Media
      */
 
-    Route::group(['prefix' => '/{subject}/media'], function () {
-        Route::get('', 'SubjectMediaController@index')->name('subjects.media.index');
-
-        Route::post('', 'SubjectMediaController@store')->name('subjects.media.store');
-
-        Route::delete('/{media}', 'SubjectMediaController@destroy')->name('subjects.media.destroy');
-    });
+    Route::resource('subjects.media', 'SubjectMediaController')->only(['index', 'store', 'desctroy']);
 
 });
 
@@ -217,9 +168,7 @@ Route::group(['prefix' => '/subjects', 'namespace' => 'Subjects'], function () {
  * Cities
  */
 
-Route::get('/cities', 'CitiesController@index')->name('cities');
-Route::post('/cities', 'CitiesController@store');
-Route::delete('/cities/{city}', 'CitiesController@destroy')->name('cities.destroy');
+Route::resource('cities', 'CitiesController')->only(['index', 'store', 'desctroy']);
 
 /**
  * Universities
@@ -381,18 +330,6 @@ Route::group(['namespace' => 'AccessControl'], function () {
     Route::post('/roles', 'RolesController@store')->name('roles.store');
 
     Route::get('/roles/{role}', 'RolesController@show')->name('roles.show');
-
-
-    /**
-     * Permissions
-     */
-
-    Route::get('/permissions', 'PermissionsController@index')->name('permissions');
-
-    Route::get('/permissions/create', 'PermissionsController@create')->name('permissions.create');
-
-    Route::post('/permissions', 'PermissionsController@store')->name('permissions.store');
-
 });
 
 /**

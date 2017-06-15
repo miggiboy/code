@@ -100,6 +100,15 @@ class Institution extends Model implements HasMediaConversions
         return $query->where('type', $type);
     }
 
+    /**
+     * Google search
+     */
+
+    public function google()
+    {
+        return config('google.search.url') . trim($this->title) . ', ' . trim($this->city->title);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relations with other tables

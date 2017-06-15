@@ -40,28 +40,28 @@ class Speciality extends Model
     |
     */
 
-   public function hasValidParent()
-   {
-       return ! Speciality::find($this->parent_id) == null;
-   }
+    public function hasValidParent()
+    {
+        return ! Speciality::find($this->parent_id) == null;
+    }
 
-   public function scopeIsTypeQualification($query)
-   {
-       return $query->where('type', 'qualification');
-   }
+    public function scopeIsTypeQualification($query)
+    {
+        return $query->where('type', 'qualification');
+    }
 
-   public function scopeIsSpecialty($query)
-   {
-        return $query->where('type', 'specialty');
-   }
+    public function scopeIsSpecialty($query)
+    {
+         return $query->where('type', 'specialty');
+    }
 
-   public function isQualification()
-   {
-       return $this->type == 'qualification';
-   }
+    public function isQualification()
+    {
+        return $this->type == 'qualification';
+    }
 
-   public function insitutionType()
-   {
+    public function insitutionType()
+    {
         if ($this->isQualification()) {
             return 'colleges';
         }
@@ -69,23 +69,23 @@ class Speciality extends Model
         return ($this->direction->institution == '1')
             ? 'universities'
             : 'colleges';
-   }
+    }
 
-   public function getTranslatedInsitutionType()
-   {
-       return ($this->insitutionType() == 'universities')
-            ? 'Университеты'
-            : 'Колледжи';
-   }
+    public function getTranslatedInsitutionType()
+    {
+        return ($this->insitutionType() == 'universities')
+             ? 'Университеты'
+             : 'Колледжи';
+    }
 
-   public function getInstitutions()
-   {
-       $related = ($this->insitutionType() == 'universities')
+    public function getInstitutions()
+    {
+        $related = ($this->insitutionType() == 'universities')
             ? $this->universities()
             : $this->colleges();
 
         return $related->orderBy('title')->get();
-   }
+    }
 
     public static function getDBStudyFormOrFail($key)
     {
@@ -224,6 +224,15 @@ class Speciality extends Model
             'title' => explode('_', $value)[0],
             'code'  => explode('_', $value)[1],
         ];
+    }
+
+    /**
+     * Google search
+     */
+
+    public function google()
+    {
+        return config('google.search.url') . 'Специальность ' . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
     }
 
     /*

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Institution;
 
 use Illuminate\Http\Request;
 
 use App\Map;
 
-class MapsController extends Controller
+class InstitutionMapsController extends Controller
 {
     private static $mapableClasses = [
         'college' => '\\App\\Models\\College\\College',

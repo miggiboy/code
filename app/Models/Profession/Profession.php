@@ -62,6 +62,15 @@ class Profession extends Model
         $query->where('prof_direction_id', $direction);
     }
 
+    /**
+     * Google search
+     */
+
+    public function google()
+    {
+        return config('google.urls.search') . 'Профессия ' . trim($profession->title);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relations with other tables

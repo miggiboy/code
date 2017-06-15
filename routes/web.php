@@ -344,4 +344,3 @@ Route::resource('articles', 'ArticlesController');
 Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.store');
 
 Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
-

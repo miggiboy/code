@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Subject;
-use App\Models\Specialty\{Direction, Speciality};
+use App\Models\Specialty\{
+    Direction,
+    Speciality
+};
 
-use App\Http\Requests\Specialty\{StoreSpecialtyRequest, UpdateSpecialtyRequest};
+use App\Http\Requests\Specialty\{
+    StoreSpecialtyRequest,
+    UpdateSpecialtyRequest
+};
 
 class SpecialtiesController extends Controller
 {

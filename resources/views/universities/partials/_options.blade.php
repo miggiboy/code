@@ -15,11 +15,11 @@
 
       {{-- Editing end --}}
 
-      <a href="{{ route('google.university', $university) }}" class="item" target="_blank">
+      <a href="{{ url($university->googleSearchURl()) }}" class="item" target="_blank">
         <i class="green google icon"></i> Найти в Google
       </a>
 
-      <a href="{{ route('vipusknik.university', $university->slug) }}" class="item" target="_blank">
+      <a href="{{ url($university->urlAtPrimaryApp()) }}" class="item" target="_blank">
         <i class="orange checkmark box icon"></i> Выпускник.Kz
       </a>
 

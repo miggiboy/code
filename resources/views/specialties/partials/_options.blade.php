@@ -7,11 +7,11 @@
       <i class="blue edit icon"></i>  Редактировать
     </a>
 
-    <a href="{{ url($specialty->google()) }}" class="item" target="_blank">
+    <a href="{{ url($specialty->googleSearchUrl()) }}" class="item" target="_blank">
       <i class="green google icon"></i> Найти в Google
     </a>
 
-    <a href="{{ route('vipusknik.specialty', $specialty) }}" class="item" target="_blank">
+    <a href="{{ url($specialty->urlAtPrimaryApp()) }}" class="item" target="_blank">
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
 

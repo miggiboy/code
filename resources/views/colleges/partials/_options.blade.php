@@ -12,7 +12,7 @@
       <i class="blue location arrow icon"></i> Google карты
     </a>
 
-    <a href="{{ url($university->google()) }}" class="item" target="_blank">
+    <a href="{{ url($university->googleSearchURl()) }}" class="item" target="_blank">
       <i class="green google icon"></i> Найти в Google
     </a>
 

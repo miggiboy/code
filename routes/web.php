@@ -4,77 +4,6 @@
  * Temp
  */
 
-Route::get('/update', function () {
-
-    return App\Models\Institution\Institution::ofType('university')->orderBy('title')->get()->count();
-
-    // $maps = App\Map::where('mapable_type', 'App\Models\College\College')->get();
-
-    // foreach ($maps as $m) {
-    //     $newID = $m->mapable_id += 7000;
-
-    //     $m->update([
-    //         'mapable_type' => 'App\Models\University\University',
-    //         'mapable_id' => $newID
-    //     ]);
-    // }
-
-    // $markers = \Spatie\MediaLibrary\Media::where('model_type', 'App\Models\College\College')->get();
-
-    // foreach ($markers as $m) {
-    //     $newID = $m->model_id += 7000;
-
-    //     $m->update([
-    //         'model_type' => 'App\Models\University\University',
-    //         'model_id' => $newID
-    //     ]);
-    // }
-
-    // $markers = App\Marker::where('markable_type', 'App\Models\College\College')->get();
-
-    // foreach ($markers as $m) {
-    //     $newID = $m->markable_id += 7000;
-
-    //     $m->update([
-    //         'markable_type' => 'App\Models\University\University',
-    //         'markable_id' => $newID
-    //     ]);
-    // }
-
-
-    // $specs = DB::select("SELECT id, info, address, email, phone, phone_2, college_id as university_id, created_at, updated_at from college_receptions");
-
-    // foreach($specs as $spec) {
-
-    //     $spec->id +=7000;
-    //     $spec->university_id += 7000;
-
-    //     DB::table("reception_committees")->insert(get_object_vars($spec));
-    // }
-
-
-
-    // $specs = DB::select("SELECT college_id as university_id, speciality_id, study_price, study_period, form from college_speciality");
-
-    // foreach($specs as $spec) {
-
-    //     $spec->university_id += 7000;
-
-    //     DB::table("speciality_university")->insert(get_object_vars($spec));
-    // }
-
-
-
-
-    // $colleges = DB::select("SELECT * from colleges");
-
-    // foreach($colleges as $college){
-
-    //     $college->id += 7000;
-
-    //     DB::table("universities")->insert(get_object_vars($college));
-    // }
-});
 
 /**
  * Storage linker (Shouldn't be uncommented, deleted or visited)
@@ -425,16 +354,9 @@ Route::group(['prefix' => '/colleges', 'namespace' => 'Colleges'], function () {
 /**
  * Quizzes
  */
+Route::resource('quizzes', 'QuizzesController')->except(['edit', 'update']);
 
-Route::get('/quizzes', 'QuizzesController@index')->name('quizzes');
-
-Route::get('/quizzes/create', 'QuizzesController@create')->name('quizzes.create');
 Route::post('/quizzes/preview', 'QuizzesController@preview')->name('quizzes.preview');
-Route::get('/quizzes/store', 'QuizzesController@store')->name('quizzes.store');
-
-Route::get('/quizzes/{quiz}', 'QuizzesController@show')->name('quizzes.show');
-
-Route::delete('/quizzes/{quiz}', 'QuizzesController@destroy')->name('quizzes.destroy');
 
 Route::post('/answer/{answerId}', 'QuizzesController@check')->name('answer.check');
 
@@ -445,31 +367,31 @@ Route::post('/answer/{answerId}', 'QuizzesController@check')->name('answer.check
 
 Route::group(['namespace' => 'AccessControl'], function () {
 
-/**
- * Roles
- */
+    /**
+     * Roles
+     */
 
-Route::patch('/roles/assign', 'RolesController@assignStore')->name('roles.assignStore');
+    Route::patch('/roles/assign', 'RolesController@assignStore')->name('roles.assignStore');
 
-Route::get('/roles/assign', 'RolesController@assign')->name('roles.assign');
+    Route::get('/roles/assign', 'RolesController@assign')->name('roles.assign');
 
-Route::get('/roles', 'RolesController@index')->name('roles');
+    Route::get('/roles', 'RolesController@index')->name('roles');
 
-Route::get('/roles/create', 'RolesController@create')->name('roles.create');
-Route::post('/roles', 'RolesController@store')->name('roles.store');
+    Route::get('/roles/create', 'RolesController@create')->name('roles.create');
+    Route::post('/roles', 'RolesController@store')->name('roles.store');
 
-Route::get('/roles/{role}', 'RolesController@show')->name('roles.show');
+    Route::get('/roles/{role}', 'RolesController@show')->name('roles.show');
 
 
-/**
- * Permissions
- */
+    /**
+     * Permissions
+     */
 
-Route::get('/permissions', 'PermissionsController@index')->name('permissions');
+    Route::get('/permissions', 'PermissionsController@index')->name('permissions');
 
-Route::get('/permissions/create', 'PermissionsController@create')->name('permissions.create');
+    Route::get('/permissions/create', 'PermissionsController@create')->name('permissions.create');
 
-Route::post('/permissions', 'PermissionsController@store')->name('permissions.store');
+    Route::post('/permissions', 'PermissionsController@store')->name('permissions.store');
 
 });
 
@@ -477,71 +399,7 @@ Route::post('/permissions', 'PermissionsController@store')->name('permissions.st
  * Articles
  */
 
-Route::get('articles', 'ArticlesController@index')->name('articles');
-
-Route::get('articles/create', 'ArticlesController@create')->name('article.create');
-Route::post('articles', 'ArticlesController@store');
-
-Route::get('articles/{article}', 'ArticlesController@show')->name('article.show');
-
-Route::get('article/{article}/edit', 'ArticlesController@edit')->name('article.edit');
-Route::patch('article/{article}', 'ArticlesController@update')->name('article.update');
-
-Route::delete('article/{article}', 'ArticlesController@destroy')->name('article.destroy');
-
-Route::post('/files/images', 'ImagesController@store')->name('images.store');
-
-/**
- * External search (Google)
- */
-
-Route::group(['prefix' => '/google'], function () {
-
-    /**
-     * University / College
-     */
-    Route::get('/university/{university}', 'ExternalSearchController@university')->name('google.university');
-    Route::get('/college/{college}', 'ExternalSearchController@college')->name('google.college');
-
-    /**
-     * Specialty
-     */
-    Route::get('/specialty/{specialty}', 'ExternalSearchController@specialty')->name('google.specialty');
-
-    /**
-     * Profession
-     */
-    Route::get('/profession/{profession}', 'ExternalSearchController@profession')->name('google.profession');
-});
-
-/**
- * Redirects to primary app
- */
-
-Route::group(['prefix' => '/vipusknik'], function () {
-
-    /**
-     * University / College
-     */
-    Route::get('/college/{slug}', 'RedirectsToPrimaryAppController@college')->name('vipusknik.college');
-    Route::get('/university/{slug}', 'RedirectsToPrimaryAppController@university')->name('vipusknik.university');
-
-    /**
-     * Specialty
-     */
-    Route::get('/specialty/{id}', 'RedirectsToPrimaryAppController@specialty')->name('vipusknik.specialty');
-
-    /**
-     * Profession
-     */
-    Route::get('/profession/{id}', 'RedirectsToPrimaryAppController@profession')->name('vipusknik.profession');
-
-    /**
-     * Article
-     */
-    Route::get('/article/{id}', 'RedirectsToPrimaryAppController@article')->name('vipusknik.article');
-});
-
+Route::resource('articles', 'ArticlesController');
 
 /**
  * Maps
@@ -550,9 +408,3 @@ Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.st
 
 Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
 
-
-/**
- * Advertisement
- */
-
-Route::resource('advertisements', 'AdvertisementsController');

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\City;
-use App\Models\Institution\{Institution, ReceptionCommittee};
+use App\Models\Institution\{
+    Institution,
+    ReceptionCommittee
+};
 
 use App\Http\Requests\University\{
     UpdateUniversityRequest,

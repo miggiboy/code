@@ -230,7 +230,7 @@ class Speciality extends Model
      * Redirects to primary app (vipusknik.kz)
      */
 
-    public function seeInPrimaryApp()
+    public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.' . 'specialty') . $this->slug;
     }
@@ -239,7 +239,7 @@ class Speciality extends Model
      * Google search
      */
 
-    public function google()
+    public function googleSearchUrl()
     {
         return config('google.search.url') . 'Специальность ' . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
     }

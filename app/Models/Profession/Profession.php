@@ -66,7 +66,7 @@ class Profession extends Model
      * Redirects to primary app (vipusknik.kz)
      */
 
-    public function seeInPrimaryApp()
+    public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.' . 'profession') . $this->slug;
     }
@@ -75,7 +75,7 @@ class Profession extends Model
      * Google search
      */
 
-    public function google()
+    public function googleSeachUrl()
     {
         return config('google.urls.search') . 'Профессия ' . trim($profession->title);
     }

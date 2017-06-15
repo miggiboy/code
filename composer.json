@@ -13,9 +13,7 @@
         "laravelrus/localized-carbon": "dev-master",
         "pusher/pusher-php-server": "^2.6",
         "sentry/sentry-laravel": "^0.6.1",
-        "spatie/flysystem-dropbox": "^1.0",
         "spatie/laravel-medialibrary": "^5.11",
-        "sven/artisan-view": "^1.3",
         "vinkla/pusher": "^2.5",
         "yzalis/identicon": "^1.1",
         "zizaco/entrust": "5.2.x-dev"

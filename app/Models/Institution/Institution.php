@@ -104,7 +104,7 @@ class Institution extends Model implements HasMediaConversions
      * Google search
      */
 
-    public function google()
+    public function googleSearchUrl()
     {
         return config('google.search.url') . trim($this->title) . ', ' . trim($this->city->title);
     }
@@ -113,7 +113,7 @@ class Institution extends Model implements HasMediaConversions
      * Redirects to primary app (vipusknik.kz)
      */
 
-    public function seeInPrimaryApp()
+    public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.' . 'institution') . $this->slug;
     }

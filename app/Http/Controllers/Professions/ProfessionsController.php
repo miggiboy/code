@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Profession\{Profession, ProfDirection};
 
-use App\Http\Requests\Profession\{StoreProfessionRequest, UpdateProfessionRequest};
+use App\Http\Requests\Profession\{
+    StoreProfessionRequest,
+    UpdateProfessionRequest
+};
 
 class ProfessionsController extends Controller
 {

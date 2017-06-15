@@ -8,11 +8,11 @@
       <i class="blue edit icon"></i> Редактировать
     </a>
 
-    <a href="{{ url($profession->google()) }}" class="item" target="_blank">
+    <a href="{{ url($profession->googleSearchUrl()) }}" class="item" target="_blank">
       <i class="green google icon"></i> Найти в Google
     </a>
 
-    <a href="{{ route('vipusknik.profession', $profession) }}" class="item" target="_blank">
+    <a href="{{ url($profession->urlAtPrimaryApp()) }}" class="item" target="_blank">
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
 

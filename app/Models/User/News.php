@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models\User\;
 
-use App\Model;
+use App\Models\Model;
 
 use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
 

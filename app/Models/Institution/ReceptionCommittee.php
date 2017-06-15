@@ -2,7 +2,7 @@
 
 namespace App\Models\University;
 
-use App\Model;
+use App\Models\Model;
 
 class ReceptionCommittee extends Model
 {

@@ -2,7 +2,7 @@
 
 namespace App\Models\Profession;
 
-use App\Model;
+use App\Models\Model;
 
 class ProfDirection extends Model
 {

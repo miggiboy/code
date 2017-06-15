@@ -2,7 +2,7 @@
 
 namespace App\Models\Article;
 
-use App\Model;
+use App\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model

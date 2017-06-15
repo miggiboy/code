@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\File;
+namespace App\Models\Subject;
 
-use App\Model;
+use App\Models\Model;
 
 class FileCategory extends Model
 {

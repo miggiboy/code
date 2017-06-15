@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models\Subject;
 
-use App\Model;
+use App\Models\Model;
 
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;

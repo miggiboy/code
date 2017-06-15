@@ -2,7 +2,7 @@
 
 namespace App\Models\Institution;
 
-use App\Model;
+use App\Models\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -137,6 +137,6 @@ class Institution extends Model implements HasMediaConversions
 
     public function map()
     {
-        return $this->hasOne(App\Map::class, 'mapable_id');
+        return $this->hasOne(Map::class, 'mapable_id');
     }
 }

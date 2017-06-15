@@ -2,7 +2,7 @@
 
 namespace App\Models\Profession;
 
-use App\Model;
+use App\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;

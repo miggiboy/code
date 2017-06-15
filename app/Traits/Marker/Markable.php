@@ -7,10 +7,10 @@ trait Markable
     public function scopeMarkedByCurrentUser($query, $marked = true)
     {
         if ((bool) $marked === true) {
-            $query->has('marks');
-        } else {
-            $query->doesntHave('marks');
+            return $query->has('marks');
         }
+
+        return $query->doesntHave('marks');
     }
 
     public function getMarkedByCurrentUserAttribute()

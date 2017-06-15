@@ -64,8 +64,7 @@ trait HasSpecialties
 
     public function specialities()
     {
-        return $this->belongsToMany(Speciality::class)
-            ->withPivot('study_price', 'study_period', 'form');
+        return $this->belongsToMany(Speciality::class)->withPivot('study_price', 'study_period', 'form');
     }
 
     public function qualifications()

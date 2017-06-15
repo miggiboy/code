@@ -7,7 +7,7 @@ use App\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
-use App\Traits\Institution\{HasMap, Searchable};
+use App\Traits\Institution\Searchable;
 use App\Traits\Institution\{HasReception, HasSpecialties};
 
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
@@ -30,7 +30,6 @@ class Institution extends Model implements HasMediaConversions
     /**
      * Custom traits
      */
-    use HasMap;
     use Markable;
     use Searchable;
     use HasReception;
@@ -116,5 +115,10 @@ class Institution extends Model implements HasMediaConversions
     public function reception()
     {
         return $this->hasOne(ReceptionCommittee::class);
+    }
+
+    public function map()
+    {
+        return $this->hasOne(App\Map::class, 'mapable_id');
     }
 }

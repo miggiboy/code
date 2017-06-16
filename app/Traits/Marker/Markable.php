@@ -24,6 +24,6 @@ trait Markable
 
     public function marks()
     {
-        return $this->morphMany('\App\Marker', 'markable');
+        return $this->morphMany('\App\Models\User\Marker', 'markable');
     }
 }

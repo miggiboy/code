@@ -6,31 +6,31 @@
   </a>
 
 
-  <a href="{{ route('universities') }}" class="item">Университеты </a>
-  <a href="{{ route('colleges') }}" class="item">Колледжи </a>
+  <a href="{{ route('institutions.index', ['type' => 'university']) }}" class="item">Университеты </a>
+  <a href="{{ route('institutions.index', ['type' => 'college']) }}" class="item">Колледжи </a>
 
   <div class="ui dropdown item">
     Специальности <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
-        <a href="{{ route('specialties', ['inst' => 0]) }}" class="item">
+        <a href="{{ route('specialties.index', ['inst' => 0]) }}" class="item">
           <p>Колледжей</p>
         </a>
-        <a href="{{ route('specialties', ['inst' => 1]) }}" class="item">
+        <a href="{{ route('specialties.index', ['inst' => 1]) }}" class="item">
           Универстетов
         </a>
     </div>
   </div>
 
-  <a href="{{ route('professions') }}" class="item">Профессии </a>
-  <a href="{{ route('articles') }}" class="item">Статьи </a>
+  <a href="{{ route('professions.index') }}" class="item">Профессии </a>
+  <a href="{{ route('articles.index') }}" class="item">Статьи </a>
 
   {{-- <a href="{{ route('advertisements.index') }}" class="item">Реклама </a> --}}
 
   <div class="ui dropdown item">
     Предметы <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
-        <a href="{{ route('subjects') }}" class="item">Предметы </a>
-        <a href="{{ route('quizzes') }}" class="item">Тесты </a>
+        <a href="{{ route('subjects.index') }}" class="item">Предметы </a>
+        <a href="{{ route('quizzes.index') }}" class="item">Тесты </a>
     </div>
   </div>
 

@@ -13,7 +13,7 @@
               <i class="teal university icon"></i>
             @endif
             <div class="content">
-              <a class="header" href="{{ route('universities.show', $university->slug) }}">
+              <a class="header" href="{{ route('institutions.show', [$university, 'type' => request('type')]) }}">
                 {{ $university->title }}
               </a><br>
                 @if ($university->is_paid) <a class="ui yellow label" title="Вуз оплатил рекламу на сайте">Платник</a>&nbsp; @endif {{ $university->city->title }}

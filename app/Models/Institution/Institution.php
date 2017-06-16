@@ -127,7 +127,7 @@ class Institution extends Model implements HasMediaConversions
 
     public function city()
     {
-        return $this->belongsTo(\App\City::class);
+        return $this->belongsTo(\App\Models\City\City::class);
     }
 
     public function reception()

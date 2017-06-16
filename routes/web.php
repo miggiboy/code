@@ -81,7 +81,7 @@ Route::group(['namespace' => 'Specialties'], function () {
     /**
      * Specialty Professions
      */
-    Route::resource('specialties.professions', 'SpecialtyProfessionsController')->except(['edit', 'update', 'show']);
+    Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['except' => ['edit', 'update', 'show']]);
 
 
 });
@@ -131,7 +131,7 @@ Route::group(['namespace' => 'Professions'], function () {
     /**
      * Profession Specialties
      */
-    Route::resource('professions.specialties', 'ProfessionSpecialtiesController')->except(['edit', 'update', 'show']);
+    Route::resource('professions.specialties', 'ProfessionSpecialtiesController', ['except' => ['edit', 'update', 'show']]);
 });
 
 Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], function () {
@@ -153,13 +153,13 @@ Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], functio
 
 Route::group(['namespace' => 'Subjects'], function () {
 
-    Route::resource('subjects', 'SubjectsController')->except(['edit', 'update', 'show']);
+    Route::resource('subjects', 'SubjectsController', ['except' => ['edit', 'update', 'show']]);
 
     /**
      * Subject Media
      */
 
-    Route::resource('subjects.media', 'SubjectMediaController')->only(['index', 'store', 'desctroy']);
+    Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'desctroy']]);
 
 });
 
@@ -168,34 +168,34 @@ Route::group(['namespace' => 'Subjects'], function () {
  * Cities
  */
 
-Route::resource('cities', 'CitiesController')->only(['index', 'store', 'desctroy']);
+Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'desctroy']]);
 
 /**
  * Universities
  */
 
-Route::group(['prefix' => '/ins/{institutionType}', 'namespace' => 'Institution'], function () {
+Route::group(['prefix' => '/{type}', 'namespace' => 'Institution'], function () {
 
     /**
      * Universities Search
      */
 
     Route::group(['prefix' => '/search'], function () {
-        Route::get('', 'InstitutionsController@search')->name('universities.search');
+        Route::get('', 'InstitutionsController@search')->name('institutions.search');
         Route::get('/autocomplete', 'InstitutionsController@autocomplete')->name('universities.autocomplete');
     });
 
-    Route::get('', 'InstitutionsController@index')->name('universities');
+    Route::get('', 'InstitutionsController@index')->name('institutions.index');
 
-    Route::get('/create', 'InstitutionsController@create')->name('universities.create');
+    Route::get('/create', 'InstitutionsController@create')->name('institutions.create');
     Route::post('', 'InstitutionsController@store');
 
-    Route::get('/{university}/edit', 'InstitutionsController@edit')->name('universities.edit');
-    Route::patch('/{university}', 'InstitutionsController@update')->name('universities.update');
+    Route::get('/{university}/edit', 'InstitutionsController@edit')->name('institutions.edit');
+    Route::patch('/{university}', 'InstitutionsController@update')->name('institutions.update');
 
-    Route::delete('/{university}', 'InstitutionsController@destroy')->name('universities.destroy');
+    Route::delete('/{university}', 'InstitutionsController@destroy')->name('institutions.destroy');
 
-    Route::get('/{slug}', 'InstitutionsController@show')->name('universities.show');
+    Route::get('/{slug}', 'InstitutionsController@show')->name('institutions.show');
 
     /**
      * University Paid Status
@@ -303,7 +303,7 @@ Route::group(['prefix' => '/colleges', 'namespace' => 'Colleges'], function () {
 /**
  * Quizzes
  */
-Route::resource('quizzes', 'QuizzesController')->except(['edit', 'update']);
+Route::resource('quizzes', 'QuizzesController', ['except' => ['edit', 'update']]);
 
 Route::post('/quizzes/preview', 'QuizzesController@preview')->name('quizzes.preview');
 

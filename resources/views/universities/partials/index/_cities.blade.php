@@ -4,7 +4,7 @@
       <div class="header">Города</div>
         <div class="menu">
           @foreach ($cities as $city)
-            <a href="{{ route('universities.search', ['city' => $city->id]) }}" class="item">
+            <a href="{{ route('institutions.search', ['type' => request('type'), 'city' => $city->id]) }}" class="item">
               {{ $city->title }}
             </a>
           @endforeach

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Institution;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\City;
+use App\Models\City\City;
 use App\Models\Institution\{
     Institution,
     ReceptionCommittee
@@ -23,13 +23,13 @@ class InstitutionsController extends Controller
      * Institution type
      * @var college || university
      */
-    private $insType;
+    private $type;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->insType = request()->route('institutionType');
+        $this->type = request()->route('type');
     }
 
     /**
@@ -38,14 +38,12 @@ class InstitutionsController extends Controller
      */
     public function index()
     {
-        $cities = City::all()->sortBy('title');
-
-        $universities = Institution::ofType('university')
+        $universities = Institution::ofType($this->type)
             ->with(['city', 'media', 'marks'])
             ->orderBy('title')
             ->paginate(15);
 
-        return view('universities.index', compact('universities', 'cities'));
+        return view('universities.index', compact('universities'));
     }
 
     /**
@@ -55,9 +53,7 @@ class InstitutionsController extends Controller
      */
     public function create()
     {
-        $cities = City::all()->sortBy('title');
-
-        return view('universities.create', compact('cities'));
+        return view('universities.create');
     }
 
     /**
@@ -92,7 +88,6 @@ class InstitutionsController extends Controller
     public function show($slug)
     {
         $university = University::where('slug', $slug)->firstOrFail();
-
         return view('universities.show', compact('university'));
     }
 
@@ -104,9 +99,7 @@ class InstitutionsController extends Controller
      */
     public function edit(University $university)
     {
-        $cities = City::all()->sortBy('title');
-
-        return view('universities.edit', compact('university', 'cities'));
+        return view('universities.edit', compact('university'));
     }
 
     /**
@@ -198,11 +191,10 @@ class InstitutionsController extends Controller
             $q->isPaid();
         }
 
-        $cities = City::all()->sortBy('title');
         $universities = $q->orderBy('title')->with(['city', 'media', 'marks'])->paginate(15);
 
         $request->flashOnly(['query', 'city']);
 
-        return view('universities.index', compact('universities', 'cities'));
+        return view('universities.index', compact('universities'));
     }
 }

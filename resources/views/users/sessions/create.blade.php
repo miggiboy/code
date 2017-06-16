@@ -31,7 +31,7 @@
                     Вход на сайт
                   </div>
                 </h2>
-                @include ('layouts.form-errors')
+                @include ('includes.form-errors')
 
                 @if (session()->has('message'))
                   <div class="ui negative message">

@@ -15,13 +15,7 @@ class CollegePaidStatusController extends Controller
      */
     public function toggle(College $college)
     {
-        if ($college->is_paid) {
-            $college->is_paid = null;
-        } else {
-            $college->is_paid = true;
-        }
-
-        $college->save();
+        $college->update(['is_paid' => !$college->is_paid]);
 
         return back()->with('message', 'Статус колледжа изменен');
     }

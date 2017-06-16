@@ -21,7 +21,7 @@
     </head>
     <body>
         <div class="ui custom container">
-            @include ('layouts.flash')
+            @include ('includes.flash')
 
             <div class="ui middle aligned center aligned grid" style="margin-top: 150px;">
               <div class="column">
@@ -31,8 +31,8 @@
                     Регистрация
                   </div>
                 </h2>
-                @include ('layouts.form-errors')
-                <form action ="{{ route('register') }}" method ="POST" class="ui large form">
+                @include ('includes.form-errors')
+                <form action ="{{ route('register') }}" method ="post" class="ui large form">
                   {{ csrf_field() }}
                   <div class="ui stacked segment">
                     <div class="field">

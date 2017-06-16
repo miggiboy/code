@@ -35,7 +35,6 @@
                         Вернуться
                     </a>
                 </div>
-
             @else
                   <div class="column">
                     <h2 class="ui teal image header">
@@ -44,7 +43,7 @@
                         Вход на сайт
                       </div>
                     </h2>
-                    @include ('layouts.form-errors')
+                    @include ('includes.form-errors')
 
                     @if (session()->has('message'))
                       <div class="ui negative message">

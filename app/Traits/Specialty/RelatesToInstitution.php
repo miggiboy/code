@@ -2,7 +2,9 @@
 
 namespace App\Traits\Specialty;
 
-trait HasReception
+use App\Models\Institution\Institution;
+
+trait RelatesToInstitution
 {
     public function insitutionType()
     {
@@ -115,15 +117,16 @@ trait HasReception
 
     public function universities()
     {
-        return $this->belongsToMany(\App\Models\University\University::class)
+        return $this->belongsToMany(\App\Models\Institution\Institution::class)
             ->where('type', 'university')
             ->withPivot('study_price', 'study_period', 'form');
     }
 
     public function colleges()
     {
-        return $this->belongsToMany(\App\Models\College\College::class)
-            ->where('type', 'college')
-            ->withPivot('study_price', 'study_period', 'form');
+        return
+            $this->belongsToMany(\App\Models\College\College::class)
+                ->where('type', 'college')
+                ->withPivot('study_price', 'study_period', 'form');
     }
 }

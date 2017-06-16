@@ -5,7 +5,7 @@
       {{-- Editing --}}
       <div class="header"><i class="tags icon"></i>  Опции </div>
       <div class="divider"></div>
-      <a href="{{ route('universities.edit', $university->id) }}" class="item" target="_blank">
+      <a href="{{ route('institutions.edit', [$university, 'type' => request('type')]) }}" class="item" target="_blank">
         <i class="blue edit icon"></i>  Редактировать
       </a>
 
@@ -31,7 +31,7 @@
         <i class="yellow star icon"></i>  Сделать {{ $university->is_paid ? 'не ' : '' }}платником
       </a>
 
-      <form action="{{ route('university.status.toggle', $university) }}" method="post" id="toggle-model-{{ $university->id }}-status">
+      <form action="{{ route('university.status.toggle', [$university, 'type' => request('type')]) }}" method="post" id="toggle-model-{{ $university->id }}-status">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
       </form>
@@ -43,7 +43,7 @@
           <i class="grey privacy icon"></i>  Сгенерировать пин
         </a>
 
-        <form action="{{ route('universities.pins.store', $university) }}" method="post"
+        <form action="{{ route('institutions.pins.store', $university) }}" method="post"
           id="generate-institution-{{ $university->id }}-pin-form">
           {{ csrf_field() }}
         </form>
@@ -55,7 +55,7 @@
           <i class="brown privacy icon"></i>  Удалить пин
         </a>
 
-        <form action="{{ route('universities.pins.destroy', $university) }}"
+        <form action="{{ route('institutions.pins.destroy', $university) }}"
               method="post"
               id="delete-institution-{{ $university->id }}-pin-form">
 
@@ -72,7 +72,7 @@
           document.getElementById('delete-university-{{ $university->id }}').submit();">
         <i class="red delete icon"></i>  Удалить
       </a>
-      <form action="{{ route('universities.destroy', $university) }}" method="post"
+      <form action="{{ route('institutions.destroy', [$university, 'type' => request('type')]) }}" method="post"
         id="delete-university-{{ $university->id }}">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}

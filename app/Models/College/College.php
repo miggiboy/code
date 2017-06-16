@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Traits\Institution\{Searchable, HasMap};
+use App\Traits\Institution\Searchable;
 use App\Traits\Institution\{HasReception, HasSpecialties};
 use App\Traits\Marker\Markable;
 
@@ -29,7 +29,6 @@ class College extends Model implements HasMediaConversions
      * Custom traits
      */
     use Markable;
-    use HasMap;
     use Searchable;
     use HasReception;
     use HasSpecialties;

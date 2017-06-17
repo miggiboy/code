@@ -78,12 +78,8 @@ Route::group(['namespace' => 'Specialties'], function () {
 
     Route::resource('specialties', 'SpecialtiesController');
 
-    /**
-     * Specialty Professions
-     */
+    // Specialty Professions
     Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['except' => ['edit', 'update', 'show']]);
-
-
 });
 
 
@@ -174,7 +170,7 @@ Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'des
  * Universities
  */
 
-Route::group(['prefix' => '/{type}', 'namespace' => 'Institution'], function () {
+Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Institution'], function () {
 
     /**
      * Universities Search
@@ -195,7 +191,7 @@ Route::group(['prefix' => '/{type}', 'namespace' => 'Institution'], function () 
 
     Route::delete('/{university}', 'InstitutionsController@destroy')->name('institutions.destroy');
 
-    Route::get('/{slug}', 'InstitutionsController@show')->name('institutions.show');
+    Route::get('/{university}', 'InstitutionsController@show')->name('institutions.show');
 
     /**
      * University Paid Status

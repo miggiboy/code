@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\University;
+namespace App\Models\Institution;
 
 use App\Models\Model;
 

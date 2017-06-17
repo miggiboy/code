@@ -1,4 +1,4 @@
-<form class="ui small form" action="{{ route('institutions.search', ['type' => request('type')]) }}" method="get">
+<form class="ui small form" action="{{ route('institutions.search', ['type' => request()->route('type')]) }}" method="get">
     <div class="three fields">
 
       <div class="eight wide field">

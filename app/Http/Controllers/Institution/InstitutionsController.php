@@ -21,15 +21,15 @@ class InstitutionsController extends Controller
 {
     /**
      * Institution type
-     * @var college || university
+     * @var string
      */
-    private $type;
+    private $institutionType;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->type = request()->route('type');
+        $this->institutionType = str_singular(request()->route('institutionType'));
     }
 
     /**
@@ -38,7 +38,7 @@ class InstitutionsController extends Controller
      */
     public function index()
     {
-        $universities = Institution::ofType($this->type)
+        $universities = Institution::ofType($this->institutionType)
             ->with(['city', 'media', 'marks'])
             ->orderBy('title')
             ->paginate(15);
@@ -85,9 +85,8 @@ class InstitutionsController extends Controller
      * @param  \App\University  $university
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($type, Institution $university)
     {
-        $university = University::where('slug', $slug)->firstOrFail();
         return view('universities.show', compact('university'));
     }
 

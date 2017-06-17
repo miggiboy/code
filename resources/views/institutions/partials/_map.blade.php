@@ -20,7 +20,7 @@
   </form>
 
 @else
-  @include  ('layouts.form-errors')
+  @include  ('includes.form-errors')
   <form action="{{ route('map.store', [strtolower(class_basename($model)), $model->id]) }}" method="post" class="ui form">
     {{ csrf_field() }}
     <div class="field">

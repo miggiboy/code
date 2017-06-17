@@ -6,8 +6,8 @@
   </a>
 
 
-  <a href="{{ route('institutions.index', ['type' => 'university']) }}" class="item">Университеты </a>
-  <a href="{{ route('institutions.index', ['type' => 'college']) }}" class="item">Колледжи </a>
+  <a href="{{ route('institutions.index', ['type' => 'universities']) }}" class="item">Университеты </a>
+  <a href="{{ route('institutions.index', ['type' => 'colleges']) }}" class="item">Колледжи </a>
 
   <div class="ui dropdown item">
     Специальности <i class="dropdown icon"></i>

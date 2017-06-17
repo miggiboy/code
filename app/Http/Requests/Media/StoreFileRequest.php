@@ -26,7 +26,7 @@ class StoreFileRequest extends FormRequest
         return [
             // path length , Mime tyes, file exists
 
-            'files.*'       => 'required|max:100000',
+            'files.*'    => 'required|max:100000',
             'category'   => 'required',
         ];
     }

@@ -77,7 +77,7 @@
         document.getElementById('delete-university-{{ $institution->id }}').submit();">
       <i class="red delete icon"></i>  Удалить
     </a>
-    <form action="{{ route('institutions.destroy', [$institution, request()->route('institutionType')]) }}" method="post"
+    <form action="{{ route('institutions.destroy', [request()->route('institutionType'), $institution]) }}" method="post"
       id="delete-university-{{ $institution->id }}">
       {{ csrf_field() }}
       {{ method_field('DELETE') }}

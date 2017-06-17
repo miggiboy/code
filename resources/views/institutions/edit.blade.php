@@ -17,6 +17,8 @@
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
 
+      <input type="hidden" name="type" value="{{ $institution->type }}">
+
       @include ('includes.form-errors')
 
       <div class="ui horizontal divider">
@@ -24,9 +26,9 @@
       </div>
       <br>
 
-      @include ('institutions/partials/create/_' . request()->route('institutionType') . '-general-fields')
+      @include ('institutions/partials/edit/_' . request()->route('institutionType') . '-general-fields')
 
-      @include ('institutions/partials/create/_reception_committee_fields')
+      @include ('institutions/partials/edit/_reception_committee_fields')
 
       <div class="inline field">
             <div class="ui toggle checkbox">

@@ -11,7 +11,7 @@ trait HasReception
         if ($reception) {
             $this->reception()->updateOrCreate(
             [
-                'university_id'     => $this->id
+                'institution_id'     => $this->id
             ],
 
             [

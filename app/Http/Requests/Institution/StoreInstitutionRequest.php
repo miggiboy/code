@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\University;
+namespace App\Http\Requests\Institution;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUniversityRequest extends FormRequest
+class StoreInstitutionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,6 +28,7 @@ class StoreUniversityRequest extends FormRequest
             'title'             => 'required|max:255|unique:universities',
             'acronym'           => 'nullable|max:255',
             'city_id'           => 'required|integer',
+            'type'              => 'required',
             'has_dormitory'     => 'nullable|boolean',
             'has_military_dep'  => 'nullable|boolean',
             'foundation_year'   => 'nullable|integer|between:1800,' . Carbon::now()->year,
@@ -42,7 +43,7 @@ class StoreUniversityRequest extends FormRequest
         ];
     }
 
-    public function messages() 
+    public function messages()
     {
         return [
 

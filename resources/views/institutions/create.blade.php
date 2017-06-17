@@ -17,6 +17,8 @@
 
       {{ csrf_field() }}
 
+      <input type="hidden" name="type" value="{{ str_singular(request()->route('institutionType')) }}">
+
       @include ('includes.form-errors')
 
       <div class="ui horizontal divider">

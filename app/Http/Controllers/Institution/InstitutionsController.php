@@ -11,9 +11,9 @@ use App\Models\Institution\{
     ReceptionCommittee
 };
 
-use App\Http\Requests\University\{
-    UpdateUniversityRequest,
-    StoreUniversityRequest
+use App\Http\Requests\Institution\{
+    UpdateInstitutionRequest,
+    StoreInstitutionRequest
 };
 
 
@@ -29,7 +29,7 @@ class InstitutionsController extends Controller
     {
         parent::__construct();
 
-        $this->institutionType = str_singular(request()->route('institutionType'));
+        $this->institutionType = request()->route('institutionType');
     }
 
     /**
@@ -38,7 +38,7 @@ class InstitutionsController extends Controller
      */
     public function index()
     {
-        $institutions = Institution::ofType($this->institutionType)
+        $institutions = Institution::ofType(str_singular($this->institutionType))
             ->with(['city', 'media', 'marks'])
             ->orderBy('title')
             ->paginate(15);
@@ -62,7 +62,7 @@ class InstitutionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUniversityRequest $request)
+    public function store(StoreInstitutionRequest $request)
     {
         $institution = Institution::create(
             $request->except('reception', 'add_specialities')
@@ -70,19 +70,19 @@ class InstitutionsController extends Controller
 
         $institution->createOrUpdateReceptionIfProvided();
 
-        session()->flash('message', 'ВУЗ добавлен успешно');
+        session()->flash('message', 'Уч. заведение добавлено успешно');
 
         if ($request->has('add_specialities')) {
-            return redirect()->route('university.specialties.create', [$institution, 'full-time']);
+            return redirect()->route('institutions.specialties.create', [$institution, 'full-time']);
         }
 
-        return redirect()->route('institutions.show', $institution->slug);
+        return redirect()->route('institutions.show', [$type, $institution]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\University  $institution
+     * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
     public function show($type, Institution $institution)
@@ -93,7 +93,7 @@ class InstitutionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\University  $institution
+     * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
     public function edit($type, Institution $institution)
@@ -105,36 +105,35 @@ class InstitutionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\University  $institution
+     * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function update($type, Institution $institution, UpdateUniversityRequest $request)
+    public function update($type, Institution $institution, UpdateInstitutionRequest $request)
     {
         $institution->update($request->except('reception', 'add_specialities'));
 
         $institution->createOrUpdateReceptionIfProvided();
 
-        session()->flash('message', 'ВУЗ обновлен успешно.');
+        session()->flash('message', 'Уч. заведение обновлено успешно.');
 
         if ($request->has('add_specialities')) {
-            return redirect()->route('university.specialties.create', [$institution, 'full-time']);
+            return redirect()->route('institutions.specialties.create', [$type, $institution, 'full-time']);
         }
 
-        return redirect()->route('institutions.show', $institution->slug);
+        return redirect()->route('institutions.show', [$type, $institution]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\University  $institution
+     * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
     public function destroy($type, Institution $institution)
     {
         $institution->delete();
-        return redirect()->route('institutions')->with('message', 'Вуз удален.');
+        return redirect()->route('institutions.index', $type)->with('message', 'Уч. заведение удалено.');
     }
-
 
     /**
      * Search methods

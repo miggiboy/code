@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\University;
+namespace App\Http\Requests\Institution;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUniversityRequest extends FormRequest
+class UpdateInstitutionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,10 @@ class UpdateUniversityRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'             => 'required|max:255|unique:universities,title,' . $this->university->id,
+            'title'             => 'required|max:255|unique:universities,title,' . $this->institution->id,
             'acronym'           => 'nullable|max:255',
+            'type'              => 'required',
             'city_id'           => 'required|integer',
-            'type_id'           => 'nullable|integer',
             'has_dormitory'     => 'nullable|boolean',
             'has_military_dep'  => 'nullable|boolean',
             'foundation_year'   => 'nullable|integer|between:1800,' . Carbon::now()->year,
@@ -43,7 +43,7 @@ class UpdateUniversityRequest extends FormRequest
         ];
     }
 
-    public function messages() 
+    public function messages()
     {
         return [
             'title.required'            => 'Название вуза - обязательное поле.',

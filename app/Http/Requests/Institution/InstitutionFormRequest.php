@@ -5,7 +5,7 @@ namespace App\Http\Requests\Institution;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreInstitutionRequest extends FormRequest
+class InstitutionFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,15 @@ class StoreInstitutionRequest extends FormRequest
      */
     public function rules()
     {
+        $titleRule = 'required|max:255|unique:universities';
+
+        // Skip this institution from unique check list on update
+        if ($this->method() == 'PATCH') {
+            $titleRule .= ',title,' . $this->institution->id;
+        }
+
         return [
-            'title'             => 'required|max:255|unique:universities',
+            'title'             => $titleRule,
             'acronym'           => 'nullable|max:255',
             'city_id'           => 'required|integer',
             'type'              => 'required',

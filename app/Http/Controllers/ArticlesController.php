@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Article\{Article, Category};
-use App\Http\Requests\Article\{StoreArticleRequest, UpdateArticleRequest};
+
+use App\Http\Requests\Article\ArticleFormRequest;
 
 class ArticlesController extends Controller
 {
@@ -16,11 +17,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all()->sortBy('title');
-
         $articles   = Article::orderBy('created_at')->paginate(15);
 
-        return view('articles.index', compact('categories', 'articles'));
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -30,9 +29,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        $categories = Category::all()->sortBy('title');
-
-        return view('articles.create', compact('categories'));
+        return view('articles.create');
     }
 
     /**
@@ -41,7 +38,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArticleRequest $request)
+    public function store(ArticleFormRequest $request)
     {
 
         $article = Article::create($request->except('new_category', 'categories'));
@@ -81,9 +78,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        $categories = Category::all()->sortBy('title');
-
-        return view('articles.edit', compact('article', 'categories'));
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -93,7 +88,7 @@ class ArticlesController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Article $article, UpdateArticleRequest $request)
+    public function update(Article $article, ArticleFormRequest $request)
     {
         $article->update($request->except('new_category', 'categories'));
 

@@ -24,7 +24,7 @@
 
 <div class="four wide disabled field">
   <label for="type_id">Тип вуза</label>
-  <select name="type_id" id="type_id" class="ui search dropdown">
+  <select name="" id="type_id" class="ui search dropdown">
     <option value="">Тип вуза</option>
   </select>
 </div>

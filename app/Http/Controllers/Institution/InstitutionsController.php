@@ -11,34 +11,18 @@ use App\Models\Institution\{
     ReceptionCommittee
 };
 
-use App\Http\Requests\Institution\{
-    UpdateInstitutionRequest,
-    StoreInstitutionRequest
-};
+use App\Http\Requests\Institution\InstitutionFormRequest;
 
 
 class InstitutionsController extends Controller
 {
     /**
-     * Institution type
-     * @var string
-     */
-    private $institutionType;
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->institutionType = request()->route('institutionType');
-    }
-
-    /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($institutionType)
     {
-        $institutions = Institution::ofType(str_singular($this->institutionType))
+        $institutions = Institution::ofType(str_singular($institutionType))
             ->with(['city', 'media', 'marks'])
             ->orderBy('title')
             ->paginate(15);
@@ -62,7 +46,7 @@ class InstitutionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreInstitutionRequest $request)
+    public function store(InstitutionFormRequest $request, $institutionType)
     {
         $institution = Institution::create(
             $request->except('reception', 'add_specialities')
@@ -76,7 +60,7 @@ class InstitutionsController extends Controller
             return redirect()->route('institutions.specialties.create', [$institution, 'full-time']);
         }
 
-        return redirect()->route('institutions.show', [$type, $institution]);
+        return redirect()->route('institutions.show', [$institutionType, $institution]);
     }
 
     /**
@@ -85,7 +69,7 @@ class InstitutionsController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function show($type, Institution $institution)
+    public function show($institutionType, Institution $institution)
     {
         return view('institutions.show', compact('institution'));
     }
@@ -96,7 +80,7 @@ class InstitutionsController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function edit($type, Institution $institution)
+    public function edit($institutionType, Institution $institution)
     {
         return view('institutions.edit', compact('institution'));
     }
@@ -108,7 +92,7 @@ class InstitutionsController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function update($type, Institution $institution, UpdateInstitutionRequest $request)
+    public function update($institutionType, Institution $institution, InstitutionFormRequest $request)
     {
         $institution->update($request->except('reception', 'add_specialities'));
 
@@ -117,10 +101,10 @@ class InstitutionsController extends Controller
         session()->flash('message', 'Уч. заведение обновлено успешно.');
 
         if ($request->has('add_specialities')) {
-            return redirect()->route('institutions.specialties.create', [$type, $institution, 'full-time']);
+            return redirect()->route('institutions.specialties.create', [$institutionType, $institution, 'full-time']);
         }
 
-        return redirect()->route('institutions.show', [$type, $institution]);
+        return redirect()->route('institutions.show', [$institutionType, $institution]);
     }
 
     /**
@@ -129,10 +113,10 @@ class InstitutionsController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function destroy($type, Institution $institution)
+    public function destroy($institutionType, Institution $institution)
     {
         $institution->delete();
-        return redirect()->route('institutions.index', $type)->with('message', 'Уч. заведение удалено.');
+        return redirect()->route('institutions.index', $institutionType)->with('message', 'Уч. заведение удалено.');
     }
 
     /**
@@ -161,7 +145,7 @@ class InstitutionsController extends Controller
     {
         $q = Institution::query();
 
-        $q->whereType($this->institutionType);
+        $q->whereType(str_singular($this->institutionType));
 
         if (request()->has('query')) {
             $q->like(request('query'));

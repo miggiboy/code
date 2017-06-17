@@ -7,10 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Profession\{Profession, ProfDirection};
 
-use App\Http\Requests\Profession\{
-    StoreProfessionRequest,
-    UpdateProfessionRequest
-};
+use App\Http\Requests\Profession\ProfessionFormRequest;
 
 class ProfessionsController extends Controller
 {
@@ -21,10 +18,11 @@ class ProfessionsController extends Controller
      */
     public function index()
     {
-        return view('professions.index', [
-            'profDirections'    => ProfDirection::all()->sortBy('title'),
-            'professions'       => Profession::orderBy('title')->with(['profDirection', 'marks'])->paginate(15),
-        ]);
+        $professions = Profession::orderBy('title')
+            ->with(['profDirection', 'marks'])
+            ->paginate(15);
+
+        return view('professions.index', compact('professions'));
     }
 
     /**
@@ -34,10 +32,9 @@ class ProfessionsController extends Controller
      */
     public function create()
     {
-        return view('professions.create', [
-            'profession'     => new Profession,
-            'profDirections' => ProfDirection::all()->sortBy('title'),
-        ]);
+        $profession = new Profession;
+
+        return view('professions.create', compact('profession'));
     }
 
     /**
@@ -46,7 +43,7 @@ class ProfessionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProfessionRequest $request)
+    public function store(ProfessionFormRequest $request)
     {
         $profession = Profession::create($request->all());
 
@@ -74,9 +71,7 @@ class ProfessionsController extends Controller
      */
     public function edit(Profession $profession)
     {
-        $profDirections = ProfDirection::all()->sortBy('title');
-
-        return view('professions.edit', compact('profession', 'profDirections'));
+        return view('professions.edit', compact('profession'));
     }
 
     /**
@@ -86,7 +81,7 @@ class ProfessionsController extends Controller
      * @param  \App\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function update(Profession $profession, UpdateProfessionRequest $request)
+    public function update(Profession $profession, ProfessionFormRequest $request)
     {
 
         $profession->update($request->all());
@@ -140,7 +135,6 @@ class ProfessionsController extends Controller
         }
 
         $professions = $q->orderBy('title')->with(['profDirection', 'marks'])->paginate(15);
-        $profDirections = ProfDirection::all()->sortBy('title');
 
         $request->flashOnly(['query', 'direction']);
 

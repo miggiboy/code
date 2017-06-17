@@ -6,7 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
 
-use App\Http\Composers\CitiesComposer;
+use App\Http\Composers\{
+    CitiesComposer,
+    ArticleCategoriesComposer,
+    ProfessionCategoriesComposer
+};
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -21,6 +25,16 @@ class ComposerServiceProvider extends ServiceProvider
             ['institutions.index', 'institutions.create', 'institutions.edit'],
             CitiesComposer::class
         );
+
+        View::composer(
+            ['professions.index', 'professions.create', 'professions.edit'],
+            ProfessionCategoriesComposer::class
+        );
+
+        View::composer(
+            ['articles.index', 'articles.create', 'articles.edit'],
+            ArticleCategoriesComposer::class
+        );
     }
 
     /**
@@ -31,5 +45,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(CitiesConposer::class);
+        $this->app->singleton(ProfessionCategoriesComposer::class);
+        $this->app->singleton(ArticleCategoriesComposer::class);
     }
 }

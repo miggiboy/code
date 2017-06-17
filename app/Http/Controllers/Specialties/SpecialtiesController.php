@@ -11,10 +11,7 @@ use App\Models\Specialty\{
     Speciality
 };
 
-use App\Http\Requests\Specialty\{
-    StoreSpecialtyRequest,
-    UpdateSpecialtyRequest
-};
+use App\Http\Requests\Specialty\SpecialtyFormRequest;
 
 class SpecialtiesController extends Controller
 {
@@ -64,7 +61,7 @@ class SpecialtiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSpecialtyRequest $request)
+    public function store(SpecialtyFormRequest $request)
     {
         if ($request->model_type == 'specialty') {
             if (! is_numeric($request->direction_id)) {
@@ -128,7 +125,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Speciality $specialty, UpdateSpecialtyRequest $request)
+    public function update(Speciality $specialty, SpecialtyFormRequest $request)
     {
         $specialty->update(request([
             'title',

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreArticleRequest extends FormRequest
+class ArticleFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,15 @@ class StoreArticleRequest extends FormRequest
      */
     public function rules()
     {
+        $titleRule = 'required|max:255|unique:articles';
+
+        // Skip this article from unique check list on update
+        if ($this->method() == 'PATCH') {
+            $titleRule .= ',title,' . $this->article->id;
+        }
+
         return [
-            'title'             => 'required|unique:articles|max:255',
+            'title'             => $titleRule,
             'type'              => 'required|integer',
             'short_description' => 'required',
             'full_description'  => 'required',
@@ -32,18 +39,18 @@ class StoreArticleRequest extends FormRequest
         ];
     }
 
-    public function messages() 
+    public function messages()
     {
         return [
             'title.required'                => 'Название статьи - обязательное поле.',
             'title.unique'                  => 'Статья с таким названием уже существует.',
             'title.max'                     => 'Название статьи слишком длинное.',
-            
+
             'type.required'                 => 'Тип статьи - обязательное поле.',
-            
+
             'short_description.required'    => 'Краткое описание - обязательное поле.',
             'full_description.required'     => 'Содержание статьи - обязательное поле.',
-            
+
             'new_category.required_without' => 'Категория - обязательное поле.',
             'new_category.max'              => 'Слишком длинное название категории.',
         ];

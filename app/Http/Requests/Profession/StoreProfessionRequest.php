@@ -4,7 +4,7 @@ namespace App\Http\Requests\Profession;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProfessionRequest extends FormRequest
+class ProfessionFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,15 @@ class StoreProfessionRequest extends FormRequest
      */
     public function rules()
     {
+        $titleRule = 'required|max:255|unique:professions';
+
+        // Skip this article from unique check list on update
+        if ($this->method() == 'PATCH') {
+            $titleRule .= ',title,' . $this->profession->id;
+        }
+
         return [
-            'title'             => 'required|unique:professions|max:255',
+            'title'             => $titleRule,
             'prof_direction_id' => 'required|integer',
         ];
     }
@@ -33,8 +40,8 @@ class StoreProfessionRequest extends FormRequest
     {
         return [
             'title.required'                => 'Название профессии - обязательное поле.',
-            'title.unique'                  => 'Профессия с таким названием уже существует.',
             'title.max'                     => 'Название профессии слишком длинное.',
+            'title.unique'                  => 'Профессия с таким названием уже существует.',
 
             'prof_direction_id.required'    => 'Тип профессии - обязательное поле.',
             'prof_direction_id.integer'     => 'Тип профессии - неверные данные.',

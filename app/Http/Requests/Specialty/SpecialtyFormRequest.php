@@ -4,7 +4,7 @@ namespace App\Http\Requests\Specialty;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSpecialtyRequest extends FormRequest
+class SpecialtyFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,17 @@ class StoreSpecialtyRequest extends FormRequest
      */
     public function rules()
     {
+        $codeRule = 'nullable|alpha_num|unique:specialities|max:255';
+
+        // Skip this article from unique check list on update
+        if ($this->method() == 'PATCH') {
+            $codeRule .= ',code,' . $this->specialty->id,
+        }
+
+
         return [
             'title'         => 'required|max:255',
-            'code'          => 'nullable|alpha_num|unique:specialities|max:255',
+            'code'          => $codeRule,
             'subject_1_id'  => 'nullable|integer',
             'subject_2_id'  => 'nullable|integer',
             'model_type'    => 'required',

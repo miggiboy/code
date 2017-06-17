@@ -1,11 +1,11 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $university->title }}
+  {{ $institution->title }}
 @endsection
 
 @section ('subnavigation')
-    @include('universities.partials.navigation', ['view' => 'show', 'pageTitle' => $university->title])
+    @include('institutions.partials.navigation', ['view' => 'show', 'pageTitle' => $institution->title])
 @endsection
 
 @section ('styles')
@@ -28,16 +28,16 @@
 
   <div class="nine wide column" style="margin-right: 46px;">
 
-    @include ('institutions/partials/_media_gallery',
-        ['model' => $university, 'modelType' => 'universities']
+    @include ('institutions/partials/show/_media_gallery',
+        ['model' => $institution, 'modelType' => 'institutions']
     )
 
-    @include ('institutions/partials/_labels',
-        ['model' => $university]
+    @include ('institutions/partials/show/_labels',
+        ['model' => $institution]
     )
 
-    @include ('universities/partials/_university_information')
-    @include ('universities/partials/_reception_committee_information')
+    @include ('institutions/partials/show/_university_information')
+    @include ('institutions/partials/show/_reception_committee_information')
   </div>
 
   <br>
@@ -47,13 +47,13 @@
   <div class="six wide column">
 
     <div class="row">
-      @include ('universities/partials/_university_specialties')
+      @include ('institutions/partials/show/_university_specialties')
     </div>
 
     <br>
     <div class="row">
-      @include ('institutions/partials/_map',
-          ['model' => $university]
+      @include ('institutions/partials/show/_map',
+          ['model' => $institution]
       )
     </div>
 
@@ -61,9 +61,9 @@
 
 </div>
 
-@include ('institutions/partials/_add_image_modal_n_button',
+@include ('institutions/partials/show/_add_image_modal_n_button',
     [
-      'model' => $university,
+      'model' => $institution,
       'route' => 'university.images.store'
     ]
 )
@@ -83,7 +83,7 @@
 
     function showPin(institutionId)
     {
-       let pin = {{ $university->pin }}
+       let pin = {{ $institution->pin }}
 
        //
     }
@@ -104,7 +104,7 @@
 
     function showPin()
     {
-        $('#pin-label').text('Пин вуза: ' + {{ $university->pin }})
+        $('#pin-label').text('Пин вуза: ' + {{ $institution->pin }})
     }
 
     function hidePin()

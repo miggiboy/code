@@ -1,6 +1,6 @@
 @if ($model->map)
   <div id="map">
-    {!! $model->getResizedMap(375, 300) !!}
+    {!! $model->map->source_code !!}
   </div>
 
   <button class="ui fluid button" id="replace-map-button" onclick="event.preventDefault(); showMapReplacementForm();">Заменить карту</button>

@@ -1,29 +1,29 @@
 <div class="ui vertical segment">
-  @if ($university->reception)
+  @if ($institution->reception)
     <h3 class="header">Приемная коммиссия</h3>
     <article>
-      {!! $university->reception->info !!}
+      {!! $institution->reception->info !!}
     </article>
     <br>
 
     <div class="ui grid">
-      @if (isset($university->reception->phone) || isset($university->reception->phone_2))
+      @if (isset($institution->reception->phone) || isset($institution->reception->phone_2))
         <div class="six wide column">
               <h5 class="ui header">Телефон(-ы) приемной ком. </h5>
-              @if (isset($university->reception->phone))
-                  <div class="content">{{ $university->reception->phone }}</div>
+              @if (isset($institution->reception->phone))
+                  <div class="content">{{ $institution->reception->phone }}</div>
               @endif
-              @if (isset($university->reception->phone_2))
-                  <div class="content">{{ $university->reception->phone_2 }}</div>
+              @if (isset($institution->reception->phone_2))
+                  <div class="content">{{ $institution->reception->phone_2 }}</div>
               @endif
         </div>
       @endif
 
-      @if ($university->call_center)
+      @if ($institution->call_center)
           <div class="four wide column">
               <h5 class="ui header">Основн. телефон</h5>
               <div class="content">
-                  {{ $university->call_center }}
+                  {{ $institution->call_center }}
               </div>
           </div>
       @else
@@ -37,26 +37,26 @@
 
       @endif
 
-      @if (isset($university->reception->email))
+      @if (isset($institution->reception->email))
           <div class="six wide column">
               <h5 class="ui header">Почта приемной ком.</h5>
-              <div class="content">{{ $university->reception->email }}</div>
+              <div class="content">{{ $institution->reception->email }}</div>
           </div>
       @endif
 
-      @if ($university->address)
+      @if ($institution->address)
             <div class="five wide column">
                 <h5 class="ui header">Адрес университета </h5>
                 <div class="content">
-                    {{ $university->address }}
+                    {{ $institution->address }}
                 </div>
             </div>
       @endif
 
-      @if (isset($university->reception->address))
+      @if (isset($institution->reception->address))
           <div class="column">
               <h5 class="ui header">Адрес приемной ком. </h5>
-              <div class="content">{{ $university->reception->address }}</div>
+              <div class="content">{{ $institution->reception->address }}</div>
           </div>
       @endif
 

@@ -1,28 +1,28 @@
-@if (count($universities))
+@if (count($institutions))
     <div class="ui large celled very relaxed selection list">
-    @foreach ($universities as $university)
-          <div class="university item{{ $university->markedByCurrentUser ? ' marked' : '' }}"
+    @foreach ($institutions as $institution)
+          <div class="university item{{ $institution->markedByCurrentUser ? ' marked' : '' }}"
                style="cursor: default;"
                itemType="University"
-               itemId="{{ $university->id }}">
+               itemId="{{ $institution->id }}">
 
-            @include ('universities/partials/_options')
+            @include ('institutions/partials/_options')
             <div class="right floated content">
-              <div>ID:  {{ $university->id }}</div>
+              <div>ID:  {{ $institution->id }}</div>
             </div>
-            @if (count($logos = $university->getMedia('logo')))
+            @if (count($logos = $institution->getMedia('logo')))
               <img class="ui avatar image" src="{{ $logos[0]->getUrl('thumb') }}">
             @else
               <i class="teal university icon"></i>
             @endif
             <div class="content">
-              <a class="header" href="{{ route('institutions.show', [request()->route('type'), $university]) }}">
-                {{ $university->title }}
+              <a class="header" href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}">
+                {{ $institution->title }}
               </a><br>
-                @if ($university->is_paid)
+                @if ($institution->is_paid)
                   <a class="ui yellow label" title="Вуз оплатил рекламу на сайте">Платник</a>&nbsp;
                 @endif
-                {{ $university->city->title }}
+                {{ $institution->city->title }}
             </div>
           </div>
     @endforeach

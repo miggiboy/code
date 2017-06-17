@@ -184,19 +184,19 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
     Route::get('', 'InstitutionsController@index')->name('institutions.index');
 
     Route::get('/create', 'InstitutionsController@create')->name('institutions.create');
-    Route::post('', 'InstitutionsController@store');
+    Route::post('', 'InstitutionsController@store')->name('institutions.store');
 
-    Route::get('/{university}/edit', 'InstitutionsController@edit')->name('institutions.edit');
-    Route::patch('/{university}', 'InstitutionsController@update')->name('institutions.update');
+    Route::get('/{institution}/edit', 'InstitutionsController@edit')->name('institutions.edit');
+    Route::patch('/{institution}', 'InstitutionsController@update')->name('institutions.update');
 
-    Route::delete('/{university}', 'InstitutionsController@destroy')->name('institutions.destroy');
+    Route::delete('/{institution}', 'InstitutionsController@destroy')->name('institutions.destroy');
 
-    Route::get('/{university}', 'InstitutionsController@show')->name('institutions.show');
+    Route::get('/{institution}', 'InstitutionsController@show')->name('institutions.show');
 
     /**
      * University Paid Status
      */
-    Route::patch('/{university}/status', 'UniversityPaidStatusController@toggle')->name('university.status.toggle');
+    Route::patch('/{institution}/status', 'UniversityPaidStatusController@toggle')->name('university.status.toggle');
 
 
     /**

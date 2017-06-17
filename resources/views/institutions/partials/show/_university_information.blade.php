@@ -1,35 +1,35 @@
 <div class="ui vertical segment">
 
   <article>
-    {!! $university->description !!}
+    {!! $institution->description !!}
 
-    @if ($university->extra_description)
+    @if ($institution->extra_description)
         <h3>Дополнительное описание</h3>
-        {!! $university->extra_description !!}
+        {!! $institution->extra_description !!}
     @endif
   </article>
 
   <br>
   <div class="ui grid">
 
-    @if ($university->acronym)
+    @if ($institution->acronym)
         <div class="four wide column">
           <h5 class="ui header">Известен как:
-            <div class="sub header">{{ $university->acronym }}</div>
+            <div class="sub header">{{ $institution->acronym }}</div>
           </h5>
         </div>
     @endif
 
     <div class="four wide column">
       <h5 class="ui header">Город:
-        <div class="sub header">{{ $university->city->title }}</div>
+        <div class="sub header">{{ $institution->city->title }}</div>
       </h5>
     </div>
 
-    @if (isset($university->has_dormitory))
+    @if (isset($institution->has_dormitory))
       <div class="four wide column">
           <h5 class="ui header">Общежитие:
-              @if ($university->has_dormitory == true)
+              @if ($institution->has_dormitory == true)
                   <div class="sub header">Есть</div>
               @else
                   <div class="sub header">Нет</div>
@@ -38,10 +38,10 @@
         </div>
     @endif
 
-    @if (isset($university->has_military_dep))
+    @if (isset($institution->has_military_dep))
       <div class="four wide column">
           <h5 class="ui header">Военная каф:
-              @if ($university->has_military_dep == true)
+              @if ($institution->has_military_dep == true)
                   <div class="sub header">Есть</div>
               @else
                   <div class="sub header">Нет</div>
@@ -50,30 +50,30 @@
         </div>
     @endif
 
-    @if ($university->foundation_year)
+    @if ($institution->foundation_year)
         <div class="four wide column">
           <h5 class="ui header">Год основания:
-            <div class="sub header">{{ $university->foundation_year }}</div>
+            <div class="sub header">{{ $institution->foundation_year }}</div>
           </h5>
         </div>
     @endif
 
-    @if ($university->call_center)
+    @if ($institution->call_center)
         <div class="four wide column">
             <h5 class="ui header">Основн. телефон
               <div class="sub header">
-                  {{ $university->call_center }}
+                  {{ $institution->call_center }}
               </div>
             </h5>
         </div>
     @endif
 
-    @if ($university->web_site)
+    @if ($institution->web_site)
         <div class="four wide column">
           <h5 class="ui header">Веб сайт:
             <div class="sub header">
-              <a href="{{ $university->web_site }}" target="_blank">
-                {{ $university->getBaseUrl() }}
+              <a href="{{ $institution->web_site }}" target="_blank">
+                {{ $institution->getBaseUrl() }}
               </a>
             </div>
           </h5>

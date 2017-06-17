@@ -10,7 +10,6 @@ use App\Marker;
 class MarkersController extends Controller
 {
     private static $markableTypes = [
-        'College'       => '\\App\Models\\College\\College',
         'University'    => '\\App\Models\\University\\University',
         'Specialty'     => '\\App\Models\\Specialty\\Speciality',
         'Profession'    => '\\App\Models\\Profession\\Profession',

@@ -115,7 +115,6 @@ class QuizzesController extends Controller
 
     public function check($answerId)
     {
-
         $answerId = Answer::find($answerId)->question
             ->getRightAnswer()
             ->id;

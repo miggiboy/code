@@ -40,28 +40,18 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Registration
      */
-
-    Route::get('/register', 'RegistrationController@create')->name('register');
-    Route::post('/register', 'RegistrationController@store');
+    Route::resource('registration', 'RegistrationController', ['only' => 'create', 'store']);
 
 
     /**
      * Sessions
      */
-
-    Route::get('/login', 'SessionsController@create')->name('login');
-    Route::post('/login', 'SessionsController@store');
-
-    Route::get('/logout', 'SessionsController@destroy')->name('logout');
+    Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
     /**
      * Profile
      */
-
-    Route::get('/profile', 'ProfileController@show')->name('profile');
-
-    Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-    Route::patch('/profile', 'ProfileController@update')->name('profile.update');
+    Route::resource('profile', 'ProfileController', ['only' => ['show', 'edit', 'update']]);
 
     /**
      * Markers
@@ -79,7 +69,13 @@ Route::group(['namespace' => 'Specialties'], function () {
     Route::resource('specialties', 'SpecialtiesController');
 
     // Specialty Professions
-    Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['except' => ['edit', 'update', 'show']]);
+    Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['only' => ['edit', 'update', 'show']]);
+
+    // Specialty qualifications
+    Route::resource('specialties.qualifications', 'SpecialtyQualificationsController', ['except' => ['show', 'edit', 'update']]);
+
+    // Specialty institutions
+    Route::get('specialties.institutions', 'SpecialtyInstitutionsController@index', ['only' => ['index']]);
 });
 
 
@@ -96,24 +92,6 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
         Route::get('/college/specialties', 'SpecialtiesController@searchCollegeSpecialties');
     });
 
-    /**
-     * Specialty qualifications
-     */
-    Route::get('/{specialty}/qualifications', 'SpecialtyQualificationsController@index')->name('specialties.qualifications.index');
-
-    Route::get('/{specialty}/qualifications/create', 'SpecialtyQualificationsController@create')
-        ->name('specialties.qualifications.create');
-
-    Route::post('/{specialty}/qualifications', 'SpecialtyQualificationsController@store')->name('specialties.qualifications.store');
-
-    Route::delete('/{specialty}/qualifications/{qualification}', 'SpecialtyQualificationsController@destroy')
-        ->name('specialties.qualifications.destroy');
-
-    /**
-     * Specialty related institutions
-     */
-    Route::get('/{specialty}/institutions', 'SpecialtyInstitutionsController@index')->name('specialties.institutions.index');
-
 });
 
 
@@ -122,13 +100,13 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
  */
 
 Route::group(['namespace' => 'Professions'], function () {
+
     Route::resource('professions', 'ProfessionsController');
 
-    /**
-     * Profession Specialties
-     */
+    // Profession Specialties
     Route::resource('professions.specialties', 'ProfessionSpecialtiesController', ['except' => ['edit', 'update', 'show']]);
 });
+
 
 Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], function () {
 
@@ -151,12 +129,8 @@ Route::group(['namespace' => 'Subjects'], function () {
 
     Route::resource('subjects', 'SubjectsController', ['except' => ['edit', 'update', 'show']]);
 
-    /**
-     * Subject Media
-     */
-
+    // Subject Media
     Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'desctroy']]);
-
 });
 
 
@@ -233,68 +207,14 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
 
     Route::delete('/media/{mediaId}', 'UniversityMediaController@destroy')->name('university.images.destroy');
 
-});
-
-
-/**
- * Colleges
- */
-
-Route::group(['prefix' => '/colleges', 'namespace' => 'Colleges'], function () {
-
     /**
-     * Colleges Search
+     * Maps
      */
-    Route::get('/search/autocomplete', 'CollegesController@autocomplete')->name('colleges.autocomplete');
-    Route::get('/search', 'CollegesController@search')->name('colleges.search');
+    Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.store');
 
-    Route::get('', 'CollegesController@index')->name('colleges');
-
-    Route::get('/create', 'CollegesController@create')->name('colleges.create');
-    Route::post('', 'CollegesController@store');
-
-    Route::get('/{slug}', 'CollegesController@show')->name('colleges.show');
-
-    Route::get('/{college}/edit', 'CollegesController@edit')->name('colleges.edit');
-    Route::patch('/{college}', 'CollegesController@update')->name('colleges.update');
-
-    Route::delete('/{college}', 'CollegesController@destroy')->name('colleges.destroy');
-
-    /**
-     * College paid status
-     */
-    Route::patch('/{college}/status', 'CollegePaidStatusController@toggle')->name('college.status.toggle');
-
-    /**
-     * College specialties
-     */
-
-    Route::group(['prefix' => '/{college}/specialties/{studyForm}'], function () {
-        Route::get('', 'CollegeSpecialtiesController@index')->name('college.specialties');
-
-        Route::get('/create', 'CollegeSpecialtiesController@create')->name('college.specialties.create');
-        Route::post('', 'CollegeSpecialtiesController@store')->name('college.specialities');
-
-        Route::get('/edit', 'CollegeSpecialtiesController@edit')->name('college.specialties.edit');
-        Route::patch('', 'CollegeSpecialtiesController@update')->name('college.specialties');
-
-        Route::delete('/{speciality}', 'CollegeSpecialtiesController@destroy')->name('college.specialties.destroy');
-    });
-
-    /**
-     * College Media
-     */
-
-    Route::group(['prefix' => '/{college}/media'], function () {
-        Route::post('', 'CollegeMediaController@store')->name('college.images.store');
-
-        Route::patch('/{mediaId}', 'CollegeMediaController@toggleLogo');
-    });
-
-    Route::delete('/media/{mediaId}', 'CollegeMediaController@destroy')->name('college.images.destroy');
+    Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
 
 });
-
 
 /**
  * Quizzes
@@ -333,10 +253,3 @@ Route::group(['namespace' => 'AccessControl'], function () {
  */
 
 Route::resource('articles', 'ArticlesController');
-
-/**
- * Maps
- */
-Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.store');
-
-Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');

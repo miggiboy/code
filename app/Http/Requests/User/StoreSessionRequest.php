@@ -29,11 +29,11 @@ class StoreSessionRequest extends FormRequest
         ];
     }
 
-    public function messages() 
+    public function messages()
     {
         return [
-        
-            'email.required'   => 'Email - обязательгное поле.',
+
+            'email.required'   => 'Email - обязательное поле.',
             'email.email'      => 'Email - неверный формат.',
             'email.exists'     => 'Неверный email.',
 

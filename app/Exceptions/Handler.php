@@ -32,8 +32,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        // The code below should be uncommented in production
-        // for bug tracking via sentry
+        // Uncomment on production
+        // Bug tracking via sentry
 
         // if ($this->shouldReport($exception)) {
         //     app('sentry')->captureException($exception);
@@ -51,8 +51,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // The code below should be uncommented in production
-        // for bug tracking via sentry
+        // Uncomment on production
+        // Bug tracking via sentry
 
         // if ($this->shouldReport($exception)) {
         //     return response()->view('errors.500', [], 500);

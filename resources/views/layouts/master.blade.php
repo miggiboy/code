@@ -2,15 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.css">
 
         <link rel="stylesheet" href="/css/app.css">
 
         <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="/images/logo.png">
-
-        <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
 
         <title>
             @yield('title')
@@ -37,6 +34,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
     <script src="/js/vendor/readmore/readmore.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

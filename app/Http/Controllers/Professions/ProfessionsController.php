@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Professions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Profession\{Profession, ProfDirection};
+use App\Models\Profession\{
+    Profession,
+    ProfDirection
+};
 
-use App\Http\Requests\Profession\ProfessionFormRequest;
+use App\Http\Requests\Profession\{
+    ProfessionFormRequest
+};
 
 class ProfessionsController extends Controller
 {

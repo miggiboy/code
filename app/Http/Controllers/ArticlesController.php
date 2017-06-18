@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Article\{Article, Category};
 
-use App\Http\Requests\Article\ArticleFormRequest;
+use App\Http\Requests\Article\{
+    ArticleFormRequest
+};
 
 class ArticlesController extends Controller
 {

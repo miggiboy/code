@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Subject;
 use App\{Quiz, Answer};
 
-use App\Modules\Quiz\{QuizParsing, QuizStoring};
+use App\Modules\Quiz\{
+    QuizParsing,
+    QuizStoring
+};
 
 
 class QuizzesController extends Controller

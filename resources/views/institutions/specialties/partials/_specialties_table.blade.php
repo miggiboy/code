@@ -6,7 +6,7 @@
       <th class="collapsing">Опции</th>
   </tr></thead>
   <tbody>
-    @foreach ($university->specialities as $specialty)
+    @foreach ($institution->specialities as $specialty)
     <tr>
       <td>
         <h4 class="ui header">
@@ -30,11 +30,11 @@
       </td>
       <td>
         <a href="#" class="ui basic icon button"
-          onclick="event.preventDefault();
-          document.getElementById('detach-specialty-{{ $specialty->id }}').submit();">
+           onclick="event.preventDefault();
+           document.getElementById('detach-specialty-{{ $specialty->id }}').submit();">
             <i class="trash outline icon"></i>
         </a>
-        <form action="{{ route('university.specialties.destroy', [$university, $studyForm, $specialty]) }}"
+        <form action="{{ route('institutions.specialties.destroy', [request()->route('institutionType'), $institution, request()->route('studyForm'), $specialty]) }}"
          id="detach-specialty-{{ $specialty->id }}" method="post">
           {{ csrf_field() }}
           {{ method_field('DELETE') }}

@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Institution;
 
 use Illuminate\Http\Request;
 
-use App\Models\Institution\{Institution, Map};
+use App\Models\Institution\{
+    Map,
+    Institution
+};
 
 class InstitutionMapsController extends Controller
 {

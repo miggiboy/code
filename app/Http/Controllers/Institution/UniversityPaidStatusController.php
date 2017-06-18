@@ -13,15 +13,9 @@ class UniversityPaidStatusController extends Controller
      * Toggles university paid status
      * @return Illuminate\Http\Response
      */
-    public function toggle(University $university)
+    public function __invoke(University $university)
     {
-        if ($university->is_paid) {
-            $university->is_paid = null;
-        } else {
-            $university->is_paid = true;
-        }
-
-        $university->save();
+        $institution->update('is_paid', ! $institution->is_paid);
 
         return back()->with('message', 'Статус вуза изменен');
     }

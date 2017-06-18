@@ -36,7 +36,7 @@
         ['model' => $institution]
     )
 
-    @include ('institutions/partials/show/_university_information')
+    @include ('institutions/partials/show/_institution_information')
     @include ('institutions/partials/show/_reception_committee_information')
   </div>
 
@@ -47,7 +47,7 @@
   <div class="six wide column">
 
     <div class="row">
-      @include ('institutions/partials/show/_university_specialties')
+      @include ('institutions/partials/show/_institution_specialties')
     </div>
 
     <br>

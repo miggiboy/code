@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Subject\Subject;
-use App\Http\Requests\FileSystem\StoreFileRequest;
+
+use App\Http\Requests\FileSystem\{
+    StoreFileRequest
+};
 
 use Spatie\MediaLibrary\Media;
 

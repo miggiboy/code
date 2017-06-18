@@ -21,7 +21,7 @@ class EloquentEventServiceProvider extends ServiceProvider
 
         \App\Models\Subject\Subject::observe(\App\Observers\SubjectObserver::class);
 
-        \App\Models\Specialty\Speciality::observe(\App\Observers\SpecialtyObserver::class);
+        \App\Models\Specialty\Specialty::observe(\App\Observers\SpecialtyObserver::class);
     }
 
     /**

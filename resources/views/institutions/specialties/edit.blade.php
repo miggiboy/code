@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $university->title }} - специальности
+  {{ $institution->title }} - специальности
 @endsection
 
 @section ('content')
@@ -24,12 +24,14 @@
 
   <div class="ui custom container">
     <h2 style="margin-bottom: 50px; text-align: center;">
-      <a href="{{ route('universities.show', $university->slug) }}" target="_blank" title="{{ $university->title }}">
-        {{ str_limit($university->title, 55) }}
+      <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}"
+         target="_blank"
+         title="{{ $institution->title }}">
+        {{ str_limit($institution->title, 55) }}
       </a><br>
-      специальности @if ($studyForm === 'full-time') очной @elseif ($studyForm === 'extramural') заочной  @endif формы
+      специальности @if (request()->route('institutionType') === 'full-time') очной @elseif (request()->route('institutionType') === 'extramural') заочной  @endif формы
     </h2>
-    @include ('universities/specialties/partials/_edition_form')
+    @include ('institutions/specialties/partials/_edition_form')
   </div>
   <br>
   <br>

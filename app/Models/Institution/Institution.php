@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
 use App\Traits\Institution\Searchable;
-use App\Traits\Institution\{HasReception, HasSpecialties};
 
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use App\Traits\Institution\{
+    HasReception,
+    HasSpecialties
+};
+
+use Spatie\MediaLibrary\HasMedia\{
+    Interfaces\HasMediaConversions
+};
+
+use Spatie\MediaLibrary\{
+    HasMedia\HasMediaTrait
+};
 
 use Illuminate\Http\Request;
 

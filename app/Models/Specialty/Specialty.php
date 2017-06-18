@@ -11,7 +11,7 @@ use App\Traits\Specialty\Searchable;
 use App\Traits\Specialty\RelatesToInstitution;
 
 
-class Speciality extends Model
+class Specialty extends Model
 {
     /**
      * Laravel traits
@@ -24,6 +24,8 @@ class Speciality extends Model
     use Searchable;
     use Markable;
     use RelatesToInstitution;
+
+    protected $table = 'specialities';
 
     /**
      * The attributes that should be mutated to dates.
@@ -60,20 +62,6 @@ class Speciality extends Model
     public function isQualification()
     {
         return $this->type == 'qualification';
-    }
-
-    public static function getDBStudyFormOrFail($key)
-    {
-        $studyForms = [
-            'extramural' => 0,
-            'full-time'  => 1,
-        ];
-
-        if (! isset($studyForms[$key])) {
-            abort(404);
-        }
-
-        return $studyForms[$key];
     }
 
     /**

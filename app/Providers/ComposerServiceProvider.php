@@ -45,7 +45,9 @@ class ComposerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(CitiesConposer::class);
+
         $this->app->singleton(ProfessionCategoriesComposer::class);
+
         $this->app->singleton(ArticleCategoriesComposer::class);
     }
 }

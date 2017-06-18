@@ -11,7 +11,9 @@ use App\Models\Institution\{
     ReceptionCommittee
 };
 
-use App\Http\Requests\Institution\InstitutionFormRequest;
+use App\Http\Requests\Institution\{
+    InstitutionFormRequest
+};
 
 
 class InstitutionsController extends Controller
@@ -48,9 +50,7 @@ class InstitutionsController extends Controller
      */
     public function store(InstitutionFormRequest $request, $institutionType)
     {
-        $institution = Institution::create(
-            $request->except('reception', 'add_specialities')
-        );
+        $institution = Institution::create($request->except('reception', 'add_specialities'));
 
         $institution->createOrUpdateReceptionIfProvided();
 

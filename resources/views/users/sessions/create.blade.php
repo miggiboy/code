@@ -39,7 +39,7 @@
                   </div>
                 @endif
 
-                <form action ="{{ route('login') }}" method ="post" class="ui large form">
+                <form action ="{{ route('session.store') }}" method ="post" class="ui large form">
                   {{ csrf_field() }}
                   <div class="ui stacked segment">
                     <div class="field">
@@ -78,7 +78,7 @@
                 </form>
 
                 <div class="ui message">
-                   <a href="{{ route('register') }}">Регистрация</a>
+                   <a href="{{ route('registration.create') }}">Регистрация</a>
                 </div>
               </div>
             </div>

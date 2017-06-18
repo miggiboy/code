@@ -99,7 +99,7 @@ trait Searchable
         if ((bool) $isPaid === true) {
             $query->where('is_paid', 1);
         } else {
-            $query->where('is_paid', '!=', 1);
+            $query->where('is_paid', 0);
         }
     }
 }

@@ -1,5 +1,6 @@
-<form action="{{ route('university.specialties', [$university, $studyForm]) }}"
-    method="post" style="text-align: center;">
+<form action="{{ route('institutions.specialties.update', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
+    method="post"
+    style="text-align: center;">
     {{ method_field('PATCH') }}
     {{ csrf_field() }}
 
@@ -40,7 +41,7 @@
             </div>
           </td>
         </tr>
-        @foreach ($university->specialities as $specialty)
+        @foreach ($institution->specialities as $specialty)
         <tr>
           <td>
             <div class="ui checkbox">

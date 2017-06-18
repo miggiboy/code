@@ -6,8 +6,8 @@
   </a>
 
 
-  <a href="{{ route('institutions.index', ['type' => 'universities']) }}" class="item">Университеты </a>
-  <a href="{{ route('institutions.index', ['type' => 'colleges']) }}" class="item">Колледжи </a>
+  <a href="{{ route('institutions.index', 'universities') }}" class="item">Университеты </a>
+  <a href="{{ route('institutions.index', 'colleges') }}" class="item">Колледжи </a>
 
   <div class="ui dropdown item">
     Специальности <i class="dropdown icon"></i>
@@ -60,7 +60,7 @@
              <i class="teal user icon"></i> Мой профиль
           </a>
 
-          <a href="{{ route('logout') }}" class="item">
+          <a href="{{ route('session.destroy') }}" class="item">
             <i class="teal sign out icon"></i> Выход
           </a>
 

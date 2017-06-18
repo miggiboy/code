@@ -6,16 +6,6 @@
 
 
 /**
- * Storage linker (Shouldn't be uncommented, deleted or visited)
- */
-
-// Route::get('/link', function () {
-//     App::make('files')->link(storage_path('app/public'), public_path('storage'));
-// });
-
-
-
-/**
  * Home & Feed
  */
 
@@ -37,25 +27,21 @@ Route::group(['namespace' => 'User'], function () {
 
     Route::patch('/users/{user}/grant', 'UsersController@grant')->name('users.grant');
 
-    /**
-     * Registration
-     */
+    // Registration
     Route::resource('registration', 'RegistrationController', ['only' => 'create', 'store']);
-
 
     /**
      * Sessions
      */
-    Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
+    Route::get('/session/create', 'SessionController@create')->name('session.create');
+    Route::post('/session/store', 'SessionController@store')->name('session.store');
 
-    /**
-     * Profile
-     */
+    Route::delete('/session', 'SessionsController@destroy')->name('session.destroy');
+
+    // Profile
     Route::resource('profile', 'ProfileController', ['only' => ['show', 'edit', 'update']]);
 
-    /**
-     * Markers
-     */
+    // Markers
     Route::post('/marker', 'MarkersController');
 });
 
@@ -134,10 +120,7 @@ Route::group(['namespace' => 'Subjects'], function () {
 });
 
 
-/**
- * Cities
- */
-
+// Cities
 Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'desctroy']]);
 
 /**
@@ -183,16 +166,16 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
      * University Specialties
      */
 
-    Route::group(['prefix' => '/{university}/specialties/{studyForm}'], function () {
-        Route::get('', 'UniversitySpecialtiesController@index')->name('university.specialties');
+    Route::group(['prefix' => '/{institution}/specialties/{studyForm}'], function () {
+        Route::get('', 'InstitutionSpecialtiesController@index')->name('institutions.specialties.index');
 
-        Route::get('/create', 'UniversitySpecialtiesController@create')->name('university.specialties.create');
-        Route::post('', 'UniversitySpecialtiesController@store')->name('university.specialities');
+        Route::get('/create', 'InstitutionSpecialtiesController@create')->name('institutions.specialties.create');
+        Route::post('', 'InstitutionSpecialtiesController@store')->name('institutions.specialties.store');
 
-        Route::get('/edit', 'UniversitySpecialtiesController@edit')->name('university.specialties.edit');
-        Route::patch('', 'UniversitySpecialtiesController@update')->name('university.specialties');
+        Route::get('/edit', 'InstitutionSpecialtiesController@edit')->name('institutions.specialties.edit');
+        Route::patch('', 'InstitutionSpecialtiesController@update')->name('institutions.specialties.update');
 
-        Route::delete('/{speciality}', 'UniversitySpecialtiesController@destroy')->name('university.specialties.destroy');
+        Route::delete('/{specialty}', 'InstitutionSpecialtiesController@destroy')->name('institutions.specialties.destroy');
     });
 
     /**
@@ -207,14 +190,14 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
 
     Route::delete('/media/{mediaId}', 'UniversityMediaController@destroy')->name('university.images.destroy');
 
-    /**
-     * Maps
-     */
-    Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.store');
-
-    Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
-
 });
+
+/**
+ * Maps
+ */
+Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.store');
+
+Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
 
 /**
  * Quizzes
@@ -248,8 +231,6 @@ Route::group(['namespace' => 'AccessControl'], function () {
     Route::get('/roles/{role}', 'RolesController@show')->name('roles.show');
 });
 
-/**
- * Articles
- */
 
+// Articles
 Route::resource('articles', 'ArticlesController');

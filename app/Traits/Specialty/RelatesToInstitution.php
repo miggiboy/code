@@ -6,77 +6,17 @@ use App\Models\Institution\Institution;
 
 trait RelatesToInstitution
 {
-    public function insitutionType()
+    public function scopeOf($query, $institutionType)
     {
-        if ($this->isQualification()) {
-            return 'colleges';
-        }
-
-        return ($this->direction->institution == '1')
-            ? 'universities'
-            : 'colleges';
-    }
-
-    public function getTranslatedInsitutionType()
-    {
-        return ($this->insitutionType() == 'universities')
-             ? 'Университеты'
-             : 'Колледжи';
-    }
-
-    public function getInstitutions()
-    {
-        $related = ($this->insitutionType() == 'universities')
-            ? $this->universities()
-            : $this->colleges();
-
-        return $related->orderBy('title')->get();
-    }
-
-    /**
-     * Returns all specialties which are being tought in universities
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getUniversitySpecialities()
-    {
-        return static::ofUniversity()->orderBy('title')->get();
-    }
-
-    /**
-     * Returns all specialties which are being tought in colleges
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getCollegeSpecialities()
-    {
-        return static::ofCollege()->orderBy('title')->get();
-    }
-
-    public function scopeOfCollege($query)
-    {
-        return $query->whereHas('direction', function($q) {
-            $q->where('institution', 0);
+        return $query->whereHas('direction', function ($q) use ($institutionType) {
+            $q->where('institution', $institutionType);
         });
     }
 
-    public function scopeOfUniversity($query)
+    public function scopeAt($query, $studyForm)
     {
-        return $query->whereHas('direction', function ($q) {
-            $q->where('institution', 1);
-        });
+        return $query->where('form', $studyForm);
     }
-
-    public function scopeFullTime($query)
-    {
-        return $query->where('form', 1);
-    }
-
-    public function scopeExtramural($query)
-    {
-        return $query->where('form', 0);
-    }
-
 
     public static function createFromString(String $titlenCode)
     {
@@ -115,18 +55,8 @@ trait RelatesToInstitution
         ];
     }
 
-    public function universities()
+    public function institution()
     {
-        return $this->belongsToMany(\App\Models\Institution\Institution::class)
-            ->where('type', 'university')
-            ->withPivot('study_price', 'study_period', 'form');
-    }
-
-    public function colleges()
-    {
-        return
-            $this->belongsToMany(\App\Models\College\College::class)
-                ->where('type', 'college')
-                ->withPivot('study_price', 'study_period', 'form');
+        return $this->belongsToMany(Institution::class)->withPivot('study_price', 'study_period', 'form');
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\User\StoreSessionRequest;
+use App\Http\Requests\User\{
+    StoreSessionRequest
+};
 
 class SessionsController extends Controller
 {
@@ -40,7 +42,7 @@ class SessionsController extends Controller
 
         if (! auth()->user()->isAuthorised()) {
             auth()->logout();
-            return redirect()->route('login')->with('message', 'Ожидайте получения доступа.');
+            return redirect()->route('sessions.create')->with('message', 'Ожидайте получения доступа.');
         }
 
         return redirect()->route('home');

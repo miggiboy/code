@@ -4,30 +4,30 @@ namespace App\Traits\Institution;
 
 use Illuminate\Http\Request;
 
-use App\Models\Specialty\Speciality;
+use App\Models\Specialty\Specialty;
 
 trait HasSpecialties
 {
     /**
-     * Returns specialities of this insitution on full-time study-form
+     * Returns specialties of this insitution on full-time study-form
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getFullTimeSpecialities()
+    public function getFullTimeSpecialties()
     {
-        return $this->specialities()->fullTime()
+        return $this->specialties()->fullTime()
             ->orderBy('title')
             ->get();
     }
 
     /**
-     * Returns specialities of this insitution on extramural study-form
+     * Returns specialties of this insitution on extramural study-form
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getExtramuralSpecialities()
+    public function getExtramuralSpecialties()
     {
-        return $this->specialities()->extramural()
+        return $this->specialties()->extramural()
             ->orderBy('title')
             ->get();
     }
@@ -35,14 +35,14 @@ trait HasSpecialties
     /**
      * Determine if this insitution has specialty with given ID
      *
-     * @param  integer $specialityId
+     * @param  integer $specialtyId
      * @param  integer $form
      * @return boolean
      */
-    public function hasSpeciality($specialityId, $form)
+    public function hasSpecialty($specialtyId, $form)
     {
-        return (bool) $this->specialities()
-            ->wherePivot('speciality_id', $specialityId)
+        return (bool) $this->specialties()
+            ->wherePivot('specialty_id', $specialtyId)
             ->wherePivot('form', $form)
             ->count();
     }
@@ -52,27 +52,18 @@ trait HasSpecialties
         $specialtyIdOrTitleCode = collect($request->specialties);
 
         $specialtyIds = $specialtyIdOrTitleCode->map(function ($idOrNameCode, $key) {
-            return (! is_numeric($idOrNameCode) ? Speciality::createFromString($idOrNameCode) : $idOrNameCode);
+            return (! is_numeric($idOrNameCode) ? Specialty::createFromString($idOrNameCode) : $idOrNameCode);
         });
 
         $specialtyIds->each(function ($item, $key) use ($studyForm) {
-            if (! $this->hasSpeciality($item, $studyForm)) {
-                $this->specialities()->attach($item, ['form' => $studyForm]);
+            if (! $this->hasSpecialty($item, $studyForm)) {
+                $this->specialties()->attach($item, ['form' => $studyForm]);
             }
         });
     }
 
-    public function specialities()
+    public function specialties()
     {
-        return $this->belongsToMany(Speciality::class)
-            ->where('type', 'specialty')
-            ->withPivot('study_price', 'study_period', 'form');
-    }
-
-    public function qualifications()
-    {
-        return $this->belongsToMany(Speciality::class)
-            ->where('type', 'qualification')
-            ->withPivot('study_price', 'study_period', 'form');
+        return $this->belongsToMany(Specialty::class)->withPivot('study_price', 'study_period', 'form');
     }
 }

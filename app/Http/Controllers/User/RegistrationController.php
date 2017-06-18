@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
-use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\{
+    StoreUserRequest
+};
 
 class RegistrationController extends Controller
 {

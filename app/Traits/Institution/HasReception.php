@@ -13,7 +13,6 @@ trait HasReception
             [
                 'institution_id'     => $this->id
             ],
-
             [
                 'info'              => request('reception.info'),
                 'email'             => request('reception.email'),

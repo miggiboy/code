@@ -1,19 +1,19 @@
 @extends ('layouts.master')
 
 @section ('title')
-    {{ $university->title }} - добавление специальностей
+    {{ $institution->title }} - добавление специальностей
 @endsection
 
 @section ('content')
     <div class="ui text container" style="margin-bottom: 10px;">
 
         <h2 style="margin-bottom: 30px; text-align: center;">
-            Специальности @if ($studyForm === 'full-time') очной @elseif ($studyForm === 'extramural') заочной  @endif формы<br>
-            <a href="{{ route('universities.show', $university->slug) }}" target="_blank" title="{{ $university->title }}">
-                {{ str_limit($university->title, 50) }}
+            Специальности @if (request()->route('studyForm') === 'full-time') очной @elseif (request()->route('studyForm') === 'extramural') заочной  @endif формы<br>
+            <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}" target="_blank" title="{{ $institution->title }}">
+                {{ str_limit($institution->title, 50) }}
             </a>
         </h2>
-        @include ('universities/specialties/partials/_creation_form')
+        @include ('institutions/specialties/partials/_creation_form')
     </div>
 
 @endsection

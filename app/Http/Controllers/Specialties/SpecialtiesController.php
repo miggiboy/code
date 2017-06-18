@@ -11,7 +11,9 @@ use App\Models\Specialty\{
     Speciality
 };
 
-use App\Http\Requests\Specialty\SpecialtyFormRequest;
+use App\Http\Requests\Specialty\{
+    SpecialtyFormRequest
+};
 
 class SpecialtiesController extends Controller
 {

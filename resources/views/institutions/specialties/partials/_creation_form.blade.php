@@ -1,13 +1,14 @@
-<form action="{{ route('university.specialties', [$university, $studyForm]) }}" method="post">
+<form action="{{ route('institutions.specialties.store', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
+      method="post">
     {{ csrf_field() }}
-    <input type="hidden" name="form" value='{{ request('form') }}'>
+    <input type="hidden" name="form" value='{{ request()->route('studyForm') }}'>
 
     <div class="ui form" style="position: relative; margin-bottom: 25px;">
         <select name="specialties[]" class="ui fluid search dropdown" multiple="">
             <option value="">Специальности</option>
             @foreach ($specialties as $specialty)
                 <option value="{{ $specialty->id }}"
-                {{ $university->specialities->contains($specialty) ? 'selected' : '' }}>
+                {{ $institution->specialties->contains($specialty) ? 'selected' : '' }}>
                     {{ "{$specialty->title} {$specialty->code}" }}
                 </option>
             @endforeach

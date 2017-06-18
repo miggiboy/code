@@ -26,7 +26,8 @@
 @section ('content')
   <div class="ui custom container">
     <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
-      Специальности @if (request()->route('institutionType') === 'full-time') очной @elseif (request()->route('institutionType') === 'extramural') заочной  @endif формы университета<br>
+      Специальности {{ Translator::get(request()->route('studyForm'), 'r', 's') }}
+                    {{ Translator::get(request()->route('institutionType'), 'r', 's') }}<br>
 
       <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}">
         {{ str_limit($institution->title, 50) }}

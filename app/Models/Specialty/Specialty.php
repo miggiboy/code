@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
 use App\Traits\Specialty\Searchable;
-use App\Traits\Specialty\RelatesToInstitution;
+use App\Traits\Specialty\{
+    RelatesToInstitution
+};
+
+use App\Models\Profession\Profession;
 
 
 class Specialty extends Model
@@ -43,26 +47,6 @@ class Specialty extends Model
     |--------------------------------------------------------------------------
     |
     */
-
-    public function hasValidParent()
-    {
-        return ! Speciality::find($this->parent_id) == null;
-    }
-
-    public function scopeIsTypeQualification($query)
-    {
-        return $query->where('type', 'qualification');
-    }
-
-    public function scopeIsSpecialty($query)
-    {
-         return $query->where('type', 'specialty');
-    }
-
-    public function isQualification()
-    {
-        return $this->type == 'qualification';
-    }
 
     /**
      * Check if the specialty has any subjects
@@ -132,11 +116,6 @@ class Specialty extends Model
     |
     */
 
-    public function qualifications()
-    {
-        return $this->hasMany(Speciality::class, 'parent_id');
-    }
-
     public function parentSpecialty()
     {
         return $this->belongsTo(Specialty::class, 'parent_id');
@@ -154,7 +133,6 @@ class Specialty extends Model
 
     public function professions()
     {
-        return $this->belongsToMany(\App\Models\Profession\Profession::class)
-            ->select(['id', 'slug', 'title', 'prof_direction_id']);
+        return $this->belongsToMany(Profession::class)->select(['id', 'slug', 'title', 'prof_direction_id']);
     }
 }

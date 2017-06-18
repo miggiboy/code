@@ -29,7 +29,7 @@
          title="{{ $institution->title }}">
         {{ str_limit($institution->title, 55) }}
       </a><br>
-      специальности @if (request()->route('institutionType') === 'full-time') очной @elseif (request()->route('institutionType') === 'extramural') заочной  @endif формы
+      специальности {{ Translator::get(request()->route('studyForm'), 'r', 's') }}
     </h2>
     @include ('institutions/specialties/partials/_edition_form')
   </div>

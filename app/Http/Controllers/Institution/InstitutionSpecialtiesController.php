@@ -38,7 +38,7 @@ class InstitutionSpecialtiesController extends Controller
             $query->at($studyForm);
         }]);
 
-        $specialties = Specialty::of(str_singular($institutionType))->orderBy('title')->get();
+        $specialties = Specialty::of($institutionType)->orderBy('title')->get();
 
         return view('institutions.specialties.create', compact('institution', 'specialties'));
     }
@@ -56,7 +56,7 @@ class InstitutionSpecialtiesController extends Controller
         session()->flash('message', 'Специальности прикреплены');
 
         if ($studyForm == 'full-time') {
-            return redirect()->route('institutions.specialties.create', [$institutionType, $institution, $studyForm]);
+            return redirect()->route('institutions.specialties.create', [$institutionType, $institution, 'extramural']);
         }
 
         return redirect()->route('institutions.show', [$institutionType, $institution]);

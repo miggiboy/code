@@ -1,9 +1,11 @@
 @extends ('layouts.master')
 
-@section ('title', 'Добавление вуза')
+@section ('title')
+  {{ $pageTitle = 'Добавление' . Translator::get(request()->route('institutionType'), 'r', 's') }}
+@endsection
 
 @section ('subnavigation')
-    @include ('institutions.partials.navigation', ['pageTitle' => 'Добавление вуза'])
+    @include ('institutions.partials.navigation', ['pageTitle' => $pageTitle])
 @endsection
 
 @section ('content')

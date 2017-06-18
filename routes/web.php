@@ -33,8 +33,8 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Sessions
      */
-    Route::get('/session/create', 'SessionController@create')->name('session.create');
-    Route::post('/session/store', 'SessionController@store')->name('session.store');
+    Route::get('/session/create', 'SessionsController@create')->name('session.create');
+    Route::post('/session/store', 'SessionsController@store')->name('session.store');
 
     Route::delete('/session', 'SessionsController@destroy')->name('session.destroy');
 

@@ -8,7 +8,9 @@
     <div class="ui text container" style="margin-bottom: 10px;">
 
         <h2 style="margin-bottom: 30px; text-align: center;">
-            Специальности @if (request()->route('studyForm') === 'full-time') очной @elseif (request()->route('studyForm') === 'extramural') заочной  @endif формы<br>
+            Специальности {{ Translator::get(request()->route('studyForm'), 'r', 's') }}
+
+            <br>
             <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}" target="_blank" title="{{ $institution->title }}">
                 {{ str_limit($institution->title, 50) }}
             </a>

@@ -24,7 +24,7 @@ class InstitutionsController extends Controller
      */
     public function index($institutionType)
     {
-        $institutions = Institution::ofType(str_singular($institutionType))
+        $institutions = Institution::ofType($institutionType)
             ->with(['city', 'media', 'marks'])
             ->orderBy('title')
             ->paginate(15);
@@ -54,7 +54,7 @@ class InstitutionsController extends Controller
 
         $institution->createOrUpdateReceptionIfProvided();
 
-        session()->flash('message', 'Уч. заведение добавлено успешно');
+        session()->flash('message', 'Учебное заведение добавлено успешно');
 
         if ($request->has('add_specialities')) {
             return redirect()->route('institutions.specialties.create', [$institution, 'full-time']);
@@ -98,7 +98,7 @@ class InstitutionsController extends Controller
 
         $institution->createOrUpdateReceptionIfProvided();
 
-        session()->flash('message', 'Уч. заведение обновлено успешно.');
+        session()->flash('message', 'Учебное заведение обновлено успешно');
 
         if ($request->has('add_specialities')) {
             return redirect()->route('institutions.specialties.create', [$institutionType, $institution, 'full-time']);
@@ -116,7 +116,8 @@ class InstitutionsController extends Controller
     public function destroy($institutionType, Institution $institution)
     {
         $institution->delete();
-        return redirect()->route('institutions.index', $institutionType)->with('message', 'Уч. заведение удалено.');
+
+        return redirect()->route('institutions.index', $institutionType)->with('message', 'Учебное заведение удалено');
     }
 
     /**
@@ -145,7 +146,7 @@ class InstitutionsController extends Controller
     {
         $q = Institution::query();
 
-        $q->whereType(str_singular($this->institutionType));
+        $q->whereType($this->institutionType);
 
         if (request()->has('query')) {
             $q->like(request('query'));

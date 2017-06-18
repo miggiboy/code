@@ -82,7 +82,7 @@ class Institution extends Model implements HasMediaConversions
         return static::formatUrl($value);
     }
 
-    private function formatUrl($value)
+    private static function formatUrl($value)
     {
         if (! preg_match('/^http(s)?:\/\//', $value)) {
             return "http://{$value}";
@@ -104,9 +104,9 @@ class Institution extends Model implements HasMediaConversions
               ->sharpen(10);
     }
 
-    public function scopeOfType($query, $type)
+    public function scopeOfType($query, $institutionType)
     {
-        return $query->where('type', $type);
+        return $query->where('type', str_singular($institutionType));
     }
 
     /**

@@ -41,7 +41,7 @@
             </div>
           </td>
         </tr>
-        @foreach ($institution->specialities as $specialty)
+        @foreach ($institution->specialties as $specialty)
         <tr>
           <td>
             <div class="ui checkbox">

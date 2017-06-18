@@ -1,11 +1,13 @@
-@if ($model->map)
+@if ($institution->map)
   <div id="map">
-    {!! $model->map->source_code !!}
+    {!! $institution->map->source_code !!}
   </div>
 
-  <button class="ui fluid button" id="replace-map-button" onclick="event.preventDefault(); showMapReplacementForm();">Заменить карту</button>
+  <button class="ui fluid button" id="replace-map-button" onclick="event.preventDefault(); showMapReplacementForm();">
+    Заменить карту
+  </button>
 
-  <form action="{{ route('map.update', [strtolower(class_basename($model)), $model->id]) }}"
+  <form action=""
         method="post"
         class="ui form"
         id="map-update-form">
@@ -21,7 +23,7 @@
 
 @else
   @include  ('includes.form-errors')
-  <form action="{{ route('map.store', [strtolower(class_basename($model)), $model->id]) }}" method="post" class="ui form">
+  <form action="" method="post" class="ui form">
     {{ csrf_field() }}
     <div class="field">
       <label for="source_code">Код карты</label>

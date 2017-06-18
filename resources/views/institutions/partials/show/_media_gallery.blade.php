@@ -1,6 +1,6 @@
-@if (count($model->getMedia('images')) || count($model->getMedia('logo')))
+@if (count($institution->getMedia('images')) || count($institution->getMedia('logo')))
   <div id="gallery" style="display:none;">
-    @if ($logo = $model->getMedia('logo'))
+    @if ($logo = $institution->getMedia('logo'))
         @foreach ($logo as $mediaItem)
           <a href="{{ route('home') }}/">
           <img alt="{{ $mediaItem->name }}"
@@ -12,7 +12,7 @@
         @endforeach
     @endif
 
-    @if ($media = $model->getMedia('images'))
+    @if ($media = $institution->getMedia('images'))
         @foreach ($media as $mediaItem)
           <a href="{{ route('home') }}/">
           <img alt="{{ $mediaItem->name }}"
@@ -49,12 +49,12 @@
             </div>
             <div class="four wide column middle aligned">
               <div class="ui teal button"
-                   onclick="event.preventDefault(); toggleLogo({{ $model->id }}, '{{ $modelType }}', {{ $mediaItem->id }});"
+                   onclick="event.preventDefault(); toggleLogo({{ $institution->id }});"
                    id="toggle-logo-button-{{ $mediaItem->id }}">Является логотипом</div>
             </div>
             <div class="three wide column middle aligned">
               <div class="ui yellow button"
-                   onclick="event.preventDefault(); deleteMedia('{{ $modelType }}', {{ $mediaItem->id }});"
+                   onclick="event.preventDefault(); deleteMedia({{ $mediaItem->id }});"
                    id="delete-media-{{ $mediaItem->id }}">
                 Удалить
               </div>
@@ -75,14 +75,14 @@
             </div>
             <div class="four wide column middle aligned">
               <div class="ui teal button"
-                   onclick="event.preventDefault(); toggleLogo({{ $model->id }}, '{{ $modelType }}', {{ $mediaItem->id }});"
+                   onclick="event.preventDefault(); toggleLogo({{ $institution->id }}, {{ $mediaItem->id }});"
                    id="toggle-logo-button-{{ $mediaItem->id }}">
                 Сделать логотипом
               </div>
             </div>
             <div class="three wide column middle aligned">
               <div class="ui yellow button"
-                   onclick="event.preventDefault(); deleteMedia('{{ $modelType }}', {{ $mediaItem->id }});"
+                   onclick="event.preventDefault(); deleteMedia({{ $mediaItem->id }});"
                    id="delete-media-{{ $mediaItem->id }}">
                 Удалить
               </div>

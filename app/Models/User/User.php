@@ -42,8 +42,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $appends = ['nameOrUsername'];
-
     public function getNameOrUsernameAttribute()
     {
         return $this->getNameOrUsername();

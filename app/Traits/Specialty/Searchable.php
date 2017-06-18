@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace App\Traits\Specialty;
 
 trait Searchable
 {
     /**
-     * Includes specialties which have the subject 
+     * Includes specialties which have the subject
      * as one of it's subjects
      *
      * @param integer $subjectId
@@ -13,7 +13,7 @@ trait Searchable
      */
     public function scopeHasSubject($query, $subjectId)
     {
-        $query->whereHas('subjects', function($q) use($subjectId) {
+        return $query->whereHas('subjects', function($q) use($subjectId) {
             $q->where('id', $subjectId);
         });
     }
@@ -26,7 +26,7 @@ trait Searchable
      */
     public function scopeInDirection($query, $directionId)
     {
-        $query->whereHas('direction', function($q) use($directionId) {
+        return $query->whereHas('direction', function($q) use($directionId) {
             $q->where('id', $directionId);
         });
     }
@@ -37,9 +37,9 @@ trait Searchable
      * @param integer $institution
      * @return \Illuminate\Support\Collection
      */
-    public function scopeOfInstitution($query, $institution) 
+    public function scopeOfInstitution($query, $institution)
     {
-        $query->whereHas('direction', function($q) use($institution) {
+        return $query->whereHas('direction', function($q) use($institution) {
             $q->where('institution', $institution);
         });
     }
@@ -52,7 +52,7 @@ trait Searchable
      */
     public function scopeLike($query, $queryString)
     {
-        $query
+        return $query
             ->where('title', 'like', "%{$queryString}%")
             ->orWhere('code', 'like', "%{$queryString}%");
     }
@@ -62,9 +62,9 @@ trait Searchable
      *
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasNoDescription($query) 
+    public function scopeHasDescription($query, $has = true)
     {
-        $query->where('description', null);
+        return $query->where('description', ($has ? '!=' : '='), null);
     }
 
     /**
@@ -74,7 +74,7 @@ trait Searchable
      */
     public function scopeHasNoSubjects($query)
     {
-        $query->doesntHave('subjects');
+        return $query->doesntHave('subjects');
     }
 
     /**
@@ -84,7 +84,7 @@ trait Searchable
      */
     public function scopeHasNoDirection($query)
     {
-        $query->whereHas('direction', function($q) {
+        return $query->whereHas('direction', function($q) {
             $q->where('title', 'Без направления');
         });
     }

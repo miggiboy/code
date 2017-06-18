@@ -181,7 +181,7 @@ class SpecialtiesController extends Controller
         }
 
         if ($request->has('without_description')) {
-            $q->hasNoDescription();
+            $q->hasDescription(false);
         }
 
         if ($request->has('without_direction')) {

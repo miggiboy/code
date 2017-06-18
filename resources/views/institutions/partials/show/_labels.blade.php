@@ -1,23 +1,23 @@
-<div class="ui purple label">ID:  {{ $model->id }}</div>
+<div class="ui purple label">ID:  {{ $institution->id }}</div>
 
-@if ($model->is_paid)
+@if ($institution->is_paid)
   <div class="ui orange label">
     <i class="star icon"></i> Платник
   </div>
 @endif
 
-<a class="ui basic label{{ $model->markedByCurrentUser ? ' marked' : '' }}"
+<a class="ui basic label{{ $institution->markedByCurrentUser ? ' marked' : '' }}"
    id="marker"
-   onclick="event.preventDefault(); toggleMark('{{ class_basename($model) }}', '{{ $model->id }}');"
+   onclick="event.preventDefault(); toggleMark('{{ $institution->id }}');"
    title="Оставляйте отметки чтобы вернуться к ним позже. Ваши отметки видны только Вам.">
-  @if ($model->markedByCurrentUser)
+  @if ($institution->markedByCurrentUser)
     Отмечено Вами
   @else
     Отметить для себя
   @endif
 </a>
 
-{{-- @if ($model->pin)
+{{-- @if ($institution->pin)
   <a href="#" class="ui olive label" onmouseover="showPin()" onmouseout="hidePin()" id="pin-label">
     Показать пин
   </a>

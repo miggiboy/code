@@ -28,21 +28,15 @@
 
   <div class="nine wide column" style="margin-right: 46px;">
 
-    @include ('institutions/partials/show/_media_gallery',
-        ['model' => $institution, 'modelType' => 'institutions']
-    )
+    @include ('institutions/partials/show/_media_gallery')
 
-    @include ('institutions/partials/show/_labels',
-        ['model' => $institution]
-    )
+    @include ('institutions/partials/show/_labels')
 
     @include ('institutions/partials/show/_institution_information')
     @include ('institutions/partials/show/_reception_committee_information')
   </div>
 
   <br>
-
-  {{-- <div class="one wide column"></div> --}}
 
   <div class="six wide column">
 
@@ -52,21 +46,14 @@
 
     <br>
     <div class="row">
-      @include ('institutions/partials/show/_map',
-          ['model' => $institution]
-      )
+      @include ('institutions/partials/show/_map')
     </div>
 
   </div>
 
 </div>
 
-@include ('institutions/partials/show/_add_image_modal_n_button',
-    [
-      'model' => $institution,
-      'route' => 'university.images.store'
-    ]
-)
+@include ('institutions/partials/show/_add_image_modal_n_button')
 
 @endsection
 

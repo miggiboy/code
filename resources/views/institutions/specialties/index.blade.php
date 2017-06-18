@@ -31,7 +31,7 @@
       <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}">
         {{ str_limit($institution->title, 50) }}
       </a><br>
-      @if ($institution->specialities->count())
+      @if ($institution->specialties->count())
         <a href="{{ route('institutions.specialties.edit', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
@@ -45,7 +45,7 @@
         </a>
       @endif
     </h2>
-    @if ($institution->specialities->count())
+    @if ($institution->specialties->count())
       @include ('institutions/specialties/partials/_specialties_table')
     @endif
   </div>

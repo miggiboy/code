@@ -182,13 +182,13 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
      * University Media
      */
 
-    Route::group(['prefix' => '/{university}/media'], function () {
-        Route::post('', 'UniversityMediaController@store')->name('university.images.store');
+    Route::group(['prefix' => '/{instituion}/media'], function () {
+        Route::post('', 'InstitutionMediaController@store')->name('instituions.media.store');
 
-        Route::patch('/{mediaId}', 'UniversityMediaController@toggleLogo');
+        Route::patch('/{mediaId}', 'InstitutionMediaController@toggleLogo');
     });
 
-    Route::delete('/media/{mediaId}', 'UniversityMediaController@destroy')->name('university.images.destroy');
+    Route::delete('/media/{mediaId}', 'InstitutionMediaController@destroy')->name('instituions.media.destroy');
 
 });
 

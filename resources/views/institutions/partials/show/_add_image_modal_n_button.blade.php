@@ -11,7 +11,7 @@
       <div class="ui header">Прикрепляем изображения</div>
       <p>Заливать можно по нескольку файлов</p>
       <p>Загрузка займет время поэтому если Вы не хотите ждать то можете нажать на <a href="" target="_blank">эту ссылку</a></p><br>
-      <form action="{{ route($route, [request()->route('type'), $model]) }}" method="post"
+      <form action="{{ route('instituions.media.store', [request()->route('type'), $institution]) }}" method="post"
         enctype="multipart/form-data" id="images-form" class="ui form">
         {{ csrf_field() }}
 

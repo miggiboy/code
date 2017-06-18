@@ -6,7 +6,7 @@
       <th class="collapsing">Опции</th>
   </tr></thead>
   <tbody>
-    @foreach ($institution->specialities as $specialty)
+    @foreach ($institution->specialties as $specialty)
     <tr>
       <td>
         <h4 class="ui header">

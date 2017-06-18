@@ -13,21 +13,9 @@ trait HasSpecialties
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getFullTimeSpecialties()
+    public function atForm($studyForm)
     {
-        return $this->specialties()->fullTime()
-            ->orderBy('title')
-            ->get();
-    }
-
-    /**
-     * Returns specialties of this insitution on extramural study-form
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getExtramuralSpecialties()
-    {
-        return $this->specialties()->extramural()
+        return $this->specialties()->at($studyForm)
             ->orderBy('title')
             ->get();
     }
@@ -39,11 +27,11 @@ trait HasSpecialties
      * @param  integer $form
      * @return boolean
      */
-    public function hasSpecialty($specialtyId, $form)
+    public function hasSpecialty($specialtyId, $studyForm)
     {
         return (bool) $this->specialties()
             ->wherePivot('specialty_id', $specialtyId)
-            ->wherePivot('form', $form)
+            ->wherePivot('form', $studyForm)
             ->count();
     }
 

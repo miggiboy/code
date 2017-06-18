@@ -60,6 +60,11 @@ class Institution extends Model implements HasMediaConversions
 
     protected $appends = ['markedByCurrentUser'];
 
+    public function scopeOfType($query, $institutionType)
+    {
+        return $query->where('type', str_singular($institutionType));
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Attribute accessors
@@ -82,31 +87,9 @@ class Institution extends Model implements HasMediaConversions
         return static::formatUrl($value);
     }
 
-    private static function formatUrl($value)
-    {
-        if (! preg_match('/^http(s)?:\/\//', $value)) {
-            return "http://{$value}";
-        }
-
-        return $value;
-    }
-
     public function getBaseUrl()
     {
         return parse_url($this->web_site)['host'] ?? $this->web_site;
-    }
-
-    public function registerMediaConversions()
-    {
-        $this->addMediaConversion('thumb')
-              ->width(368)
-              ->height(232)
-              ->sharpen(10);
-    }
-
-    public function scopeOfType($query, $institutionType)
-    {
-        return $query->where('type', str_singular($institutionType));
     }
 
     /**
@@ -125,6 +108,23 @@ class Institution extends Model implements HasMediaConversions
     public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.' . 'institution') . $this->slug;
+    }
+
+    public function registerMediaConversions()
+    {
+        $this->addMediaConversion('thumb')
+              ->width(368)
+              ->height(232)
+              ->sharpen(10);
+    }
+
+    private static function formatUrl($value)
+    {
+        if (! preg_match('/^http(s)?:\/\//', $value)) {
+            return "http://{$value}";
+        }
+
+        return $value;
     }
 
     /*

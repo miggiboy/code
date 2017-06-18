@@ -131,9 +131,8 @@ class InstitutionsController extends InstitutionsBaseController
      * Search methods
      */
 
-
-    public function autocomplete(Request $request){
-
+    public function autocomplete(Request $request)
+    {
         $institutions = Institution::select(
                 'slug as url', "title as name", 'acronym', 'city_id'
             )

@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Professions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Specialty\Speciality;
+use App\Models\Specialty\Specialty;
 use App\Models\Profession\Profession;
 
 class ProfessionSpecialtiesController extends Controller
 {
     public function create(Profession $profession)
     {
-        $specialties = Speciality::orderBy('title')->get(['id', 'title', 'code']);
+        $specialties = Specialty::orderBy('title')->get(['id', 'title', 'code']);
 
         return view('professions.specialties.create', compact('profession', 'specialties'));
     }
@@ -26,10 +26,10 @@ class ProfessionSpecialtiesController extends Controller
             ->with('message', 'Специальности привязаны к профессии.');
     }
 
-    public function destroy(Profession $profession, Speciality $specialty)
+    public function destroy(Profession $profession, Specialty $specialty)
     {
         $profession->specialities()
-            ->wherePivot('speciality_id', $specialty->id)
+            ->wherePivot('specialty_id', $specialty->id)
             ->detach();
 
         return redirect()

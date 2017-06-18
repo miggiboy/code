@@ -16,7 +16,7 @@ use App\Http\Requests\Institution\{
 };
 
 
-class InstitutionsController extends Controller
+class InstitutionsController extends InstitutionsBaseController
 {
     /**
      * Display a listing of the resource.

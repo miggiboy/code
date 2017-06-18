@@ -35,26 +35,6 @@ class Direction extends Model
     }
 
     /**
-     * Get university specialty directions
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getUniversitySpecialitiesDirections()
-    {
-        return static::where('institution', 1)->orderBy('title')->get();
-    }
-
-    /**
-     * Get college specialty directions
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getCollegeSpecialitiesDirections()
-    {
-        return static::where('institution', 0)->orderBy('title')->get();
-    }
-
-    /**
      * Get all specialty directions
      * with `| institution` appended to the title of direction
      *

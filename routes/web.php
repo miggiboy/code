@@ -102,7 +102,6 @@ Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], functio
 
     Route::group(['prefix' => '/search'], function () {
         Route::get('/autocomplete', 'ProfessionsController@autocomplete')->name('professions.autocomplete');
-        Route::get('', 'ProfessionsController@search')->name('professions.search');
     });
 });
 
@@ -124,7 +123,7 @@ Route::group(['namespace' => 'Subjects'], function () {
 Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'desctroy']]);
 
 /**
- * Universities
+ * Institutions
  */
 
 Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Institution'], function () {
@@ -134,7 +133,6 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
      */
 
     Route::group(['prefix' => '/search'], function () {
-        Route::get('', 'InstitutionsController@search')->name('institutions.search');
         Route::get('/autocomplete', 'InstitutionsController@autocomplete')->name('universities.autocomplete');
     });
 

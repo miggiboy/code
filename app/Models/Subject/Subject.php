@@ -21,9 +21,9 @@ class Subject extends Model implements HasMedia
     |
     */
 
-    public function specialities()
+    public function specialties()
     {
-        return $this->belongsToMany(\App\Models\Specialty\Speciality::class);
+        return $this->belongsToMany(\App\Models\Specialty\Specialty::class);
     }
 
     public function quizzes()

@@ -5,7 +5,7 @@
 
   <div class="five wide column" style="position: absolute; top: -2px; right: -95px;">
     <div class="ui compact small menu">
-      <a href="{{ route('professions') }}" class="item">
+      <a href="{{ route('professions.index') }}" class="item">
         <i class="teal travel icon"></i> Профессии
       </a>
 

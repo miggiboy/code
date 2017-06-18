@@ -1,12 +1,12 @@
-<form class="ui small form" action="{{ route('institutions.search', request()->route('institutionType')) }}" method="get">
+<form class="ui small form" action="{{ route('institutions.index', request()->route('institutionType')) }}" method="get">
     <div class="three fields">
 
       <div class="eight wide field">
         <div class="ui fluid search universities">
           <div class="ui right icon input">
             <input type="text"
-                   value="{{ old('query') }}"
-                   name = "query"
+                   value="{{ request('s.query') }}"
+                   name = "s[query]"
                    class="prompt"
                    placeholder="Начните вводить название вуза ..."
                    autofocus>
@@ -17,12 +17,12 @@
       </div>
 
       <div class="four wide field">
-          <select class="ui selection search dropdown" name="city">
+          <select class="ui selection search dropdown" name="s[city]">
             <option value="">Город</option>
             <option value=" ">Не выбрано</option>
             @foreach ($cities as $city)
               <option value="{{ $city->id }}"
-                      {{ (old('city') == $city->id) ? 'selected' : '' }}>
+                      {{ (request('s.city') == $city->id) ? 'selected' : '' }}>
                 {{ $city->title }}
               </option>
             @endforeach
@@ -39,11 +39,11 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="is_paid"
+                 name="s[is_paid]"
                  value="1"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('is_paid') == "1") ? 'checked' : '' }}>
+                 {{ (request('s.is_paid') == "1") ? 'checked' : '' }}>
           <label>Платники</label>
         </div>
       </div>
@@ -51,11 +51,11 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="without_map"
+                 name="s[without_map]"
                  value="1"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('without_map') == "1") ? 'checked' : '' }}>
+                 {{ (request('s.without_map') == "1") ? 'checked' : '' }}>
           <label>Без карты</label>
         </div>
       </div>
@@ -63,11 +63,11 @@
       <div class="four wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="without_specialities"
+                 name="s[without_specialities]"
                  value="1"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('without_specialities') == "1") ? 'checked' : '' }}>
+                 {{ (request('s.without_specialities') == "1") ? 'checked' : '' }}>
           <label>Без специальностей</label>
         </div>
       </div>
@@ -75,11 +75,11 @@
       <div class="field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="marked"
+                 name="s[marked]"
                  value="1"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('marked') == "1") ? 'checked' : '' }}>
+                 {{ (request('s.marked') == "1") ? 'checked' : '' }}>
           <label>Отмеченные</label>
         </div>
       </div>

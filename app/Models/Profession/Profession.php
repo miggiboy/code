@@ -68,16 +68,16 @@ class Profession extends Model
 
     public function urlAtPrimaryApp()
     {
-        return config('primary_app.urls.' . 'profession') . $this->slug;
+        return config('primary_app.urls.' . 'professions') . $this->slug;
     }
 
     /**
      * Google search
      */
 
-    public function googleSeachUrl()
+    public function googleSearchUrl()
     {
-        return config('google.urls.search') . 'Профессия ' . trim($profession->title);
+        return config('google.search.url') . 'Профессия ' . trim($this->title);
     }
 
     /*
@@ -92,8 +92,8 @@ class Profession extends Model
         return $this->belongsTo(ProfDirection::class);
     }
 
-    public function specialities()
+    public function specialties()
     {
-        return $this->belongsToMany(\App\Models\Specialty\Speciality::class)->select(['id', 'slug', 'title', 'code']);
+        return $this->belongsToMany(\App\Models\Specialty\Specialty::class)->select(['id', 'slug', 'title', 'code']);
     }
 }

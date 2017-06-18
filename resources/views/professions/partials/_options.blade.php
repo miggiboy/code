@@ -4,7 +4,7 @@
     <div class="header"><i class="tags icon"></i>  Опции </div>
     <div class="divider"></div>
 
-    <a href="{{ route('profession.edit', $profession) }}" class="item" target="_blank">
+    <a href="{{ route('professions.edit', $profession) }}" class="item" target="_blank">
       <i class="blue edit icon"></i> Редактировать
     </a>
 
@@ -24,7 +24,7 @@
         document.getElementById('delete-profession-{{ $profession->id }}').submit();">
       <i class="red delete icon"></i>  Удалить
     </a>
-    <form action="{{ route('profession.destroy', $profession) }}" method="post"
+    <form action="{{ route('professions.destroy', $profession) }}" method="post"
       id="delete-profession-{{ $profession->id }}">
       {{ csrf_field() }}
       {{ method_field('DELETE') }}

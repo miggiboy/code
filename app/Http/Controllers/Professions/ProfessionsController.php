@@ -14,6 +14,10 @@ use App\Http\Requests\Profession\{
     ProfessionFormRequest
 };
 
+use App\Modules\Search\{
+    ProfessionSearch
+};
+
 class ProfessionsController extends Controller
 {
     /**
@@ -21,9 +25,13 @@ class ProfessionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $professions = Profession::orderBy('title')
+        $professions = $request->has('s')
+            ? ProfessionSearch::filter($request)
+            : Profession::query();
+
+        $professions = $professions->orderBy('title')
             ->with(['profDirection', 'marks'])
             ->paginate(15);
 
@@ -121,28 +129,5 @@ class ProfessionsController extends Controller
         });
 
         return response()->json(['professions' => $professions]);
-    }
-
-    public function search(Request $request)
-    {
-        $q = Profession::query();
-
-        if (request()->has('query')) {
-            $q->like(request('query'));
-        }
-
-        if (request()->has('direction')) {
-            $q->ofDirection(request('direction'));
-        }
-
-        if ($request->has('marked')) {
-            $q->markedByCurrentUser();
-        }
-
-        $professions = $q->orderBy('title')->with(['profDirection', 'marks'])->paginate(15);
-
-        $request->flashOnly(['query', 'direction']);
-
-        return view('professions.index', compact('professions', 'profDirections'));
     }
 }

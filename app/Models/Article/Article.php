@@ -23,7 +23,7 @@ class Article extends Model
      * Redirects to primary app (vipusknik.kz)
      */
 
-    public function seeInPrimaryApp()
+    public function urlAtInPrimaryApp()
     {
         return config('primary_app.urls.' . 'article') . $this->slug;
     }

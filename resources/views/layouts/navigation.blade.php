@@ -69,8 +69,8 @@
 
 
     @else
-      <a href="{{ route('login') }}" class="item">Вход</a>
-      <a href="{{ route('register') }}" class="item">Регистрация</a>
+      <a href="{{ route('sessions.create') }}" class="item">Вход</a>
+      <a href="{{ route('registration.create') }}" class="item">Регистрация</a>
     @endif
 
   </div>

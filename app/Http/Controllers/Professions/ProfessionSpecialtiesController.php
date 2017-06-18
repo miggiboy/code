@@ -22,7 +22,7 @@ class ProfessionSpecialtiesController extends Controller
         $profession->specialities()->syncWithoutDetaching($request->specialties);
 
         return redirect()
-            ->route('profession.show', $profession)
+            ->route('professions.show', $profession)
             ->with('message', 'Специальности привязаны к профессии.');
     }
 
@@ -33,7 +33,7 @@ class ProfessionSpecialtiesController extends Controller
             ->detach();
 
         return redirect()
-            ->route('profession.show', $profession)
+            ->route('professions.show', $profession)
             ->with('message', 'Специальность откреплена от профессии.');
     }
 }

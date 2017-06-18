@@ -15,6 +15,10 @@ use App\Http\Requests\Institution\{
     InstitutionFormRequest
 };
 
+use App\Modules\Search\{
+    InstitutionSearch
+};
+
 
 class InstitutionsController extends InstitutionsBaseController
 {
@@ -22,11 +26,14 @@ class InstitutionsController extends InstitutionsBaseController
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index($institutionType)
+    public function index($institutionType, Request $request)
     {
-        $institutions = Institution::ofType($institutionType)
+        $institutions = $request->has('s')
+            ? InstitutionSearch::filter($request)
+            : Institution::ofType($institutionType);
+
+        $institutions = $institutions->orderBy('title')
             ->with(['city', 'media', 'marks'])
-            ->orderBy('title')
             ->paginate(15);
 
         return view('institutions.index', compact('institutions'));
@@ -140,46 +147,5 @@ class InstitutionsController extends InstitutionsBaseController
         });
 
         return response()->json(['institutions' => $institutions]);
-    }
-
-    public function search(Request $request)
-    {
-        $q = Institution::query();
-
-        $q->whereType($this->institutionType);
-
-        if (request()->has('query')) {
-            $q->like(request('query'));
-        }
-
-        if (request()->has('city')) {
-            $q->inCity(request('city'));
-        }
-
-        if ($request->has('not_filled')) {
-            $q->hasReception(false);
-        }
-
-        if ($request->has('without_specialities')) {
-            $q->hasSpecialities(false);
-        }
-
-        if ($request->has('without_map')) {
-            $q->hasMap(false);
-        }
-
-        if ($request->has('marked')) {
-            $q->markedByCurrentUser();
-        }
-
-        if ($request->has('is_paid')) {
-            $q->isPaid();
-        }
-
-        $institutions = $q->orderBy('title')->with(['city', 'media', 'marks'])->paginate(15);
-
-        $request->flashOnly(['query', 'city']);
-
-        return view('institutions.index', compact('institutions'));
     }
 }

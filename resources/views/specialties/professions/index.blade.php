@@ -27,9 +27,10 @@
   <div class="ui custom container" style="margin-top: -15px;">
 
     <div class="ui header" style="text-align:center; margin-bottom: 30px;">
-      <h2><a href="{{ route('specialties.show', $specialty) }}">{{ $specialty->title }}</a>, <br>cвязанные профессии</h2>
+      <h2><a href="{{ route('specialties.show', [$specialty->getBelongsTo(), $specialty]) }}">{{ $specialty->title }}</a>,
+      <br>cвязанные профессии</h2>
       @if (! $specialty->professions()->count())
-        <a href="{{ route('specialty.professions.create', $specialty) }}"
+        <a href="{{ route('specialties.professions.create', $specialty) }}"
            class="ui teal button"
            style="margin-top: 15px;">
           Добавить профессии
@@ -68,7 +69,7 @@
                 </a>
               </td>
 
-              <form action="{{ route('specialty.professions.destroy', [$specialty, $profession]) }}"
+              <form action="{{ route('specialties.professions.destroy', [$specialty, $profession]) }}"
                     method="post" id="specialty-detach-profession-{{ $profession->id }}-form">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}

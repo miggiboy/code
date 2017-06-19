@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Specialties;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Specialty\Speciality;
+use App\Models\Specialty\Specialty;
 
 class SpecialtyInstitutionsController extends Controller
 {
-    public function index(Request $request, Speciality $specialty)
+    public function index(Request $request, Specialty $specialty)
     {
-        $institutions = ($specialty->insitutionType() == 'universities')
-            ? $specialty->universities
-            : $specialty->colleges;
+        $specialty->load(['institutions' => function ($query) {
+            $query->orderBy('title');
+        }]);
 
-        return view('specialties.institutions.index', compact('specialty', 'institutions'));
+        return view('specialties.institutions.index', compact('specialty'));
     }
 }

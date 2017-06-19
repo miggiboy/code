@@ -12,8 +12,6 @@
     <form action="{{ route('specialties.store', $institutionType) }}" method="post" class="ui form">
       {{ csrf_field() }}
 
-      <input type="hidden" name="inst" value="{{ $institutionType }}">
-
       @include ('includes.form-errors')
 
       <div class="required field{{ $errors->has('title') ? ' error' : '' }}">
@@ -97,7 +95,7 @@
             <label for="title">Направление</label>
             <select name="direction_id" class="ui search dependent dropdown" id="direction_id">
               <option value="">Направление</option>
-              @foreach (\App\Models\Specialty\Direction::getByInstitution(request('inst')) as $direction)
+              @foreach ($directions as $direction)
                 <option value="{{ $direction->id }}"
                         {{ (old('direction_id') == $direction->id) ? 'selected' : '' }}>
                   {{ $direction->title }}

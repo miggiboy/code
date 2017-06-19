@@ -3,7 +3,7 @@
   <div class="menu">
     <div class="header"><i class="tags icon"></i>  Опции </div>
     <div class="divider"></div>
-    <a href="{{ route('specialties.edit', [Request::route('institutionType'), $specialty]) }}" class="item" target="_blank">
+    <a href="{{ route('specialties.edit', [$institutionType, $specialty]) }}" class="item" target="_blank">
       <i class="blue edit icon"></i>  Редактировать
     </a>
 
@@ -24,13 +24,12 @@
        document.getElementById('delete-specialty-{{ $specialty->id }}').submit();">
       <i class="red delete icon"></i>  Удалить
     </a>
-    <form action="{{ route('specialties.destroy', [Request::route('institutionType'), $specialty]) }}"
+    <form action="{{ route('specialties.destroy', [$institutionType, $specialty]) }}"
           method="post"
           id="delete-specialty-{{ $specialty->id }}">
 
       {{ csrf_field() }}
       {{ method_field('DELETE') }}
-      <input type="hidden" name="inst" value="{{ request()->inst }}">
     </form>
     {{-- Deleting end --}}
   </div>

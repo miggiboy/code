@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {!! "Редактирование cпециальности - {$specialty->title}" !!}
+  Редактирование cпециальности {{ $specialty->title }}
 @endsection
 
 @section ('subnavigation')
@@ -9,19 +9,19 @@
 @endsection
 
 @section ('content')
-    @include ('layouts.ckeditor')
+    @include ('includes.ckeditor')
 
     <br><br>
-    <form action="{{ route('specialties.update', $specialty) }}"
+    <form action="{{ route('specialties.update', [$institutionType, $specialty]) }}"
           method="POST"
           class="ui form">
 
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
 
-      @include ('layouts.form-errors')
+      @include ('includes.form-errors')
 
-      <input type="hidden" name="inst" value="{{ request('inst') }}">
+      <input type="hidden" name="inst" value="{{ $specialty->getBelongsTo() }}">
 
       <div class="required field{{ $errors->has('title') ? ' error' : '' }}">
         <label for="title">Название специальности</label>
@@ -79,7 +79,7 @@
             <label for="title">Направление</label>
             <select name="direction_id" class="ui search dropdown">
               <option value="">Направление</option>
-              @foreach (\App\Models\Specialty\Direction::getByInstitution(request('inst')) as $direction)
+              @foreach ($directions as $direction)
                 <option value="{{ $direction->id }}"
                         {{ ((old('direction_id', $specialty->direction->id)) == $direction->id)  ? 'selected' : '' }}>
                   {{ $direction->title }}

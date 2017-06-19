@@ -58,8 +58,8 @@ Route::group(['namespace' => 'Specialties', 'prefix' => '/{institutionType}-spec
     Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
     Route::post('', 'SpecialtiesController@store')->name('specialties.store');
 
-    Route::get('/edit', 'SpecialtiesController@edit')->name('specialties.edit');
-    Route::patch('', 'SpecialtiesController@update')->name('specialties.update');
+    Route::get('/{specialty}/edit', 'SpecialtiesController@edit')->name('specialties.edit');
+    Route::patch('/{specialty}', 'SpecialtiesController@update')->name('specialties.update');
 
     Route::get('/{specialty}', 'SpecialtiesController@show')->name('specialties.show');
 
@@ -69,15 +69,23 @@ Route::group(['namespace' => 'Specialties', 'prefix' => '/{institutionType}-spec
 
 });
 
-// Specialty Professions
+Route::group(['namespace' => 'Specialties'], function () {
+
+    /**
+     * Specialty Professions
+     */
     Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['except' => ['show']]);
 
-    // Specialty qualifications
+    /**
+     * Specialty qualifications
+     */
     Route::resource('specialties.qualifications', 'SpecialtyQualificationsController', ['except' => ['show', 'edit', 'update']]);
 
-    // Specialty institutions
+    /**
+     * Specialty institutions
+     */
     Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', ['only' => ['index']]);
-
+});
 
 
 Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], function () {

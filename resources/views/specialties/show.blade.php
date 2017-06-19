@@ -101,7 +101,7 @@
 
             <i class="small teal university middle aligned icon"></i>
             <div class="content">
-            <a href="{{ route('specialties.institutions.index', [$institutionType, $specialty]) }}"
+            <a href="{{ route('specialties.institutions.index', $specialty) }}"
               class="header">
                 {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ $specialty->institutions()->count() }})
             </a>

@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Specialties;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Specialty\Speciality;
+use App\Models\Specialty\Specialty;
 use App\Models\Profession\Profession;
 
 class SpecialtyProfessionsController extends Controller
 {
-    public function index(Speciality $specialty)
+    public function index(Specialty $specialty)
     {
         $professions = $specialty->professions()
             ->orderBy('title')
@@ -19,29 +19,30 @@ class SpecialtyProfessionsController extends Controller
         return view('specialties.professions.index', compact('specialty', 'professions'));
     }
 
-    public function create(Speciality $specialty)
+    public function create(Specialty $specialty)
     {
-        $professions = Profession::orderBy('title')->get(['id', 'title']);
+        $professions = Profession::orderBy('title')->get();
+
         return view('specialties.professions.create', compact('specialty', 'professions'));
     }
 
-    public function store(Speciality $specialty, Request $request)
+    public function store(Specialty $specialty, Request $request)
     {
         $specialty->professions()->syncWithoutDetaching($request->professions);
 
         return redirect()
-            ->route('specialty.professions.index', $specialty)
-            ->with('message', 'Профессии привязаны к специальности.');
+            ->route('specialties.professions.index', $specialty)
+            ->with('message', 'Профессии прикреплены');
     }
 
-    public function destroy(Speciality $specialty, Profession $profession)
+    public function destroy(Specialty $specialty, Profession $profession)
     {
         $specialty->professions()
             ->wherePivot('profession_id', $profession->id)
             ->detach();
 
         return redirect()
-            ->route('specialty.professions.index', $specialty)
-            ->with('message', 'Профессия откреплена от специальности.');
+            ->route('specialties.professions.index', $specialty)
+            ->with('message', 'Профессия откреплена');
     }
 }

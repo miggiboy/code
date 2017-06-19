@@ -89,7 +89,7 @@ class SpecialtiesController extends Controller
         }
 
         return redirect()
-            ->route('specialties.show', [$specialty, 'inst' => $request->inst])
+            ->route('specialties.show', [$institutionType, $specialty])
             ->with('message', 'Успешно добавлено');
     }
 
@@ -114,8 +114,12 @@ class SpecialtiesController extends Controller
     public function edit($institutionType, Specialty $specialty)
     {
         $specialty->load(['subjects']);
+
         $subjects = Subject::all()->sortBy('title');
-        $directions = Direction::all()->sortBy('title');
+
+        $directions = Direction::of($institutionType)
+            ->orderBy('title')
+            ->get();
 
         return view('specialties.edit', compact('specialty', 'subjects', 'directions'));
     }
@@ -145,7 +149,7 @@ class SpecialtiesController extends Controller
         }
 
         return redirect()
-            ->route('specialties.show', [$specialty, 'inst' => $request->inst])
+            ->route('specialties.show', [$institutionType, $specialty])
             ->with('message', 'Специальность успешно обновлена');
     }
 

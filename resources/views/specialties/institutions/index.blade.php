@@ -27,13 +27,13 @@
   <div class="ui custom container">
     <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
 
-      <a href="{{ route('specialties.show', [$specialty, 'inst' => request('inst')]) }}">
+      <a href="{{ route('specialties.show', [$specialty->getBelongsTo(), $specialty]) }}">
         {{ str_limit($specialty->title, 50) }}
       </a><br>
-      Связанные {{ $specialty->getTranslatedInsitutionType() }}
+      Связанные {{ Translator::get($specialty->getBelongsTo(), 'i', 'p') }}
     </h2>
 
-    @if ($institutions)
+    @if ($specialty->institutions)
       <table class="ui celled striped table">
         <thead>
           <th style="width: 400px;">Учебное заведение</th>
@@ -43,12 +43,12 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($institutions as $institution)
+          @foreach ($specialty->institutions as $institution)
             <tr>
               <td class="collapsing">
                 <h4 class="ui header">
                   <div class="content">
-                      <a href="{{ route(strtolower(str_plural((class_basename($institution)))) . '.show', $institution->slug) }}">
+                      <a href="{{ route('institutions.show', [$institution->type, $institution]) }}">
                         {{ $institution->title }}
                       </a>
                       <div class="sub header"> {{ $institution->city->title }}
@@ -57,7 +57,7 @@
                 </h4>
               </td>
               <td>
-                {{ ($institution->pivot->form == '1') ? 'очная' : 'заочная' }}
+                {{ Translator::get($institution->pivot->form, 'i', 's') }}
               </td>
               <td>{{ $institution->pivot->study_price }}</td>
               <td class="right aligned collapsing">{{ $institution->pivot->study_period }}</td>

@@ -23,11 +23,11 @@ class SpecialtyFormRequest extends FormRequest
      */
     public function rules()
     {
-        $codeRule = 'nullable|alpha_num|unique:specialities|max:255';
+        $codeRule = 'nullable|alpha_num|max:255|unique:specialities';
 
-        // Skip this article from unique check list on update
+        // Skip this article from unique code check on update
         if ($this->method() == 'PATCH') {
-            $codeRule .= ',code,' . $this->specialty->id,
+            $codeRule .= ',code,' . $this->specialty->id;
         }
 
 
@@ -36,7 +36,7 @@ class SpecialtyFormRequest extends FormRequest
             'code'          => $codeRule,
             'subject_1_id'  => 'nullable|integer',
             'subject_2_id'  => 'nullable|integer',
-            'model_type'    => 'required',
+            // 'model_type'    => 'required',
             'direction_id'  => 'nullable|unique:directions,title',
         ];
     }

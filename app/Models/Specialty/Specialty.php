@@ -38,20 +38,27 @@ class Specialty extends Model
      */
     protected $dates = ['deleted_at'];
 
-
     protected $appends = ['marked_by_current_user'];
 
+    /**
+     * Retrieve only models which type is $type
+     * @param  Builder $query
+     * @param  string $type
+     * @return Builder
+     */
     public function scopeGetOnly($query, $type)
     {
         return $query->where('type', str_singular($type));
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Helpers
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Gets institution type of specialty
+     * @return Builder
+     */
+    public function getBelongsTo()
+    {
+        return $this->direction->institution;
+    }
 
     /**
      * Check if the specialty has any subjects
@@ -76,15 +83,11 @@ class Specialty extends Model
             return "{$this->title} ({$this->code})";
         }
 
-        if ($this->title) {
-            return $this->title;
-        }
-
-        return null;
+        return $this->title;
     }
 
     /**
-     * Redirects to primary app (vipusknik.kz)
+     * Builds model.show url at primary app (vipusknik.kz)
      */
 
     public function urlAtPrimaryApp()
@@ -101,12 +104,9 @@ class Specialty extends Model
         return config('google.search.url') . 'Специальность ' . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function parentSpecialty()
     {

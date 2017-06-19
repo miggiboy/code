@@ -44,7 +44,9 @@ class Institution extends Model implements HasMediaConversions
     use HasReception;
     use HasSpecialties;
 
+
     protected $table = 'universities';
+
 
     /**
      * The attributes that should be mutated to dates.
@@ -53,24 +55,44 @@ class Institution extends Model implements HasMediaConversions
      */
     protected $dates = ['deleted_at'];
 
+
     /**
-     * Instituttion representative pin
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_paid'           => 'boolean',
+        'has_dormitory'     => 'boolean',
+        'has_military_dep'  => 'boolean',
+    ];
+
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
      */
     protected $hidden = ['pin'];
 
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
     protected $appends = ['markedByCurrentUser'];
 
+    /**
+     * Retrieves institutions of $type type
+     * @param  Builder $query
+     * @param  string $institutionType
+     * @return Builder
+     */
     public function scopeOfType($query, $institutionType)
     {
         return $query->where('type', str_singular($institutionType));
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Attribute accessors
-    |--------------------------------------------------------------------------
-    |
-    */
 
     /**
      * Always returns web_site attribute with http(s)://
@@ -127,12 +149,9 @@ class Institution extends Model implements HasMediaConversions
         return $value;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function city()
     {

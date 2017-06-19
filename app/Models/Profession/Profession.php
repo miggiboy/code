@@ -26,16 +26,7 @@ class Profession extends Model
      */
     protected $dates = ['deleted_at'];
 
-
-
-    protected $appends = ['markedByCurrentUser'];
-
-    /*
-    |--------------------------------------------------------------------------
-    | Search scopes
-    |--------------------------------------------------------------------------
-    |
-    */
+    protected $appends = ['marked_by_current_user'];
 
     /**
      * Filters out professions which title
@@ -79,13 +70,6 @@ class Profession extends Model
     {
         return config('google.search.url') . 'Профессия ' . trim($this->title);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
 
     public function profDirection()
     {

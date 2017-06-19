@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $pageTitle = Translator::get(request()->route('institutionType'), 'i', 'p', true) }}
+  {{ $pageTitle = Translator::get($institutionType, 'i', 'p', true) }}
 @endsection
 
 @section ('subnavigation')

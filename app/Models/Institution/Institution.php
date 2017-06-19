@@ -81,7 +81,7 @@ class Institution extends Model implements HasMediaConversions
      *
      * @var array
      */
-    protected $appends = ['markedByCurrentUser'];
+    protected $appends = ['marked_by_current_user'];
 
     /**
      * Retrieves institutions of $type type

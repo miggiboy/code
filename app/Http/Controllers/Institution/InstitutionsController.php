@@ -28,11 +28,8 @@ class InstitutionsController extends InstitutionsBaseController
      */
     public function index($institutionType, Request $request)
     {
-        $institutions = $request->has('s')
-            ? InstitutionSearch::filter($request)
-            : Institution::ofType($institutionType);
-
-        $institutions = $institutions->orderBy('title')
+        $institutions = InstitutionSearch::filter($request)
+            ->orderBy('title')
             ->with(['city', 'media', 'marks'])
             ->paginate(15);
 

@@ -13,31 +13,31 @@ class InstitutionSearch
 
         $q->ofType($request->route('institutionType'));
 
-        if ($request->has('s.query')) {
-            $q->like($request->s['query']);
+        if ($request->has('query')) {
+            $q->like($request->query);
         }
 
-        if ($request->has('s.city')) {
-            $q->inCity($request->s['city']);
+        if ($request->has('city')) {
+            $q->inCity($request->city);
         }
 
-        if ($request->has('s.not_filled')) {
+        if ($request->has('not_filled')) {
             $q->hasReception(false);
         }
 
-        if ($request->has('s.without_specialities')) {
-            $q->hasSpecialities(false);
+        if ($request->has('without_specialities')) {
+            $q->hasSpecialties(false);
         }
 
-        if ($request->has('s.without_map')) {
+        if ($request->has('without_map')) {
             $q->hasMap(false);
         }
 
-        if ($request->has('s.marked')) {
+        if ($request->has('marked')) {
             $q->markedByCurrentUser();
         }
 
-        if ($request->has('s.is_paid')) {
+        if ($request->has('is_paid')) {
             $q->isPaid();
         }
 

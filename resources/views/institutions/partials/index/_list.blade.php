@@ -1,7 +1,7 @@
 @if (count($institutions))
     <div class="ui large celled very relaxed selection list">
     @foreach ($institutions as $institution)
-          <div class="university item{{ $institution->markedByCurrentUser ? ' marked' : '' }}"
+          <div class="university item{{ $institution->marked_by_current_user ? ' marked' : '' }}"
                style="cursor: default;"
                itemType="University"
                itemId="{{ $institution->id }}">
@@ -16,7 +16,7 @@
               <i class="teal university icon"></i>
             @endif
             <div class="content">
-              <a class="header" href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}">
+              <a class="header" href="{{ route('institutions.show', [$institutionType, $institution]) }}">
                 {{ $institution->title }}
               </a><br>
                 @if ($institution->is_paid)

@@ -7,14 +7,14 @@
 @endsection
 
 @section ('content')
-    @include ('layouts.ckeditor')
+    @include ('includes.ckeditor')
 
-    <form action="{{ route('specialties') }}" method="post" class="ui form">
+    <form action="{{ route('specialties.store', $institutionType) }}" method="post" class="ui form">
       {{ csrf_field() }}
 
-      <input type="hidden" name="inst" value="{{ request('inst') }}">
+      <input type="hidden" name="inst" value="{{ $institutionType }}">
 
-      @include ('layouts.form-errors')
+      @include ('includes.form-errors')
 
       <div class="required field{{ $errors->has('title') ? ' error' : '' }}">
         <label for="title">Название</label>

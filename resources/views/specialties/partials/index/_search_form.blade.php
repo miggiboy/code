@@ -1,4 +1,7 @@
-<form class="ui small form" action="{{ route('specialties.search') }}" method="get">
+<form class="ui small form"
+      action="{{ route('specialties.index', $institutionType) }}"
+      method="get">
+
     <div class="three fields">
 
       <div class="eight wide field">
@@ -6,9 +9,9 @@
           <div class="ui right icon input">
             <input type="text"
                    name="query"
-                   value="{{ old('query') }}"
+                   value="{{ request('query') }}"
                    class="prompt"
-                   placeholder="Начните вводить название или код специальности..."
+                   placeholder="Название или код специальности..."
                    autofocus>
 
             <i class="search icon"></i>
@@ -20,9 +23,9 @@
           <select class="ui selection search dropdown" name="direction">
             <option value="">Направление</option>
             <option value=" ">Не выбрано</option>
-              @foreach (\App\Models\Specialty\Direction::getByInstitution(request('inst')) as $direction)
+              @foreach ($directions as $direction)
                 <option value="{{ $direction->id }}"
-                        {{ (old('direction') == $direction->id) ? 'selected' : '' }}>
+                        {{ (request('direction') == $direction->id) ? 'selected' : '' }}>
                   {{ $direction->title }}
                 </option>
               @endforeach
@@ -34,8 +37,6 @@
       </div>
 
     </div>
-
-    <input type="hidden" name="inst" value="{{ request('inst') }}">
 
     <div class="four fields" style="margin-bottom: 17px;">
 

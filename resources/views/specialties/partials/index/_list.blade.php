@@ -1,5 +1,5 @@
 @if (count($specialties))
-    <div class="ui large celled very relaxed selection list">
+  <div class="ui large celled very relaxed selection list">
     @foreach ($specialties as $specialty)
           <div class="university item{{ $specialty->markedByCurrentUser ? ' marked' : '' }}" style="cursor: default;"
               itemType="specialty" itemId="{{ $specialty->id }}">
@@ -9,10 +9,10 @@
             </div>
             <i class="teal student icon"></i>
             <div class="content">
-              <a class="header" href="{{ route('specialties.show', [$specialty, 'inst' => request('inst')]) }}">
+              <a class="header" href="{{ route('specialties.show', [$institutionType, $specialty]) }}">
                 {{ $specialty->getNameWithCodeOrName() }}
               </a><br>
-              {{ str_limit($specialty->direction->title, 25) }}
+              {{ str_limit($specialty->direction->title, 40) }}
             </div>
           </div>
     @endforeach

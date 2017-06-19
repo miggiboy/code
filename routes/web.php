@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\Specialty\Specialty;
+
 /**
  * Temp
  */
-
 
 /**
  * Home & Feed
@@ -50,19 +51,32 @@ Route::group(['namespace' => 'User'], function () {
 * Specialties
 */
 
-Route::group(['namespace' => 'Specialties'], function () {
+Route::group(['namespace' => 'Specialties', 'prefix' => '/{institutionType}-specialties'], function () {
 
-    Route::resource('specialties', 'SpecialtiesController');
+    Route::get('', 'SpecialtiesController@index')->name('specialties.index');
 
-    // Specialty Professions
-    Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['only' => ['edit', 'update', 'show']]);
+    Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
+    Route::post('', 'SpecialtiesController@store')->name('specialties.store');
+
+    Route::get('/edit', 'SpecialtiesController@edit')->name('specialties.edit');
+    Route::patch('', 'SpecialtiesController@update')->name('specialties.update');
+
+    Route::get('/{specialty}', 'SpecialtiesController@show')->name('specialties.show');
+
+    Route::delete('/{specialty}', 'SpecialtiesController@destroy')->name('specialties.destroy');
+
+
+
+});
+
+// Specialty Professions
+    Route::resource('specialties.professions', 'SpecialtyProfessionsController', ['except' => ['show']]);
 
     // Specialty qualifications
     Route::resource('specialties.qualifications', 'SpecialtyQualificationsController', ['except' => ['show', 'edit', 'update']]);
 
     // Specialty institutions
-    Route::get('specialties.institutions', 'SpecialtyInstitutionsController@index', ['only' => ['index']]);
-});
+    Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', ['only' => ['index']]);
 
 
 
@@ -73,9 +87,7 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
      */
 
     Route::group(['prefix' => '/search'], function () {
-        Route::get('', 'SpecialtiesController@search')->name('specialties.search');
         Route::get('/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
-        Route::get('/college/specialties', 'SpecialtiesController@searchCollegeSpecialties');
     });
 
 });

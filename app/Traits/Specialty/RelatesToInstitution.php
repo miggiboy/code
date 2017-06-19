@@ -13,7 +13,7 @@ trait RelatesToInstitution
         });
     }
 
-    public function scopeAt($query, $studyForm)
+    public function scopeAtForm($query, $studyForm)
     {
         return $query->where('form', $studyForm);
     }
@@ -55,7 +55,7 @@ trait RelatesToInstitution
         ];
     }
 
-    public function institution()
+    public function institutions()
     {
         return $this->belongsToMany(Institution::class)->withPivot('study_price', 'study_period', 'form');
     }

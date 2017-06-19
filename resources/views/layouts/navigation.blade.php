@@ -12,10 +12,10 @@
   <div class="ui dropdown item">
     Специальности <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
-        <a href="{{ route('specialties.index', ['inst' => 0]) }}" class="item">
+        <a href="{{ route('specialties.index', 'college') }}" class="item">
           <p>Колледжей</p>
         </a>
-        <a href="{{ route('specialties.index', ['inst' => 1]) }}" class="item">
+        <a href="{{ route('specialties.index', 'university') }}" class="item">
           Универстетов
         </a>
     </div>

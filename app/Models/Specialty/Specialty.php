@@ -39,7 +39,12 @@ class Specialty extends Model
     protected $dates = ['deleted_at'];
 
 
-    protected $appends = ['markedByCurrentUser'];
+    protected $appends = ['marked_by_current_user'];
+
+    public function scopeGetOnly($query, $type)
+    {
+        return $query->where('type', str_singular($type));
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -76,19 +81,6 @@ class Specialty extends Model
         }
 
         return null;
-    }
-
-    /**
-     * Checks if this specialty is already linked to the profession
-     *
-     * @param  integer $profession
-     * @return boolean
-     */
-    public function hasSpeciality($specialityId, $form = 1)
-    {
-        return (bool) $this->professions()
-            ->wherePivot('profession_id', $profession)
-            ->count();
     }
 
     /**

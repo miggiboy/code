@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\View;
 use App\Http\Composers\{
     CitiesComposer,
     ArticleCategoriesComposer,
-    ProfessionCategoriesComposer
+    ProfessionCategoriesComposer,
+    InstitutionTypeComposer
 };
 
 class ComposerServiceProvider extends ServiceProvider
@@ -35,6 +36,14 @@ class ComposerServiceProvider extends ServiceProvider
             ['articles.index', 'articles.create', 'articles.edit'],
             ArticleCategoriesComposer::class
         );
+
+        View::composer(
+            [
+                'specialties.index', 'specialties.create', 'specialties.edit', 'specialties.show',
+            ],
+
+            InstitutionTypeComposer::class
+        );
     }
 
     /**
@@ -49,5 +58,7 @@ class ComposerServiceProvider extends ServiceProvider
         $this->app->singleton(ProfessionCategoriesComposer::class);
 
         $this->app->singleton(ArticleCategoriesComposer::class);
+
+        $this->app->singleton(InstitutionTypeComposer::class);
     }
 }

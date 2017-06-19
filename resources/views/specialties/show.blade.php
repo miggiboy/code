@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  @if (request('category') == 'qualifications') 'Квалификация' @else 'Специальность' @endif {{ "{$specialty->title}" }}
+  {{ $specialty->title }}
 @endsection
 
 @section ('subnavigation')
@@ -14,10 +14,10 @@
 
       <div class="ui purple label">ID:  {{ $specialty->id }}</div>
 
-      <a class="ui basic label{{ $specialty->markedByCurrentUser ? ' marked' : '' }}" id="marker"
+      <a class="ui basic label{{ $specialty->marked_by_current_user ? ' marked' : '' }}" id="marker"
           onclick="event.preventDefault(); toggleMark('specialty', '{{ $specialty->id }}');"
           title="Оставляйте отметки чтобы вернуться к ним позже. Ваши отметки видны только Вам.">
-        @if ($specialty->markedByCurrentUser)
+        @if ($specialty->marked_by_current_user)
           Отмечено Вами
         @else
           Отметить для себя
@@ -44,27 +44,14 @@
           </div>
         @endif
 
-        @if (isset($specialty->direction) && ! $specialty->isQualification())
+        @if (isset($specialty->direction))
           <div class="seven wide column">
               <h5 class="ui header">Направление:</h5>
               <div class="content">
                 <a
-                  href="{{ route('specialties.search', ['direction' => $specialty->direction->id, 'inst' => request('inst')]) }}"
+                  href="{{ route('specialties.index', [$institutionType, 'direction' => $specialty->direction->id]) }}"
                   title="{{ $specialty->direction->title }}">
                   {{ str_limit($specialty->direction->title, 25) }}
-                </a>
-              </div>
-          </div>
-        @endif
-
-        @if ($specialty->isQualification() && $specialty->hasValidParent())
-            <div class="seven wide column">
-              <h5 class="ui header">Принадлежит специальности:</h5>
-              <div class="content">
-                <a
-                  href="{{ route('specialties.show', [$specialty->parentSpecialty ,'inst' => request('inst')]) }}"
-                  title="{{ $specialty->parentSpecialty->title }}">
-                  {{ str_limit($specialty->parentSpecialty->title, 25) }}
                 </a>
               </div>
           </div>
@@ -90,26 +77,6 @@
 
         <div class="ui relaxed list"> {{-- List --}}
 
-          @if (! $specialty->isQualification() && $specialty->insitutionType() == 'colleges')
-              <div class="item"> {{-- Qualifications item --}}
-
-                <div class="ui right pointing right floated icon dropdown small basic button content">
-                  <i class="ellipsis vertical icon"></i>
-                  <div class="menu">
-                    <div class="header"><i class="tags icon"></i>  Опции </div>
-                    <div class="divider"></div>
-                    <a href="{{ route('specialties.qualifications.create', $specialty) }}" class="item"><i class="circle green add icon"></i>Добавить</a>
-                  </div>
-                </div>
-
-                <i class="small teal student middle aligned icon"></i>
-                <div class="content">
-                <a href="{{ route('specialties.qualifications.index', $specialty) }}"
-                  class="header">Квалификации ({{ $specialty->qualifications()->count() }})</a>
-                </div>
-              </div> {{-- End of qualifications item --}}
-            @endif
-
           <div class="item"> {{-- Professions item --}}
 
             <div class="ui right pointing right floated icon dropdown small basic button content">
@@ -117,13 +84,14 @@
               <div class="menu">
                 <div class="header"><i class="tags icon"></i>  Опции </div>
                 <div class="divider"></div>
-                <a href="{{ route('specialty.professions.create', $specialty) }}" class="item"><i class="circle green add icon"></i>Добавить</a>
+                <a href="{{ route('specialties.professions.create', $specialty) }}" class="item">
+                  <i class="circle green add icon"></i>Добавить</a>
               </div>
             </div>
 
             <i class="small teal travel middle aligned icon"></i>
             <div class="content">
-            <a href="{{ route('specialty.professions.index', $specialty) }}"
+            <a href="{{ route('specialties.professions.index', $specialty) }}"
               class="header">Профессии ({{ $specialty->professions()->count() }})</a>
             </div>
           </div> {{-- End of professions item --}}
@@ -133,9 +101,9 @@
 
             <i class="small teal university middle aligned icon"></i>
             <div class="content">
-            <a href="{{ route('specialties.institutions.index', [$specialty, 'inst' => request('inst')]) }}"
+            <a href="{{ route('specialties.institutions.index', [$institutionType, $specialty]) }}"
               class="header">
-                {{ $institutionType = $specialty->getTranslatedInsitutionType() }} ({{ $specialty->getInstitutions()->count() }})
+                {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ $specialty->institutions()->count() }})
             </a>
             </div>
           </div> {{-- End of professions item --}}

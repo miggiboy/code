@@ -5,14 +5,19 @@ namespace App\Http\Controllers\Specialties;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Subject;
+use App\Models\Subject\Subject;
+
 use App\Models\Specialty\{
     Direction,
-    Speciality
+    Specialty
 };
 
 use App\Http\Requests\Specialty\{
     SpecialtyFormRequest
+};
+
+use App\Modules\Search\{
+    SpecialtySearch
 };
 
 class SpecialtiesController extends Controller
@@ -23,23 +28,15 @@ class SpecialtiesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request)
+    public function index(Request $request, $institutionType)
     {
-        $directions = $request->has('inst')
-            ? Direction::where('institution', (bool) $request->inst)
-                ->orderBy('title')
-                ->get()
-            : Direction::all()->sortBy('title');
+        $specialties = SpecialtySearch::filter($request)
+            ->orderBy('title')
+            ->paginate(15);
 
-        $specialties = $request->has('inst')
-            ? Speciality::ofInstitution($request->inst)->with(['direction', 'marks'])
-                ->orderBy('title')
-                ->isSpecialty()
-                ->paginate(15)
-            : Speciality::with(['direction', 'marks'])
-                ->orderBy('title')
-                ->isSpecialty()
-                ->paginate(15);
+        $directions = Direction::of($institutionType)
+            ->orderBy('title')
+            ->get();
 
         return view('specialties.index', compact('specialties', 'directions'));
     }
@@ -49,10 +46,13 @@ class SpecialtiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($institutionType)
     {
-        $subjects   = Subject::all()->sortBy('title');
-        $directions = Direction::all()->sortBy('title');
+        $subjects = Subject::all()->sortBy('title');
+
+        $directions = Direction::of($institutionType)
+            ->orderBy('title')
+            ->get();
 
         return view('specialties.create', compact('subjects', 'directions'));
     }
@@ -63,7 +63,7 @@ class SpecialtiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SpecialtyFormRequest $request)
+    public function store($institutionType, SpecialtyFormRequest $request)
     {
         if ($request->model_type == 'specialty') {
             if (! is_numeric($request->direction_id)) {
@@ -71,7 +71,7 @@ class SpecialtiesController extends Controller
             }
         }
 
-        $specialty = Speciality::create([
+        $specialty = Specialty::create([
             'title'                 => $request->title,
             'code'                  => $request->code,
             'description'           => $request->description,
@@ -99,7 +99,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Speciality $specialty)
+    public function show($institutionType, Specialty $specialty)
     {
         $specialty->load(['subjects']);
         return view('specialties.show', compact('specialty'));
@@ -111,7 +111,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Speciality $specialty)
+    public function edit($institutionType, Specialty $specialty)
     {
         $specialty->load(['subjects']);
         $subjects = Subject::all()->sortBy('title');
@@ -127,7 +127,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Speciality $specialty, SpecialtyFormRequest $request)
+    public function update($institutionType, Specialty $specialty, SpecialtyFormRequest $request)
     {
         $specialty->update(request([
             'title',
@@ -155,7 +155,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Speciality $specialty, Request $request)
+    public function destroy($institutionType, Specialty $specialty, Request $request)
     {
         $specialty->delete();
 
@@ -168,52 +168,9 @@ class SpecialtiesController extends Controller
      * Search methods
      */
 
-    public function search(Request $request)
-    {
-        $q = Speciality::query();
-
-        if (request()->has('query')) {
-            $q->like(request('query'));
-        }
-
-        if (request()->has('direction')) {
-            $q->inDirection(request('direction'));
-        }
-
-        if ($request->has('without_description')) {
-            $q->hasDescription(false);
-        }
-
-        if ($request->has('without_direction')) {
-            $q->hasNoDirection();
-        }
-
-        if ($request->has('without_subjects')) {
-            $q->hasNoSubjects();
-        }
-
-        if ($request->has('inst')) {
-            $q->ofInstitution($request->inst);
-        }
-
-        if ($request->has('marked')) {
-            $q->markedByCurrentUser();
-        }
-
-        $directions = Direction::where('institution', (bool) $request->inst)
-                ->orderBy('title')
-                ->get();
-
-        $specialties = $q->orderBy('title')->with(['direction', 'marks'])->paginate(15);
-
-        $request->flashOnly(['query', 'direction', 'inst']);
-
-        return view('specialties.index', compact('specialties', 'directions'));
-    }
-
     public function autocomplete(Request $request){
 
-        $specialties = Speciality::select('slug as url', 'title', 'code')
+        $specialties = Specialty::select('slug as url', 'title', 'code')
             ->like($request->input('query'))
             ->whereHas('direction', function ($query) use ($request) {
                 $query->where('institution', $request->inst);
@@ -230,7 +187,7 @@ class SpecialtiesController extends Controller
 
     public function searchCollegeSpecialties(Request $request)
     {
-        $specialties = Speciality::select('id as value', 'title as name')
+        $specialties = Specialty::select('id as value', 'title as name')
             ->like($request->input('query'))
             ->whereHas('direction', function ($query) use ($request) {
                 $query->where('institution', $request->inst);

@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $pageTitle = 'Редактирование' . Translator::get(request()->route('institutionType'), 'r', 's') }}
+  {{ $pageTitle = 'Редактирование' . Translator::get($institutionType, 'r', 's') }}
 @endsection
 
 @section ('subnavigation')
@@ -12,7 +12,7 @@
     @include ('includes.ckeditor')
     <br><br>
 
-    <form action="{{ route('institutions.update', [request()->route('institutionType'), $institution]) }}"
+    <form action="{{ route('institutions.update', [$institutionType, $institution]) }}"
           method="post"
           class="ui form">
 
@@ -28,7 +28,7 @@
       </div>
       <br>
 
-      @include ('institutions/partials/edit/_' . request()->route('institutionType') . '-general-fields')
+      @include ('institutions/partials/edit/_' . $institutionType . '-general-fields')
 
       @include ('institutions/partials/edit/_reception_committee_fields')
 

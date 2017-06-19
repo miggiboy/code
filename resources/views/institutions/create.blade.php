@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $pageTitle = 'Добавление' . Translator::get(request()->route('institutionType'), 'r', 's') }}
+  {{ $pageTitle = 'Добавление' . Translator::get($institutionType, 'r', 's') }}
 @endsection
 
 @section ('subnavigation')
@@ -13,13 +13,13 @@
     @include ('includes.ckeditor')
 
     <br><br>
-    <form action="{{ route('institutions.store', request()->route('institutionType')) }}"
+    <form action="{{ route('institutions.store', $institutionType) }}"
           method="post"
           class="ui form">
 
       {{ csrf_field() }}
 
-      <input type="hidden" name="type" value="{{ str_singular(request()->route('institutionType')) }}">
+      <input type="hidden" name="type" value="{{ str_singular($institutionType) }}">
 
       @include ('includes.form-errors')
 
@@ -28,7 +28,7 @@
       </div>
       <br>
 
-      @include ('institutions/partials/create/_' . request()->route('institutionType') . '-general-fields')
+      @include ('institutions/partials/create/_' . $institutionType . '-general-fields')
 
       @include ('institutions/partials/create/_reception_committee_fields')
 

@@ -40,6 +40,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             [
                 'specialties.index', 'specialties.create', 'specialties.edit', 'specialties.show',
+                'institutions.index', 'institutions.create', 'institutions.edit', 'institutions.show',
             ],
 
             InstitutionTypeComposer::class

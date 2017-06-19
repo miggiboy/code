@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\University\University;
 use App\Modules\Institution\PinGenerator;
 
-class UniversityPinsController extends Controller
+class InstitutionPinsController extends Controller
 {
     /**
      * Store a newly created resource in storage.

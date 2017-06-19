@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\University\University;
 use App\Http\Requests\ImageRequest;
 
-class UniversityMediaController extends Controller
+class InstitutionMediaController extends Controller
 {
     public function store(University $university, ImageRequest $request)
     {

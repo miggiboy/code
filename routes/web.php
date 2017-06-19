@@ -51,25 +51,21 @@ Route::group(['namespace' => 'User'], function () {
 * Specialties
 */
 
-Route::group(['namespace' => 'Specialties', 'prefix' => '/{institutionType}-specialties'], function () {
-
-    Route::get('', 'SpecialtiesController@index')->name('specialties.index');
-
-    Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
-    Route::post('', 'SpecialtiesController@store')->name('specialties.store');
-
-    Route::get('/{specialty}/edit', 'SpecialtiesController@edit')->name('specialties.edit');
-    Route::patch('/{specialty}', 'SpecialtiesController@update')->name('specialties.update');
-
-    Route::get('/{specialty}', 'SpecialtiesController@show')->name('specialties.show');
-
-    Route::delete('/{specialty}', 'SpecialtiesController@destroy')->name('specialties.destroy');
-
-
-
-});
-
 Route::group(['namespace' => 'Specialties'], function () {
+
+    Route::group(['prefix' => '/{institutionType}-specialties'], function () {
+        Route::get('', 'SpecialtiesController@index')->name('specialties.index');
+
+        Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
+        Route::post('', 'SpecialtiesController@store')->name('specialties.store');
+
+        Route::get('/{specialty}/edit', 'SpecialtiesController@edit')->name('specialties.edit');
+        Route::patch('/{specialty}', 'SpecialtiesController@update')->name('specialties.update');
+
+        Route::get('/{specialty}', 'SpecialtiesController@show')->name('specialties.show');
+
+        Route::delete('/{specialty}', 'SpecialtiesController@destroy')->name('specialties.destroy');
+    });
 
     /**
      * Specialty Professions
@@ -85,6 +81,7 @@ Route::group(['namespace' => 'Specialties'], function () {
      * Specialty institutions
      */
     Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', ['only' => ['index']]);
+
 });
 
 
@@ -97,7 +94,6 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
     Route::group(['prefix' => '/search'], function () {
         Route::get('/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
     });
-
 });
 
 
@@ -146,42 +142,30 @@ Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'des
  * Institutions
  */
 
-Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Institution'], function () {
+Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], function () {
 
-    /**
+    Route::group(['prefix' => '/{institutionType}'], function () {
+        Route::get('', 'InstitutionsController@index')->name('institutions.index');
+
+        Route::get('/create', 'InstitutionsController@create')->name('institutions.create');
+        Route::post('', 'InstitutionsController@store')->name('institutions.store');
+
+        Route::get('/{institution}/edit', 'InstitutionsController@edit')->name('institutions.edit');
+        Route::patch('/{institution}', 'InstitutionsController@update')->name('institutions.update');
+
+        Route::delete('/{institution}', 'InstitutionsController@destroy')->name('institutions.destroy');
+
+        Route::get('/{institution}', 'InstitutionsController@show')->name('institutions.show');
+    });
+
+     /**
      * Universities Search
      */
 
-    Route::group(['prefix' => '/search'], function () {
-        Route::get('/autocomplete', 'InstitutionsController@autocomplete')->name('universities.autocomplete');
-    });
-
-    Route::get('', 'InstitutionsController@index')->name('institutions.index');
-
-    Route::get('/create', 'InstitutionsController@create')->name('institutions.create');
-    Route::post('', 'InstitutionsController@store')->name('institutions.store');
-
-    Route::get('/{institution}/edit', 'InstitutionsController@edit')->name('institutions.edit');
-    Route::patch('/{institution}', 'InstitutionsController@update')->name('institutions.update');
-
-    Route::delete('/{institution}', 'InstitutionsController@destroy')->name('institutions.destroy');
-
-    Route::get('/{institution}', 'InstitutionsController@show')->name('institutions.show');
+    Route::get('/search/autocomplete', 'InstitutionsController@autocomplete')->name('universities.autocomplete');
 
     /**
-     * University Paid Status
-     */
-    Route::patch('/{institution}/status', 'UniversityPaidStatusController@toggle')->name('university.status.toggle');
-
-
-    /**
-     * University Pins
-     */
-     Route::post('/{university}/pin', 'UniversityPinsController@store')->name('universities.pins.store');
-     Route::delete('/{university}/pin', 'UniversityPinsController@destroy')->name('universities.pins.destroy');
-
-    /**
-     * University Specialties
+     * Institution Specialties
      */
 
     Route::group(['prefix' => '/{institution}/specialties/{studyForm}'], function () {
@@ -197,12 +181,22 @@ Route::group(['prefix' => '/institutions/{institutionType}', 'namespace' => 'Ins
     });
 
     /**
-     * University Media
+     * Institution Paid Status
+     */
+    Route::patch('/{institution}/status', 'InstitutionPaidStatusController@update')->name('institutions.status.update');
+
+
+    /**
+     * Institution Pins
+     */
+     Route::post('/{institution}/pin', 'InstitutionPinsController@store')->name('universities.pins.store');
+     Route::delete('/{institution}/pin', 'InstitutionPinsController@destroy')->name('universities.pins.destroy');
+    /**
+     * Institution Media
      */
 
     Route::group(['prefix' => '/{instituion}/media'], function () {
         Route::post('', 'InstitutionMediaController@store')->name('instituions.media.store');
-
         Route::patch('/{mediaId}', 'InstitutionMediaController@toggleLogo');
     });
 

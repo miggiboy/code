@@ -6,11 +6,11 @@
   </div>
 @endif
 
-<a class="ui basic label{{ $institution->markedByCurrentUser ? ' marked' : '' }}"
+<a class="ui basic label{{ $institution->marked_by_current_user ? ' marked' : '' }}"
    id="marker"
    onclick="event.preventDefault(); toggleMark('{{ $institution->id }}');"
    title="Оставляйте отметки чтобы вернуться к ним позже. Ваши отметки видны только Вам.">
-  @if ($institution->markedByCurrentUser)
+  @if ($institution->marked_by_current_user)
     Отмечено Вами
   @else
     Отметить для себя

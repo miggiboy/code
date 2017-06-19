@@ -5,7 +5,7 @@
     {{-- Editing --}}
     <div class="header"><i class="tags icon"></i>  Опции </div>
     <div class="divider"></div>
-    <a href="{{ route('institutions.edit', [request()->route('institutionType'), $institution]) }}"
+    <a href="{{ route('institutions.edit', [$institutionType, $institution]) }}"
        class="item"
        target="_blank">
 
@@ -34,7 +34,7 @@
       <i class="yellow star icon"></i>  Сделать {{ $institution->is_paid ? 'не ' : '' }}платником
     </a>
 
-    <form action="{{ route('university.status.toggle', [request()->route('institutionType'), $institution]) }}"
+    <form action="{{ route('institutions.status.update', [$institutionType, $institution]) }}"
           method="post"
           id="toggle-model-{{ $institution->id }}-status">
       {{ csrf_field() }}
@@ -73,12 +73,12 @@
 
     {{-- Deleting --}}
     <a href="#" class="item"
-      onclick="event.preventDefault();
-        document.getElementById('delete-university-{{ $institution->id }}').submit();">
+       onclick="event.preventDefault();
+       document.getElementById('delete-institution-{{ $institution->id }}').submit();">
       <i class="red delete icon"></i>  Удалить
     </a>
-    <form action="{{ route('institutions.destroy', [request()->route('institutionType'), $institution]) }}" method="post"
-      id="delete-university-{{ $institution->id }}">
+    <form action="{{ route('institutions.destroy', [$institutionType, $institution]) }}" method="post"
+      id="delete-institution-{{ $institution->id }}">
       {{ csrf_field() }}
       {{ method_field('DELETE') }}
     </form>

@@ -1,9 +1,9 @@
 function showMapReplacementForm() {
-    hideButtonnMap();
+    hideButtonMap();
     $('#map-update-form').show();
-  }
+}
 
-  function hideButtonnMap() {
+function hideButtonMap() {
     $('#replace-map-button').hide();
     $('#map').hide();
-  }
+}

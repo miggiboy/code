@@ -47,13 +47,6 @@ class User extends Authenticatable
         return $this->getNameOrUsername();
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Helpers
-    |--------------------------------------------------------------------------
-    |
-    */
-
     /**
      * Returns first name attribute of this user
      *
@@ -97,7 +90,9 @@ class User extends Authenticatable
      */
     public function isAuthorised()
     {
-        return $this->hasRole(['developer', 'moderator', 'admin']);
+        $insiders = explode('|', config('entrust.roles.insiders'));
+
+        return $this->hasRole($insiders);
     }
 
     /**
@@ -111,12 +106,9 @@ class User extends Authenticatable
         $this->news()->save($news);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function roles()
     {

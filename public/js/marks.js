@@ -1,4 +1,5 @@
- function sendToggleRequest (itemType, itemId) {
+ function sendToggleRequest (itemType, itemId)
+ {
   axios.post('/marker', {
         'markable_type': itemType,
         'markable_id': itemId,
@@ -11,7 +12,8 @@
     });
  }
 
- $('.university.item').click(function (e) {
+ $('.university.item').click(function (e)
+ {
     if (e.target == this) {
       $(this).toggleClass('marked');
       sendToggleRequest($(this).attr('itemType'), $(this).attr('itemId'))
@@ -21,13 +23,15 @@
 // Toggle button
 
 
-function toggleMark (itemType, itemId) {
+function toggleMark (itemType, itemId)
+{
     sendToggleRequest(itemType, itemId)
     $('#marker').toggleClass('marked');
     changeText();
 }
 
-function changeText () {
+function changeText ()
+{
     if ($('#marker').hasClass('marked')) {
       $('#marker').text('Отмечено Вами')
     } else {

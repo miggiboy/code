@@ -33,7 +33,7 @@
 
     <div class="overlay">
       <div class="ui labeled icon tiny menu">
-        <a href="{{ route('article.edit', [$article->id]) }}" class="item">
+        <a href="{{ route('articles.edit', $article) }}" class="item">
           <i class="ui circular blue edit icon"></i> Редактировать
         </a>
       </div>

@@ -25,12 +25,9 @@ class Question extends Model
         return $this->answers()->where('is_right', true)->first();
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function answers()
     {

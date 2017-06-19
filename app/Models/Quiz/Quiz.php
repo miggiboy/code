@@ -14,12 +14,9 @@ class Quiz extends Model
      */
     protected $dates = ['deleted_at'];
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function subject()
     {

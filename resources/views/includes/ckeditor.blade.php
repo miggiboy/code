@@ -1,1 +1,1 @@
-<script src="/vendor/ckeditor/ckeditor.js"></script>
+<script src="/js/vendor/ckeditor/ckeditor.js"></script>

@@ -183,7 +183,7 @@ class SpecialtiesController extends Controller
             ->get();
 
         $specialties = $specialties->each(function ($item, $key) use ($request) {
-            $item->url = env('APP_URL') . '/specialties/' . $item->url . '?inst=' . $request->inst;
+            $item->url = config('app.url') . '/specialties/' . $item->url . '?inst=' . $request->inst;
         });
 
         return response()->json(['specialties' => $specialties]);

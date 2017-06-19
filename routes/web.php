@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Specialty\Specialty;
-
 /**
  * Temp
  */
@@ -91,9 +89,7 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
      * Specialty Search
      */
 
-    Route::group(['prefix' => '/search'], function () {
-        Route::get('/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
-    });
+    Route::get('/search/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
 });
 
 
@@ -105,7 +101,9 @@ Route::group(['namespace' => 'Professions'], function () {
 
     Route::resource('professions', 'ProfessionsController');
 
-    // Profession Specialties
+    /**
+     * Profession Specialties
+     */
     Route::resource('professions.specialties', 'ProfessionSpecialtiesController', ['except' => ['edit', 'update', 'show']]);
 });
 
@@ -116,9 +114,7 @@ Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], functio
      * Professions Search
      */
 
-    Route::group(['prefix' => '/search'], function () {
-        Route::get('/autocomplete', 'ProfessionsController@autocomplete')->name('professions.autocomplete');
-    });
+    Route::get('/search/autocomplete', 'ProfessionsController@autocomplete')->name('professions.autocomplete');
 });
 
 
@@ -191,6 +187,8 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
      */
      Route::post('/{institution}/pin', 'InstitutionPinsController@store')->name('universities.pins.store');
      Route::delete('/{institution}/pin', 'InstitutionPinsController@destroy')->name('universities.pins.destroy');
+
+
     /**
      * Institution Media
      */
@@ -244,5 +242,8 @@ Route::group(['namespace' => 'AccessControl'], function () {
 });
 
 
-// Articles
+/**
+ * Articles
+ */
+
 Route::resource('articles', 'ArticlesController');

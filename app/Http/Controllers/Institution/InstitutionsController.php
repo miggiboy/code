@@ -20,8 +20,30 @@ use App\Modules\Search\{
 };
 
 
-class InstitutionsController extends InstitutionsBaseController
+class InstitutionsController extends Controller
 {
+    /**
+     * Existing institution types
+     * @var array
+     */
+    protected static $institutionTypes = [
+        'colleges',
+        'universities',
+    ];
+
+    /**
+     * Throw 404 exception if institution type is not in
+     * self::$instituionTypes array
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (! in_array(\Request::route('institutionType'), self::$institutionTypes)) {
+            abort(404);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
@@ -138,7 +160,7 @@ class InstitutionsController extends InstitutionsBaseController
             ->get();
 
         $institutions = $institutions->each(function ($item, $key) {
-            $item->url = env('APP_URL') . '/institutions/' . str_plural($this->institutionType) . $item->url;
+            $item->url = config('app.url') . '/institutions/' . str_plural($this->institutionType) . $item->url;
             $item->acronym = ($item->acronym . ' ' ?: '') . City::find($item->city_id)->title;
         });
 

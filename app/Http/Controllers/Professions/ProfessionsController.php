@@ -125,7 +125,7 @@ class ProfessionsController extends Controller
             ->get();
 
         $professions = $professions->each(function ($item, $key) {
-            $item->url = env('APP_URL') . '/professions/' . $item->url;
+            $item->url = config('app.url') . '/professions/' . $item->url;
         });
 
         return response()->json(['professions' => $professions]);

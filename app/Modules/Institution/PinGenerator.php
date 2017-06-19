@@ -2,8 +2,7 @@
 
 namespace App\Modules\Institution;
 
-use App\Models\College\College;
-use App\Models\University\University;
+use App\Models\Institution\Institution;
 
 class PinGenerator
 {
@@ -27,8 +26,6 @@ class PinGenerator
 
     private static function getExistingPins()
     {
-        return array_merge(
-            College::pluck('pin')->all(), University::pluck('pin')->all()
-        );
+        return Institution::pluck('pin')->all();
     }
 }

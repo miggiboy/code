@@ -17,7 +17,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderBy('created_at', 'desc')->with(['user'])->take(30)->get();
+        $news = News::orderBy('created_at', 'desc')
+            ->with(['user'])
+            ->take(30)
+            ->get();
 
         return view('home', compact('news'));
     }

@@ -10,7 +10,7 @@
 
 @section ('styles')
 
-  <link rel='stylesheet' href='/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
+  <link rel='stylesheet' href='/js/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
 
   <style>
     #map-update-form {
@@ -61,43 +61,12 @@
   <script src="/js/map.js"></script>
   <script src="/js/marks.js"></script>
 
-  <script src='/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
-  <script src='/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
+  <script src='/js/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
+  <script src='/js/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
 
   <script src="/js/medialibrary.js"></script>
 
   <script>
-
-    function showPin(institutionId)
-    {
-       let pin = {{ $institution->pin }}
-
-       //
-    }
-
-    function generatePin(institutionId)
-    {
-
-      axios.post('/' + institutionId + '/pin')
-        .then(function (response) {
-          console.log(response)
-        })
-        .catch(function (error) {
-          console.log(error)
-        });
-
-      showPin()
-    }
-
-    function showPin()
-    {
-        $('#pin-label').text('Пин вуза: ' + {{ $institution->pin }})
-    }
-
-    function hidePin()
-    {
-       $('#pin-label').text('Показать пин')
-    }
 
     jQuery("#gallery").unitegallery({
       tile_width:100,

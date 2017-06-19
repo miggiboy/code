@@ -6,6 +6,10 @@ use Exception;
 
 class Translator
 {
+    /**
+     * Dictionary of the translator
+     * @var array
+     */
     private static $dictionary = [
         'college' => [
             'i' => [
@@ -136,6 +140,16 @@ class Translator
         ],
     ];
 
+    /**
+     * Primary method
+     * translates given word into russian
+     * with conjugation and required number
+     * @param  string  $word
+     * @param  char    $conjugation
+     * @param  char    $number
+     * @param  boolean $ucFirst
+     * @return string
+     */
     public static function get($word, $conjugation = 'i', $number = 's', $ucFirst = false)
     {
         $word = static::normalize($word);
@@ -146,6 +160,16 @@ class Translator
         return $ucFirst ? static::mbUcfirst($translated) : $translated;
     }
 
+    /**
+     * Throw and exception if
+     * * word is not in dictionary
+     * * wrong conjugation rule
+     * * wrong number rule
+     * @param  string $word
+     * @param  char   $conjugation
+     * @param  char   $number
+     * @return mixed
+     */
     protected static function validate($word, $conjugation, $number)
     {
         if (! isset(self::$dictionary[$word])) {
@@ -161,6 +185,12 @@ class Translator
         }
     }
 
+    /**
+     * uc_first function for utf-8 strings
+     * @param  string $string
+     * @param  string $encoding
+     * @return string
+     */
     protected static function mbUcfirst($string, $encoding = 'UTF-8')
     {
         $strlen = mb_strlen($string, $encoding);
@@ -170,6 +200,11 @@ class Translator
         return mb_strtoupper($firstChar, $encoding) . $then;
     }
 
+    /**
+     * Returns word in lower case and sungularized
+     * @param  string $word
+     * @return string
+     */
     protected static function normalize($word)
     {
         return strtolower(str_singular($word));

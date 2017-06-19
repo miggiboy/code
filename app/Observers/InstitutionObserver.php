@@ -7,13 +7,13 @@ use App\Support\Slug\UniqueSlug;
 
 class InstitutionObserver
 {
-    public function creating(Institution $university)
+    public function creating(Institution $institution)
     {
-        $university->slug = (new UniqueSlug)->create($university);
+        $institution->slug = (new UniqueSlug)->create($institution);
     }
 
-    public function updating(Institution $university)
+    public function updating(Institution $institution)
     {
-        $university->slug = (new UniqueSlug)->create($university);
+        $institution->slug = (new UniqueSlug)->create($institution);
     }
 }

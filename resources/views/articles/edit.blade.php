@@ -8,11 +8,11 @@
 
 @section ('content')
 
-    @include ('layouts.ckeditor')
+    @include ('includes.ckeditor')
 
-    @include ('layouts.form-errors')
+    @include ('includes.form-errors')
 
-    <form action="{{ route('article.update', $article) }}"
+    <form action="{{ route('articles.update', $article) }}"
           method="post"
           class="ui form"
           style="margin-bottom: 35px; margin-top: 25px;">

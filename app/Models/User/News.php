@@ -13,6 +13,10 @@ class News extends Model
      */
     use LocalizedEloquentTrait;
 
+    /**
+     * Relations
+     */
+
     public function user()
     {
         return $this->belongsTo(User::class);

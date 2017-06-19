@@ -14,12 +14,9 @@ class Subject extends Model implements HasMedia
      */
     use HasMediaTrait;
 
-    /*
-    |------------------------------------------
-    | Relations with other tables
-    |------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function specialties()
     {

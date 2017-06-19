@@ -28,12 +28,9 @@ class Article extends Model
         return config('primary_app.urls.' . 'articles') . $this->slug;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relations with other tables
-    |--------------------------------------------------------------------------
-    |
-    */
+    /**
+     * Relations
+     */
 
     public function categories()
     {

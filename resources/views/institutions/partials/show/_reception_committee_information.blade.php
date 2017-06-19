@@ -54,7 +54,7 @@
       @endif
 
       @if (isset($institution->reception->address))
-          <div class="column">
+          <div class="five wide column">
               <h5 class="ui header">Адрес приемной ком. </h5>
               <div class="content">{{ $institution->reception->address }}</div>
           </div>

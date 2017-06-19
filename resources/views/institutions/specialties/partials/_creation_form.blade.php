@@ -1,7 +1,7 @@
-<form action="{{ route('institutions.specialties.store', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
+<form action="{{ route('institutions.specialties.store', [$institution, Request::route('studyForm')]) }}"
       method="post">
     {{ csrf_field() }}
-    <input type="hidden" name="form" value='{{ request()->route('studyForm') }}'>
+    <input type="hidden" name="form" value='{{ Request::route('studyForm') }}'>
 
     <div class="ui form" style="position: relative; margin-bottom: 25px;">
         <select name="specialties[]" class="ui fluid search dropdown" multiple="">

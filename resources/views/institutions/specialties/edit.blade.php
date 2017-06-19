@@ -24,12 +24,12 @@
 
   <div class="ui custom container">
     <h2 style="margin-bottom: 50px; text-align: center;">
-      <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}"
+      <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"
          target="_blank"
          title="{{ $institution->title }}">
         {{ str_limit($institution->title, 55) }}
       </a><br>
-      специальности {{ Translator::get(request()->route('studyForm'), 'r', 's') }}
+      специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}
     </h2>
     @include ('institutions/specialties/partials/_edition_form')
   </div>

@@ -26,20 +26,19 @@
 @section ('content')
   <div class="ui custom container">
     <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
-      Специальности {{ Translator::get(request()->route('studyForm'), 'r', 's') }}
-                    {{ Translator::get(request()->route('institutionType'), 'r', 's') }}<br>
+      Специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}<br>
 
-      <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}">
+      <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}">
         {{ str_limit($institution->title, 50) }}
       </a><br>
       @if ($institution->specialties->count())
-        <a href="{{ route('institutions.specialties.edit', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
+        <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
         Редактировать
         </a>
       @else
-        <a href="{{ route('institutions.specialties.create', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
+        <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
           Добавить специальности

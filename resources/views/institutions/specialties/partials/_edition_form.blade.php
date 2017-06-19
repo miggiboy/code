@@ -1,4 +1,4 @@
-<form action="{{ route('institutions.specialties.update', [request()->route('institutionType'), $institution, request()->route('studyForm')]) }}"
+<form action="{{ route('institutions.specialties.update', [$institution, Request::route('studyForm')]) }}"
     method="post"
     style="text-align: center;">
     {{ method_field('PATCH') }}

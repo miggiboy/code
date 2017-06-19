@@ -18,10 +18,10 @@ class InstitutionSpecialtiesController extends Controller
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index($institutionType, Institution $institution, $studyForm)
+    public function index(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->at($studyForm)->orderBy('title');
+            $query->atForm($studyForm)->orderBy('title');
         }]);
 
         return view('institutions.specialties.index', compact('institution'));
@@ -32,13 +32,15 @@ class InstitutionSpecialtiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($institutionType, Institution $institution, $studyForm)
+    public function create(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->at($studyForm);
+            $query->atForm($studyForm);
         }]);
 
-        $specialties = Specialty::of($institutionType)->orderBy('title')->get();
+        $specialties = Specialty::of($institution->type)
+            ->orderBy('title')
+            ->get();
 
         return view('institutions.specialties.create', compact('institution', 'specialties'));
     }
@@ -49,17 +51,17 @@ class InstitutionSpecialtiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($institutionType, Institution $institution, $studyForm, Request $request)
+    public function store(Institution $institution, $studyForm, Request $request)
     {
         $institution->attachSpecialties($request, $studyForm);
 
         session()->flash('message', 'Специальности прикреплены');
 
         if ($studyForm == 'full-time') {
-            return redirect()->route('institutions.specialties.create', [$institutionType, $institution, 'extramural']);
+            return redirect()->route('institutions.specialties.create', [$institution, 'extramural']);
         }
 
-        return redirect()->route('institutions.show', [$institutionType, $institution]);
+        return redirect()->route('institutions.show', [str_plural($institution->type), $institution]);
     }
 
     /**
@@ -68,10 +70,10 @@ class InstitutionSpecialtiesController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function edit($institutionType, Institution $institution, $studyForm)
+    public function edit(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->at($studyForm);
+            $query->atForm($studyForm);
         }]);
 
         return view('institutions.specialties.edit', compact('institution'));
@@ -84,14 +86,14 @@ class InstitutionSpecialtiesController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function update($institutionType, Institution $institution, $studyForm, SpecialtyRequest $request)
+    public function update(Institution $institution, $studyForm, SpecialtyRequest $request)
     {
         $specialtyDetails = collect($request->specialty_details);
 
         $specialtyDetails->each(function ($item, $key) use ($institution, $studyForm) {
             $institution->specialties()
                 ->wherePivot('specialty_id', $key)
-                ->at($studyForm)
+                ->atForm($studyForm)
                 ->update([
                     'study_price'      => $item['price'],
                     'study_period'     => $item['study_period'],
@@ -99,7 +101,7 @@ class InstitutionSpecialtiesController extends Controller
         });
 
         return redirect()
-            ->route('institutions.specialties.index', [$institutionType, $institution, $studyForm])
+            ->route('institutions.specialties.index', [$institution, $studyForm])
             ->with('message', 'Изменения внесены успешно');
     }
 
@@ -109,7 +111,7 @@ class InstitutionSpecialtiesController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function destroy($institutionType, Institution $institution, $studyForm, Specialty $specialty)
+    public function destroy(Institution $institution, $studyForm, Specialty $specialty)
     {
         $institution->specialties()
             ->wherePivot('specialty_id', $specialty->id)

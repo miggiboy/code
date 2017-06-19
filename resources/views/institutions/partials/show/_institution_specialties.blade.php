@@ -14,10 +14,10 @@
             <div class="header"><i class="tags icon"></i>  Опции </div>
             <div class="divider"></div>
             @if ($fullTimeSpecialtiesCount = $institution->specialties()->atForm('full-time')->count())
-              <a href="{{ route('institutions.specialties.edit', [$institutionType, $institution, 'full-time']) }}"   class="item">
+              <a href="{{ route('institutions.specialties.edit', [$institution, 'full-time']) }}"   class="item">
               <i class="blue edit icon"></i>Задать цены, сроки</a>
             @endif
-            <a href="{{ route('institutions.specialties.create', [$institutionType, $institution, 'full-time']) }}"   class="item">
+            <a href="{{ route('institutions.specialties.create', [$institution, 'full-time']) }}"   class="item">
             <i class="circle green add icon"></i>Добавить</a>
 
           </div>
@@ -25,7 +25,7 @@
 
         <i class="large teal student middle aligned icon"></i>
         <div class="content">
-          <a href="{{ route('institutions.specialties.index', [$institutionType, $institution, 'full-time']) }}"
+          <a href="{{ route('institutions.specialties.index', [$institution, 'full-time']) }}"
              class="header">Очная форма ({{ $fullTimeSpecialtiesCount }})</a>
         </div>
       </div>
@@ -37,17 +37,17 @@
             <div class="header"><i class="tags icon"></i>  Опции </div>
             <div class="divider"></div>
             @if ($extramuralSpecialtiesCount = $institution->specialties()->atForm('extramural')->count())
-              <a href="{{ route('institutions.specialties.edit', [$institutionType, $institution, 'extramural']) }}" class="item">
+              <a href="{{ route('institutions.specialties.edit', [$institution, 'extramural']) }}" class="item">
               <i class="blue edit icon"></i>Задать цены, сроки</a>
             @endif
-            <a href="{{ route('institutions.specialties.create', [$institutionType, $institution, 'extramural']) }}" class="item">
+            <a href="{{ route('institutions.specialties.create', [$institution, 'extramural']) }}" class="item">
             <i class="circle green add icon"></i>Добавить</a>
           </div>
         </div>
 
         <i class="large teal student middle aligned icon"></i>
         <div class="content">
-          <a href="{{ route('institutions.specialties.index', [$institutionType, $institution, 'extramural']) }}"
+          <a href="{{ route('institutions.specialties.index', [$institution, 'extramural']) }}"
           class="header">Заочная форма ({{ $extramuralSpecialtiesCount }})</a>
         </div>
       </div>

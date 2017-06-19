@@ -11,7 +11,7 @@
       <td>
         <h4 class="ui header">
           <div class="content">
-            <a href="{{ route('specialties.show', [$specialty, 'inst' => 1]) }}">
+            <a href="{{ route('specialties.show', [$specialty->getBelongsTo(), $specialty]) }}">
               {{ $specialty->title }}
             </a>
             <div class="sub header"> {{ $specialty->code }}
@@ -34,7 +34,7 @@
            document.getElementById('detach-specialty-{{ $specialty->id }}').submit();">
             <i class="trash outline icon"></i>
         </a>
-        <form action="{{ route('institutions.specialties.destroy', [request()->route('institutionType'), $institution, request()->route('studyForm'), $specialty]) }}"
+        <form action="{{ route('institutions.specialties.destroy', [$institution, Request::route('studyForm'), $specialty]) }}"
          id="detach-specialty-{{ $specialty->id }}" method="post">
           {{ csrf_field() }}
           {{ method_field('DELETE') }}

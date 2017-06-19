@@ -8,10 +8,13 @@
     <div class="ui text container" style="margin-bottom: 10px;">
 
         <h2 style="margin-bottom: 30px; text-align: center;">
-            Специальности {{ Translator::get(request()->route('studyForm'), 'r', 's') }}
+            Специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}
 
             <br>
-            <a href="{{ route('institutions.show', [request()->route('institutionType'), $institution]) }}" target="_blank" title="{{ $institution->title }}">
+            <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"
+               target="_blank"
+               title="{{ $institution->title }}">
+
                 {{ str_limit($institution->title, 50) }}
             </a>
         </h2>

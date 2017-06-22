@@ -3,10 +3,9 @@
     @foreach ($institutions as $institution)
           <div class="university item{{ $institution->marked_by_current_user ? ' marked' : '' }}"
                style="cursor: default;"
-               itemType="University"
                itemId="{{ $institution->id }}">
 
-            @include ('institutions/partials/_options')
+            @include ('institutions/partials/_options', ['edit_target_blank' => true])
             <div class="right floated content">
               <div>ID:  {{ $institution->id }}</div>
             </div>
@@ -20,7 +19,7 @@
                 {{ $institution->title }}
               </a><br>
                 @if ($institution->is_paid)
-                  <a class="ui yellow label" title="Вуз оплатил рекламу на сайте">Платник</a>&nbsp;
+                  <a class="ui yellow label">Платник</a>&nbsp;
                 @endif
                 {{ $institution->city->title }}
             </div>

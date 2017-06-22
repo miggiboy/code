@@ -3,7 +3,7 @@
     @foreach ($specialties as $specialty)
           <div class="university item{{ $specialty->markedByCurrentUser ? ' marked' : '' }}" style="cursor: default;"
               itemType="specialty" itemId="{{ $specialty->id }}">
-            @include ('specialties/partials/_options')
+            @include ('specialties/partials/_options', ['edit_target_blank' => true])
             <div class="right floated content">
               <div>ID:  {{ $specialty->id }}</div>
             </div>

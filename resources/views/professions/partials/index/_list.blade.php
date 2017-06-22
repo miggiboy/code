@@ -4,7 +4,7 @@
       <div class="university item{{ $profession->markedByCurrentUser ? ' marked' : '' }}" style="cursor: default;"
     itemType="profession" itemId="{{ $profession->id }}">
 
-        @include ('professions/partials/_options')
+        @include ('professions/partials/_options', ['edit_target_blank' => true])
         <div class="right floated content">
           <div>ID:  {{ $profession->id }}</div>
         </div>

@@ -3,18 +3,19 @@
   <div class="menu">
     <div class="header"><i class="tags icon"></i>  Опции </div>
     <div class="divider"></div>
-    <a href="{{ route('specialties.edit', [$institutionType, $specialty]) }}" class="item" target="_blank">
+    <a href="{{ route('specialties.edit', [$institutionType, $specialty]) }}"
+       class="item"
+       @isset ($edit_target_blank) target="_blank" @endisset>
       <i class="blue edit icon"></i>  Редактировать
-    </a>
-
-    <a href="{{ url($specialty->googleSearchUrl()) }}" class="item" target="_blank">
-      <i class="green google icon"></i> Найти в Google
     </a>
 
     <a href="{{ url($specialty->urlAtPrimaryApp()) }}" class="item" target="_blank">
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
 
+    <a href="{{ url($specialty->googleSearchUrl()) }}" class="item" target="_blank">
+      <i class="green google icon"></i> Найти в Google
+    </a>
 
     <div class="divider"></div>
 

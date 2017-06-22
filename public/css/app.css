@@ -37,3 +37,7 @@ article {
   font-size: 1rem !important;
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
 }
+
+#map-update-form {
+  display: none;
+}

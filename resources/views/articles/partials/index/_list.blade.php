@@ -10,7 +10,9 @@
                 <div class="divider"></div>
 
                 {{-- Editing --}}
-                <a href="{{ route('articles.edit', $article) }}" class="item" target="_blank">
+                <a href="{{ route('articles.edit', $article) }}"
+                   class="item"
+                   target="_blank">
                   <i class="blue edit icon"></i> Редактировать
                 </a>
                 {{-- Editing end --}}

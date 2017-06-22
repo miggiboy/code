@@ -13,10 +13,6 @@
   <link rel='stylesheet' href='/js/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
 
   <style>
-    #map-update-form {
-      display: none;
-    }
-
     .overlay {
         position: fixed; bottom: 42px; right: 37px; z-index: 10;
     }
@@ -26,7 +22,7 @@
 @section ('content')
 <div class="ui very relaxed grid">
 
-  <div class="nine wide column" style="margin-right: 46px;">
+  <div class="nine wide column" style="margin-right: 65px;">
 
     @include ('institutions/partials/show/_media_gallery')
 
@@ -67,7 +63,6 @@
   <script src="/js/medialibrary.js"></script>
 
   <script>
-
     jQuery("#gallery").unitegallery({
       tile_width:100,
       tile_height:100,

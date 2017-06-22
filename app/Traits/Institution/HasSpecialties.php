@@ -15,9 +15,7 @@ trait HasSpecialties
      */
     public function atForm($studyForm)
     {
-        return $this->specialties()->at($studyForm)
-            ->orderBy('title')
-            ->get();
+        return $this->specialties()->at($studyForm)->get();
     }
 
     /**

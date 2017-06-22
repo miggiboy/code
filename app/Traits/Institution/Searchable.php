@@ -54,11 +54,9 @@ trait Searchable
      */
     public function scopeHasSpecialities($query, $has = true)
     {
-        if ($has) {
-            $query->has('specialities');
-        } else {
-            $query->doesntHave('specialities');
-        }
+        return $has
+            ? $query->has('specialties')
+            : $query->doesntHave('specialties');
     }
 
     /**
@@ -71,11 +69,9 @@ trait Searchable
      */
     public function scopeHasReception($query, $has = true)
     {
-        if ($has) {
-            $query->has('reception');
-        } else {
-            $query->doesntHave('reception');
-        }
+        return $has
+            ? $query->has('reception')
+            : $query->doesntHave('reception');
     }
 
     /**
@@ -88,11 +84,9 @@ trait Searchable
      */
     public function scopeHasMap($query, $has = true)
     {
-        if ($has) {
-            $query->has('map');
-        } else {
-            $query->doesntHave('map');
-        }
+        return $has
+            ? $query->has('map')
+            : $query->doesntHave('map');
     }
 
     public function scopeIsPaid($query, $isPaid = true)

@@ -62,9 +62,9 @@ class Institution extends Model implements HasMediaConversions
      * @var array
      */
     protected $casts = [
-        'is_paid'           => 'boolean',
         'has_dormitory'     => 'boolean',
         'has_military_dep'  => 'boolean',
+        'is_paid'           => 'boolean',
     ];
 
 

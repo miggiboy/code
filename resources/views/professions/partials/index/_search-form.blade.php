@@ -6,8 +6,8 @@
       <div class="ui fluid professions search">
         <div class="ui right icon input">
           <input type="text"
-                 name = "s[query]"
-                 value="{{ request('s.query') }}"
+                 name = "query"
+                 value="{{ request('query') }}"
                  class="prompt"
                  placeholder="Начните вводить название профессии ..."
                  autofocus>
@@ -18,12 +18,12 @@
     </div>
 
     <div class="four wide field">
-        <select class="ui selection search dropdown" name="s[direction]">
+        <select class="ui selection search dropdown" name="direction">
           <option value="">Проф-направление</option>
           <option value=" ">Не выбрано</option>
            @foreach ($categories as $category)
              <option value="{{ $category->id }}"
-                     {{ (request('s.direction') == $category->id) ? 'selected' : '' }}>
+                     {{ (request('direction') == $category->id) ? 'selected' : '' }}>
                {{ $category->title }}
              </option>
            @endforeach
@@ -38,11 +38,11 @@
   <div class="three wide field" style="margin-top: 7px; margin-top: 7px;">
     <div class="ui checkbox">
       <input type="checkbox"
-             name="s[marked]"
+             name="marked"
              value="1"
              tabindex="0"
              class="hidden"
-             {{ (request('s.marked') == "1") ? 'checked' : '' }}>
+             {{ (request('marked') == "1") ? 'checked' : '' }}>
       <label>Отмеченные</label>
     </div>
   </div>

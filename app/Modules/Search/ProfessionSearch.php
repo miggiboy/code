@@ -8,15 +8,15 @@ class ProfessionSearch
     {
         $q = \App\Models\Profession\Profession::query();
 
-        if ($request->has('s.query')) {
-            $q->like($request->s['query']);
+        if ($request->has('query')) {
+            $q->like($request->query);
         }
 
-        if ($request->has('s.direction')) {
-            $q->ofDirection($request->s['direction']);
+        if ($request->has('direction')) {
+            $q->ofDirection($request->direction);
         }
 
-        if ($request->has('s.marked')) {
+        if ($request->has('marked')) {
             $q->markedByCurrentUser();
         }
 

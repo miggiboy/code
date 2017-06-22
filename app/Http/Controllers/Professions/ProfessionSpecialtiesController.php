@@ -12,28 +12,28 @@ class ProfessionSpecialtiesController extends Controller
 {
     public function create(Profession $profession)
     {
-        $specialties = Specialty::orderBy('title')->get(['id', 'title', 'code']);
+        $specialties = Specialty::orderBy('title')->get();
 
         return view('professions.specialties.create', compact('profession', 'specialties'));
     }
 
     public function store(Request $request, Profession $profession)
     {
-        $profession->specialities()->syncWithoutDetaching($request->specialties);
+        $profession->specialties()->syncWithoutDetaching($request->specialties);
 
         return redirect()
             ->route('professions.show', $profession)
-            ->with('message', 'Специальности привязаны к профессии.');
+            ->with('message', 'Специальности привязаны к профессии');
     }
 
     public function destroy(Profession $profession, Specialty $specialty)
     {
-        $profession->specialities()
+        $profession->specialties()
             ->wherePivot('specialty_id', $specialty->id)
             ->detach();
 
         return redirect()
             ->route('professions.show', $profession)
-            ->with('message', 'Специальность откреплена от профессии.');
+            ->with('message', 'Специальность откреплена');
     }
 }

@@ -27,11 +27,8 @@ class ProfessionsController extends Controller
      */
     public function index(Request $request)
     {
-        $professions = $request->has('s')
-            ? ProfessionSearch::filter($request)
-            : Profession::query();
-
-        $professions = $professions->orderBy('title')
+        $professions = ProfessionSearch::filter($request)
+            ->orderBy('title')
             ->with(['profDirection', 'marks'])
             ->paginate(15);
 

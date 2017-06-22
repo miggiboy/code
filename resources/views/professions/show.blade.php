@@ -6,24 +6,24 @@
     @include('professions.partials.navigation', ['pageTitle' => "Профессия \"". $profession->title ."\""])
 @endsection
 
-@section ('styles')
-    <style>
-        .ui.container.custom {
-            margin-bottom: 30px;
-            font-family: Verdana, sans-serif;
-            font-size: 15px;
-            margin-top: 10px;
-            margin-bottom: 40px;
-            padding: 0 350px 0 0;
-        }
-        .overlay {
-            position: fixed; bottom: 30px; left: 22px; z-index: 10;
-        }
+@section ('head')
+  <style>
+      .ui.container.custom {
+          margin-bottom: 30px;
+          font-family: Verdana, sans-serif;
+          font-size: 15px;
+          margin-top: 10px;
+          margin-bottom: 40px;
+          padding: 0 350px 0 0;
+      }
+      .overlay {
+          position: fixed; bottom: 30px; left: 22px; z-index: 10;
+      }
 
-        .ui.container.custom img {
-          margin: 15px;
-        }
-    </style>
+      .ui.container.custom img {
+        margin: 15px;
+      }
+  </style>
 @endsection
 
 @section ('content')

@@ -6,7 +6,7 @@
     @include ('articles.partials.navigation', ['pageTitle' => $article->title])
 @endsection
 
-@section ('styles')
+@section ('head')
     <style>
         .ui.container.custom {
             margin-top: 25px;

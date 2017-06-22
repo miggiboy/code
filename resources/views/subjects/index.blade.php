@@ -6,7 +6,7 @@
     @include ('subjects.partials.navigation', ['pageTitle' => ''])
 @endsection
 
-@section ('styles')
+@section ('head')
   <style>
       .centered.header{
         text-align: center;
@@ -31,7 +31,7 @@
     <div class="centered header">
       <h1>Предметы</h1>
     </div>
-    
+
     <div class="ui custom container">
       @if($subjects->count())
         <div class="ui cards">

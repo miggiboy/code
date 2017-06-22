@@ -7,11 +7,11 @@
 @endsection
 
 @section ('content')
-    @include ('layouts.ckeditor')
+    @include ('includes.ckeditor')
 
-    @include ('layouts.form-errors')
+    @include ('includes.form-errors')
 
-    <form action="{{ route('professions') }}" method="post" class="ui form" style="margin-bottom: 35px; margin-top: 25px;">
+    <form action="{{ route('professions.store') }}" method="post" class="ui form" style="margin-bottom: 35px; margin-top: 25px;">
       {{ csrf_field() }}
 
       <div class="two fields">

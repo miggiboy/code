@@ -4,7 +4,7 @@
   {{ $institution->title }} - специальности
 @endsection
 
-@section ('styles')
+@section ('head')
   <style>
     .custom.container {
       width:1000px;

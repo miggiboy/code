@@ -5,7 +5,7 @@
     @include ('quizzes.partials.navigation', ['pageTitle' => 'Добавление теста'])
 @endsection
 
-@section ('styles')
+@section ('head')
 <style>
     textarea {
         font-family: Verdana, Arial, Helvetica, sans-serif;

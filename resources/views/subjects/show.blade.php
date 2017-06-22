@@ -8,7 +8,7 @@
     @include ('subjects.partials._subject_navigation', ['pageTitle' => $subject->title])
 @endsection
 
-@section ('styles')
+@section ('head')
   <style>
     .ui.card {
       margin-left: 55px !important;

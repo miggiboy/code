@@ -8,7 +8,7 @@
     @include('institutions.partials.navigation', ['view' => 'show', 'pageTitle' => $institution->title])
 @endsection
 
-@section ('styles')
+@section ('head')
 
   <link rel='stylesheet' href='/js/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
 

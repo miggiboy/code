@@ -4,7 +4,7 @@
   {{ $specialty->title }} - связанные профессии
 @endsection
 
-@section ('styles')
+@section ('head')
   <style>
     .custom.container {
       width:700px;

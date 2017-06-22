@@ -4,7 +4,7 @@
   {{ $institution->title }} - специальности
 @endsection
 
-@section ('content')
+@section ('head')
   <style>
     .custom.container {
       width: 1000px;
@@ -21,6 +21,9 @@
     text-decoration: none;
    }
   </style>
+@endsection
+
+@section ('content')
 
   <div class="ui custom container">
     <h2 style="margin-bottom: 50px; text-align: center;">

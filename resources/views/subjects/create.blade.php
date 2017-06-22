@@ -8,7 +8,7 @@
     @include ('subjects.partials.navigation', ['pageTitle' => ''])
 @endsection
 
-@section ('styles')
+@section ('head')
   <style>
       .centered.header{
         text-align: center;

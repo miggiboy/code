@@ -34,15 +34,6 @@
     </div>
   </div>
 
-  {{-- <div class="ui search universities item">
-    <form action="{{ route('universities.search') }}" method="GET" class="ui form">
-      <div class="ui icon input" style="width:250px;">
-          <input type="text" placeholder="Университет..." class="prompt" autocomplete="off" name="query">
-          <i class="search link icon"></i>
-      </div>
-    </form>
-  </div> --}}
-
   <div class="right menu">
 
     @if (Auth::check())

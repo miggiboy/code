@@ -11,39 +11,39 @@ trait Searchable
      * @param integer $subjectId
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasSubject($query, $subjectId)
+    public function scopeHasSubject($query, $subject)
     {
         return $query
-            ->whereHas('subjects', function($q) use($subjectId) {
-                $q->where('id', $subjectId);
+            ->whereHas('subjects', function($q) use($subject) {
+                $q->where('id', $subject);
             });
     }
 
     /**
      * Includes specialties which belong to this direction
      *
-     * @param integer $directionId
+     * @param integer $direction
      * @return \Illuminate\Support\Collection
      */
-    public function scopeInDirection($query, $directionId)
+    public function scopeInDirection($query, $direction)
     {
         return $query
-            ->whereHas('direction', function($q) use($directionId) {
-                $q->where('id', $directionId);
+            ->whereHas('direction', function($q) use($direction) {
+                $q->where('id', $direction);
             });
     }
 
     /**
      * Includes specialties which title or code is like query parameter
      *
-     * @param string $queryString
+     * @param string $q
      * @return \Illuminate\Support\Collection
      */
-    public function scopeLike($query, $queryString)
+    public function scopeLike($query, $q)
     {
         return $query
-            ->where('title', 'like', "%{$queryString}%")
-            ->orWhere('code', 'like', "%{$queryString}%");
+            ->where('title', 'like', "%{$q}%")
+            ->orWhere('code', 'like', "%{$q}%");
     }
 
     /**

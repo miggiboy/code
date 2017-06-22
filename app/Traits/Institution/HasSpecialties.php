@@ -28,8 +28,10 @@ trait HasSpecialties
     public function hasSpecialty($specialtyId, $studyForm)
     {
         return (bool) $this->specialties()
-            ->wherePivot('specialty_id', $specialtyId)
-            ->wherePivot('form', $studyForm)
+            ->wherePivot([
+                'specialty_id' => $specialtyId,
+                'form' => $studyForm
+            ])
             ->count();
     }
 

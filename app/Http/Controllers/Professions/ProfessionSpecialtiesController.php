@@ -17,7 +17,7 @@ class ProfessionSpecialtiesController extends Controller
         return view('professions.specialties.create', compact('profession', 'specialties'));
     }
 
-    public function store(Profession $profession, Request $request)
+    public function store(Request $request, Profession $profession)
     {
         $profession->specialities()->syncWithoutDetaching($request->specialties);
 

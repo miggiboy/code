@@ -94,7 +94,7 @@ class ProfessionsController extends Controller
      * @param  \App\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function update(Profession $profession, ProfessionFormRequest $request)
+    public function update(ProfessionFormRequest $request, Profession $profession)
     {
 
         $profession->update($request->all());

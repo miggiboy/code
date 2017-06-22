@@ -10,7 +10,7 @@ use App\Http\Requests\ImageRequest;
 
 class InstitutionMediaController extends Controller
 {
-    public function store(University $university, ImageRequest $request)
+    public function store(ImageRequest $request, University $university)
     {
         foreach ($request->file('images') as $image) {
             $university

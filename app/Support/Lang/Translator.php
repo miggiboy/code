@@ -109,8 +109,8 @@ class Translator
 
         'extramural' => [
             'i' => [
-                's' => 'очная форма',
-                'p' => 'очные формы',
+                's' => 'заочная форма',
+                'p' => 'заочные формы',
             ],
 
             'r' => [
@@ -161,7 +161,7 @@ class Translator
     }
 
     /**
-     * Throw and exception if
+     * Throw an exception if
      * * word is not in dictionary
      * * wrong conjugation rule
      * * wrong number rule

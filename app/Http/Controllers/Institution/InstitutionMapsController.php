@@ -17,7 +17,7 @@ class InstitutionMapsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Institution $institution, Request $request)
+    public function store(Request $request, Institution $institution)
     {
         $this->validate($request, [
             'source_code' => 'required'
@@ -37,7 +37,7 @@ class InstitutionMapsController extends Controller
      * @param  \App\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function update(Institution $institution, Request $request)
+    public function update(Request $request, Institution $institution)
     {
         $this->validate($request, [
             'source_code' => 'required'

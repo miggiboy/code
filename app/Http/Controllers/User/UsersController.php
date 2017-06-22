@@ -43,8 +43,8 @@ class UsersController extends Controller
         return back()->withMessage('Role permissions granted');
     }
 
-    public function autocomplete(Request $request){
-
+    public function autocomplete(Request $request)
+    {
         $users = User::select("username")
             ->where("username", "LIKE", "%{$request->input('query')}%")
             ->get();

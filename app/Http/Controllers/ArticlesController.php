@@ -91,7 +91,7 @@ class ArticlesController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Article $article, ArticleFormRequest $request)
+    public function update(ArticleFormRequest $request, Article $article)
     {
         $article->update($request->except('new_category', 'categories'));
 

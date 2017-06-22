@@ -63,7 +63,7 @@ class SpecialtiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($institutionType, SpecialtyFormRequest $request)
+    public function store(SpecialtyFormRequest $request, $institutionType)
     {
         if ($request->model_type == 'specialty') {
             if (! is_numeric($request->direction_id)) {
@@ -131,7 +131,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($institutionType, Specialty $specialty, SpecialtyFormRequest $request)
+    public function update(SpecialtyFormRequest $request, $institutionType, Specialty $specialty)
     {
         $specialty->update(request([
             'title',
@@ -159,7 +159,7 @@ class SpecialtiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($institutionType, Specialty $specialty, Request $request)
+    public function destroy(Request $request, $institutionType, Specialty $specialty)
     {
         $specialty->delete();
 
@@ -172,8 +172,8 @@ class SpecialtiesController extends Controller
      * Search methods
      */
 
-    public function autocomplete(Request $request){
-
+    public function autocomplete(Request $request)
+    {
         $specialties = Specialty::select('slug as url', 'title', 'code')
             ->like($request->input('query'))
             ->whereHas('direction', function ($query) use ($request) {

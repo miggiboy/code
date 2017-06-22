@@ -48,7 +48,7 @@ class InstitutionsController extends Controller
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */
-    public function index($institutionType, Request $request)
+    public function index(Request $request, $institutionType)
     {
         $institutions = InstitutionSearch::filter($request)
             ->orderBy('title')
@@ -118,7 +118,7 @@ class InstitutionsController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function update($institutionType, Institution $institution, InstitutionFormRequest $request)
+    public function update(InstitutionFormRequest $request, $institutionType, Institution $institution)
     {
         $institution->update($request->except('reception', 'add_specialities'));
 

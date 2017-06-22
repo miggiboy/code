@@ -24,7 +24,7 @@ class SubjectMediaController extends Controller
         return view('subjects.files.index', compact('subject'));
     }
 
-    public function store(Subject $subject, StoreFileRequest $request)
+    public function store(StoreFileRequest $request, Subject $subject)
     {
         foreach ($request->file('files') as $image) {
             $subject

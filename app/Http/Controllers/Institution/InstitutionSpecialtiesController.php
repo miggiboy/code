@@ -51,7 +51,7 @@ class InstitutionSpecialtiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Institution $institution, $studyForm, Request $request)
+    public function store(Request $request, Institution $institution, $studyForm)
     {
         $institution->attachSpecialties($request, $studyForm);
 
@@ -86,7 +86,7 @@ class InstitutionSpecialtiesController extends Controller
      * @param  \App\Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function update(Institution $institution, $studyForm, SpecialtyRequest $request)
+    public function update(SpecialtyRequest $request, Institution $institution, $studyForm)
     {
         $specialtyDetails = collect($request->specialty_details);
 

@@ -12,9 +12,10 @@ trait Searchable
      */
     public function scopeInCities($query, $cities)
     {
-        $query->whereHas('city', function($q) use ($cities) {
-            $q->whereIn('id', $cities);
-        });
+        return $query
+            ->whereHas('city', function($q) use ($cities) {
+                $q->whereIn('id', $cities);
+            });
     }
 
     /**

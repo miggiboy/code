@@ -8,9 +8,10 @@ trait RelatesToInstitution
 {
     public function scopeOf($query, $institutionType)
     {
-        return $query->whereHas('direction', function ($q) use ($institutionType) {
-            $q->where('institution', str_singular($institutionType));
-        });
+        return $query
+            ->whereHas('direction', function ($q) use ($institutionType) {
+                $q->of($institutionType);
+            });
     }
 
     public function scopeAtForm($query, $studyForm)

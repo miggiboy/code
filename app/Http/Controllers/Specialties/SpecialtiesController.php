@@ -164,7 +164,7 @@ class SpecialtiesController extends Controller
         $specialty->delete();
 
         return redirect()
-            ->route('specialties', ['inst' => $request->inst])
+            ->route('specialties.index', $institutionType)
             ->with('message', 'Специальность удалена');
     }
 

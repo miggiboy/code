@@ -34,22 +34,5 @@
 @endsection
 
 @section ('script')
-    <script>
-        $(document).ready(function() {
-            $('.ui.form').keydown(function(event){
-                if(event.keyCode == 13) {
-                  event.preventDefault();
-                  return false;
-              }
-           });
-        });
-
-        $('.ui.dropdown').dropdown({
-            fullTextSearch: true,
-            match:'text',
-            // allowAdditions: true,
-            keys : {
-              delimiter  : false, // comma
-        } });
-    </script>
+    @include ('includes/_multiple-selection-dropdown-script', ['allowAdditions' => false])
 @endsection

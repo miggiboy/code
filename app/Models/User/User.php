@@ -96,17 +96,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Persists news item to the DB on behalf of the user
-     *
-     * @param  News   $news
-     * @return  News   $news
-     */
-    public function publish(News $news)
-    {
-        $this->news()->save($news);
-    }
-
-    /**
      * Relations
      */
 

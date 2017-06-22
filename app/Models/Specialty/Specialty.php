@@ -71,7 +71,7 @@ class Specialty extends Model
     }
 
     /**
-     * Returns specialty name with specialty code if the last
+     * Returns specialty name with specialty code if the code
      * is present in the DB
      * otherwise return only speciality name
      *

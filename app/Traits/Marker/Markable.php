@@ -6,7 +6,7 @@ trait Markable
 {
     public function scopeMarkedByCurrentUser($query, $marked = true)
     {
-        if ((bool) $marked === true) {
+        if ($marked) {
             return $query->has('marks');
         }
 

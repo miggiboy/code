@@ -20,7 +20,7 @@ class Quiz extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(\App\Models\Subject\Subject::class);
     }
 
     public function questions()

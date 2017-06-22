@@ -23,24 +23,43 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            ['institutions.index', 'institutions.create', 'institutions.edit'],
+            [
+                'institutions.index',
+                'institutions.create',
+                'institutions.edit',
+            ],
             CitiesComposer::class
         );
 
         View::composer(
-            ['professions.index', 'professions.create', 'professions.edit'],
+            [
+                'professions.index',
+                'professions.create',
+                'professions.edit',
+            ],
             ProfessionCategoriesComposer::class
         );
 
         View::composer(
-            ['articles.index', 'articles.create', 'articles.edit'],
+            [
+                'articles.index',
+                'articles.create',
+                'articles.edit',
+            ],
             ArticleCategoriesComposer::class
         );
 
         View::composer(
             [
-                'specialties.index', 'specialties.create', 'specialties.edit', 'specialties.show',
-                'institutions.index', 'institutions.create', 'institutions.edit', 'institutions.show',
+                'specialties.index',
+                'specialties.create',
+                'specialties.edit',
+                'specialties.show',
+
+                'institutions.index',
+                'institutions.create',
+                'institutions.edit',
+                'institutions.show',
             ],
 
             InstitutionTypeComposer::class

@@ -54,7 +54,7 @@ trait Searchable
      */
     public function scopeHasSpecialities($query, $has = true)
     {
-        if ((bool) $has === true) {
+        if ($has) {
             $query->has('specialities');
         } else {
             $query->doesntHave('specialities');
@@ -69,9 +69,9 @@ trait Searchable
      * @param  boolean $has
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasReception($query, $has)
+    public function scopeHasReception($query, $has = true)
     {
-        if ((bool) $has === true) {
+        if ($has) {
             $query->has('reception');
         } else {
             $query->doesntHave('reception');
@@ -86,9 +86,9 @@ trait Searchable
      * @param  boolean $has
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasMap($query, $has)
+    public function scopeHasMap($query, $has = true)
     {
-        if ((bool) $has === true) {
+        if ($has) {
             $query->has('map');
         } else {
             $query->doesntHave('map');
@@ -97,10 +97,6 @@ trait Searchable
 
     public function scopeIsPaid($query, $isPaid = true)
     {
-        if ((bool) $isPaid === true) {
-            $query->where('is_paid', 1);
-        } else {
-            $query->where('is_paid', 0);
-        }
+        return $query->where('is_paid', $isPaid);
     }
 }

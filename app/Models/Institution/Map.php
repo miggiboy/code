@@ -8,6 +8,6 @@ class Map extends Model
 {
     public function mapable()
     {
-        return $this->belongsTo(University::class, 'mapable_id');
+        return $this->belongsTo(Institution::class, 'mapable_id');
     }
 }

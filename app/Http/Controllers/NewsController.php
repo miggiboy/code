@@ -37,8 +37,8 @@ class NewsController extends Controller
             'body' => 'required'
         ]);
 
-        auth()->user()->publish(
-            $message = new News(request(['body']))
+        Auth::user()->news()->save(
+            new News(request(['body']))
         );
 
         Pusher::trigger('global-channel', 'message-sent', [
@@ -53,18 +53,6 @@ class NewsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, News $news)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\News  $news
@@ -72,7 +60,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        if (auth()->user()->owns($news)) {
+        if (Auth::user()->owns($news)) {
             $news->delete();
         }
 

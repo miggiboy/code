@@ -24,17 +24,17 @@
             <div class="ui middle aligned center aligned grid" style="margin-top: 150px;">
 
             @if (Auth::check())
-                <div class="column">
-                    <h2 class="ui teal image header">
-                      <img src="/images/logo.png" class="image">
-                      <div class="content">
-                        Эта страница временно не доступна
-                      </div>
-                    </h2>
-                    <a href="{{ URL::previous() }}" class="ui blue button">
-                        Вернуться
-                    </a>
-                </div>
+              <div class="column">
+                  <h2 class="ui teal image header">
+                    <img src="/images/logo.png" class="image">
+                    <div class="content">
+                      Эта страница временно не доступна
+                    </div>
+                  </h2>
+                  <a href="{{ URL::previous() }}" class="ui blue button">
+                      Вернуться
+                  </a>
+              </div>
             @else
                   <div class="column">
                     <h2 class="ui teal image header">

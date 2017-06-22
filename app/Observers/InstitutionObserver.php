@@ -10,10 +10,27 @@ class InstitutionObserver
     public function creating(Institution $institution)
     {
         $institution->slug = (new UniqueSlug)->create($institution);
+
+        if(isset($institution->web_site)) {
+            $institution->web_site = static::formatUrl($institution->web_site);
+        }
     }
 
     public function updating(Institution $institution)
     {
         $institution->slug = (new UniqueSlug)->create($institution);
+
+        if(isset($institution->web_site)) {
+            $institution->web_site = static::formatUrl($institution->web_site);
+        }
+    }
+
+    private static function formatUrl($url)
+    {
+        if (! preg_match('/^http(s)?:\/\//', $url)) {
+            return "http://{$url}";
+        }
+
+        return $url;
     }
 }

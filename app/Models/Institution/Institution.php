@@ -94,21 +94,6 @@ class Institution extends Model implements HasMediaConversions
         return $query->where('type', str_singular($institutionType));
     }
 
-    /**
-     * Always returns web_site attribute with http(s)://
-     *
-     * @param  string $value
-     * @return string
-     */
-    public function getWebSiteAttribute($value)
-    {
-        if (! $value) {
-            return null;
-        }
-
-        return static::formatUrl($value);
-    }
-
     public function getBaseUrl()
     {
         return parse_url($this->web_site)['host'] ?? $this->web_site;
@@ -138,15 +123,6 @@ class Institution extends Model implements HasMediaConversions
               ->width(368)
               ->height(232)
               ->sharpen(10);
-    }
-
-    private static function formatUrl($value)
-    {
-        if (! preg_match('/^http(s)?:\/\//', $value)) {
-            return "http://{$value}";
-        }
-
-        return $value;
     }
 
     /**

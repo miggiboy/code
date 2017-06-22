@@ -4,8 +4,13 @@ namespace App\Models\Subject;
 
 use App\Models\Model;
 
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Spatie\MediaLibrary\{
+    HasMedia\HasMediaTrait
+};
+
+use Spatie\MediaLibrary\{
+    HasMedia\Interfaces\HasMedia
+};
 
 class Subject extends Model implements HasMedia
 {
@@ -30,6 +35,6 @@ class Subject extends Model implements HasMedia
 
     public function fileCategories()
     {
-        return $this->belongsToMany(\App\Models\File\FileCategory::class, 'subject_file_category');
+        return $this->belongsToMany(FileCategory::class, 'subject_file_category');
     }
 }

@@ -39,9 +39,7 @@ class InstitutionsController extends Controller
     {
         parent::__construct();
 
-        if (! in_array(\Request::route('institutionType'), self::$institutionTypes)) {
-            abort(404);
-        }
+        abort_if (! in_array(\Request::route('institutionType'), self::$institutionTypes), 404);
     }
 
     /**

@@ -13,9 +13,10 @@ trait Searchable
      */
     public function scopeHasSubject($query, $subjectId)
     {
-        return $query->whereHas('subjects', function($q) use($subjectId) {
-            $q->where('id', $subjectId);
-        });
+        return $query
+            ->whereHas('subjects', function($q) use($subjectId) {
+                $q->where('id', $subjectId);
+            });
     }
 
     /**
@@ -26,22 +27,10 @@ trait Searchable
      */
     public function scopeInDirection($query, $directionId)
     {
-        return $query->whereHas('direction', function($q) use($directionId) {
-            $q->where('id', $directionId);
-        });
-    }
-
-    /**
-     * Includes specialties which belong to this institution
-     *
-     * @param integer $institution
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeOfInstitution($query, $institution)
-    {
-        return $query->whereHas('direction', function($q) use($institution) {
-            $q->where('institution', $institution);
-        });
+        return $query
+            ->whereHas('direction', function($q) use($directionId) {
+                $q->where('id', $directionId);
+            });
     }
 
     /**
@@ -84,8 +73,9 @@ trait Searchable
      */
     public function scopeHasNoDirection($query)
     {
-        return $query->whereHas('direction', function($q) {
-            $q->where('title', 'Без направления');
-        });
+        return $query
+            ->whereHas('direction', function($q) {
+                $q->where('title', 'Без направления');
+            });
     }
 }

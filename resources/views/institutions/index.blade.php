@@ -42,6 +42,4 @@
         'url' => 'url',
     ]
   ])
-
-  <script src="/js/marks.js"></script>
 @endsection

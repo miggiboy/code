@@ -2,14 +2,10 @@
 
 @section ('title', 'Города')
 
-@section ('subnavigation')
-    @include ('universities.partials.navigation', ['pageTitle' => 'Города'])
-@endsection
-
 @section ('content')
 
-    <form action="{{ route('cities') }}" method="POST" class="ui form">
-      
+    <form action="{{ route('cities.store') }}" method="post" class="ui form">
+
       {{ csrf_field() }}
 
       <div class="fields">
@@ -20,15 +16,15 @@
             <input type="text" name="title" placeholder="Название города">
             <i class="marker icon"></i>
             <button class="ui teal right labeled icon button"><i class="checkmark icon"></i>
-              Добавить 
+              Добавить
              </button>
           </div>
 
         </div>
 
       </div>
-      
-    </form> 
+
+    </form>
 
     <br>
 

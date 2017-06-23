@@ -23,6 +23,26 @@ use App\Modules\Search\{
 class SpecialtiesController extends Controller
 {
     /**
+     * Existing institution types
+     * @var array
+     */
+    protected static $institutionTypes = [
+        'college',
+        'university',
+    ];
+
+    /**
+     * Throw 404 exception if institution type is not in
+     * self::$instituionTypes array
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        abort_if (! in_array(\Request::route('institutionType'), self::$institutionTypes), 404);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

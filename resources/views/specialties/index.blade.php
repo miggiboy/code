@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('title')
-  {{ $pageTitle = 'Специальности ' . Translator::get($institutionType, 'r', 'p') }}
+  {{ $pageTitle = 'Специальности ' . Translator::get($institutionType, 'r', 's') }}
 @endsection
 
 @section ('subnavigation')

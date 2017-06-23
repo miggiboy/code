@@ -60,7 +60,7 @@
 
 
     @else
-      <a href="{{ route('sessions.create') }}" class="item">Вход</a>
+      <a href="{{ route('session.create') }}" class="item">Вход</a>
       <a href="{{ route('registration.create') }}" class="item">Регистрация</a>
     @endif
 

@@ -58,6 +58,13 @@ Route::group(['namespace' => 'User'], function () {
 Route::group(['namespace' => 'Specialties'], function () {
 
     Route::group(['prefix' => '/{institutionType}-specialties'], function () {
+
+        /**
+         * Real-time dropdown search
+         */
+        Route::get('/rt-search', 'SpecialtiesController@rtSearch');
+
+
         Route::get('', 'SpecialtiesController@index')->name('specialties.index');
 
         Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
@@ -85,17 +92,6 @@ Route::group(['namespace' => 'Specialties'], function () {
      * Specialty institutions
      */
     Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', ['only' => ['index']]);
-
-});
-
-
-Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], function () {
-
-    /**
-     * Specialty Search
-     */
-
-    Route::get('/search/autocomplete', 'SpecialtiesController@autocomplete')->name('specialties.autocomplete');
 });
 
 
@@ -105,22 +101,18 @@ Route::group(['prefix' => '/specialties', 'namespace' => 'Specialties'], functio
 
 Route::group(['namespace' => 'Professions'], function () {
 
+    /**
+     * Real-time dropdown search
+     */
+
+    Route::get('professions/rt-search', 'ProfessionsController@rtSearch');
+
     Route::resource('professions', 'ProfessionsController');
 
     /**
      * Profession Specialties
      */
     Route::resource('professions.specialties', 'ProfessionSpecialtiesController', ['except' => ['edit', 'update', 'show']]);
-});
-
-
-Route::group(['prefix' => '/professions', 'namespace' => 'Professions'], function () {
-
-    /**
-     * Professions Search
-     */
-
-    Route::get('/search/autocomplete', 'ProfessionsController@autocomplete')->name('professions.autocomplete');
 });
 
 
@@ -147,6 +139,12 @@ Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'des
 Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], function () {
 
     Route::group(['prefix' => '/{institutionType}'], function () {
+
+        /**
+         * Real-time dropdown search
+         */
+        Route::get('/rt-search', 'InstitutionsController@rtSearch');
+
         Route::get('', 'InstitutionsController@index')->name('institutions.index');
 
         Route::get('/create', 'InstitutionsController@create')->name('institutions.create');
@@ -159,12 +157,6 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
 
         Route::get('/{institution}', 'InstitutionsController@show')->name('institutions.show');
     });
-
-     /**
-     * Universities Search
-     */
-
-    Route::get('/search/autocomplete', 'InstitutionsController@autocomplete')->name('universities.autocomplete');
 
     /**
      * Institution Specialties

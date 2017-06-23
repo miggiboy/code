@@ -192,36 +192,18 @@ class SpecialtiesController extends Controller
      * Search methods
      */
 
-    public function autocomplete(Request $request)
+    public function rtSearch(Request $request, $institutionType)
     {
-        $specialties = Specialty::select('slug as url', 'title', 'code')
+        $specialties = Specialty::select('slug as url', 'title', 'code as description')
+            ->of($institutionType)
             ->like($request->input('query'))
-            ->whereHas('direction', function ($query) use ($request) {
-                $query->where('institution', $request->inst);
-            })
             ->orderBy('title')
             ->get();
 
-        $specialties = $specialties->each(function ($item, $key) use ($request) {
-            $item->url = config('app.url') . '/specialties/' . $item->url . '?inst=' . $request->inst;
+        $specialties = $specialties->each(function ($item, $key) use ($request, $institutionType) {
+            $item->url = config('app.url') . "/{$institutionType}-specialties/" . $item->url;
         });
 
-        return response()->json(['specialties' => $specialties]);
-    }
-
-    public function searchCollegeSpecialties(Request $request)
-    {
-        $specialties = Specialty::select('id as value', 'title as name')
-            ->like($request->input('query'))
-            ->whereHas('direction', function ($query) use ($request) {
-                $query->where('institution', $request->inst);
-            })
-            ->where('parent_id', null)
-            ->get();
-
-        return response()->json([
-            'success' => true,
-            'results' => $specialties
-        ]);
+        return response()->json(['results' => $specialties]);
     }
 }

@@ -45,50 +45,6 @@ trait Searchable
         return $query->where('city_id', $city);
     }
 
-    /**
-     * Includes institutions which have or don't have related specialties
-     *
-     * @param  $query
-     * @param  boolean $has
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeHasSpecialities($query, $has = true)
-    {
-        return $has
-            ? $query->has('specialties')
-            : $query->doesntHave('specialties');
-    }
-
-    /**
-     * Includes institutions which have
-     * or don't have related reception committee
-     *
-     * @param  $query
-     * @param  boolean $has
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeHasReception($query, $has = true)
-    {
-        return $has
-            ? $query->has('reception')
-            : $query->doesntHave('reception');
-    }
-
-    /**
-     * Includes institutions which have
-     * or don't have related map
-     *
-     * @param  $query
-     * @param  boolean $has
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeHasMap($query, $has = true)
-    {
-        return $has
-            ? $query->has('map')
-            : $query->doesntHave('map');
-    }
-
     public function scopeIsPaid($query, $isPaid = true)
     {
         return $query->where('is_paid', $isPaid);

@@ -30,7 +30,7 @@ class SpecialtySearch
         }
 
         if ($request->has('without_subjects')) {
-            $q->hasNoSubjects();
+            $q->has('subjects', false);
         }
 
         if ($request->has('marked')) {

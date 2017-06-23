@@ -144,24 +144,21 @@ class InstitutionsController extends Controller
         return redirect()->route('institutions.index', $institutionType)->with('message', 'Учебное заведение удалено');
     }
 
-    /**
-     * Search methods
-     */
-
-    public function autocomplete(Request $request)
+    public function rtSearch(Request $request, $institutionType)
     {
         $institutions = Institution::select(
-                'slug as url', "title as name", 'acronym', 'city_id'
+                'slug as url', "title", 'acronym as description', 'city_id', 'type'
             )
+            ->ofType($institutionType)
             ->like($request->input('query'))
             ->orderBy('title')
             ->get();
 
         $institutions = $institutions->each(function ($item, $key) {
-            $item->url = config('app.url') . '/institutions/' . str_plural($this->institutionType) . $item->url;
-            $item->acronym = ($item->acronym . ' ' ?: '') . City::find($item->city_id)->title;
+            $item->url = config('app.url') . '/institutions/' . str_plural($item->type) . '/' . $item->url;
+            $item->description = ($item->description . ' ' ?: '') . City::find($item->city_id)->title;
         });
 
-        return response()->json(['institutions' => $institutions]);
+        return response()->json(['results' => $institutions]);
     }
 }

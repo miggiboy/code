@@ -57,23 +57,11 @@ trait Searchable
     }
 
     /**
-     * Includes specialties which no have subjects
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeHasSubjects($query, $has = true)
-    {
-        return $has
-            ? $query->has('subjects')
-            : $query->doesntHave('subjects');
-    }
-
-    /**
      * Includes specialties which have no direction
      *
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasNoDirection($query)
+    public function scopeHasDirection($query)
     {
         return $query
             ->whereHas('direction', function($q) {

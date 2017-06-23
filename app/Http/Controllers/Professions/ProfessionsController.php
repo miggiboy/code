@@ -114,9 +114,9 @@ class ProfessionsController extends Controller
         return redirect()->route('professions')->with('message', 'Профессия удалена.');
     }
 
-    public function autocomplete(Request $request){
+    public function rtSearch(Request $request){
 
-        $professions = Profession::select('slug as url', "title as name")
+        $professions = Profession::select('slug as url', "title")
             ->like($request->input('query'))
             ->orderBy('title')
             ->get();
@@ -125,6 +125,6 @@ class ProfessionsController extends Controller
             $item->url = config('app.url') . '/professions/' . $item->url;
         });
 
-        return response()->json(['professions' => $professions]);
+        return response()->json(['results' => $professions]);
     }
 }

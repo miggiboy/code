@@ -33,5 +33,15 @@
 @endsection
 
 @section ('script')
+
+  @include ('includes/_rt-search-script', [
+    'search_class' => '.ui.search',
+    'path' => 'institutions/' . $institutionType . '/rt-search',
+    'fields' => [
+        'description' => 'description',
+        'url' => 'url',
+    ]
+  ])
+
   <script src="/js/marks.js"></script>
 @endsection

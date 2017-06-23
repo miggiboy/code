@@ -23,14 +23,14 @@ trait Searchable
      * is like the given query parameter
      *
      * @param  $query
-     * @param  string $queryString
+     * @param  string $input
      * @return \Illuminate\Support\Collection
      */
-    public function scopeLike($query, $queryString)
+    public function scopeLike($query, $input)
     {
         return $query
-            ->where('title', 'like', "%{$queryString}%")
-            ->orWhere('acronym', 'like', "%{$queryString}%");
+            ->where('title', 'like', "%{$input}%")
+            ->orWhere('acronym', 'like', "%{$input}%");
     }
 
     /**
@@ -42,7 +42,7 @@ trait Searchable
      */
     public function scopeInCity($query, $city)
     {
-        $query->where('city_id', $city);
+        return $query->where('city_id', $city);
     }
 
     /**

@@ -36,14 +36,14 @@ trait Searchable
     /**
      * Includes specialties which title or code is like query parameter
      *
-     * @param string $q
+     * @param string $input
      * @return \Illuminate\Support\Collection
      */
-    public function scopeLike($query, $q)
+    public function scopeLike($query, $input)
     {
         return $query
-            ->where('title', 'like', "%{$q}%")
-            ->orWhere('code', 'like', "%{$q}%");
+            ->where('title', 'like', "%{$input}%")
+            ->orWhere('code', 'like', "%{$input}%");
     }
 
     /**
@@ -61,9 +61,11 @@ trait Searchable
      *
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasNoSubjects($query)
+    public function scopeHasSubjects($query, $has = true)
     {
-        return $query->doesntHave('subjects');
+        return $has
+            ? $query->has('subjects')
+            : $query->doesntHave('subjects');
     }
 
     /**

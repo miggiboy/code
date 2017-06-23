@@ -33,12 +33,12 @@ class Profession extends Model
      * is not like the given query parameter
      *
      * @param  $query
-     * @param  string $queryString
+     * @param  string $input
      * @return \Illuminate\Support\Collection
      */
-    public function scopeLike($query, $queryString)
+    public function scopeLike($query, $input)
     {
-        $query->where('title', 'like', "%{$queryString}%");
+        $query->where('title', 'like', "%{$input}%");
     }
 
     /**

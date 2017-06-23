@@ -45,5 +45,11 @@
     </div>
   </div>
 </div>
+<br>
+{{ $messages->appends(request()
+    ->except('page', '_token'))
+    ->links('vendor.pagination.default')
+}}
+<br><br>
 @endsection
 

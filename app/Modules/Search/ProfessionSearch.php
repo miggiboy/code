@@ -9,7 +9,7 @@ class ProfessionSearch
         $q = \App\Models\Profession\Profession::query();
 
         if ($request->has('query')) {
-            $q->like($request->query);
+            $q->like(request('query'));
         }
 
         if ($request->has('direction')) {

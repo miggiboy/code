@@ -14,7 +14,7 @@ class InstitutionSearch
         $q->ofType($request->route('institutionType'));
 
         if ($request->has('query')) {
-            $q->like($request->query);
+            $q->like(request('query'));
         }
 
         if ($request->has('city')) {

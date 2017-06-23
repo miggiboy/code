@@ -21,8 +21,7 @@ class MessagesController extends Controller
     {
         $messages = Message::orderBy('created_at', 'desc')
             ->with(['user'])
-            ->take(30)
-            ->get();
+            ->paginate(30);
 
         return view('home', compact('messages'));
     }

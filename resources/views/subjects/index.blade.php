@@ -37,7 +37,7 @@
         <div class="ui cards">
           @foreach ($subjects as $subject)
             <div class="three wide column">
-              <a class="ui card" href="{{ route('subject.show', $subject) }}">
+              <a class="ui card" href="{{ route('subjects.show', $subject) }}">
                 <div class="content">
                   <h5 class="ui header">
                     <div class="content" style="color: #444;">

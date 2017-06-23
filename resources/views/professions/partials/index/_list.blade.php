@@ -13,7 +13,7 @@
           <a class="header" href="{{ route('professions.show', $profession) }}">
             {{ $profession->title }}
           </a><br>
-          {{ $profession->profDirection->title }}
+          {{ $profession->category->title }}
         </div>
       </div>
 @endforeach

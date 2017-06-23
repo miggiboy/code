@@ -12,7 +12,7 @@
 
     @include ('includes.form-errors')
 
-    <form action="{{ route('profession.update', $profession) }}" method="post" class="ui form" style="margin-bottom: 35px; margin-top: 25px;">
+    <form action="{{ route('professions.update', $profession) }}" method="post" class="ui form" style="margin-bottom: 35px; margin-top: 25px;">
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
 
@@ -31,10 +31,10 @@
             <label for="prof_direction_id">Направление</label>
             <select name="prof_direction_id" id="prof_direction_id" class="ui search dropdown">
                 <option value="">Направление</option>
-                @foreach ($profDirections as $profDirection)
-                <option value="{{ $profDirection->id }}"
-                {{ (old('prof_direction_id', $profession->profDirection->id) == $profDirection->id) ? 'selected' : '' }}>
-                {{ $profDirection->title }}
+                @foreach ($categories as $category)
+                <option value="{{ $category->id }}"
+                {{ (old('prof_direction_id', $profession->category->id) == $category->id) ? 'selected' : '' }}>
+                {{ $category->title }}
                 </option>
                 @endforeach
             </select>
@@ -62,6 +62,6 @@
   <script>
     CKEDITOR.replace('full_description', {
         height: 500
-      });
+    });
   </script>
 @endsection

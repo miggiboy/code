@@ -29,8 +29,6 @@ class Specialty extends Model
     use Markable;
     use RelatesToInstitution;
 
-    protected $table = 'specialities';
-
     /**
      * The attributes that should be mutated to dates.
      *
@@ -120,7 +118,7 @@ class Specialty extends Model
 
     public function direction()
     {
-        return $this->belongsTo(Direction::class);
+        return $this->belongsTo(SpecialtyDirections::class, 'direction_id');
     }
 
     public function professions()

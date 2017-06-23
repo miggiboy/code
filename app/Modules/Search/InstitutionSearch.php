@@ -22,15 +22,15 @@ class InstitutionSearch
         }
 
         if ($request->has('not_filled')) {
-            $q->hasReception(false);
+            $q->has('reception', false);
         }
 
         if ($request->has('without_specialities')) {
-            $q->hasSpecialties(false);
+            $q->has('specialties', false);
         }
 
         if ($request->has('without_map')) {
-            $q->hasMap(false);
+            $q->has('map', false);
         }
 
         if ($request->has('marked')) {

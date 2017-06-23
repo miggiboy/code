@@ -64,7 +64,6 @@ Route::group(['namespace' => 'Specialties'], function () {
          */
         Route::get('/rt-search', 'SpecialtiesController@rtSearch');
 
-
         Route::get('', 'SpecialtiesController@index')->name('specialties.index');
 
         Route::get('/create', 'SpecialtiesController@create')->name('specialties.create');
@@ -122,7 +121,7 @@ Route::group(['namespace' => 'Professions'], function () {
 
 Route::group(['namespace' => 'Subjects'], function () {
 
-    Route::resource('subjects', 'SubjectsController', ['except' => ['edit', 'update', 'show']]);
+    Route::resource('subjects', 'SubjectsController', ['except' => ['edit', 'update']]);
 
     // Subject Media
     Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'desctroy']]);

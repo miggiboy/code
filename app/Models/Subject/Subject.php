@@ -30,7 +30,7 @@ class Subject extends Model implements HasMedia
 
     public function quizzes()
     {
-        return $this->hasMany(Quiz::class);
+        return $this->hasMany(\App\Models\Quiz\Quiz::class);
     }
 
     public function fileCategories()

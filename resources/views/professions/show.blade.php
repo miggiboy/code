@@ -3,7 +3,7 @@
 @section ('title', 'Профессии')
 
 @section ('subnavigation')
-    @include('professions.partials.navigation', ['pageTitle' => "Профессия \"". $profession->title ."\""])
+    @include('professions.partials.navigation', ['pageTitle' => $profession->title])
 @endsection
 
 @section ('head')
@@ -43,8 +43,8 @@
         @endif
       </a><br><br>
 
-      <span>Категория: <a href="{{ route('professions.index', ['direction' => $profession->profDirection->id]) }}">
-        {{ $profession->profDirection->title }}
+      <span>Категория: <a href="{{ route('professions.index', ['direction' => $profession->category->id]) }}">
+        {{ $profession->category->title }}
       </a></span>
       <br><br>
 

@@ -19,8 +19,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at')
-            ->paginate(15);
+        $articles = Article::orderBy('created_at')->paginate(15);
 
         return view('articles.index', compact('articles'));
     }

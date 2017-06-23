@@ -30,10 +30,10 @@
           <label for="prof_direction_id">Направление</label>
           <select name="prof_direction_id" id="prof_direction_id" class="ui search dropdown">
             <option value="">Направление</option>
-            @foreach ($profDirections as $profDirection)
-              <option value="{{ $profDirection->id }}"
-                      {{ (old('prof_direction_id') == $profDirection->id ? 'selected' : '') }}>
-                  {{ $profDirection->title }}
+            @foreach ($categories as $category)
+              <option value="{{ $category->id }}"
+                      {{ (old('prof_direction_id') == $category->id ? 'selected' : '') }}>
+                  {{ $category->title }}
               </option>
             @endforeach
           </select>

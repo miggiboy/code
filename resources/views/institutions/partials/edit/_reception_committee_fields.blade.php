@@ -9,7 +9,7 @@
         <label for="reception[phone]">Телефон</label>
         <input type="text"
                name="reception[phone]"
-               value = "{{ old('reception.phone') ?: ($institution->hasReception() ? $institution->reception->phone : '') }}"
+               value = "{{ old('reception.phone') ?: (($hasReception = $institution->hasReception()) ? $institution->reception->phone : '') }}"
                id="reception[phone]"
                placeholder="Телефон приемной ком.">
     </div>
@@ -18,7 +18,7 @@
         <label for="reception[phone_2]">Доп. телефон</label>
         <input type="text"
                name="reception[phone_2]"
-               value = "{{ old('reception.phone_2') ?: ($institution->hasReception() ? $institution->reception->phone_2 : '') }}"
+               value = "{{ old('reception.phone_2') ?: ($hasReception ? $institution->reception->phone_2 : '') }}"
                id="reception[phone2]"
                placeholder="Телефон приемной ком.">
     </div>
@@ -27,7 +27,7 @@
           <label for="reception[email]">Email</label>
           <input type="email"
                  name="reception[email]"
-                 value="{{ old('reception.email') ?: ($institution->hasReception() ? $institution->reception->email : '') }}"
+                 value="{{ old('reception.email') ?: ($hasReception ? $institution->reception->email : '') }}"
                  id="reception[email]"
                  placeholder="Email">
       </div>
@@ -36,7 +36,7 @@
         <label for="reception[address]">Адрес</label>
         <input type="text"
                name="reception[address]"
-               value="{{ old('reception.address') ?: ($institution->hasReception() ? $institution->reception->address : '') }}"
+               value="{{ old('reception.address') ?: ($hasReception ? $institution->reception->address : '') }}"
                id="reception[address]"
                placeholder="Адрес приемной ком.">
     </div>
@@ -45,7 +45,7 @@
 
   <div class="field">
     <label for="reception[info]">Информация по приемной комиссии</label>
-    <textarea name="reception[info]" id="reception[info]">{!! old('reception.info') ?: ($institution->hasReception() ? $institution->reception->info : '') !!}
+    <textarea name="reception[info]" id="reception[info]">{!! old('reception.info') ?: ($hasReception ? $institution->reception->info : '') !!}
     </textarea>
  </div>
  <br>

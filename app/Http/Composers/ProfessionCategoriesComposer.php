@@ -4,7 +4,7 @@ namespace App\Http\Composers;
 
 use Illuminate\View\View;
 
-use App\Models\Profession\ProfDirection;
+use App\Models\Profession\ProfessionCategories;
 
 class ProfessionCategoriesComposer
 {
@@ -13,7 +13,7 @@ class ProfessionCategoriesComposer
     public function compose(View $view)
     {
         if (! $this->categories) {
-            $this->categories = ProfDirection::all()->sortBy('title');
+            $this->categories = ProfessionCategories::all()->sortBy('title');
         }
 
         return $view->with('categories', $this->categories);

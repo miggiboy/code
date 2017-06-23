@@ -44,10 +44,6 @@ class Institution extends Model implements HasMediaConversions
     use HasReception;
     use HasSpecialties;
 
-
-    protected $table = 'universities';
-
-
     /**
      * The attributes that should be mutated to dates.
      *

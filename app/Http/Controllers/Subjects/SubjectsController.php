@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Subjects;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Subject;
+use App\Models\Subject\Subject;
 
 class SubjectsController extends Controller
 {

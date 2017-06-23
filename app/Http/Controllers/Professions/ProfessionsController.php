@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Profession\{
     Profession,
-    ProfDirection
+    ProfessionCategories
 };
 
 use App\Http\Requests\Profession\{
@@ -29,7 +29,7 @@ class ProfessionsController extends Controller
     {
         $professions = ProfessionSearch::filter($request)
             ->orderBy('title')
-            ->with(['profDirection', 'marks'])
+            ->with(['category', 'marks'])
             ->paginate(15);
 
         return view('professions.index', compact('professions'));

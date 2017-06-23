@@ -6,12 +6,12 @@
 
   <div class="four wide column" style="position: absolute; top: -2px; right: -30px;">
     <div class="ui compact small menu">
-      <a href="{{ route('subjects') }}" class="item">
-        <i class="teal book icon"></i> Предметы 
+      <a href="{{ route('subjects.index') }}" class="item">
+        <i class="teal book icon"></i> Предметы
       </a>
 
-      <a href="{{ route('subject.create') }}" class="item" title="Добавить предмет">
-        <i class="teal circle add icon"></i> Добавить 
+      <a href="{{ route('subjects.create') }}" class="item" title="Добавить предмет">
+        <i class="teal circle add icon"></i> Добавить
       </a>
 
     </div>

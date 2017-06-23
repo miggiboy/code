@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Subject\Subject;
 
 use App\Models\Specialty\{
-    Direction,
+    SpecialtyDirections,
     Specialty
 };
 
@@ -51,10 +51,11 @@ class SpecialtiesController extends Controller
     public function index(Request $request, $institutionType)
     {
         $specialties = SpecialtySearch::filter($request)
+            ->with(['direction', 'marks'])
             ->orderBy('title')
             ->paginate(15);
 
-        $directions = Direction::of($institutionType)
+        $directions = SpecialtyDirections::of($institutionType)
             ->orderBy('title')
             ->get();
 
@@ -70,7 +71,7 @@ class SpecialtiesController extends Controller
     {
         $subjects = Subject::all()->sortBy('title');
 
-        $directions = Direction::of($institutionType)
+        $directions = SpecialtyDirections::of($institutionType)
             ->orderBy('title')
             ->get();
 
@@ -87,7 +88,7 @@ class SpecialtiesController extends Controller
     {
         if ($request->model_type == 'specialty') {
             if (! is_numeric($request->direction_id)) {
-                $direction = Direction::create(['title' => $request->direction_id]);
+                $direction = SpecialtyDirections::create(['title' => $request->direction_id]);
             }
         }
 
@@ -137,7 +138,7 @@ class SpecialtiesController extends Controller
 
         $subjects = Subject::all()->sortBy('title');
 
-        $directions = Direction::of($institutionType)
+        $directions = SpecialtyDirections::of($institutionType)
             ->orderBy('title')
             ->get();
 

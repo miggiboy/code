@@ -71,9 +71,9 @@ class Profession extends Model
         return config('google.search.url') . 'Профессия ' . trim($this->title);
     }
 
-    public function profDirection()
+    public function category()
     {
-        return $this->belongsTo(ProfDirection::class);
+        return $this->belongsTo(ProfessionCategories::class, 'category_id');
     }
 
     public function specialties()

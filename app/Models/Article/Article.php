@@ -34,6 +34,6 @@ class Article extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(ArticleCategories::class, 'article_category', 'article_id', 'category_id');
     }
 }

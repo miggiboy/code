@@ -4,7 +4,7 @@ namespace App\Models\Specialty;
 
 use App\Models\Model;
 
-class Direction extends Model
+class SpecialtyDirections extends Model
 {
     public function scopeOf($query, $institutionType)
     {

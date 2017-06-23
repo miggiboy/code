@@ -1,1 +1,1 @@
-@include ('errors/partials/_404-layout')
+@include ('errors/layouts/_404')

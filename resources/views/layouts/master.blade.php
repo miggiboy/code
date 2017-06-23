@@ -21,7 +21,7 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
         </script>
-        <div id="app">
+        <div>
             @include ('layouts.navigation')
             <br>
             <div class="ui main container">
@@ -40,9 +40,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//unpkg.com/axios/dist/axios.min.js"></script>
 
-    @include ('includes.flash')
-
-    @include ('includes/_pusher-scripts')
+    @include ('includes/flash')
 
     @yield ('script')
 </html>

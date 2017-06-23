@@ -104,8 +104,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function news()
+    public function messages()
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(Message::class);
     }
 }

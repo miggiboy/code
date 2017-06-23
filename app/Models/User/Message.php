@@ -4,9 +4,11 @@ namespace App\Models\User;
 
 use App\Models\Model;
 
-use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
+use Laravelrus\LocalizedCarbon\{
+    Traits\LocalizedEloquentTrait
+};
 
-class News extends Model
+class Message extends Model
 {
     /**
      * Package traits

@@ -1,16 +1,10 @@
 <?php
 
 /**
- * Temp
+ * Home
  */
 
-/**
- * Home & Feed
- */
-
-Route::get('', 'NewsController@index')->name('home');
-
-Route::post('/feed', 'NewsController@store')->name('feed');
+Route::get('', 'User\MessagesController@index')->name('home');
 
 /**
  * User
@@ -26,7 +20,9 @@ Route::group(['namespace' => 'User'], function () {
 
     Route::patch('/users/{user}/grant', 'UsersController@grant')->name('users.grant');
 
-    // Registration
+    /**
+     * Registration
+     */
     Route::resource('registration', 'RegistrationController', ['only' => 'create', 'store']);
 
     /**
@@ -37,10 +33,19 @@ Route::group(['namespace' => 'User'], function () {
 
     Route::delete('/session', 'SessionsController@destroy')->name('session.destroy');
 
-    // Profile
+    /**
+     * Feed messages
+     */
+    Route::post('/message', 'MessagesController@store')->name('messages.store');
+
+    /**
+     * Profile
+     */
     Route::resource('profile', 'ProfileController', ['only' => ['show', 'edit', 'update']]);
 
-    // Markers
+    /**
+     * Markers
+     */
     Route::post('/marker', 'MarkersController');
 });
 

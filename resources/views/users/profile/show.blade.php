@@ -1,11 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', auth()->user()->getNameOrUsername())
 
 @section('content')
     <div class="ui grid">
         <div class="five wide column">
-            
+
             <div class="ui link cards">
               <div class="card">
                 <div class="image">
@@ -46,17 +46,17 @@
                 <div class="two fields">
                     <div class="eight wide field">
                         <label for="username">Логин</label>
-                        <input type="text" 
-                               name="username" 
-                               id="username" 
+                        <input type="text"
+                               name="username"
+                               id="username"
                                value="{{ old('username') ?: auth()->user()->username }}"
                                required
                         >
                     </div>
                     <div class="eight wide field">
                         <label for="email">E-mail</label>
-                        <input type="text" 
-                               name="email" 
+                        <input type="text"
+                               name="email"
                                id="email"
                                value="{{ old('email') ?: auth()->user()->email }}"
                                required
@@ -66,16 +66,16 @@
                 <div class="two fields">
                     <div class="eight wide field">
                         <label for="first_name">Имя</label>
-                        <input type="text" 
-                               name="first_name" 
-                               id="first_name" 
+                        <input type="text"
+                               name="first_name"
+                               id="first_name"
                                value="{{ old('first_name') ?: auth()->user()->first_name }}"
                         >
                     </div>
                     <div class="eight wide field">
                         <label for="last_name">Фамилия</label>
-                        <input type="text" 
-                               name="last_name" 
+                        <input type="text"
+                               name="last_name"
                                id="last_name"
                                value="{{ old('last_name') ?: auth()->user()->last_name }}"
                         >

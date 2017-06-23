@@ -1,4 +1,4 @@
-@extends ('layouts.master')
+@extends ('layouts.app')
 
 @section ('title')
   {{ $pageTitle = 'Добавление ' . Translator::get($institutionType, 'r', 's') }}

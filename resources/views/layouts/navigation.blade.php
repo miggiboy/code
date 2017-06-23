@@ -51,7 +51,7 @@
              <i class="teal user icon"></i> Мой профиль
           </a>
 
-          <a href="{{ route('session.destroy') }}" class="item">
+          <a href="{{ route('logout') }}" class="item">
             <i class="teal sign out icon"></i> Выход
           </a>
 
@@ -60,7 +60,7 @@
 
 
     @else
-      <a href="{{ route('session.create') }}" class="item">Вход</a>
+      <a href="{{ route('login') }}" class="item">Вход</a>
       <a href="{{ route('registration.create') }}" class="item">Регистрация</a>
     @endif
 

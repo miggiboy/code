@@ -23,15 +23,16 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Registration
      */
-    Route::resource('registration', 'RegistrationController', ['only' => 'create', 'store']);
+    Route::get('register', 'RegistrationController@create')->name('registration.create');
+    Route::post('register', 'RegistrationController@store')->name('registration.store');
 
     /**
      * Sessions
      */
-    Route::get('/session/create', 'SessionsController@create')->name('session.create');
-    Route::post('/session/store', 'SessionsController@store')->name('session.store');
+    Route::get('/login', 'SessionsController@create')->name('login');
+    Route::post('/login', 'SessionsController@store')->name('session.store');
 
-    Route::delete('/session', 'SessionsController@destroy')->name('session.destroy');
+    Route::get('/logout', 'SessionsController@destroy')->name('logout');
 
     /**
      * Feed messages

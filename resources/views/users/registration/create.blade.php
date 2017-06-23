@@ -32,7 +32,7 @@
                   </div>
                 </h2>
                 @include ('includes.form-errors')
-                <form action ="{{ route('register') }}" method ="post" class="ui large form">
+                <form action ="{{ route('registration.store') }}" method ="post" class="ui large form">
                   {{ csrf_field() }}
                   <div class="ui stacked segment">
                     <div class="field">

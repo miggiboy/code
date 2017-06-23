@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Will be back</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato', sans-serif;
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Will be back</div>
-            </div>
-        </div>
-    </body>
+<head>
+<title>Ведутся технические работы</title>
+<meta charset="utf-8">
+<style>
+    body{
+        font-family: Verdana, Arial, sans-serif;
+        font-size: 20px;
+        color : #000;
+    }
+    h1{
+        font-size: 30px;
+    }
+    p{
+        font-size: 22px;
+        padding: 0 0 0 10px;
+        margin:0;
+    }
+    .template{
+        padding: 0 0 10px 50px;
+        text-align: center;
+    }
+    .block{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .bender{
+        max-width: 400px;
+    }
+</style>
+</head>
+<body>
+<div class="block">
+<div class="template">
+<img class="bender" src="images/robot.jpg">
+<h1>На сайте ведутся технические работы</h1>
+<p>На текущий момент сайт недоступен. Матрица не сломалась. Мы просто решили сделать ее немного лучше.</p>
+<p>Обновите страницу через пару минут. Все будет работать.</p>
+</div>
+</div>
+</div>
+</body>
 </html>

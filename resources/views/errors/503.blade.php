@@ -35,8 +35,8 @@
 <div class="template">
 <img class="bender" src="images/robot.jpg">
 <h1>На сайте ведутся технические работы</h1>
-<p>На текущий момент сайт недоступен. Матрица не сломалась. Мы просто решили сделать ее немного лучше.</p>
-<p>Обновите страницу через пару минут. Все будет работать.</p>
+<p>На текущий момент сайт недоступен.</p>
+<p>{{ json_decode(file_get_contents(storage_path('framework/down')), true)['message'] }}</p>
 </div>
 </div>
 </div>

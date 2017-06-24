@@ -20,6 +20,13 @@ class Subject extends Model implements HasMedia
     use HasMediaTrait;
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * Relations
      */
 

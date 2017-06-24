@@ -1,8 +1,7 @@
 @if (count($institutions))
     <div class="ui large celled very relaxed selection list">
     @foreach ($institutions as $institution)
-          <div class="university item{{ $institution->marked_by_current_user ? ' marked' : '' }}"
-               style="cursor: default;"
+          <div class="custom item{{ $institution->marked_by_current_user ? ' marked' : '' }}"
                itemId="{{ $institution->id }}">
 
             @include ('institutions/partials/_options', ['edit_target_blank' => true])

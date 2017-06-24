@@ -1,7 +1,7 @@
 @if (count($articles))
     <div class="ui large celled very relaxed selection list">
     @foreach ($articles as $article)
-          <div class="university item" style="cursor: default;">
+          <div class="custom item">
             <div class="ui right pointing right floated icon dropdown basic button content">
               <i class="ellipsis vertical icon"></i>
               <div class="menu">

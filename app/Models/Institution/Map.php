@@ -6,6 +6,13 @@ use App\Models\Model;
 
 class Map extends Model
 {
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     public function mapable()
     {
         return $this->belongsTo(Institution::class, 'mapable_id');

@@ -35,7 +35,7 @@
         <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
-        Редактировать
+        Редактировать цены, сроки
         </a>
       @else
         <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}"

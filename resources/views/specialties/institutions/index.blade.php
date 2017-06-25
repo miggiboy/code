@@ -13,9 +13,9 @@
     }
 
     a {
-    color: #444;
-    text-decoration: none;
-   }
+      color: #444;
+      text-decoration: none;
+    }
 
     a:hover {
     text-decoration: underline;
@@ -27,10 +27,10 @@
   <div class="ui custom container">
     <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
 
-      <a href="{{ route('specialties.show', [$specialty->belongs_to, $specialty]) }}">
+      <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}">
         {{ str_limit($specialty->title, 50) }}
       </a><br>
-      Связанные {{ Translator::get($specialty->belongs_to, 'i', 'p') }}
+      Связанные {{ Translator::get($specialty->institution_type, 'i', 'p') }}
     </h2>
 
     @if ($specialty->institutions)

@@ -55,7 +55,7 @@ class Specialty extends Model
      * Gets institution type of specialty
      * @return Builder
      */
-    public function getBelongsToAttribute()
+    public function getInstitutionTypeAttribute()
     {
         if (! $this->direction) {
             return null;

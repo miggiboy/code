@@ -4,10 +4,6 @@
   {{ $institution->title }}
 @endsection
 
-@section ('subnavigation')
-    @include('institutions.partials.navigation', ['view' => 'show', 'pageTitle' => $institution->title])
-@endsection
-
 @section ('head')
 
   <link rel='stylesheet' href='/js/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
@@ -17,12 +13,28 @@
         position: fixed; bottom: 42px; right: 37px; z-index: 10;
     }
   </style>
+
 @endsection
 
 @section ('content')
+
+<div class="ui twelve column left aligned very relaxed grid" style="position: relative;">
+  <div class="nine wide column">
+      <div class="ui grid">
+          <div class="fifteen wide column">
+              <h1>{{ $institution->title }}</h1>
+          </div>
+          <div class="one wide column">
+              @include ('institutions/partials/_options')
+          </div>
+      </div>
+  </div>
+</div>
+<br><br>
+
 <div class="ui very relaxed grid">
 
-  <div class="nine wide column" style="margin-right: 72px;">
+  <div class="nine wide column">
 
     @include ('institutions/partials/show/_media_gallery')
 
@@ -31,6 +43,8 @@
     @include ('institutions/partials/show/_institution_information')
     @include ('institutions/partials/show/_reception_committee_information')
   </div>
+
+  <div class="one wide column"></div>
 
   <br>
 
@@ -54,8 +68,7 @@
 @endsection
 
 @section ('script')
-  <script src="/js/map.js"></script>
-  <script src="/js/marks.js"></script>
+  <script src="/js/vendor/readmore/readmore.min.js"></script>
 
   <script src='/js/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
   <script src='/js/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>

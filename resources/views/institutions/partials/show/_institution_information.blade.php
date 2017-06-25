@@ -12,10 +12,10 @@
   <br>
   <div class="ui grid">
 
-    @if ($institution->acronym)
+    @if ($institution->abbreviation)
         <div class="four wide column">
-          <h5 class="ui header">Абревиатуры:
-            <div class="sub header">{{ $institution->acronym }}</div>
+          <h5 class="ui header">Аббревиатура(-ы):
+            <div class="sub header">{{ $institution->abbreviation }}</div>
           </h5>
         </div>
     @endif

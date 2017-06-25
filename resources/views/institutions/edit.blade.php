@@ -1,15 +1,15 @@
 @extends ('layouts.app')
 
 @section ('title')
-  {{ $pageTitle = 'Редактирование ' . Translator::get($institutionType, 'r', 's') }}
+  {{ $heading = 'Редактирование ' . Translator::get($institutionType, 'r', 's') }}
 @endsection
 
 @section ('subnavigation')
-    @include ('institutions.partials.navigation', ['pageTitle' => $pageTitle])
+    @include ('institutions.partials.navigation', ['heading' => $heading])
 @endsection
 
 @section ('content')
-    @include ('includes.ckeditor')
+    @include ('includes/_ckeditor')
     <br><br>
 
     <form action="{{ route('institutions.update', [$institutionType, $institution]) }}"
@@ -21,7 +21,7 @@
 
       <input type="hidden" name="type" value="{{ $institution->type }}">
 
-      @include ('includes.form-errors')
+      @include ('includes/_form-errors')
 
       <div class="ui horizontal divider">
           <i class="teal university icon"></i> Основная информация

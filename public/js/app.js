@@ -1,10 +1,4 @@
 // General scripts
-$('article').readmore({
-  collapsedHeight: 110,
-  speed: 500,
-  moreLink: '<a href="#">Показать полностью</a>',
-  lessLink: '<a href="#">Свернуть текст</a>'
-});
 
 $('.ui.checkbox').checkbox();
 
@@ -39,7 +33,7 @@ function sendToggleRequest (itemType, itemId)
     });
  }
 
- $('.university.item').click(function (e)
+ $('.custom.item').click(function (e)
  {
     if (e.target == this) {
       $(this).toggleClass('marked');

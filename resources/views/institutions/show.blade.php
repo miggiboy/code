@@ -5,62 +5,53 @@
 @endsection
 
 @section ('head')
-
   <link rel='stylesheet' href='/js/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
-
   <style>
     .overlay {
         position: fixed; bottom: 42px; right: 37px; z-index: 10;
     }
   </style>
+@endsection
 
+@section ('subnavigation')
+  @component ('institutions/partials/_navigation', ['institutionType' => $institutionType])
+    @slot ('custom_heading_layout')
+        <div class="nine wide column">
+            <div class="ui grid">
+                <div class="fifteen wide column">
+                    <h1>{{ $institution->title }}</h1>
+                </div>
+                <div class="one wide column">
+                    @include ('institutions/partials/_options')
+                </div>
+            </div>
+        </div>
+    @endslot
+  @endcomponent
 @endsection
 
 @section ('content')
 
-<div class="ui twelve column left aligned very relaxed grid" style="position: relative;">
-  <div class="nine wide column">
-      <div class="ui grid">
-          <div class="fifteen wide column">
-              <h1>{{ $institution->title }}</h1>
-          </div>
-          <div class="one wide column">
-              @include ('institutions/partials/_options')
-          </div>
-      </div>
-  </div>
-</div>
-<br><br>
-
 <div class="ui very relaxed grid">
-
   <div class="nine wide column">
-
     @include ('institutions/partials/show/_media_gallery')
-
     @include ('institutions/partials/show/_labels')
-
     @include ('institutions/partials/show/_institution_information')
     @include ('institutions/partials/show/_reception_committee_information')
   </div>
 
   <div class="one wide column"></div>
-
   <br>
 
   <div class="six wide column">
-
     <div class="row">
       @include ('institutions/partials/show/_institution_specialties')
     </div>
-
     <br>
     <div class="row">
       @include ('institutions/partials/show/_map')
     </div>
-
   </div>
-
 </div>
 
 @include ('institutions/partials/show/_add_image_modal_n_button')
@@ -82,5 +73,13 @@
       grid_num_rows:1,
       lightbox_type: "compact"
     });
+
+    $('article').readmore({
+      collapsedHeight: 110,
+      speed: 500,
+      moreLink: '<a href="#">Показать полностью</a>',
+      lessLink: '<a href="#">Свернуть текст</a>'
+    });
+
   </script>
 @endsection

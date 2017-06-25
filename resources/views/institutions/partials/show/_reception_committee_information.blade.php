@@ -1,5 +1,5 @@
 <div class="ui vertical segment">
-  @if ($institution->has('reception'))
+  @if ($institution->reception)
     <h3 class="header">Приемная коммиссия</h3>
     <article>
       {!! $institution->reception->info !!}

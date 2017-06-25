@@ -7,11 +7,10 @@ use App\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
-use App\Traits\Institution\Searchable;
 
 use App\Traits\Institution\{
-    HasReception,
-    HasSpecialties
+    HasSpecialties,
+    Searchable
 };
 
 use Spatie\MediaLibrary\HasMedia\{
@@ -41,7 +40,6 @@ class Institution extends Model implements HasMediaConversions
      */
     use Markable;
     use Searchable;
-    use HasReception;
     use HasSpecialties;
 
     /**
@@ -94,6 +92,16 @@ class Institution extends Model implements HasMediaConversions
     public function getBaseUrl()
     {
         return parse_url($this->web_site)['host'] ?? $this->web_site;
+    }
+
+    /**
+     * Checks if this institution has reception committee
+     *
+     * @return boolean
+     */
+    public function hasReception()
+    {
+        return (bool) $this->reception()->count();
     }
 
     /**

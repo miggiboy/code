@@ -80,7 +80,9 @@ class InstitutionsController extends Controller
             $request->except('reception', 'add_specialties')
         );
 
-        $institution->createOrUpdateReceptionIfProvided();
+        if (array_filter($request->reception) != null) {
+            $institution->reception()->create($request->reception);
+        }
 
         session()->flash('message', 'Уч. заведение добавлено');
 
@@ -122,13 +124,13 @@ class InstitutionsController extends Controller
      */
     public function update(InstitutionFormRequest $request, $institutionType, Institution $institution)
     {
-        $institution->update($request->except('reception', 'add_specialities'));
+        $institution->update($request->except('reception', 'add_specialties'));
 
-        $institution->createOrUpdateReceptionIfProvided();
+        $this->createOrUpdateReception($institution, $request->reception);
 
-        session()->flash('message', 'Учебное заведение обновлено успешно');
+        session()->flash('message', 'Учебное заведение обновлено');
 
-        if ($request->has('add_specialities')) {
+        if ($request->has('add_specialties')) {
             return redirect()->route('institutions.specialties.create', [$institutionType, $institution, 'full-time']);
         }
 
@@ -164,5 +166,24 @@ class InstitutionsController extends Controller
         });
 
         return response()->json(['results' => $institutions]);
+    }
+
+    /**
+     * Create or update reception if some information is provided
+     * otherwise do not associate reception
+     *
+     * @param  Institution $institution
+     * @param  Array       $reception
+     * @return void
+     */
+    private function createOrUpdateReception(Institution $institution, $reception)
+    {
+        if (array_filter($reception) != null) {
+            $institution->reception()
+                ->createOrUpdate(
+                    ['institution_id' => $institution->id],
+                    $reception
+                );
+        }
     }
 }

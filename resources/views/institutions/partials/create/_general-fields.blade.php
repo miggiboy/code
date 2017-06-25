@@ -64,7 +64,7 @@
            placeholder="Год основания">
   </div>
 
-  <div class="four wide field">
+  <div class="four wide required field">
       <label for="is_paid">Платник?</label>
       <select name="is_paid" id="is_paid" class="ui dropdown">
         <option value="0" selected>Нет</option>
@@ -128,10 +128,10 @@
 <br><br>
 
 <div class="field">
-      <label for="extra_description">Дополнительное описание</label>
+      <label for="extra_description">Дополнительное описание (для платников)</label>
       <textarea id="extra_description" name="extra_description">{{ old('extra_description') }}</textarea>
       <h5 class="ui right aligned header">
-        Доп. описание не ограничено по кол-ву символов. Заполняется только для платников
+        Доп. описание не ограничено по кол-ву символов
       </h5>
  </div>
 <br><br>

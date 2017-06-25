@@ -22,7 +22,7 @@
   </form>
 
 @else
-  @include  ('includes.form-errors')
+  @include  ('includes/_form-errors')
   <form action="" method="post" class="ui form">
     {{ csrf_field() }}
     <div class="field">

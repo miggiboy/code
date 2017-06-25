@@ -23,21 +23,23 @@ class SpecialtyFormRequest extends FormRequest
      */
     public function rules()
     {
-        $codeRule = 'nullable|alpha_num|max:255|unique:specialities';
+        $codeRule = 'nullable|alpha_num|max:255|unique:specialties';
 
-        // Skip this article from unique code check on update
+        /**
+         * Do not compare this item's code with itself
+         * to be unique
+         * on update
+         */
         if ($this->method() == 'PATCH') {
             $codeRule .= ',code,' . $this->specialty->id;
         }
-
 
         return [
             'title'         => 'required|max:255',
             'code'          => $codeRule,
             'subject_1_id'  => 'nullable|integer',
             'subject_2_id'  => 'nullable|integer',
-            // 'model_type'    => 'required',
-            'direction_id'  => 'nullable|unique:directions,title',
+            'type'          => 'required',
         ];
     }
 
@@ -54,7 +56,7 @@ class SpecialtyFormRequest extends FormRequest
             'subject_1_id.integer'  => 'Предмет 1 - неверные данные.',
             'subject_2_id.integer'  => 'Предмет 2 - неверные данные.',
 
-            'model_type.required'   => 'Поле тип - обязательное',
+            'type.required'         => 'Поле тип - обязательное',
         ];
     }
 }

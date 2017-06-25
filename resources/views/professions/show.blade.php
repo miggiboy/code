@@ -83,7 +83,9 @@
 
                 <i class="small teal student middle aligned icon"></i>
                 <div class="content">
-                  <a href="#" class="header" title="{{ $specialty->title }}">
+                  <a href="#"
+                     class="header"
+                     title="{{ $specialty->title }}">
                     {{ str_limit($specialty->title, 25) }}
                   </a>
                 </div>

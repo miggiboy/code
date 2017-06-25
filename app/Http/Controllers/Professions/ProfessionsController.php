@@ -27,7 +27,7 @@ class ProfessionsController extends Controller
      */
     public function index(Request $request)
     {
-        $professions = ProfessionSearch::filter($request)
+        $professions = ProfessionSearch::applyFilters($request)
             ->orderBy('title')
             ->with(['category', 'marks'])
             ->paginate(15);
@@ -70,6 +70,10 @@ class ProfessionsController extends Controller
      */
     public function show(Profession $profession)
     {
+        $profession->load(['specialties' => function ($query) {
+            $query->orderBy('title');
+        }]);
+
         return view('professions.show', compact('profession'));
     }
 

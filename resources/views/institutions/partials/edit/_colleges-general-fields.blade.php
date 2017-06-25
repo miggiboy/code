@@ -2,12 +2,21 @@
 
   <div class="eight wide required field{{ $errors->has('title') ? ' error' : '' }}">
       <label for="title">Название</label>
-      <input type="text" name="title" id="title" value="{{ old('title', $institution->title) }}" placeholder="Название" required>
+      <input type="text"
+             name="title"
+             id="title"
+             value="{{ old('title', $institution->title) }}"
+             placeholder="Название"
+             required>
   </div>
 
   <div class="five wide field">
-      <label for="acronym">Акроним(-ы)</label>
-      <input type="text" name="acronym" id="acronym" value="{{ old('acronym', $institution->acronym) }}" placeholder="Акроним(-ы)">
+      <label for="abbreviation">Аббревитура(-ы)</label>
+      <input type="text"
+             name="abbreviation"
+             id="abbreviation"
+             value="{{ old('abbreviation', $institution->abbreviation) }}"
+             placeholder="Аббревитура(-ы)">
   </div>
 
   <div class="three wide field">

@@ -5,11 +5,15 @@
 
 <div class="fields">
 
+    @php
+      $hasReception = $institution->hasReception();
+    @endphp
+
     <div class="four wide field">
         <label for="reception[phone]">Телефон</label>
         <input type="text"
                name="reception[phone]"
-               value = "{{ old('reception.phone') ?: (($hasReception = $institution->hasReception()) ? $institution->reception->phone : '') }}"
+               value = "{{ old('reception.phone') ?: ($hasReception ? $institution->reception->phone : '') }}"
                id="reception[phone]"
                placeholder="Телефон приемной ком.">
     </div>

@@ -14,6 +14,8 @@ use App\Traits\Specialty\{
 
 use App\Models\Profession\Profession;
 
+use \App\Models\Subject\Subject;
+
 
 class Specialty extends Model
 {
@@ -53,8 +55,12 @@ class Specialty extends Model
      * Gets institution type of specialty
      * @return Builder
      */
-    public function getBelongsTo()
+    public function getBelongsToAttribute()
     {
+        if (! $this->direction) {
+            return null;
+        }
+
         return $this->direction->institution;
     }
 
@@ -113,16 +119,16 @@ class Specialty extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(\App\Models\Subject\Subject::class);
+        return $this->belongsToMany(Subject::class);
     }
 
     public function direction()
     {
-        return $this->belongsTo(SpecialtyDirections::class, 'direction_id');
+        return $this->belongsTo(SpecialtyDirection::class, 'direction_id');
     }
 
     public function professions()
     {
-        return $this->belongsToMany(Profession::class)->select(['id', 'slug', 'title', 'prof_direction_id']);
+        return $this->belongsToMany(Profession::class)->select(['id', 'slug', 'title', 'category_id']);
     }
 }

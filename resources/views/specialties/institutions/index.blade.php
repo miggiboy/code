@@ -9,7 +9,7 @@
     .custom.container {
       width:1000px;
       margin: 0 auto;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     a {
@@ -27,10 +27,10 @@
   <div class="ui custom container">
     <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
 
-      <a href="{{ route('specialties.show', [$specialty->getBelongsTo(), $specialty]) }}">
+      <a href="{{ route('specialties.show', [$specialty->belongs_to, $specialty]) }}">
         {{ str_limit($specialty->title, 50) }}
       </a><br>
-      Связанные {{ Translator::get($specialty->getBelongsTo(), 'i', 'p') }}
+      Связанные {{ Translator::get($specialty->belongs_to, 'i', 'p') }}
     </h2>
 
     @if ($specialty->institutions)

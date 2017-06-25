@@ -14,7 +14,7 @@
 
     @if ($institution->acronym)
         <div class="four wide column">
-          <h5 class="ui header">Известен как:
+          <h5 class="ui header">Абревиатуры:
             <div class="sub header">{{ $institution->acronym }}</div>
           </h5>
         </div>
@@ -26,7 +26,7 @@
       </h5>
     </div>
 
-    @if (isset($institution->has_dormitory))
+    @isset($institution->has_dormitory)
       <div class="four wide column">
           <h5 class="ui header">Общежитие:
               @if ($institution->has_dormitory == true)
@@ -36,9 +36,9 @@
               @endif
           </h5>
         </div>
-    @endif
+    @endisset
 
-    @if (isset($institution->has_military_dep))
+    @isset($institution->has_military_dep)
       <div class="four wide column">
           <h5 class="ui header">Военная каф:
               @if ($institution->has_military_dep == true)
@@ -48,7 +48,7 @@
               @endif
           </h5>
         </div>
-    @endif
+    @endisset
 
     @if ($institution->foundation_year)
         <div class="four wide column">
@@ -60,7 +60,7 @@
 
     @if ($institution->call_center)
         <div class="four wide column">
-            <h5 class="ui header">Основн. телефон
+            <h5 class="ui header">Основн. телефон:
               <div class="sub header">
                   {{ $institution->call_center }}
               </div>

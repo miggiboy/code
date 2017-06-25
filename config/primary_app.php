@@ -11,6 +11,7 @@ return [
         'articles' => 'https://vipusknik.kz/articles/',
         'professions' => 'https://vipusknik.kz/professions/',
         'specialties' => 'https://vipusknik.kz/specialities/',
+        'institutions' => 'https://vipusknik.kz/institutions/',
     ],
 
 ];

@@ -15,6 +15,26 @@ use App\Http\Requests\{
 class InstitutionSpecialtiesController extends Controller
 {
     /**
+     * Existing institution types
+     * @var array
+     */
+    protected static $studyForms = [
+        'full-time',
+        'extramural',
+    ];
+
+    /**
+     * Throw 404 exception if institution type is not in
+     * self::$instituionTypes array
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        abort_unless(in_array(request()->route('studyForm'), self::$studyForms), 404);
+    }
+
+    /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
      */

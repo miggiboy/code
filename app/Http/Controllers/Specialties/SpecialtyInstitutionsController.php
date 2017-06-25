@@ -12,7 +12,7 @@ class SpecialtyInstitutionsController extends Controller
     public function index(Request $request, Specialty $specialty)
     {
         $specialty->load(['institutions' => function ($query) {
-            $query->orderBy('title');
+            $query->with(['city'])->orderBy('title');
         }]);
 
         return view('specialties.institutions.index', compact('specialty'));

@@ -18,12 +18,12 @@
   </div>
 
   <div class="five wide field">
-    <label for="acronym">Акроним(-ы)</label>
+    <label for="abbreviation">Аббревиатура(-ы)</label>
     <input type="text"
-           name="acronym"
-           value="{{ old('acronym') ?: '' }}"
-           id="acronym"
-           placeholder="Акроним(-ы)"
+           name="abbreviation"
+           value="{{ old('abbreviation') ?: '' }}"
+           id="abbreviation"
+           placeholder="Аббревиатура(-ы)"
     >
   </div>
 
@@ -101,7 +101,7 @@
       <label for="description">Описание</label>
       <textarea id="description" name = "description">{{ old('description') ?: '' }}</textarea>
       <h5 class="ui right aligned header" style="font-weight: lighter; margin-top: 1px;">Описание должно быть в пределах 700 символов</h5>
- </div>
+</div>
 <br><br>
 
 <div class="field">

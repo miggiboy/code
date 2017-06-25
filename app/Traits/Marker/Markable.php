@@ -2,24 +2,22 @@
 
 namespace App\Traits\Marker;
 
+use Auth;
+
 trait Markable
 {
     public function scopeMarkedByCurrentUser($query, $marked = true)
     {
-        if ($marked) {
-            return $query->has('marks');
-        }
-
-        return $query->doesntHave('marks');
+        return $query->has('marks', $marked);
     }
 
     public function getMarkedByCurrentUserAttribute()
     {
-        if (! \Auth::check()) {
+        if (! Auth::check()) {
             return false;
         }
 
-        return $this->marks->where('user_id', \Auth::user()->id)->count() === 1;
+        return $this->marks->where('user_id', Auth::user()->id)->count() === 1;
     }
 
     public function marks()

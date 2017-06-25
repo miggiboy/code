@@ -22,7 +22,7 @@
 @section ('content')
 <div class="ui very relaxed grid">
 
-  <div class="nine wide column" style="margin-right: 65px;">
+  <div class="nine wide column" style="margin-right: 72px;">
 
     @include ('institutions/partials/show/_media_gallery')
 

@@ -24,5 +24,5 @@
 @endsection
 
 @section ('script')
-    @include ('includes/_multiple-selection-dropdown-script', ['allowAdditions' => false])
+    @include ('includes/_multiple-selection-dropdown-script')
 @endsection

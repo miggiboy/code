@@ -19,6 +19,8 @@ use App\Modules\Search\{
     InstitutionSearch
 };
 
+use Translator;
+
 
 class InstitutionsController extends Controller
 {
@@ -39,7 +41,7 @@ class InstitutionsController extends Controller
     {
         parent::__construct();
 
-        abort_if (! in_array(\Request::route('institutionType'), self::$institutionTypes), 404);
+        abort_unless(in_array(request()->route('institutionType'), self::$institutionTypes), 404);
     }
 
     /**
@@ -48,7 +50,7 @@ class InstitutionsController extends Controller
      */
     public function index(Request $request, $institutionType)
     {
-        $institutions = InstitutionSearch::filter($request)
+        $institutions = InstitutionSearch::applyFilters($request)
             ->orderBy('title')
             ->with(['city', 'media', 'marks'])
             ->paginate(15);
@@ -63,7 +65,7 @@ class InstitutionsController extends Controller
      */
     public function create()
     {
-        return view('institutions.create');
+        return view('institutions.create', compact('institution'));
     }
 
     /**
@@ -74,13 +76,15 @@ class InstitutionsController extends Controller
      */
     public function store(InstitutionFormRequest $request, $institutionType)
     {
-        $institution = Institution::create($request->except('reception', 'add_specialities'));
+        $institution = Institution::create(
+            $request->except('reception', 'add_specialties')
+        );
 
         $institution->createOrUpdateReceptionIfProvided();
 
-        session()->flash('message', 'Учебное заведение добавлено успешно');
+        session()->flash('message', 'Уч. заведение добавлено');
 
-        if ($request->has('add_specialities')) {
+        if ($request->has('add_specialties')) {
             return redirect()->route('institutions.specialties.create', [$institution, 'full-time']);
         }
 

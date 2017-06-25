@@ -26,7 +26,7 @@ class SpecialtySearch
         }
 
         if ($request->has('without_direction')) {
-            $q->hasNoDirection();
+            $q->hasDirection(false);
         }
 
         if ($request->has('without_subjects')) {

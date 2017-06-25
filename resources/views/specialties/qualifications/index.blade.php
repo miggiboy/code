@@ -9,7 +9,7 @@
     .custom.container {
       width:700px;
       margin: 0 auto;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     a {

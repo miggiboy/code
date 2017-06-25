@@ -11,20 +11,20 @@
 </div>
 
 <div class="eight wide field">
-    <label for="acronym">Акроним(-ы)</label>
+    <label for="abbreviation">Аббревиатура(-ы)</label>
     <input type="text"
-           name="acronym"
-           id="acronym"
-           value="{{ old('acronym', $institution->acronym) }}"
-           placeholder="Акроним(-ы)">
+           name="abbreviation"
+           id="abbreviation"
+           value="{{ old('abbreviation', $institution->abbreviation) }}"
+           placeholder="Аббревиатура(-ы)">
 </div>
 
 </div>
 <div class="fields">
 
 <div class="four wide disabled field">
-  <label for="type_id">Тип вуза</label>
-  <select name="" id="type_id" class="ui search dropdown">
+  <label for="">Тип вуза</label>
+  <select name="" id="" class="ui dropdown">
     <option value="">Тип вуза</option>
   </select>
 </div>
@@ -86,7 +86,7 @@
     </select>
 </div>
 
-<div class="five wide field{{ $errors->has('address') ? ' error' : '' }}">
+<div class="four wide field{{ $errors->has('address') ? ' error' : '' }}">
     <label for="address">Адрес</label>
     <input type="text"
            name="address"
@@ -96,8 +96,8 @@
 </div>
 
 
-<div class="three wide field">
-      <label for="call_center">Телефон</label>
+<div class="four wide field">
+      <label for="call_center">Телефон вуза</label>
       <input type="text"
              name="call_center"
              value="{{ old('call_center', $institution->call_center) }}"

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Subject\Subject;
 
 use App\Models\Specialty\{
-    SpecialtyDirections,
+    SpecialtyDirection,
     Specialty
 };
 
@@ -39,7 +39,7 @@ class SpecialtiesController extends Controller
     {
         parent::__construct();
 
-        abort_if (! in_array(\Request::route('institutionType'), self::$institutionTypes), 404);
+        abort_unless(in_array(request()->route('institutionType'), self::$institutionTypes), 404);
     }
 
     /**
@@ -55,7 +55,7 @@ class SpecialtiesController extends Controller
             ->orderBy('title')
             ->paginate(15);
 
-        $directions = SpecialtyDirections::of($institutionType)
+        $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
             ->get();
 
@@ -71,7 +71,7 @@ class SpecialtiesController extends Controller
     {
         $subjects = Subject::all()->sortBy('title');
 
-        $directions = SpecialtyDirections::of($institutionType)
+        $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
             ->get();
 
@@ -88,7 +88,7 @@ class SpecialtiesController extends Controller
     {
         if ($request->model_type == 'specialty') {
             if (! is_numeric($request->direction_id)) {
-                $direction = SpecialtyDirections::create(['title' => $request->direction_id]);
+                $direction = SpecialtyDirection::create(['title' => $request->direction_id]);
             }
         }
 
@@ -138,7 +138,7 @@ class SpecialtiesController extends Controller
 
         $subjects = Subject::all()->sortBy('title');
 
-        $directions = SpecialtyDirections::of($institutionType)
+        $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
             ->get();
 

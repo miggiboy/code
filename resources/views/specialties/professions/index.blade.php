@@ -27,7 +27,7 @@
   <div class="ui custom container" style="margin-top: -15px;">
 
     <div class="ui header" style="text-align:center; margin-bottom: 30px;">
-      <h2><a href="{{ route('specialties.show', [$specialty->getBelongsTo(), $specialty]) }}">{{ $specialty->title }}</a>,
+      <h2><a href="{{ route('specialties.show', [$specialty->belongs_to, $specialty]) }}">{{ $specialty->title }}</a>,
       <br>cвязанные профессии</h2>
       @if (! $specialty->professions()->count())
         <a href="{{ route('specialties.professions.create', $specialty) }}"
@@ -52,10 +52,10 @@
               <td>
                 <h4 class="ui header">
                   <div class="content">
-                      <a href="#">
+                      <a href="{{ route('professions.show', $profession) }}">
                         {{ $profession->title }}
                       </a>
-                      <div class="sub header"> {{ $profession->profDirection->title }}
+                      <div class="sub header"> {{ $profession->category->title }}
                     </div>
                   </div>
                 </h4>

@@ -24,16 +24,19 @@ class InstitutionFormRequest extends FormRequest
      */
     public function rules()
     {
-        $titleRule = 'required|max:255|unique:universities';
+        $titleRule = 'required|max:255|unique:institutions';
 
-        // Skip this institution from unique check list on update
+        /**
+         * Do not compare this item's title with itself
+         * to be unique on update
+         */
         if ($this->method() == 'PATCH') {
             $titleRule .= ',title,' . $this->institution->id;
         }
 
         return [
             'title'             => $titleRule,
-            'acronym'           => 'nullable|max:255',
+            'abbreviation'      => 'nullable|max:255',
             'city_id'           => 'required|integer',
             'type'              => 'required',
             'has_dormitory'     => 'nullable|boolean',
@@ -54,14 +57,16 @@ class InstitutionFormRequest extends FormRequest
     {
         return [
 
-            'title.required'            => 'Название вуза - обязательное поле.',
-            'title.max'                 => 'Название вуза слишком длинное.',
-            'title.unique'              => 'Вуз с таким названием уже существует.',
+            'title.required'            => 'Название - обязательное поле.',
+            'title.max'                 => 'Название слишком длинное.',
+            'title.unique'              => 'Уч. заведение с таким названием уже существует.',
 
-            'acronym.max'               => 'Акроним вуза слишком длинный.',
+            'abbreviation.max'          => 'Аббревиатура слишком длинная.',
 
             'city_id.required'          => 'Город - обязательное поле.',
             'city_id.integer'           => 'Город - неверные данные.',
+
+            'type.required'             => 'Тип - обязательное поле',
 
             'has_dormitory.boolean'     => 'Общежитие - неверные данные.',
             'has_military_dep.boolean'  => 'Военная.каф - неверные данные.',
@@ -69,10 +74,10 @@ class InstitutionFormRequest extends FormRequest
             'foundation_year.integer'   => 'Год основания должен содержать только числа.',
             'foundation_year.between'   => 'Год основания должен быть между 1800 и ' . Carbon::now()->year . ' годами.',
 
-            'address.max'               => 'Адрес вуза слишком длинный.',
+            'address.max'               => 'Адрес слишком длинный.',
 
             'web_site.max'              => 'Адрес веб-сайта слишком длинный',
-            'call_center.max'           => 'Номер кол-центра слишком длинный',
+            'call_center.max'           => 'Основной телефон слишком длинный',
 
             'reception.address.max'     => 'Адрес приемной комиссии слишком длинный.',
 

@@ -11,7 +11,7 @@
     $('.ui.dropdown').dropdown({
         fullTextSearch: true,
         match:'text',
-        allowAdditions: $allowAdditions,
+        allowAdditions: false,
         keys : {
           delimiter  : false, // comma
     } });

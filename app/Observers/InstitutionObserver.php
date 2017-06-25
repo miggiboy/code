@@ -9,7 +9,7 @@ class InstitutionObserver
 {
     public function creating(Institution $institution)
     {
-        $institution->slug = (new UniqueSlug)->create($institution);
+        $institution->slug = (new UniqueSlug)->createFor($institution);
 
         if(isset($institution->web_site)) {
             $institution->web_site = static::formatUrl($institution->web_site);
@@ -18,7 +18,7 @@ class InstitutionObserver
 
     public function updating(Institution $institution)
     {
-        $institution->slug = (new UniqueSlug)->create($institution);
+        $institution->slug = (new UniqueSlug)->createFor($institution);
 
         if(isset($institution->web_site)) {
             $institution->web_site = static::formatUrl($institution->web_site);

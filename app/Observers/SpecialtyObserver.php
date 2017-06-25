@@ -9,11 +9,11 @@ class SpecialtyObserver
 {
     public function creating(Specialty $specialty)
     {
-        $specialty->slug = (new UniqueSlug)->create($specialty);
+        $specialty->slug = (new UniqueSlug)->createFor($specialty);
     }
 
     public function updating(Specialty $specialty)
     {
-        $specialty->slug = (new UniqueSlug)->create($specialty);
+        $specialty->slug = (new UniqueSlug)->createFor($specialty);
     }
 }

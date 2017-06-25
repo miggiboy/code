@@ -4,7 +4,7 @@ namespace App\Support\Slug;
 
 class UniqueSlug
 {
-    public function create($object)
+    public function createFor($object)
     {
         $slug = str_slug($object->title);
         $allSlugs = $this->getAllSlugs($object);

@@ -28,7 +28,7 @@
       </div>
       <br>
 
-      @include ('institutions/partials/create/_' . $institutionType . '-general-fields')
+      @include ('institutions/partials/create/_general-fields')
 
       @include ('institutions/partials/create/_reception_committee_fields')
 

@@ -2,14 +2,12 @@
 
   <div class="eight wide required field{{ $errors->has('title') ? ' error' : '' }}">
     <label for="title">Название</label>
-    <input type="text"
-           name="title"
-           value="{{ old('title') ?: '' }}"
+    <input type="text" name="title"
+           value="{{ old('title') }}"
            id="title"
            placeholder="Название"
            required
            autofocus>
-
     @if($errors->has('title'))
         <div class="ui error message">
           <p>{{ $errors->first('title') }}</p>
@@ -17,7 +15,7 @@
     @endif
   </div>
 
-  <div class="five wide field">
+  <div class="eight wide field">
     <label for="abbreviation">Аббревиатура(-ы)</label>
     <input type="text"
            name="abbreviation"
@@ -26,7 +24,10 @@
            placeholder="Аббревиатура(-ы)">
   </div>
 
-  <div class="three wide field">
+</div>
+<div class="fields">
+
+  <div class="four wide field">
       <label for="has_dormitory">Общежитие</label>
       <select name="has_dormitory" id="has_dormitory" class="ui dropdown">
         <option value="">Общежитие</option>
@@ -40,8 +41,39 @@
       </select>
   </div>
 
+  <div class="four wide {{ ($institutionType == 'colleges') ? 'disabled ' : '' }}field">
+      <label for="has_military_dep">Военная кафедра</label>
+      <select name="has_military_dep" id="has_military_dep" class="ui dropdown">
+        <option value="">Военная каф.</option>
+        <option value="1" {{ (old('has_military_dep') == "1") ? 'selected' : '' }}>
+          Eсть
+        </option>
+        <option value="0" {{ (old('has_military_dep') == "0") ? 'selected' : '' }}>
+          Нет
+        </option>
+        <option value=" ">Неизвестно</option>
+      </select>
+  </div>
+
+  <div class="four wide field{{ $errors->has('foundation_year') ? ' error' : '' }}">
+    <label for="foundation_year">Год основания</label>
+    <input type="text"
+           name="foundation_year"
+           value="{{ old('foundation_year') }}"
+           id="foundation_year"
+           placeholder="Год основания">
+  </div>
+
+  <div class="four wide field">
+      <label for="is_paid">Платник?</label>
+      <select name="is_paid" id="is_paid" class="ui dropdown">
+        <option value="0" selected>Нет</option>
+        <option value="1">Да</option>
+      </select>
+  </div>
+
 </div>
-<br>
+<br><br>
 
 <div class="fields">
 
@@ -50,8 +82,7 @@
         <select name="city_id" id="city_id" class="ui search dropdown">
           <option value="">Город</option>
           @foreach ($cities as $city)
-            <option value="{{ $city->id }}"
-                    {{ (old('city_id') == $city->id) ? 'selected' : '' }}>
+            <option value="{{ $city->id }}" {{ (old('city_id') == $city->id) ? 'selected' : '' }}>
               {{ $city->title }}
             </option>
           @endforeach
@@ -67,16 +98,16 @@
              placeholder="Адрес">
   </div>
 
-  <div class="three wide field">
+  <div class="four wide field">
           <label for="call_center">Телефон</label>
           <input type="text"
                  name="call_center"
                  value="{{ old('call_center') }}"
                  id="call_center"
-                 placeholder="Телефон колледжа">
+                 placeholder="Телефон вуза">
   </div>
 
-  <div class="three wide field{{ $errors->has('web_site') ? ' error' : '' }}">
+  <div class="four wide field{{ $errors->has('web_site') ? ' error' : '' }}">
       <label for="web_site">Веб-сайт</label>
       <input type="text"
              name="web_site"
@@ -85,26 +116,22 @@
              placeholder="Веб-сайт">
   </div>
 
-  <div class="two wide field{{ $errors->has('foundation_year') ? ' error' : '' }}">
-    <label for="foundation_year">Год основания</label>
-    <input type="text"
-           name="foundation_year"
-           value="{{ old('foundation_year') }}"
-           id="foundation_year"
-           placeholder="Год основания">
-  </div>
-
 </div>
 
 <div class="field">
       <label for="description">Описание</label>
       <textarea id="description" name="description">{{ old('description') }}</textarea>
-      <h5 class="ui right aligned header" style="font-weight: lighter; margin-top: 1px;">Описание должно быть в пределах 700 символов</h5>
-</div>
+      <h5 class="ui right aligned header">
+        Описание должно быть в пределах 700 символов
+      </h5>
+ </div>
 <br><br>
 
 <div class="field">
       <label for="extra_description">Дополнительное описание</label>
       <textarea id="extra_description" name="extra_description">{{ old('extra_description') }}</textarea>
+      <h5 class="ui right aligned header">
+        Доп. описание не ограничено по кол-ву символов. Заполняется только для платников
+      </h5>
  </div>
 <br><br>

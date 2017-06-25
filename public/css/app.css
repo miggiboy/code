@@ -45,3 +45,13 @@ article {
 .custom.item {
   cursor: default !important;
 }
+
+
+/**
+ * Institution edit/create
+ */
+
+.ui.right.aligned.header {
+   font-weight: lighter;
+   margin-top: 1px;
+}

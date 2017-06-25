@@ -81,6 +81,7 @@ class Institution extends Model implements HasMediaConversions
 
     /**
      * Retrieves institutions of $type type
+     *
      * @param  Builder $query
      * @param  string $institutionType
      * @return Builder

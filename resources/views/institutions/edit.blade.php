@@ -5,7 +5,7 @@
 @endsection
 
 @section ('subnavigation')
-    @include ('institutions.partials.navigation', ['heading' => $heading])
+    @include ('institutions/partials/_navigation', ['heading' => $heading])
 @endsection
 
 @section ('content')

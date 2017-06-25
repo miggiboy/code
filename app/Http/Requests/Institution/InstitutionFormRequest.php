@@ -39,6 +39,7 @@ class InstitutionFormRequest extends FormRequest
             'abbreviation'      => 'nullable|max:255',
             'city_id'           => 'required|integer',
             'type'              => 'required',
+            'is_paid'           => 'required|boolean',
             'has_dormitory'     => 'nullable|boolean',
             'has_military_dep'  => 'nullable|boolean',
             'foundation_year'   => 'nullable|integer|between:1800,' . Carbon::now()->year,
@@ -67,6 +68,9 @@ class InstitutionFormRequest extends FormRequest
             'city_id.integer'           => 'Город - неверные данные.',
 
             'type.required'             => 'Тип - обязательное поле',
+
+            'is_paid.required'          => 'Нужно указать является ли уч. заведеие платником',
+            'is_paid.boolean'           => 'Поле \"платник\" - обязательное',
 
             'has_dormitory.boolean'     => 'Общежитие - неверные данные.',
             'has_military_dep.boolean'  => 'Военная.каф - неверные данные.',

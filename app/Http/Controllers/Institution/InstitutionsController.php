@@ -77,20 +77,16 @@ class InstitutionsController extends Controller
     public function store(InstitutionFormRequest $request, $institutionType)
     {
         $institution = Institution::create(
-            $request->except('reception', 'add_specialties')
+            $request->except('reception')
         );
 
         if (array_filter($request->reception) != null) {
             $institution->reception()->create($request->reception);
         }
 
-        session()->flash('message', 'Уч. заведение добавлено');
-
-        if ($request->has('add_specialties')) {
-            return redirect()->route('institutions.specialties.create', [$institution, 'full-time']);
-        }
-
-        return redirect()->route('institutions.show', [$institutionType, $institution]);
+        return redirect()
+            ->route('institutions.show', [$institutionType, $institution])
+            ->withMessage('Уч. заведение добавлено');
     }
 
     /**
@@ -124,17 +120,13 @@ class InstitutionsController extends Controller
      */
     public function update(InstitutionFormRequest $request, $institutionType, Institution $institution)
     {
-        $institution->update($request->except('reception', 'add_specialties'));
+        $institution->update($request->except('reception'));
 
         $this->createOrUpdateReception($institution, $request->reception);
 
-        session()->flash('message', 'Учебное заведение обновлено');
-
-        if ($request->has('add_specialties')) {
-            return redirect()->route('institutions.specialties.create', [$institutionType, $institution, 'full-time']);
-        }
-
-        return redirect()->route('institutions.show', [$institutionType, $institution]);
+        return redirect()
+            ->route('institutions.show', [$institutionType, $institution])
+            ->withMessage('Учебное заведение обновлено');
     }
 
     /**

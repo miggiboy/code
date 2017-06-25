@@ -32,18 +32,6 @@
 
       @include ('institutions/partials/create/_reception_committee_fields')
 
-      <div class="inline field">
-            <div class="ui toggle checkbox">
-                <input type="checkbox"
-                       tabindex="0"
-                       class="hidden"
-                       name="add_specialties"
-                       {{ (old('add_specialties') == 'on') ? 'checked' : '' }}>
-                <label>Добавить специальности после сохранения</label>
-            </div>
-      </div>
-      <br>
-
       <button class="ui big teal button" type="submit">Сохранить</button>
     </form>
     <br><br>

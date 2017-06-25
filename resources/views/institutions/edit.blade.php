@@ -28,19 +28,10 @@
       </div>
       <br>
 
-      @include ('institutions/partials/edit/_' . $institutionType . '-general-fields')
+      @include ('institutions/partials/edit/_general-fields')
 
       @include ('institutions/partials/edit/_reception_committee_fields')
-
-      <div class="inline field">
-            <div class="ui toggle checkbox">
-                <input type="checkbox" tabindex="0" class="hidden" name="add_specialities">
-                <label>Добавить специальности после сохранения</label>
-            </div>
-      </div>
-      <br>
-
-    <button class="ui big teal button" type="submit" id="form-submit-button">Сохранить</button>
+      <button class="ui big teal button" type="submit" id="form-submit-button">Сохранить</button>
     </form>
     <br><br>
 @endsection

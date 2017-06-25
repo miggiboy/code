@@ -51,11 +51,11 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="without_map"
-                 value="1"
+                 name="has_map"
+                 value="0"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('without_map') == "1") ? 'checked' : '' }}>
+                 {{ (request('has_map') == "0") ? 'checked' : '' }}>
           <label>Без карты</label>
         </div>
       </div>
@@ -63,11 +63,11 @@
       <div class="four wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="without_specialities"
-                 value="1"
+                 name="has_specialties"
+                 value="0"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('without_specialities') == "1") ? 'checked' : '' }}>
+                 {{ (request('has_specialties') == "0") ? 'checked' : '' }}>
           <label>Без специальностей</label>
         </div>
       </div>

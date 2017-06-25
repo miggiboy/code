@@ -8,7 +8,7 @@ trait Markable
 {
     public function scopeMarkedByCurrentUser($query, $marked = true)
     {
-        return $query->has('marks', $marked);
+        return $query->has('marks', (bool) $marked);
     }
 
     public function getMarkedByCurrentUserAttribute()

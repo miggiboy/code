@@ -145,7 +145,7 @@ class InstitutionsController extends Controller
     public function rtSearch(Request $request, $institutionType)
     {
         $institutions = Institution::select(
-                'slug as url', "title", 'acronym as description', 'city_id', 'type'
+                'slug as url', "title", 'abbreviation as description', 'city_id', 'type'
             )
             ->ofType($institutionType)
             ->like($request->input('query'))
@@ -153,11 +153,16 @@ class InstitutionsController extends Controller
             ->get();
 
         $institutions = $institutions->each(function ($item, $key) {
-            $item->url = config('app.url') . '/institutions/' . str_plural($item->type) . '/' . $item->url;
-            $item->description = ($item->description . ' ' ?: '') . City::find($item->city_id)->title;
+            $item->url = config('app.url')
+                . '/institutions/'
+                . str_plural($item->type)
+                . '/'
+                . $item->url;
+
+            $item->description = ($item->description . ' ' ?: '') . City::find($item->city_id)->title; // smth wrong here!
         });
 
-        return response()->json(['results' => $institutions]);
+        return response()->json(['results' => $institutions], 200);
     }
 
     /**

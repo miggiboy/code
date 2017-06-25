@@ -20,27 +20,23 @@ class InstitutionSearch
         }
 
         if ($request->has('city')) {
-            $q->inCity($request->city);
+            $q->in($request->city);
         }
 
-        if ($request->has('not_filled')) {
-            $q->has('reception', false);
+        if ($request->has('has_specialties')) {
+            $q->has('specialties', (bool) $request->has_specialties);
         }
 
-        if ($request->has('without_specialities')) {
-            $q->has('specialties', false);
-        }
-
-        if ($request->has('without_map')) {
-            $q->has('map', false);
+        if ($request->has('has_map')) {
+            $q->has('map', (bool) $request->has_map);
         }
 
         if ($request->has('marked')) {
-            $q->markedByCurrentUser();
+            $q->markedByCurrentUser($request->marked);
         }
 
         if ($request->has('is_paid')) {
-            $q->isPaid();
+            $q->isPaid($request->is_paid);
         }
 
         return $q;

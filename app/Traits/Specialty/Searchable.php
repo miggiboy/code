@@ -47,13 +47,13 @@ trait Searchable
     }
 
     /**
-     * Includes specialties which have no reception committee
+     * Includes specialties which (don't) have description
      *
      * @return \Illuminate\Support\Collection
      */
     public function scopeHasDescription($query, $has = true)
     {
-        return $query->where('description', ($has ? '!=' : '='), null);
+        return $query->where('description', ((bool) $has ? '!=' : '='), null);
     }
 
     /**

@@ -5,21 +5,7 @@ namespace App\Traits\Institution;
 trait Searchable
 {
     /**
-     * Includes institutions which belong these cities
-     *
-     * @param  array $cities
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeInCities($query, $cities)
-    {
-        return $query
-            ->whereHas('city', function($q) use ($cities) {
-                $q->whereIn('id', $cities);
-            });
-    }
-
-    /**
-     * Includes institutions which title or acronym
+     * Includes institutions which title or abbreviation
      * is like the given query parameter
      *
      * @param  $query
@@ -30,7 +16,7 @@ trait Searchable
     {
         return $query
             ->where('title', 'like', "%{$input}%")
-            ->orWhere('acronym', 'like', "%{$input}%");
+            ->orWhere('abbreviation', 'like', "%{$input}%");
     }
 
     /**
@@ -40,11 +26,18 @@ trait Searchable
      * @param  string $queryString
      * @return \Illuminate\Support\Collection
      */
-    public function scopeInCity($query, $city)
+    public function scopeIn($query, $city)
     {
         return $query->where('city_id', $city);
     }
 
+    /**
+     * Scope a query to only include paid institutions.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  Boolean $isPaid
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeIsPaid($query, $isPaid = true)
     {
         return $query->where('is_paid', $isPaid);

@@ -45,7 +45,7 @@ class InstitutionFormRequest extends FormRequest
             'foundation_year'   => 'nullable|integer|between:1800,' . Carbon::now()->year,
             'address'           => 'nullable|max:255',
             'web_site'          => 'nullable|max:255',
-            'call_center'       => 'nullable|max:255',
+            'phone_number'      => 'nullable|max:255',
 
             'reception.address' => 'nullable|max:255',
             'reception.email'   => 'nullable|email|max:255',
@@ -81,7 +81,7 @@ class InstitutionFormRequest extends FormRequest
             'address.max'               => 'Адрес слишком длинный.',
 
             'web_site.max'              => 'Адрес веб-сайта слишком длинный',
-            'call_center.max'           => 'Основной телефон слишком длинный',
+            'phone_number.max'          => 'Основной телефон слишком длинный',
 
             'reception.address.max'     => 'Адрес приемной комиссии слишком длинный.',
 

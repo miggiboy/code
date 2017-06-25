@@ -58,11 +58,11 @@
         </div>
     @endif
 
-    @if ($institution->call_center)
+    @if ($institution->phone_number)
         <div class="four wide column">
             <h5 class="ui header">Основн. телефон:
               <div class="sub header">
-                  {{ $institution->call_center }}
+                  {{ $institution->phone_number }}
               </div>
             </h5>
         </div>

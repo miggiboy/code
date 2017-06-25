@@ -22,13 +22,6 @@
 </div>
 <div class="fields">
 
-<div class="four wide disabled field">
-  <label for="">Тип вуза</label>
-  <select name="" id="" class="ui dropdown">
-    <option value="">Тип вуза</option>
-  </select>
-</div>
-
 <div class="four wide field">
     <label for="has_dormitory">Общежитие</label>
     <select name="has_dormitory" id="has_dormitory" class="ui dropdown">
@@ -45,7 +38,7 @@
     </select>
 </div>
 
-<div class="four wide field">
+<div class="four wide {{ ($institutionType == 'colleges') ? 'disabled ' : '' }}field">
     <label for="has_military_dep">Военная каф.</label>
     <select name="has_military_dep" id="has_military_dep" class="ui dropdown">
       <option value="">Военная каф.</option>
@@ -69,6 +62,15 @@
            id="foundation_year"
            placeholder="Год основания">
 </div>
+
+<div class="four wide required field">
+    <label for="is_paid">Платник?</label>
+    <select name="is_paid" id="is_paid" class="ui dropdown">
+      <option value="0" selected>Нет</option>
+      <option value="1">Да</option>
+    </select>
+</div>
+
 </div>
 <br><br>
 
@@ -97,12 +99,12 @@
 
 
 <div class="four wide field">
-      <label for="call_center">Телефон вуза</label>
+      <label for="phone_number">Основной телефон</label>
       <input type="text"
-             name="call_center"
-             value="{{ old('call_center', $institution->call_center) }}"
-             id="call_center"
-             placeholder="Телефон вуза">
+             name="phone_number"
+             value="{{ old('phone_number', $institution->phone_number) }}"
+             id="phone_number"
+             placeholder="Основной телефон">
 </div>
 
 

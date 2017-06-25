@@ -99,12 +99,12 @@
   </div>
 
   <div class="four wide field">
-          <label for="call_center">Телефон</label>
+          <label for="phone_number">Основной телефон</label>
           <input type="text"
-                 name="call_center"
-                 value="{{ old('call_center') }}"
-                 id="call_center"
-                 placeholder="Телефон вуза">
+                 name="phone_number"
+                 value="{{ old('phone_number') }}"
+                 id="phone_number"
+                 placeholder="Основной телефон">
   </div>
 
   <div class="four wide field{{ $errors->has('web_site') ? ' error' : '' }}">

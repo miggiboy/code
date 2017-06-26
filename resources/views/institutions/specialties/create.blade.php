@@ -7,18 +7,19 @@
 @section ('content')
     <div class="ui text container" style="margin-bottom: 10px;">
 
-        <h2 style="margin-bottom: 30px; text-align: center;">
-            Специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}
+        <h2 style="margin-bottom: 20px; text-align: center;">
+            Специальности {{ Translator::get(Request::route('studyForm'), 'r') }}
 
             <br>
             <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"
                target="_blank"
-               title="{{ $institution->title }}">
-
-                {{ str_limit($institution->title, 50) }}
+               title="{{ $institution->title }}"
+               class="custom-link">
+                    {{ str_limit($institution->title, 50) }}
             </a>
         </h2>
-        @include ('institutions/specialties/partials/_creation_form')
+
+    @include ('institutions/specialties/partials/_creation_form')
     </div>
 
 @endsection

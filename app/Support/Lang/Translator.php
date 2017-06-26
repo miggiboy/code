@@ -144,6 +144,7 @@ class Translator
      * Primary method
      * translates given word into russian
      * with conjugation and required number
+     *
      * @param  string  $word
      * @param  char    $conjugation
      * @param  char    $number

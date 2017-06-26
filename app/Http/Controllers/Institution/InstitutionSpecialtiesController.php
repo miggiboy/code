@@ -24,8 +24,8 @@ class InstitutionSpecialtiesController extends Controller
     ];
 
     /**
-     * Throw 404 exception if institution type is not in
-     * self::$instituionTypes array
+     * Throw 404 exception if study form is not in
+     * self::$studyForms array
      */
     public function __construct()
     {
@@ -41,7 +41,10 @@ class InstitutionSpecialtiesController extends Controller
     public function index(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->atForm($studyForm)->orderBy('title');
+            $query
+                ->with(['direction'])
+                ->atForm($studyForm)
+                ->orderBy('title');
         }]);
 
         return view('institutions.specialties.index', compact('institution'));
@@ -55,10 +58,11 @@ class InstitutionSpecialtiesController extends Controller
     public function create(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->atForm($studyForm);
+            $query->atForm(request()->choose_from ?? $studyForm);
         }]);
 
-        $specialties = Specialty::of($institution->type)
+        $specialties = Specialty::getOnLy('specialties')
+            ->of($institution->type)
             ->orderBy('title')
             ->get();
 
@@ -139,9 +143,9 @@ class InstitutionSpecialtiesController extends Controller
     {
         $specialtyDetails = collect($specialtyDetails);
 
-        foreach ($specialtyDetails as $key => $data) {
+        foreach ($specialtyDetails as $specialtyID => $data) {
             $institution->specialties()
-                ->wherePivot('specialty_id', $key)
+                ->wherePivot('specialty_id', $specialtyID)
                 ->atForm($studyForm)
                 ->update([
                     'study_price'      => $data['price'],

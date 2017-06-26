@@ -51,5 +51,4 @@ class UsersController extends Controller
 
         return response()->json(['users' => $users]);
     }
-
 }

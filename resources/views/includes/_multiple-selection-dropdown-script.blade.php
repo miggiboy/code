@@ -14,5 +14,6 @@
         allowAdditions: false,
         keys : {
           delimiter  : false, // comma
-    } });
+        }
+    });
 </script>

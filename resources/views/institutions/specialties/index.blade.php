@@ -14,7 +14,7 @@
          class="custom-link">
         {{ str_limit($institution->title, 50) }}
       </a><br>
-      @if ($institution->specialties->count())
+      @if (count($institution->specialties))
 
         <div class="ui medium teal buttons" style="margin-top: 15px;">
           <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}" class="ui button">
@@ -33,7 +33,7 @@
         </a>
       @endif
     </h2>
-    @if ($institution->specialties->count())
+    @if (count($institution->specialties))
       @include ('institutions/specialties/partials/_specialties_table')
     @endif
   </div>

@@ -22,7 +22,12 @@
 
     <div class="four wide column">
       <h5 class="ui header">Город:
-        <div class="sub header">{{ $institution->city->title }}</div>
+        <div class="sub header">
+          <a href="{{ route('institutions.index', [$institutionType, 'city' => $institution->city->id]) }}"
+             title="Уч. заведения в {{ $institution->city->title }}">
+                {{ $institution->city->title }}
+          </a>
+        </div>
       </h5>
     </div>
 
@@ -68,11 +73,11 @@
         </div>
     @endif
 
-    @if ($institution->web_site)
+    @if ($institution->web_site_url)
         <div class="four wide column">
           <h5 class="ui header">Веб сайт:
             <div class="sub header">
-              <a href="{{ $institution->web_site }}" target="_blank">
+              <a href="{{ $institution->web_site_url }}" target="_blank">
                 {{ $institution->getBaseUrl() }}
               </a>
             </div>

@@ -107,12 +107,12 @@
                  placeholder="Основной телефон">
   </div>
 
-  <div class="four wide field{{ $errors->has('web_site') ? ' error' : '' }}">
-      <label for="web_site">Веб-сайт</label>
+  <div class="four wide field{{ $errors->has('web_site_url') ? ' error' : '' }}">
+      <label for="web_site_url">Веб-сайт</label>
       <input type="text"
-             name="web_site"
-             value="{{ old('web_site') }}"
-             id="web_site"
+             name="web_site_url"
+             value="{{ old('web_site_url') }}"
+             id="web_site_url"
              placeholder="Веб-сайт">
   </div>
 

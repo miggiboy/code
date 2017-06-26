@@ -177,7 +177,7 @@ class InstitutionsController extends Controller
     {
         if (array_filter($reception) != null) {
             $institution->reception()
-                ->createOrUpdate(
+                ->updateOrCreate(
                     ['institution_id' => $institution->id],
                     $reception
                 );

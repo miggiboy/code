@@ -31,7 +31,7 @@
                     Регистрация
                   </div>
                 </h2>
-                @include ('includes.form-errors')
+                @include ('includes/_form-errors')
                 <form action ="{{ route('registration.store') }}" method ="post" class="ui large form">
                   {{ csrf_field() }}
                   <div class="ui stacked segment">

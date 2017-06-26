@@ -5,18 +5,19 @@ namespace App\Http\Controllers\Universities;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\University\University;
+use App\Models\Institution\Institution;
 
 class InstitutionPaidStatusController extends Controller
 {
     /**
-     * Toggles university paid status
+     * Toggles institution paid status
+     *
      * @return Illuminate\Http\Response
      */
-    public function update(University $university)
+    public function update(Institution $institution)
     {
         $institution->update('is_paid', ! $institution->is_paid);
 
-        return back()->with('message', 'Статус вуза изменен');
+        return back()->with('message', 'Статус изменен');
     }
 }

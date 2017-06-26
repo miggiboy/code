@@ -5,15 +5,17 @@ namespace App\Http\Controllers\Universities;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\University\University;
+use App\Models\Institution\Institution;
 use App\Http\Requests\ImageRequest;
+
+use Spatie\MediaLibrary\Media;
 
 class InstitutionMediaController extends Controller
 {
-    public function store(ImageRequest $request, University $university)
+    public function store(ImageRequest $request, Institution $institution)
     {
         foreach ($request->file('images') as $image) {
-            $university
+            $institution
                 ->addMedia($image)
                 ->usingFileName(
                     uniqid(true) . '.' . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION)
@@ -21,12 +23,12 @@ class InstitutionMediaController extends Controller
                 ->toMediaCollection($request->collection);
         }
 
-        return back()->with('message', 'Изображения добавлены');
+        return back()->withMessage('Изображения добавлены');
     }
 
     public function destroy($mediaId)
     {
-        $media = \Spatie\MediaLibrary\Media::find($mediaId);
+        $media = Media::find($mediaId);
         $media->delete();
 
         return response([
@@ -34,9 +36,9 @@ class InstitutionMediaController extends Controller
         ]);
     }
 
-    public function toggleLogo($universityId, $mediaId)
+    public function toggleLogo($institutionID, $mediaId)
     {
-        $media = \Spatie\MediaLibrary\Media::find($mediaId);
+        $media = Media::find($mediaId);
 
         if ($media->collection_name == 'logo') {
             $media->update(['collection_name' => 'images']);
@@ -44,9 +46,9 @@ class InstitutionMediaController extends Controller
             $media->update(['collection_name' => 'logo']);
         }
 
-        $university = University::find($universityId);
+        $institution = Institution::find($institutionID);
 
-        $logos = $university->getMedia('logo');
+        $logos = $institution->getMedia('logo');
 
         foreach ($logos as $logo) {
             if ($logo->id !== $media->id) {

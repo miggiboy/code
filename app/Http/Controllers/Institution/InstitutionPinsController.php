@@ -22,18 +22,7 @@ class InstitutionPinsController extends Controller
             'pin' => PinGenerator::generateUniquePin()
         ]);
 
-        return redirect()->route('universities.show', $university->slug)->withMessage('Пин сгенерирован');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\University\University  $university
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(University $university)
-    {
-        //
+        return redirect()->route('universities.show', $university)->withMessage('Пин сгенерирован');
     }
 
     /**
@@ -58,6 +47,6 @@ class InstitutionPinsController extends Controller
     {
         $university->update(['pin' => null]);
 
-        return back()->withMessage('Пин удален. Представители вуза не смогут получить доступ к личному кабинету');
+        return back()->withMessage('Пин удален. Представители не смогут получить доступ');
     }
 }

@@ -4,39 +4,27 @@
   {{ $institution->title }} - специальности
 @endsection
 
-@section ('head')
-  <style>
-    .custom.container {
-      width:1000px;
-      margin: 0 auto;
-      margin-top: 40px;
-    }
-
-    a {
-    color: #444;
-    text-decoration: none;
-   }
-
-    a:hover {
-    text-decoration: underline;
-   }
-  </style>
-@endsection
-
 @section ('content')
-  <div class="ui custom container">
-    <h2 class="ui header" style="text-align:center; margin-bottom: 40px;">
+  <div class="ui custom-table-page container">
+    <h2 class="ui header">
       Специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}<br>
 
-      <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}">
+      <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"
+         title="{{ $institution->title }}"
+         class="custom-link">
         {{ str_limit($institution->title, 50) }}
       </a><br>
       @if ($institution->specialties->count())
-        <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}"
-           class="ui teal button"
-           style="margin-top: 15px;">
-        Редактировать цены, сроки
-        </a>
+
+        <div class="ui medium teal buttons" style="margin-top: 15px;">
+          <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}" class="ui button">
+            Редактировать цены, сроки
+          </a>
+          <div class="or"></div>
+          <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}" class="ui button">
+            Добавить специальности
+          </a>
+        </div>
       @else
         <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}"
            class="ui teal button"

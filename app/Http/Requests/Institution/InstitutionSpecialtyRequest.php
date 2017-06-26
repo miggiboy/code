@@ -32,10 +32,10 @@ class InstitutionSpecialtyRequest extends FormRequest
     public function messages()
     {
         return [
-            'specialty_details.*.price.integer'    => 'Разрешены только цифры.',
-            'specialty_details.*.digits_between'   => 'Цена - максимум 11 цифр.',
+            'specialty_details.*.price.integer'    => 'Разрешены только цифры',
+            'specialty_details.*.digits_between'   => 'Цена - максимум 11 цифр',
 
-            'specialty_details.*.study_period.max' => 'Слишком длинный срок обучения.',
+            'specialty_details.*.study_period.max' => 'Слишком длинный срок обучения',
         ];
     }
 }

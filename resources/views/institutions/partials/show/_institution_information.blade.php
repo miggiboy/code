@@ -77,7 +77,7 @@
         <div class="four wide column">
           <h5 class="ui header">Веб сайт:
             <div class="sub header">
-              <a href="{{ url($institution->web_site_url) }}" target="_blank">
+              <a href="{{ $institution->web_site_url }}" target="_blank">
                 {{ $institution->getBaseUrl() }}
               </a>
             </div>

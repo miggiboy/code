@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th class="collapsing"></th>
-          <th style="width: 400px;">Специальность</th>
+          <th style="width: 400px;">Специальности ({{ count($institution->specialties) }})</th>
           <th style="width: 40px;">Цена за год</th>
           <th style="width: 280px;">Срок обучения</th>
         </tr>
@@ -66,7 +66,6 @@
                      placeholder="Цена за год"
                      class="price"
                      id="specialty{{ $specialty->id }}input">
-
             </div>
             @if ($errors->has('specialty_details.' . $specialty->id . '.price'))
                 <span>
@@ -79,7 +78,7 @@
               <input type="text"
                      name="specialty_details[{{ $specialty->id }}][study_period]"
                      value="{{ request()->old('specialty_details.' . $specialty->id . '.study_period', $specialty->pivot->study_period) }}"
-                     placeholder="Период обучения"
+                     placeholder="Срок обучения"
                      class="study-period">
             </div>
             @if ($errors->has('specialty_details.' . $specialty->id . '.study_period'))

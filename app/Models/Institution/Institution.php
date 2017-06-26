@@ -95,19 +95,16 @@ class Institution extends Model implements HasMediaConversions
     }
 
     /**
-     * Always return web_site_url attribute with http(s)
+     * Always returns web_site_url attribute with http(s)
      *
      * @param  String $value
      * @return String
      */
     public function getWebSiteUrlAttribute($value)
     {
-        if (! preg_match('/^http(s)?:\/\//', $value)) {
-            return "http://{$value}";
-        }
-
-        return $value;
+        return $value ? $this->formatUrl($value) : null;
     }
+
 
     /**
      * Checks if this institution has reception committee
@@ -135,6 +132,15 @@ class Institution extends Model implements HasMediaConversions
     public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.' . 'institution') . $this->slug;
+    }
+
+    protected function formatUrl($url)
+    {
+        if (! preg_match('/^http(s)?:\/\//', $url)) {
+            return "http://{$url}";
+        }
+
+        return $url;
     }
 
     public function registerMediaConversions()

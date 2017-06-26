@@ -75,13 +75,13 @@ class InstitutionSpecialtiesController extends Controller
     {
         $institution->attachSpecialties($request, $studyForm);
 
-        session()->flash('message', 'Специальности прикреплены');
-
         if ($studyForm == 'full-time') {
             return redirect()->route('institutions.specialties.create', [$institution, 'extramural']);
         }
 
-        return redirect()->route('institutions.show', [str_plural($institution->type), $institution]);
+        return redirect()
+            ->route('institutions.show', [str_plural($institution->type), $institution])
+            ->withMessage('Специальности прикреплены');
     }
 
     /**
@@ -93,7 +93,7 @@ class InstitutionSpecialtiesController extends Controller
     public function edit(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->atForm($studyForm);
+            $query->atForm($studyForm)->orderBy('title');
         }]);
 
         return view('institutions.specialties.edit', compact('institution'));
@@ -108,17 +108,11 @@ class InstitutionSpecialtiesController extends Controller
      */
     public function update(SpecialtyRequest $request, Institution $institution, $studyForm)
     {
-        $specialtyDetails = collect($request->specialty_details);
-
-        $specialtyDetails->each(function ($item, $key) use ($institution, $studyForm) {
-            $institution->specialties()
-                ->wherePivot('specialty_id', $key)
-                ->atForm($studyForm)
-                ->update([
-                    'study_price'      => $item['price'],
-                    'study_period'     => $item['study_period'],
-                ]);
-        });
+        $this->updateSpecialties(
+            $institution,
+            $request->specialty_details,
+            $studyForm
+        );
 
         return redirect()
             ->route('institutions.specialties.index', [$institution, $studyForm])
@@ -139,5 +133,20 @@ class InstitutionSpecialtiesController extends Controller
             ->detach();
 
         return back()->with('message', 'Специальность откреплена.');
+    }
+
+    private function updateSpecialties(Institution $institution, $specialtyDetails, $studyForm)
+    {
+        $specialtyDetails = collect($specialtyDetails);
+
+        foreach ($specialtyDetails as $key => $data) {
+            $institution->specialties()
+                ->wherePivot('specialty_id', $key)
+                ->atForm($studyForm)
+                ->update([
+                    'study_price'      => $data['price'],
+                    'study_period'     => $data['study_period'],
+                ]);
+            }
     }
 }

@@ -55,3 +55,27 @@ article {
    font-weight: lighter;
    margin-top: 1px;
 }
+
+/**
+ * Pages with tables
+ */
+
+.ui.custom-table-page.container {
+  width:1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.custom-link {
+  color: #444;
+  text-decoration: underline;
+}
+
+.custom-link:hover {
+  text-decoration: underline;
+}
+
+.ui.custom-table-page.container > .ui.header {
+  text-align:center;
+  margin-bottom: 40px;
+}

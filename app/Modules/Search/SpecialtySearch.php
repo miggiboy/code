@@ -21,20 +21,20 @@ class SpecialtySearch
             $q->inDirection(request('direction'));
         }
 
-        if ($request->has('without_description')) {
-            $q->hasDescription(false);
+        if ($request->has('has_description')) {
+            $q->hasDescription($request->has_description);
         }
 
-        if ($request->has('without_direction')) {
-            $q->hasDirection(false);
+        if ($request->has('has_direction')) {
+            $q->hasDirection($request->has_direction);
         }
 
-        if ($request->has('without_subjects')) {
-            $q->has('subjects', false);
+        if ($request->has('has_subjects')) {
+            $q->has('subjects', (bool) $request->has_subjects);
         }
 
         if ($request->has('marked')) {
-            $q->markedByCurrentUser();
+            $q->markedByCurrentUser($request->marked);
         }
 
         return $q;

@@ -5,21 +5,6 @@ namespace App\Traits\Specialty;
 trait Searchable
 {
     /**
-     * Includes specialties which have the subject
-     * as one of it's subjects
-     *
-     * @param integer $subjectId
-     * @return \Illuminate\Support\Collection
-     */
-    public function scopeHasSubject($query, $subject)
-    {
-        return $query
-            ->whereHas('subjects', function($q) use($subject) {
-                $q->where('id', $subject);
-            });
-    }
-
-    /**
      * Includes specialties which belong to this direction
      *
      * @param integer $direction
@@ -28,7 +13,7 @@ trait Searchable
     public function scopeInDirection($query, $direction)
     {
         return $query
-            ->whereHas('direction', function($q) use($direction) {
+            ->whereHas('direction', function($q) use ($direction) {
                 $q->where('id', $direction);
             });
     }
@@ -61,11 +46,11 @@ trait Searchable
      *
      * @return \Illuminate\Support\Collection
      */
-    public function scopeHasDirection($query)
+    public function scopeHasDirection($query, $has = true)
     {
         return $query
-            ->whereHas('direction', function($q) {
-                $q->where('title', 'Без направления');
+            ->whereHas('direction', function($q) use ($has) {
+                $q->where('title', ((bool) $has ? '!=' : '='), 'Без направления');
             });
     }
 }

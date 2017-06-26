@@ -43,23 +43,11 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="marked"
-                 value="1"
+                 name="has_subjects"
+                 value="0"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('marked') == "1") ? 'checked' : '' }}>
-          <label>Отмеченные</label>
-        </div>
-      </div>
-
-      <div class="three wide field" style="margin-top: 7px;">
-        <div class="ui checkbox">
-          <input type="checkbox"
-                 name="without_subjects"
-                 value="1"
-                 tabindex="0"
-                 class="hidden"
-                 {{ (request('without_subjects') == "1") ? 'checked' : '' }}>
+                 {{ (request('has_subjects') == "0") ? 'checked' : '' }}>
           <label>Без предметов</label>
         </div>
       </div>
@@ -67,11 +55,11 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="without_description"
-                 value="1"
+                 name="has_description"
+                 value="0"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('without_description') == "1") ? 'checked' : '' }}>
+                 {{ (request('has_description') == "0") ? 'checked' : '' }}>
           <label>Без описания</label>
         </div>
       </div>
@@ -79,12 +67,24 @@
       <div class="field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="without_direction"
+                 name="has_direction"
+                 value="0"
+                 tabindex="0"
+                 class="hidden"
+                 {{ (request('has_direction') == "0") ? 'checked' : '' }}>
+          <label>Без направления</label>
+        </div>
+      </div>
+
+      <div class="three wide field" style="margin-top: 7px;">
+        <div class="ui checkbox">
+          <input type="checkbox"
+                 name="marked"
                  value="1"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('without_direction') == "1") ? 'checked' : '' }}>
-          <label>Без направления</label>
+                 {{ (request('marked') == "1") ? 'checked' : '' }}>
+          <label>Отмеченные</label>
         </div>
       </div>
 

@@ -8,7 +8,7 @@
                    value="{{ request('query') }}"
                    name = "query"
                    class="prompt"
-                   placeholder="Начните вводить название вуза ..."
+                   placeholder="Название вуза или аббревиатура ..."
                    autofocus>
 
             <i class="search icon"></i>

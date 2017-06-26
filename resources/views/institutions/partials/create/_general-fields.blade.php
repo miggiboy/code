@@ -25,6 +25,7 @@
   </div>
 
 </div>
+<br>
 <div class="fields">
 
   <div class="four wide field">
@@ -64,16 +65,16 @@
            placeholder="Год основания">
   </div>
 
-  <div class="four wide required field">
-      <label for="is_paid">Платник?</label>
-      <select name="is_paid" id="is_paid" class="ui dropdown">
-        <option value="0" selected>Нет</option>
-        <option value="1">Да</option>
+  <div class="four wide disabled field">
+      <label for="">Платник?</label>
+      <select name="" id="" class="ui dropdown">
+        <option value="" selected></option>
+        <option value=""></option>
       </select>
   </div>
 
 </div>
-<br><br>
+<br>
 
 <div class="fields">
 

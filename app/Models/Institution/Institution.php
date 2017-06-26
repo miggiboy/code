@@ -91,7 +91,22 @@ class Institution extends Model implements HasMediaConversions
 
     public function getBaseUrl()
     {
-        return parse_url($this->web_site)['host'] ?? $this->web_site;
+        return parse_url($this->web_site_url)['host'] ?? $this->web_site_url;
+    }
+
+    /**
+     * Always return web_site_url attribute with http(s)
+     *
+     * @param  String $value
+     * @return String
+     */
+    public function getWebSiteUrlAttribute($value)
+    {
+        if (! preg_match('/^http(s)?:\/\//', $value)) {
+            return "http://{$value}";
+        }
+
+        return $value;
     }
 
     /**

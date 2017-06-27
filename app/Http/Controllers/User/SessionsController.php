@@ -37,12 +37,12 @@ class SessionsController extends Controller
         if (! auth()->attempt(request(['email', 'password']), request()->has('remember'))
         ) {
             $request->flashOnly(['email']);
-            return back()->with('message', 'Логин или пароль не верны.');
+            return back()->withMessage('Логин или пароль не верны');
         }
 
         if (! auth()->user()->isAuthorised()) {
             auth()->logout();
-            return redirect()->route('sessions.create')->with('message', 'Ожидайте получения доступа.');
+            return redirect()->route('sessions.create')->withMessage('Вам еще не предоставлен доступ');
         }
 
         return redirect()->route('home');

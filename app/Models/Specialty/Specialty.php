@@ -57,6 +57,7 @@ class Specialty extends Model
      */
     public function getInstitutionTypeAttribute()
     {
+        // ! Shouldn't be the case
         if (! $this->direction) {
             return null;
         }

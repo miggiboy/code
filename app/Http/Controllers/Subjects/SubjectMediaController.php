@@ -48,6 +48,6 @@ class SubjectMediaController extends Controller
     public function destroy(Subject $subject, Media $media)
     {
         $media->delete();
-        return back()->with('message', 'Файл удален');
+        return back()->withMessage('Файл удален');
     }
 }

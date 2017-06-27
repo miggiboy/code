@@ -4,45 +4,26 @@
   {{ $specialty->title }} - связанные профессии
 @endsection
 
-@section ('head')
-  <style>
-    .custom.container {
-      width:700px;
-      margin: 0 auto;
-      margin-top: 40px;
-    }
-
-    a {
-    color: #444;
-    text-decoration: none;
-   }
-
-    a:hover {
-    text-decoration: underline;
-   }
-  </style>
-@endsection
-
 @section ('content')
-  <div class="ui custom container" style="margin-top: -15px;">
+  <div class="ui custom-table-page container" style="margin-top: -15px;">
 
-    <div class="ui header" style="text-align:center; margin-bottom: 30px;">
-      <h2><a href="{{ route('specialties.show', [$specialty->belongs_to, $specialty]) }}">{{ $specialty->title }}</a>,
-      <br>cвязанные профессии</h2>
-      @if (! $specialty->professions()->count())
+    <div class="ui header">
+      <h2>
+        <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}" class="custom-link">
+          {{ $specialty->title }}
+        </a>,
+        <br>cвязанные профессии</h2>
         <a href="{{ route('specialties.professions.create', $specialty) }}"
-           class="ui teal button"
-           style="margin-top: 15px;">
+           class="ui teal button">
           Добавить профессии
         </a>
-      @endif
     </div> {{-- End of header --}}
 
-    @if ($specialty->professions()->count())
+    @if ($count = count($specialty->professions))
       <table class="ui celled table" style="margin-bottom: 25px;">
         <thead>
           <tr>
-            <th>Профессия</th>
+            <th>Профессии ({{ $count }})</th>
             <th>Опции</th>
           </tr>
         </thead>
@@ -52,7 +33,7 @@
               <td>
                 <h4 class="ui header">
                   <div class="content">
-                      <a href="{{ route('professions.show', $profession) }}">
+                      <a href="{{ route('professions.show', $profession) }}" class="custom-link">
                         {{ $profession->title }}
                       </a>
                       <div class="sub header"> {{ $profession->category->title }}
@@ -70,7 +51,8 @@
               </td>
 
               <form action="{{ route('specialties.professions.destroy', [$specialty, $profession]) }}"
-                    method="post" id="specialty-detach-profession-{{ $profession->id }}-form">
+                    method="post"
+                    id="specialty-detach-profession-{{ $profession->id }}-form">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
               </form>

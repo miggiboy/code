@@ -39,7 +39,9 @@ class SpecialtiesController extends Controller
     {
         parent::__construct();
 
-        abort_unless(in_array(request()->route('institutionType'), self::$institutionTypes), 404);
+        abort_unless(
+            in_array(request()->route('institutionType'), self::$institutionTypes), 404
+        );
     }
 
     /**
@@ -86,32 +88,23 @@ class SpecialtiesController extends Controller
      */
     public function store(SpecialtyFormRequest $request, $institutionType)
     {
-        if ($request->model_type == 'specialty') {
-            if (! is_numeric($request->direction_id)) {
-                $direction = SpecialtyDirection::create(['title' => $request->direction_id]);
-            }
-        }
-
         $specialty = Specialty::create([
             'title'                 => $request->title,
             'code'                  => $request->code,
             'description'           => $request->description,
             'short_description'     => $request->short_description,
             'type'                  => $request->model_type,
-            'parent_id'             => ($request->model_type == 'specialty') ? null : $request->parent_id,
-            'direction_id'          => ((isset($direction)) ? $direction->id : $request->direction_id),
+            'parent_id'             => $request->parent_id,
+            'direction_id'          => $direction->id,
         ]);
 
-        if ($request->model_type === 'specialty') {
-            if (isset($request->subject_1_id, $request->subject_2_id)) {
-                $specialty->subjects()->attach($request->subject_1_id);
-                $specialty->subjects()->attach($request->subject_2_id);
-            }
+        if (isset($request->subject_1_id, $request->subject_2_id)) {
+            $specialty->subjects()->attach($request->subject_1_id);
+            $specialty->subjects()->attach($request->subject_2_id);
         }
 
         return redirect()
-            ->route('specialties.show', [$institutionType, $specialty])
-            ->with('message', 'Успешно добавлено');
+            ->route('specialties.show', [$institutionType, $specialty]);
     }
 
     /**
@@ -123,6 +116,7 @@ class SpecialtiesController extends Controller
     public function show($institutionType, Specialty $specialty)
     {
         $specialty->load(['subjects']);
+
         return view('specialties.show', compact('specialty'));
     }
 
@@ -171,7 +165,7 @@ class SpecialtiesController extends Controller
 
         return redirect()
             ->route('specialties.show', [$institutionType, $specialty])
-            ->with('message', 'Специальность успешно обновлена');
+            ->withMessage('Специальность обновлена');
     }
 
     /**
@@ -186,7 +180,7 @@ class SpecialtiesController extends Controller
 
         return redirect()
             ->route('specialties.index', $institutionType)
-            ->with('message', 'Специальность удалена');
+            ->withMessage('Специальность удалена');
     }
 
     /**

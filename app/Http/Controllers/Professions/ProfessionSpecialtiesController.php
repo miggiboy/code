@@ -23,7 +23,7 @@ class ProfessionSpecialtiesController extends Controller
 
         return redirect()
             ->route('professions.show', $profession)
-            ->with('message', 'Специальности привязаны к профессии');
+            ->withMessage('Специальности прикреплены');
     }
 
     public function destroy(Profession $profession, Specialty $specialty)
@@ -34,6 +34,6 @@ class ProfessionSpecialtiesController extends Controller
 
         return redirect()
             ->route('professions.show', $profession)
-            ->with('message', 'Специальность откреплена');
+            ->withMessage('Специальность откреплена');
     }
 }

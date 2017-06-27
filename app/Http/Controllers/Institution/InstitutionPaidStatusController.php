@@ -18,6 +18,6 @@ class InstitutionPaidStatusController extends Controller
     {
         $institution->update('is_paid', ! $institution->is_paid);
 
-        return back()->with('message', 'Статус изменен');
+        return back()->withMessage('Статус изменен');
     }
 }

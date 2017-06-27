@@ -31,7 +31,9 @@ class InstitutionSpecialtiesController extends Controller
     {
         parent::__construct();
 
-        abort_unless(in_array(request()->route('studyForm'), self::$studyForms), 404);
+        abort_unless(
+            in_array(request()->route('studyForm'), self::$studyForms), 404
+        );
     }
 
     /**
@@ -42,8 +44,8 @@ class InstitutionSpecialtiesController extends Controller
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
             $query
-                ->with(['direction'])
                 ->atForm($studyForm)
+                ->with(['direction'])
                 ->orderBy('title');
         }]);
 
@@ -120,7 +122,7 @@ class InstitutionSpecialtiesController extends Controller
 
         return redirect()
             ->route('institutions.specialties.index', [$institution, $studyForm])
-            ->with('message', 'Изменения внесены успешно');
+            ->withMessage('Информация обновлена');
     }
 
     /**
@@ -136,7 +138,7 @@ class InstitutionSpecialtiesController extends Controller
             ->wherePivot('form', $studyForm)
             ->detach();
 
-        return back()->with('message', 'Специальность откреплена.');
+        return back()->withMessage('Специальность откреплена');
     }
 
     private function updateSpecialties(Institution $institution, $specialtyDetails, $studyForm)

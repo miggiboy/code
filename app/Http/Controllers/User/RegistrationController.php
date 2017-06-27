@@ -39,11 +39,13 @@ class RegistrationController extends Controller
             'username'      => $request->username,
             'email'         => $request->email,
             'password'      => bcrypt($request->password),
-            'identicon'     => (new \Identicon\Identicon)->getImageDataUri($request->email)
+            'identicon'     => (new \Identicon\Identicon)->getImageDataUri($request->email) // TODO: fails
         ]);
 
        return redirect()
             ->route('login')
-            ->with('message', 'Вы зарегистрированы, обратитесь к администраторам для получения доступа.');
+            ->withMessage(
+                'Вы зарегистрированы, обратитесь к администраторам для получения доступа'
+            );
     }
 }

@@ -22,7 +22,9 @@ class InstitutionPinsController extends Controller
             'pin' => PinGenerator::generateUniquePin()
         ]);
 
-        return redirect()->route('universities.show', $university)->withMessage('Пин сгенерирован');
+        return redirect()
+            ->route('universities.show', $university)
+            ->withMessage('Пин сгенерирован');
     }
 
     /**

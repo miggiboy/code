@@ -85,8 +85,7 @@ class InstitutionsController extends Controller
         }
 
         return redirect()
-            ->route('institutions.show', [$institutionType, $institution])
-            ->withMessage('Уч. заведение добавлено');
+            ->route('institutions.show', [$institutionType, $institution]);
     }
 
     /**
@@ -126,7 +125,7 @@ class InstitutionsController extends Controller
 
         return redirect()
             ->route('institutions.show', [$institutionType, $institution])
-            ->withMessage('Учебное заведение обновлено');
+            ->withMessage('Информация обновлена');
     }
 
     /**

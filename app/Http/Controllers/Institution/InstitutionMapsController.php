@@ -27,7 +27,7 @@ class InstitutionMapsController extends Controller
             'source_code' => $request->source_code
         ]);
 
-        return back()->with('message', 'Карта добалена!');
+        return back()->withMessage('Карта добалена');
     }
 
     /**
@@ -47,6 +47,6 @@ class InstitutionMapsController extends Controller
             'source_code' => $request->source_code
         ]);
 
-        return back()->with('message', 'Карта обновлена!');
+        return back()->withMessage('Карта обновлена');
     }
 }

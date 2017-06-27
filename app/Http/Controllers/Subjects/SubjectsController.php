@@ -48,7 +48,7 @@ class SubjectsController extends Controller
 
         Subject::create(request(['title']));
 
-        return back()->with('message', 'Предмет добавлен успешно.');
+        return back()->withMessage('Предмет добавлен');
     }
 
     /**

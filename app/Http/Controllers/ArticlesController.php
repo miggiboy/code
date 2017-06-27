@@ -56,9 +56,7 @@ class ArticlesController extends Controller
 
         $article->categories()->attach($categories);
 
-        return redirect()
-            ->route('articles')
-            ->with('message', 'Статья успешно добавлена');
+        return redirect()->route('articles.show', $article);
     }
 
     /**
@@ -108,7 +106,7 @@ class ArticlesController extends Controller
 
         return redirect()
             ->route('articles')
-            ->with('message', 'Статья успешно обновлена');
+            ->withMessage('Статья обновлена');
 
     }
 
@@ -122,6 +120,6 @@ class ArticlesController extends Controller
     {
         $article->delete();
 
-        return back()->with('message', 'Статья удалена');
+        return back()->withMessage('Статья удалена');
     }
 }

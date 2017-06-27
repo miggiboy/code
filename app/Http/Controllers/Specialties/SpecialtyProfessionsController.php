@@ -32,7 +32,7 @@ class SpecialtyProfessionsController extends Controller
 
         return redirect()
             ->route('specialties.professions.index', $specialty)
-            ->with('message', 'Профессии прикреплены');
+            ->withMessage('Профессии прикреплены');
     }
 
     public function destroy(Specialty $specialty, Profession $profession)
@@ -43,6 +43,6 @@ class SpecialtyProfessionsController extends Controller
 
         return redirect()
             ->route('specialties.professions.index', $specialty)
-            ->with('message', 'Профессия откреплена');
+            ->withMessage('Профессия откреплена');
     }
 }

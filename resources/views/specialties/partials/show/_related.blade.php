@@ -29,7 +29,7 @@
       <div class="content">
       <a href="{{ route('specialties.institutions.index', $specialty) }}"
         class="header">
-          {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ $specialty->institutions()->count() }})
+          {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ count($specialty->distinctInstitutions) }})
       </a>
       </div>
     </div>

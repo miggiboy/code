@@ -7,17 +7,26 @@
 @section ('content')
     <div class="ui text container" style="margin-bottom: 30px;">
         <div style="margin-bottom: 45px; text-align: center;">
-            <h2>Привязка профессий к специальности <br><a href="{{ route('specialties.show', $specialty) }}" target="_blank">{{ $specialty->title }}</a></h2>
+            <h2>Привязка профессий к специальности <br>
+                <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}"
+                   target="_blank"
+                   class="custom-link">
+                    {{ $specialty->title }}
+                </a>
+            </h2>
         </div>
 
-        <form action="{{ route('specialty.professions.index', $specialty) }}" method="post">
+        <form action="{{ route('specialties.professions.index', $specialty) }}" method="post">
             {{ csrf_field() }}
 
             <div class="ui form" style="position: relative; margin-bottom: 33px;">
-                <select name="professions[]" class="ui fluid search dropdown" multiple="">
+                <select name="professions[]" class="ui fluid search dropdown" multiple>
                     <option value="">Профессии</option>
                     @foreach ($professions as $profession)
-                        <option value="{{ $profession->id }}">{{ $profession->title }}</option>
+                        <option value="{{ $profession->id }}"
+                                {{ $specialty->professions->contains($profession) ? 'selected' : '' }}>
+                            {{ $profession->title }}
+                        </option>
                     @endforeach
                 </select>
             </div>

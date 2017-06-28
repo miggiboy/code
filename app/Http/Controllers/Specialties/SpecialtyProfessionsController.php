@@ -28,18 +28,16 @@ class SpecialtyProfessionsController extends Controller
 
     public function store(Request $request, Specialty $specialty)
     {
-        $specialty->professions()->syncWithoutDetaching($request->professions);
+        $specialty->professions()->sync($request->professions);
 
         return redirect()
             ->route('specialties.professions.index', $specialty)
-            ->withMessage('Профессии прикреплены');
+            ->withMessage('Список профессий обновлен');
     }
 
     public function destroy(Specialty $specialty, Profession $profession)
     {
-        $specialty->professions()
-            ->wherePivot('profession_id', $profession->id)
-            ->detach();
+        $specialty->professions()->detach($profession);
 
         return redirect()
             ->route('specialties.professions.index', $specialty)

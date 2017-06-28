@@ -14,12 +14,12 @@
 @endsection
 
 @section ('subnavigation')
-  @component ('subjects/partials/_navigation', ['institutionType' => $institutionType])
+  @component ('institutions/partials/_navigation', ['institutionType' => $institutionType])
     @slot ('custom_heading_layout')
         <div class="nine wide column">
           <div class="ui grid">
               <div class="fifteen wide column">
-                  <h1>{{ $specialty->title }}</h1>
+                  <h1>{{ $institution->title }}</h1>
               </div>
 
               <div class="one wide column">

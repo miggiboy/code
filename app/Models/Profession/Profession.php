@@ -5,6 +5,8 @@ namespace App\Models\Profession;
 use App\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Specialty\Specialty;
+
 use App\Traits\Marker\Markable;
 
 class Profession extends Model
@@ -38,7 +40,17 @@ class Profession extends Model
      */
     public function scopeLike($query, $input)
     {
-        $query->where('title', 'like', "%{$input}%");
+        return $query->where('title', 'like', "%{$input}%");
+    }
+
+    /**
+     * Includes professions which (don't) have description
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function scopeHasDescription($query, $has = true)
+    {
+        return $query->where('full_description', ((bool) $has ? '!=' : '='), null);
     }
 
     /**
@@ -48,9 +60,9 @@ class Profession extends Model
      * @param  integer $direction
      * @return \Illuminate\Support\Collection
      */
-    public function scopeOfDirection($query, $direction)
+    public function scopeInCategory($query, $category)
     {
-        $query->where('prof_direction_id', $direction);
+        return $query->where('category_id', $category);
     }
 
     /**
@@ -78,6 +90,6 @@ class Profession extends Model
 
     public function specialties()
     {
-        return $this->belongsToMany(\App\Models\Specialty\Specialty::class)->select(['id', 'slug', 'title', 'code']);
+        return $this->belongsToMany(Specialty::class)->select(['id', 'slug', 'title', 'code']);
     }
 }

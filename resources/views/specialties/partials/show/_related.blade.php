@@ -18,7 +18,7 @@
       <i class="small teal travel middle aligned icon"></i>
       <div class="content">
       <a href="{{ route('specialties.professions.index', $specialty) }}"
-        class="header">Профессии ({{ $specialty->professions()->count() }})</a>
+        class="header">Профессии ({{ count($specialty->professions) }})</a>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
       <div class="content">
       <a href="{{ route('specialties.institutions.index', $specialty) }}"
         class="header">
-          {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ count($specialty->distinctInstitutions) }})
+          {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ count($specialty->institutions_distinct) }})
       </a>
       </div>
     </div>

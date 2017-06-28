@@ -32,7 +32,7 @@ class ProfessionFormRequest extends FormRequest
 
         return [
             'title'             => $titleRule,
-            'prof_direction_id' => 'required|integer',
+            'category_id'       => 'required|integer',
         ];
     }
 
@@ -43,8 +43,8 @@ class ProfessionFormRequest extends FormRequest
             'title.max'                     => 'Название профессии слишком длинное.',
             'title.unique'                  => 'Профессия с таким названием уже существует.',
 
-            'prof_direction_id.required'    => 'Тип профессии - обязательное поле.',
-            'prof_direction_id.integer'     => 'Тип профессии - неверные данные.',
+            'category_id.required'          => 'Категория профессии - обязательное поле.',
+            'category_id.integer'           => 'Категория профессии - неверные данные.',
         ];
     }
 }

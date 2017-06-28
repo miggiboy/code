@@ -2,22 +2,28 @@
 
 namespace App\Modules\Search;
 
+use App\Models\Profession\Profession;
+
 class ProfessionSearch
 {
-    public static function filter(\Illuminate\Http\Request $request)
+    public static function applyFilters(\Illuminate\Http\Request $request)
     {
-        $q = \App\Models\Profession\Profession::query();
+        $q = Profession::query();
 
         if ($request->has('query')) {
             $q->like(request('query'));
         }
 
-        if ($request->has('direction')) {
-            $q->ofDirection($request->direction);
+        if ($request->has('category')) {
+            $q->inCategory($request->category);
+        }
+
+        if ($request->has('has_description')) {
+            $q->hasDescription($request->has_description);
         }
 
         if ($request->has('marked')) {
-            $q->markedByCurrentUser();
+            $q->markedByCurrentUser($request->marked);
         }
 
         return $q;

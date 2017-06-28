@@ -24,7 +24,7 @@ trait RelatesToInstitution
         return $this->belongsToMany(Institution::class)->withPivot('study_price', 'study_period', 'form');
     }
 
-    public function distinctInstitutions()
+    public function institutions_distinct()
     {
         return $this->belongsToMany(Institution::class)->groupBy('institution_id');
     }

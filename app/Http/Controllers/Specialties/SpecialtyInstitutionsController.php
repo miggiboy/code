@@ -18,9 +18,7 @@ class SpecialtyInstitutionsController extends Controller
      */
     public function index(Request $request, Specialty $specialty)
     {
-        // ALERT: code smell
-        // loads by another relationship
-        $specialty->load(['distinctInstitutions', 'institutions' => function ($query) {
+        $specialty->load(['institutions' => function ($query) {
             $query->with(['city'])->orderBy('title');
         }]);
 

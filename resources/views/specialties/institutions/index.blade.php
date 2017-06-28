@@ -17,7 +17,7 @@
     @if ($specialty->institutions)
       <table class="ui celled table">
         <thead>
-          <th style="width: 400px;">Учебные заведения ({{ count($specialty->distinctInstitutions) }})</th>
+          <th style="width: 400px;">Учебные заведения ({{ count($specialty->institutions_distinct) }})</th>
           <th style="width: 120px;">Форма обучения</th>
             <th style="width: 120px;">Цена за год</th>
             <th style="width: 120px;">Срок обучения</th>

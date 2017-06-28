@@ -3,7 +3,7 @@
 @section ('title', 'Профессии')
 
 @section ('subnavigation')
-    @include ('professions.partials.navigation', ['pageTitle' => 'Профессии'])
+    @include ('professions/partials/_navigation', ['heading' => 'Профессии'])
 @endsection
 
 @section ('content')

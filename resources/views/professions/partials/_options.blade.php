@@ -1,4 +1,5 @@
-<div class="ui right pointing right floated icon dropdown basic button content">
+<div
+  class="ui {{ $menu_direction ?? 'right' }} pointing {{ $menu_direction ?? 'right' }} floated icon dropdown basic button content">
   <i class="ellipsis vertical icon"></i>
   <div class="menu">
     <div class="header"><i class="tags icon"></i>  Опции </div>
@@ -6,7 +7,7 @@
 
     <a href="{{ route('professions.edit', $profession) }}"
        class="item"
-       @isset ($edit_target_bank) target="_blank" @endisset>
+       @isset ($edit_target_blank) target="_blank" @endisset>
       <i class="blue edit icon"></i> Редактировать
     </a>
 

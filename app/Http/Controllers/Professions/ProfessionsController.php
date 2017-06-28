@@ -29,7 +29,7 @@ class ProfessionsController extends Controller
     {
         $professions = ProfessionSearch::applyFilters($request)
             ->orderBy('title')
-            ->with(['category', 'marks'])
+            ->with(['marks', 'category'])
             ->paginate(15);
 
         return view('professions.index', compact('professions'));
@@ -42,9 +42,7 @@ class ProfessionsController extends Controller
      */
     public function create()
     {
-        $profession = new Profession;
-
-        return view('professions.create', compact('profession'));
+        return view('professions.create');
     }
 
     /**
@@ -57,7 +55,7 @@ class ProfessionsController extends Controller
     {
         $profession = Profession::create($request->all());
 
-        return redirect()->route('profession.show', $profession);
+        return redirect()->route('professions.show', $profession);
     }
 
     /**
@@ -95,11 +93,10 @@ class ProfessionsController extends Controller
      */
     public function update(ProfessionFormRequest $request, Profession $profession)
     {
-
         $profession->update($request->all());
 
         return redirect()
-            ->route('profession.show', $profession)
+            ->route('professions.show', $profession)
             ->withMessage('Профессия обновлена');
     }
 
@@ -113,7 +110,7 @@ class ProfessionsController extends Controller
     {
         $profession->delete();
 
-        return redirect()->route('professions')->withMessage('Профессия удалена');
+        return redirect()->route('professions.index')->withMessage('Профессия удалена');
     }
 
     public function rtSearch(Request $request){

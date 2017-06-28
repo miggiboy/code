@@ -3,16 +3,19 @@
 @section ('title', 'Редактирование профессии')
 
 @section ('subnavigation')
-    @include ('professions.partials.navigation', ['pageTitle' => 'Редактирование  профессии'])
+    @include ('professions/partials/_navigation', ['heading' => 'Редактирование профессии'])
 @endsection
 
 @section ('content')
 
-    @include ('includes.ckeditor')
+    @include ('includes/_ckeditor')
 
-    @include ('includes.form-errors')
+    @include ('includes/_form-errors')
 
-    <form action="{{ route('professions.update', $profession) }}" method="post" class="ui form" style="margin-bottom: 35px; margin-top: 25px;">
+    <form action="{{ route('professions.update', $profession) }}"
+          method="post" class="ui form"
+          style="margin-bottom: 35px; margin-top: 25px;">
+
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
 
@@ -28,12 +31,12 @@
         </div>
 
         <div class="four wide required field">
-            <label for="prof_direction_id">Направление</label>
-            <select name="prof_direction_id" id="prof_direction_id" class="ui search dropdown">
-                <option value="">Направление</option>
+            <label for="category_id">Категория</label>
+            <select name="category_id" id="category_id" class="ui search dropdown">
+                <option value="">Категория</option>
                 @foreach ($categories as $category)
                 <option value="{{ $category->id }}"
-                {{ (old('prof_direction_id', $profession->category->id) == $category->id) ? 'selected' : '' }}>
+                        {{ (old('category_id', $profession->category->id) == $category->id) ? 'selected' : '' }}>
                 {{ $category->title }}
                 </option>
                 @endforeach

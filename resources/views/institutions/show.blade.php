@@ -14,18 +14,19 @@
 @endsection
 
 @section ('subnavigation')
-  @component ('institutions/partials/_navigation', ['institutionType' => $institutionType])
+  @component ('subjects/partials/_navigation', ['institutionType' => $institutionType])
     @slot ('custom_heading_layout')
         <div class="nine wide column">
-            <div class="ui grid">
-                <div class="fifteen wide column">
-                    <h1>{{ $institution->title }}</h1>
-                </div>
-                <div class="one wide column">
-                    @include ('institutions/partials/_options')
-                </div>
-            </div>
-        </div>
+          <div class="ui grid">
+              <div class="fifteen wide column">
+                  <h1>{{ $specialty->title }}</h1>
+              </div>
+
+              <div class="one wide column">
+                  @include ('institutions/partials/_options')
+              </div>
+          </div>
+      </div>
     @endslot
   @endcomponent
 @endsection

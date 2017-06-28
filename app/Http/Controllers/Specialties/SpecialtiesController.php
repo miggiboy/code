@@ -52,7 +52,7 @@ class SpecialtiesController extends Controller
 
     public function index(Request $request, $institutionType)
     {
-        $specialties = SpecialtySearch::filter($request)
+        $specialties = SpecialtySearch::applyFilters($request)
             ->with(['direction', 'marks'])
             ->orderBy('title')
             ->paginate(15);
@@ -71,7 +71,10 @@ class SpecialtiesController extends Controller
      */
     public function create($institutionType)
     {
-        $subjects = Subject::all()->sortBy('title');
+        $subjects = Subject::where('is_profile', true)
+            ->whereNull('parent_id')
+            ->orderBy('title')
+            ->get();
 
         $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
@@ -88,20 +91,13 @@ class SpecialtiesController extends Controller
      */
     public function store(SpecialtyFormRequest $request, $institutionType)
     {
-        $specialty = Specialty::create([
-            'title'                 => $request->title,
-            'code'                  => $request->code,
-            'description'           => $request->description,
-            'short_description'     => $request->short_description,
-            'type'                  => $request->model_type,
-            'parent_id'             => $request->parent_id,
-            'direction_id'          => $direction->id,
-        ]);
+        $specialty = Specialty::create(
+            $request->except('subjects')
+        );
 
-        if (isset($request->subject_1_id, $request->subject_2_id)) {
-            $specialty->subjects()->attach($request->subject_1_id);
-            $specialty->subjects()->attach($request->subject_2_id);
-        }
+        $specialty->subjects()->sync(
+            array_filter($request->subjects)
+        );
 
         return redirect()
             ->route('specialties.show', [$institutionType, $specialty]);
@@ -130,13 +126,18 @@ class SpecialtiesController extends Controller
     {
         $specialty->load(['subjects']);
 
-        $subjects = Subject::all()->sortBy('title');
+        $subjects = Subject::where('is_profile', true)
+            ->whereNull('parent_id')
+            ->orderBy('title')
+            ->get();
 
         $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
             ->get();
 
-        return view('specialties.edit', compact('specialty', 'subjects', 'directions'));
+        return view(
+            'specialties.edit', compact('specialty', 'subjects', 'directions')
+        );
     }
 
     /**
@@ -148,20 +149,13 @@ class SpecialtiesController extends Controller
      */
     public function update(SpecialtyFormRequest $request, $institutionType, Specialty $specialty)
     {
-        $specialty->update(request([
-            'title',
-            'code',
-            'description',
-            'direction_id',
-            'short_description',
-        ]));
+        $specialty->update(
+            $request->except('subjects')
+        );
 
-        $specialty->subjects()->detach();
-
-        if (isset($request->subject_1_id, $request->subject_2_id)) {
-            $specialty->subjects()->attach($request->subject_1_id);
-            $specialty->subjects()->attach($request->subject_2_id);
-        }
+        $specialty->subjects()->sync(
+            array_filter($request->subjects)
+        );
 
         return redirect()
             ->route('specialties.show', [$institutionType, $specialty])
@@ -199,6 +193,6 @@ class SpecialtiesController extends Controller
             $item->url = config('app.url') . "/{$institutionType}-specialties/" . $item->url;
         });
 
-        return response()->json(['results' => $specialties]);
+        return response()->json(['results' => $specialties], 200);
     }
 }

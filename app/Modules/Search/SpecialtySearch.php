@@ -7,7 +7,7 @@ use App\Models\Specialty\Specialty;
 
 class SpecialtySearch
 {
-    public static function filter(Request $request)
+    public static function applyFilters(Request $request)
     {
         $q = Specialty::query();
 

@@ -37,9 +37,9 @@ class SpecialtyFormRequest extends FormRequest
         return [
             'title'         => 'required|max:255',
             'code'          => $codeRule,
-            'subject_1_id'  => 'nullable|integer',
-            'subject_2_id'  => 'nullable|integer',
+            'subjects.*'    => 'nullable|integer',
             'type'          => 'required',
+            'direction_id'  => 'required',
         ];
     }
 
@@ -53,10 +53,11 @@ class SpecialtyFormRequest extends FormRequest
             'code.max'              => 'Код специальности слишком длинный.',
             'code.alpha_num'        => 'Код специальности может состоять только из букв и цифр.',
 
-            'subject_1_id.integer'  => 'Предмет 1 - неверные данные.',
-            'subject_2_id.integer'  => 'Предмет 2 - неверные данные.',
+            'subjects.*.integer'    => 'Предмет - неверные данные.',
 
             'type.required'         => 'Поле тип - обязательное',
+
+            'direction_id.required' => 'Направление - обязательное поле',
         ];
     }
 }

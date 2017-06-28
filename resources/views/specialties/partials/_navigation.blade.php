@@ -1,11 +1,10 @@
 <div class="ui thirteen column left aligned very relaxed grid" style = "position: relative;">
-  @if (isset($view))
-      @include ('specialties.partials.page-titles.' . $view)
+
+  @if (isset($custom_heading_layout))
+    {{ $custom_heading_layout }}
   @else
-    <div class="eight wide column">
-      <h1>
-        {{ $pageTitle }}
-      </h1>
+    <div class="nine wide column">
+      <h1>{{ $heading }}</h1>
     </div>
   @endif
 

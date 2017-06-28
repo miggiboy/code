@@ -5,11 +5,11 @@
 @endsection
 
 @section ('subnavigation')
-    @include ('specialties.partials.navigation', ['pageTitle' => 'Редактирование специальности'])
+    @include ('specialties/partials/_navigation', ['heading' => 'Редактирование специальности'])
 @endsection
 
 @section ('content')
-    @include ('includes.ckeditor')
+    @include ('includes/_ckeditor')
 
     <br><br>
     <form action="{{ route('specialties.update', [$institutionType, $specialty]) }}"
@@ -19,39 +19,42 @@
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
 
-      @include ('includes.form-errors')
+      @include ('includes/_form-errors')
 
-      <input type="hidden" name="inst" value="{{ $specialty->getBelongsTo() }}">
+      <input type="hidden" name="type" value="{{ $specialty->type }}">
 
-      <div class="required field{{ $errors->has('title') ? ' error' : '' }}">
-        <label for="title">Название специальности</label>
-        <input type="text"
-               name="title"
-               value="{{ old('title', $specialty->title) }}"
-               id="title"
-               placeholder="Название">
+      <div class="two fields">
+        <div class="ten wide required field{{ $errors->has('title') ? ' error' : '' }}">
+          <label for="title">Название специальности</label>
+          <input type="text"
+                 name="title"
+                 value="{{ old('title', $specialty->title) }}"
+                 id="title"
+                 placeholder="Название">
+        </div>
+
+        <div class="six wide field">
+          <label for="code">Код</label>
+          <input type="text"
+                 name="code"
+                 value="{{ old('code', $specialty->code) }}"
+                 id="code"
+                 placeholder="Код специальности">
+        </div>
       </div>
 
-      <div class="field">
-        <label for="code">Код специальности</label>
-        <input type="text"
-               name="code"
-               value="{{ old('code', $specialty->code) }}"
-               id="code"
-               placeholder="Код">
-      </div>
       <div class="fields">
 
-        <div class="four wide field{{ $errors->has('subject_1_id') ? ' error' : '' }}">
-            <label for="title">Предмет 1-й</label>
-            <select name="subject_1_id" class="ui search dropdown">
-              <option value="">Предмет 1-й</option>
-              <option value=" ">Не выбрано</option>
+        <div class="five wide field{{ $errors->has('subjects.0') ? ' error' : '' }}">
+            <label for="title">Предмет 1</label>
+            <select name="subjects[0]" class="ui search dropdown">
+              <option value="">Предмет 1</option>
+              <option value=" ">Не выбран</option>
 
               @foreach ($subjects as $subject)
                 <option
                 value="{{ $subject->id }}"
-                {{ ((old('subject_1_id') ?: (isset($specialty->subjects[0]) ? $specialty->subjects[0]->id : '')) == $subject->id) ? 'selected' : '' }}>
+                {{ ((old('subjects.0') ?: (isset($specialty->subjects[0]) ? $specialty->subjects[0]->id : '')) == $subject->id) ? 'selected' : '' }}>
                   {{ $subject->title }}
                 </option>
               @endforeach
@@ -59,23 +62,23 @@
             </select>
         </div>
 
-        <div class="four wide field{{ $errors->has('subject_2_id') ? ' error' : '' }}">
-            <label for="title">Предмет 2-й</label>
-            <select name="subject_2_id" class="ui search dropdown">
-              <option value="">Предмет 2-й</option>
-              <option value=" ">Не выбрано</option>
+        <div class="five wide field{{ $errors->has('subjects.1') ? ' error' : '' }}">
+            <label for="title">Предмет 2</label>
+            <select name="subjects[1]" class="ui search dropdown">
+              <option value="">Предмет 2</option>
+              <option value=" ">Не выбран</option>
 
               @foreach ($subjects as $subject)
                 <option
                 value="{{ $subject->id }}"
-                {{ ((old('subject_2_id') ?: (isset($specialty->subjects[1]) ? $specialty->subjects[1]->id : '')) == $subject->id) ? 'selected' : '' }}>
+                {{ ((old('subjects.1') ?: (isset($specialty->subjects[1]) ? $specialty->subjects[1]->id : '')) == $subject->id) ? 'selected' : '' }}>
                   {{ $subject->title }}
                 </option>
               @endforeach
             </select>
         </div>
 
-        <div class="eight wide required field{{ $errors->has('direction_id') ? ' error' : '' }}">
+        <div class="six wide required field{{ $errors->has('direction_id') ? ' error' : '' }}">
             <label for="title">Направление</label>
             <select name="direction_id" class="ui search dropdown">
               <option value="">Направление</option>

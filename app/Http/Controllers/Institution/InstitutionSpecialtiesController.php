@@ -45,8 +45,8 @@ class InstitutionSpecialtiesController extends Controller
         $institution->load(['specialties' => function ($query) use ($studyForm) {
             $query
                 ->atForm($studyForm)
-                ->with(['direction'])
-                ->orderBy('title');
+                ->orderBy('title')
+                ->with(['direction']);
         }]);
 
         return view('institutions.specialties.index', compact('institution'));

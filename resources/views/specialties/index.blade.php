@@ -1,11 +1,11 @@
 @extends ('layouts.app')
 
 @section ('title')
-  {{ $pageTitle = 'Специальности ' . Translator::get($institutionType, 'r', 's') }}
+  {{ $heading = 'Специальности ' . Translator::get($institutionType, 'r', 's') }}
 @endsection
 
 @section ('subnavigation')
-    @include('specialties.partials.navigation', ['pageTitle' => $pageTitle])
+    @include('specialties/partials/_navigation', ['heading' => $heading])
 @endsection
 
 @section ('content')

@@ -41,7 +41,9 @@ class InstitutionsController extends Controller
     {
         parent::__construct();
 
-        abort_unless(in_array(request()->route('institutionType'), self::$institutionTypes), 404);
+        abort_unless(
+            in_array(request()->route('institutionType'), self::$institutionTypes), 404
+        );
     }
 
     /**
@@ -80,7 +82,7 @@ class InstitutionsController extends Controller
             $request->except('reception')
         );
 
-        if (array_filter($request->reception) != null) {
+        if (array_filter($request->reception)) {
             $institution->reception()->create($request->reception);
         }
 
@@ -174,7 +176,7 @@ class InstitutionsController extends Controller
      */
     private function createOrUpdateReception(Institution $institution, $reception)
     {
-        if (array_filter($reception) != null) {
+        if (array_filter($reception)) {
             $institution->reception()
                 ->updateOrCreate(
                     ['institution_id' => $institution->id],

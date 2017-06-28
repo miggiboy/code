@@ -34,12 +34,15 @@ class SessionsController extends Controller
      */
     public function store(StoreSessionRequest $request)
     {
+        // First let's try to log a user in
         if (! auth()->attempt(request(['email', 'password']), request()->has('remember'))
         ) {
-            $request->flashOnly(['email']);
+            request()->flashOnly('email');
             return back()->withMessage('Логин или пароль не верны');
         }
 
+        // If logging in is successful
+        // Let's check if this user has any insider role
         if (! auth()->user()->isAuthorised()) {
             auth()->logout();
             return redirect()->route('sessions.create')->withMessage('Вам еще не предоставлен доступ');

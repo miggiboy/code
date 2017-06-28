@@ -32,7 +32,6 @@ class ArticleFormRequest extends FormRequest
 
         return [
             'title'             => $titleRule,
-            'type'              => 'required|integer',
             'short_description' => 'required',
             'full_description'  => 'required',
             'new_category'      => 'required_without:categories|max:255',
@@ -45,8 +44,6 @@ class ArticleFormRequest extends FormRequest
             'title.required'                => 'Название статьи - обязательное поле.',
             'title.unique'                  => 'Статья с таким названием уже существует.',
             'title.max'                     => 'Название статьи слишком длинное.',
-
-            'type.required'                 => 'Тип статьи - обязательное поле.',
 
             'short_description.required'    => 'Краткое описание - обязательное поле.',
             'full_description.required'     => 'Содержание статьи - обязательное поле.',

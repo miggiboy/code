@@ -3,20 +3,11 @@
 @section ('title', 'Статьи')
 
 @section ('subnavigation')
-    @include ('articles.partials.navigation', ['pageTitle' => $article->title])
+    @include ('articles/partials/_navigation', ['heading' => $article->title])
 @endsection
 
 @section ('head')
     <style>
-        .ui.container.custom {
-            margin-top: 25px;
-            margin-bottom: 30px;
-            font-family: Verdana, sans-serif;
-            font-size: 17px;
-            margin-top: 10px;
-            margin-bottom: 40px;
-            padding: 0 330px 0 0;
-        }
         .overlay .menu {
             position: fixed; bottom: 60px; right: 30px; z-index: 10;
         }
@@ -24,10 +15,13 @@
 @endsection
 
 @section ('content')
-    <div class="ui container custom">
-      {{-- <span>Кат.: {{ $article->profDirection->title }}</span><br> --}}
+    <div class="ui article container">
+      <span>Категории: </span><br>
+      @foreach ($article->categories as $category)
+        {{ $category->title . $loop->last ? '' : ',' }}<br>
+      @endforeach
       <p>{{ $article->short_description }}</p>
-      <p id="edit-area">{!! $article->full_description !!}</p>
+      <p>{!! $article->full_description !!}</p>
 
     </div>
 

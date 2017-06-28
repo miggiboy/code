@@ -80,3 +80,16 @@ article {
   text-align:center;
   margin-bottom: 40px;
 }
+
+/**
+ * Profession and article articles
+ */
+.ui.article.container {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    font-family: Verdana, sans-serif;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    padding: 0 330px 0 0;
+}

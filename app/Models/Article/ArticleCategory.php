@@ -4,7 +4,7 @@ namespace App\Models\Article;
 
 use App\Models\Model;
 
-class ArticleCategories extends Model
+class ArticleCategory extends Model
 {
     //
 }

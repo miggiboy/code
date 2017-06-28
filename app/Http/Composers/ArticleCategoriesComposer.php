@@ -4,7 +4,7 @@ namespace App\Http\Composers;
 
 use Illuminate\View\View;
 
-use App\Models\Article\ArticleCategories;
+use App\Models\Article\ArticleCategory;
 
 class ArticleCategoriesComposer
 {
@@ -13,7 +13,7 @@ class ArticleCategoriesComposer
     public function compose(View $view)
     {
         if (! $this->categories) {
-            $this->categories = ArticleCategories::all()->sortBy('title');
+            $this->categories = ArticleCategory::all()->sortBy('title');
         }
 
         return $view->with('categories', $this->categories);

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Article\{Article, Category};
+use App\Models\Article\{
+    Article,
+    ArticleCategory
+};
 
 use App\Http\Requests\Article\{
     ArticleFormRequest
@@ -48,18 +51,13 @@ class ArticlesController extends Controller
      */
     public function store(ArticleFormRequest $request)
     {
-        $article = Article::create($request->except('new_category', 'categories'));
+        $article = Article::create(
+            $request->except('new_category', 'categories')
+        );
 
-        $categories = collect($request->categories ?: []);
-
-        if ($request->has('new_category')) {
-
-            $category = Category::create(['title' => $request->new_category]);
-
-            $categories->push($category->id);
-        }
-
-        $article->categories()->attach($categories);
+        $article->categories()->sync(
+            $this->getCategoriesFrom($request)
+        );
 
         return redirect()->route('articles.show', $article);
     }
@@ -95,24 +93,15 @@ class ArticlesController extends Controller
      */
     public function update(ArticleFormRequest $request, Article $article)
     {
-        $article->update($request->except('new_category', 'categories'));
+        $article->update(
+            $request->except('new_category', 'categories')
+        );
 
-        $categories = collect($request->categories ?: []);
+        $article->categories()->sync(
+            $this->getCategoriesFrom($request)
+        );
 
-        if ($request->has('new_category')) {
-
-            $category = Category::create(['title' => $request->new_category]);
-
-            $categories->push($category->id);
-        }
-
-        $article->categories()->detach();
-        $article->categories()->attach($categories);
-
-        return redirect()
-            ->route('articles')
-            ->withMessage('Статья обновлена');
-
+        return redirect()->route('articles.show', $article);
     }
 
     /**
@@ -126,5 +115,19 @@ class ArticlesController extends Controller
         $article->delete();
 
         return back()->withMessage('Статья удалена');
+    }
+
+    private function getCategoriesFrom($request)
+    {
+        $categories = collect(
+            $request->categories ?: []
+        );
+
+        if ($request->has('new_category')) {
+            $category = ArticleCategory::create(['title' => $request->new_category]);
+            $categories->push($category->id);
+        }
+
+        return $categories;
     }
 }

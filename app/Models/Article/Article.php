@@ -20,6 +20,34 @@ class Article extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * Includes only articles which title
+     * is like given query parameter
+     *
+     * @param  $query
+     * @param  string $input
+     * @return \Illuminate\Support\Collection
+     */
+    public function scopeLike($query, $input)
+    {
+        return $query->where('title', 'like', "%{$input}%");
+    }
+
+    /**
+     * Includes articles that belong to the given category
+     *
+     * @param  $query
+     * @param  integer $category
+     * @return \Illuminate\Support\Collection
+     */
+    public function scopeInCategory($query, $category)
+    {
+        return
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('id', $category);
+            });
+    }
+
+    /**
      * Redirects to primary app (vipusknik.kz)
      */
 

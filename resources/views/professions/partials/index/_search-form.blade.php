@@ -35,6 +35,7 @@
       </div>
   </div>
 
+  {{-- Checkboxes --}}
   <div class="fields">
     <div class="three wide field" style="margin-top: 7px; margin-top: 7px;">
       <div class="ui checkbox">
@@ -45,6 +46,18 @@
                class="hidden"
                {{ (request('has_description') == "0") ? 'checked' : '' }}>
         <label>Без описания</label>
+      </div>
+    </div>
+
+    <div class="four wide field" style="margin-top: 7px; margin-top: 7px;">
+      <div class="ui checkbox">
+        <input type="checkbox"
+               name="has_specialties"
+               value="0"
+               tabindex="0"
+               class="hidden"
+               {{ (request('has_specialties') == "0") ? 'checked' : '' }}>
+        <label>Без специальностей</label>
       </div>
     </div>
 

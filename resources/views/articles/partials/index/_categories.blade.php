@@ -3,7 +3,7 @@
     <div class="header">Категории</div>
     <div class="menu">
       @foreach ($categories as $category)
-        <a href="#" class="item">
+        <a href="{{ route('articles.index', ['category' => $category->id]) }}" class="item">
           {{ $category->title }}
         </a>
       @endforeach

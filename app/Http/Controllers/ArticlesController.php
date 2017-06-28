@@ -10,6 +10,10 @@ use App\Http\Requests\Article\{
     ArticleFormRequest
 };
 
+use App\Modules\Search\{
+    ArticleSearch
+};
+
 class ArticlesController extends Controller
 {
     /**
@@ -17,9 +21,11 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::orderBy('created_at')->paginate(15);
+        $articles = ArticleSearch::applyFilters($request)
+            ->orderBy('created_at')
+            ->paginate(15);
 
         return view('articles.index', compact('articles'));
     }
@@ -42,7 +48,6 @@ class ArticlesController extends Controller
      */
     public function store(ArticleFormRequest $request)
     {
-
         $article = Article::create($request->except('new_category', 'categories'));
 
         $categories = collect($request->categories ?: []);

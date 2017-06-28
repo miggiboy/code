@@ -3,7 +3,7 @@
 @section ('title', 'Статьи')
 
 @section ('subnavigation')
-    @include ('articles.partials.navigation', ['pageTitle' => 'Статьи'])
+    @include ('articles/partials/_navigation', ['heading' => 'Статьи'])
 @endsection
 
 @section ('content')

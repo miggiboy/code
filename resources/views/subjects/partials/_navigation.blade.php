@@ -1,7 +1,7 @@
 <div class="ui thirteen column left aligned very relaxed grid" style = "position: relative;">
 
-  <div class="twelve wide column">
-    <h1>{{ $pageTitle }}</h1>
+  <div class="twelve wide column" style="color: #ccc">
+    <h1>{{ $heading }}</h1>
   </div>
 
   <div class="four wide column" style="position: absolute; top: -2px; right: -30px;">

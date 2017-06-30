@@ -5,7 +5,7 @@
 @endsection
 
 @section ('subnavigation')
-    @include ('subjects.partials.navigation', ['pageTitle' => ''])
+    @include ('subjects/partials/_navigation', ['heading' => ''])
 @endsection
 
 @section ('head')
@@ -22,18 +22,17 @@
       <h1>Новый предмет</h1>
     </div>
     <div class="ui text container" style="margin-top: 60px;">
-      @include ('layouts.form-errors')
-      <form action="{{ route('subjects') }}" method="post" class="ui big form">
+      @include ('includes/_form-errors')
+      <form action="{{ route('subjects.index') }}" method="post" class="ui big form">
         {{ csrf_field() }}
         <div class="field">
           <input type="text"
                  name="title"
                  id="title"
-                 placeholder="Введите название предмета"
+                 placeholder="Название предмета"
                  autofocus
                  required>
         </div>
-
         <button type="submit" class="ui big teal button">Сохранить</button>
       </form>
     </div>

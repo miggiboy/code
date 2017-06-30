@@ -11,6 +11,7 @@
             style="margin-bottom: 40px;">
 
           {{ csrf_field() }}
+
           <div class="fourteen wide field">
             <label for="text">Сообщение</label>
             <textarea rows="2" name="text" id="text" id="text" autofocus></textarea>

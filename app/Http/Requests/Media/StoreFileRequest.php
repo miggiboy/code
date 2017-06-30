@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\FileSystem;
+namespace App\Http\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,8 @@ class StoreFileRequest extends FormRequest
     public function rules()
     {
         return [
-            // path length , Mime tyes, file exists
-
-            'files.*'    => 'required|max:100000',
+            'files.*'    => 'file|max:100000',
+            'files.0'    => 'required',
             'category'   => 'required',
         ];
     }

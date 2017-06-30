@@ -5,7 +5,7 @@
 @endsection
 
 @section ('subnavigation')
-    @include ('subjects.partials._subject_navigation', ['pageTitle' => $subject->title])
+    @include ('subjects/partials/_navigation', ['heading' => $subject->title])
 @endsection
 
 @section ('head')
@@ -31,7 +31,6 @@
               </div>
             </h5>
             <div class="meta">
-              {{-- <span class="category">Animals</span> --}}
               <p></p>
             </div>
             <div class="description">
@@ -64,7 +63,7 @@
           <div class="extra content">
             <div class="left floated author">
               <i class="file text outline icon"></i>
-                Специальностей:  {{ count($subject->specialities) }}
+                Специальностей:  {{ count($subject->specialties) }}
             </div>
           </div>
         </a>

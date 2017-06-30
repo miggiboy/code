@@ -124,12 +124,12 @@ Route::group(['namespace' => 'Subjects'], function () {
     Route::resource('subjects', 'SubjectsController', ['except' => ['edit', 'update']]);
 
     // Subject Media
-    Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'desctroy']]);
+    Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'destroy']]);
 });
 
 
 // Cities
-Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'desctroy']]);
+Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'destroy']]);
 
 /**
  * Institutions

@@ -27,7 +27,7 @@ class ArticlesController extends Controller
     public function index(Request $request)
     {
         $articles = ArticleSearch::applyFilters($request)
-            ->orderBy('created_at')
+            ->latest()
             ->paginate(15);
 
         return view('articles.index', compact('articles'));

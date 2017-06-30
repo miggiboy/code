@@ -7,10 +7,12 @@
 @section ('content')
     <div class="ui text container" style="margin-bottom: 30px;">
         <div style="margin-bottom: 45px; text-align: center;">
-            <h2>Привязка специальностей к профессии <br><a href="{{ route('profession.show', $profession) }}" target="_blank">{{ $profession->title }}</a></h2>
+            <h2>Привязка специальностей к профессии <br>
+                <a href="{{ route('professions.show', $profession) }}" target="_blank">{{ $profession->title }}</a>
+            </h2>
         </div>
 
-        <form action="{{ route('profession.specialties.store', $profession) }}" method="post">
+        <form action="{{ route('professions.specialties.store', $profession) }}" method="post">
             {{ csrf_field() }}
 
             <div class="ui form" style="position: relative; margin-bottom: 33px;">
@@ -18,7 +20,7 @@
                     <option value="">Специальности</option>
                     @foreach ($specialties as $specialty)
                         <option value="{{ $specialty->id }}"
-                        {{ $profession->specialities->contains($specialty) ? 'selected' : '' }}>
+                        {{ $profession->specialties->contains($specialty) ? 'selected' : '' }}>
                             {{ $specialty->getNameWithCodeOrName() }}
                         </option>
                     @endforeach
@@ -34,5 +36,5 @@
 @endsection
 
 @section ('script')
-    @include ('includes/_multiple-selection-dropdown-script', ['allowAdditions' => false])
+    @include ('includes/_multiple-selection-dropdown-script')
 @endsection

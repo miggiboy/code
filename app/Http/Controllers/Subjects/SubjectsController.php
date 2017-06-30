@@ -17,6 +17,7 @@ class SubjectsController extends Controller
     public function index()
     {
         $subjects = Subject::all()->sortBy('title');
+
         return view('subjects.index', compact('subjects'));
     }
 

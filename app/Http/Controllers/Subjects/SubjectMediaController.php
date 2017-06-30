@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Subject\Subject;
 
-use App\Http\Requests\FileSystem\{
-    StoreFileRequest
+use App\Http\Requests\{
+    Media\StoreFileRequest
 };
 
 use Spatie\MediaLibrary\Media;
@@ -21,33 +21,44 @@ class SubjectMediaController extends Controller
             $query->latest();
         }]);
 
-        return view('subjects.files.index', compact('subject'));
+        return view('subjects.media.index', compact('subject'));
     }
 
     public function store(StoreFileRequest $request, Subject $subject)
     {
-        foreach ($request->file('files') as $image) {
+        $this->attachMedia($subject, $request);
+
+        return back()->withMessage('Файлы добавлены');
+    }
+
+    public function destroy(Subject $subject, $media)
+    {
+        Media::findOrFail($media)->delete();
+
+        return back()->withMessage('Файл удален');
+    }
+
+    /**
+     * Attaches media to subject from request
+     *
+     * @param  Subject $subject
+     * @param  Request $request
+     * @return void
+     */
+    private function attachMedia(Subject $subject, $request)
+    {
+        foreach ($request->file('files') as $file) {
             $subject
-                ->addMedia($image)
-                ->usingName(
-                    $image->getClientOriginalName()
-                )
+                ->addMedia($file)
                 ->usingFileName(
-                    str_slug(
-                        $image->getClientOriginalName()
-                    )
-                    . '.'
-                    . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION)
+                    $this->composeFileName($file)
                 )
                 ->toMediaCollection($request->category);
         }
-
-        return back();
     }
 
-    public function destroy(Subject $subject, Media $media)
+    private function composeFileName($file)
     {
-        $media->delete();
-        return back()->withMessage('Файл удален');
+        return str_slug($file->getClientOriginalName()) . '.' . $file->extension();
     }
 }

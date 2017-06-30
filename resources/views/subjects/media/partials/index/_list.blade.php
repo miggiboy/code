@@ -1,7 +1,7 @@
 <div class="ui grid">
     <div class="column">
         <div class="ui very relaxed middle aligned selection list" id="subject-media-list">
-          @foreach ($subject->media as $media)
+          @foreach ($subjectMedia as $media)
             <div class="item">
 
               <div class="right floated content">
@@ -39,7 +39,17 @@
                   {{ $media->collection_name }}
                 </div>
               </div>
-              <img class="ui image" src="/images/file-icons/exe.svg" style="width: 37px; height: 37px;">
+
+              @php
+                  $file_icon_path = "images/file-icons/{$media->extension}.svg";
+              @endphp
+
+              @if (file_exists($file_icon_path))
+                  <img class="ui image subject-file-icon" src="{{ asset($file_icon_path) }}">
+              @else
+                  <img class="ui image subject-file-icon" src="/images/file-icons/file.svg">
+              @endif
+
               <div class="content">
                 <a href="" class="subject-file-name" title="{{ $media->name }}">
                   {{ str_limit($media->name, 60) }}

@@ -34,6 +34,11 @@
       text-decoration: underline;
       font-size: 12px;
     }
+
+    .subject-file-icon {
+        width: 37px;
+        height: 37px;
+    }
   </style>
 @endsection
 
@@ -49,4 +54,10 @@
         <i class="ui add icon"></i>
       </a>
     </div>
+    <br>
+    {{ $subjectMedia->appends(request()
+        ->except('page', '_token'))
+        ->links('vendor.pagination.default')
+    }}
+    <br><br>
 @endsection

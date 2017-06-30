@@ -17,11 +17,13 @@ class SubjectMediaController extends Controller
 {
     public function index(Subject $subject)
     {
-        $subject->load(['fileCategories', 'media' => function ($query) {
-            $query->latest();
-        }]);
+        $subject->load(['fileCategories']);
 
-        return view('subjects.media.index', compact('subject'));
+        $subjectMedia = $subject->media()
+            ->latest()
+            ->paginate(20);
+
+        return view('subjects.media.index', compact('subject', 'subjectMedia'));
     }
 
     public function store(StoreFileRequest $request, Subject $subject)

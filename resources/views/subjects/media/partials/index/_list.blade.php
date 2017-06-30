@@ -4,6 +4,7 @@
           @foreach ($subjectMedia as $media)
             <div class="item">
 
+              {{-- Buttons --}}
               <div class="right floated content">
                 <a href="{{ $media->getUrl() }}"
                    class="ui mini green button"
@@ -23,6 +24,8 @@
                     {{ method_field('DELETE') }}
                 </form>
               </div>
+
+              {{-- File meta data --}}
               <div class="right floated content">
                 <div class="subject-file-meta">
                   {{ $media->created_at->format('d.m.y') }}
@@ -40,6 +43,8 @@
                 </div>
               </div>
 
+
+              {{-- File icon --}}
               @php
                   $file_icon_path = "images/file-icons/{$media->extension}.svg";
               @endphp
@@ -50,8 +55,13 @@
                   <img class="ui image subject-file-icon" src="/images/file-icons/file.svg">
               @endif
 
+              {{-- File name --}}
               <div class="content">
-                <a href="" class="subject-file-name" title="{{ $media->name }}">
+                <a href="{{ $media->getUrl() }}"
+                   class="subject-file-name"
+                   title="Нажмите для просмотра"
+                   target="_blank">
+
                   {{ str_limit($media->name, 60) }}
                 </a>
               </div>

@@ -35,6 +35,17 @@ class Subject extends Model implements HasMedia
         'is_profile'     => 'boolean',
     ];
 
+    public function getParentIdOrIdAttribute()
+    {
+        return $this->parent_id ?: $this->id;
+    }
+
+    public function getSpecialties()
+    {
+        return static::find($this->parent_id_or_id)
+            ->specialties();
+    }
+
     /**
      * Relations
      */

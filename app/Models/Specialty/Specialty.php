@@ -75,6 +75,13 @@ class Specialty extends Model
         return (bool) $this->subjects()->count();
     }
 
+    public function otherSubject(Subject $subject)
+    {
+        return $this->subjects
+            ->where('id', '!=', $subject->parent_id_or_id)
+            ->first();
+    }
+
     /**
      * Returns specialty name with specialty code if the code
      * is present in the DB

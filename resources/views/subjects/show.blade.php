@@ -40,33 +40,35 @@
           <div class="extra content">
             <div class="left floated author">
               <i class="file text outline icon"></i>
-              Файлов: {{ count($subject->getMedia('')) }}
+              Файлов: {{ count($subject->media) }}
             </div>
           </div>
         </a>
 
-        <a class="ui card" href="">
-          <div class="content">
-            <h5 class="ui icon header">
-              <i class="teal student icon"></i>
-              <div class="content" style="color: #444;">
-                Специальности
+        @if ($subject->is_profile)
+          <a class="ui card" href="{{ route('subjects.specialties.index', $subject) }}">
+            <div class="content">
+              <h5 class="ui icon header">
+                <i class="teal student icon"></i>
+                <div class="content" style="color: #444;">
+                  Специальности
+                </div>
+              </h5>
+              <div class="meta">
+                <p></p>
               </div>
-            </h5>
-            <div class="meta">
-              <p></p>
+              <div class="description">
+                <p></p>
+              </div>
             </div>
-            <div class="description">
-              <p></p>
+            <div class="extra content">
+              <div class="left floated author">
+                <i class="file text outline icon"></i>
+                  Специальностей:  {{ $subject->getSpecialties()->count() }}
+              </div>
             </div>
-          </div>
-          <div class="extra content">
-            <div class="left floated author">
-              <i class="file text outline icon"></i>
-                Специальностей:  {{ count($subject->specialties) }}
-            </div>
-          </div>
-        </a>
+          </a>
+        @endif
 
         <a class="ui card" href="#" onclick="event.preventDefault(); alert("Тесты еще не добавлены")">
           <div class="content">

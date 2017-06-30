@@ -10,8 +10,8 @@
     <div class="description">
       <div class="ui header">Прикрепляем файлы предмету</div>
       <p>Заливать можно по нескольку файлов</p>
-      <p>Загрузка займет время поэтому если Вы не хотите ждать то можете нажать на
-        <a href="{{ route('subjects.index') }}" target="_blank">эту ссылку</a>
+      <p>Загрузка может занять время, поэтому если Вы не хотите ждать то можете нажать на
+        <a href="{{ route('subjects.show', $subject) }}" target="_blank">эту ссылку</a>
       </p>
       <br>
       <form action="{{ route('subjects.media.store', $subject) }}"

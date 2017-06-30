@@ -125,6 +125,8 @@ Route::group(['namespace' => 'Subjects'], function () {
 
     // Subject Media
     Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'destroy']]);
+
+    Route::resource('subjects.specialties', 'SubjectSpecialtiesController', ['only' => ['index']]);
 });
 
 

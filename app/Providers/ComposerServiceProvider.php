@@ -10,7 +10,8 @@ use App\Http\Composers\{
     CitiesComposer,
     ArticleCategoriesComposer,
     ProfessionCategoriesComposer,
-    InstitutionTypeComposer
+    InstitutionTypeComposer,
+    MarkerColorsComposer
 };
 
 class ComposerServiceProvider extends ServiceProvider
@@ -64,6 +65,21 @@ class ComposerServiceProvider extends ServiceProvider
 
             InstitutionTypeComposer::class
         );
+
+        View::composer(
+            [
+                'institutions.index',
+                'institutions.show',
+
+                'specialties.index',
+                'specialties.show',
+
+                'professions.index',
+                'professions.show',
+            ],
+
+            MarkerColorsComposer::class
+        );
     }
 
     /**
@@ -80,5 +96,7 @@ class ComposerServiceProvider extends ServiceProvider
         $this->app->singleton(ArticleCategoriesComposer::class);
 
         $this->app->singleton(InstitutionTypeComposer::class);
+
+        $this->app->singleton(MarkerColorsComposer::class);
     }
 }

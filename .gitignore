@@ -4,4 +4,5 @@
 /storage
 /vendor
 .env
+.env_prod
 artisan

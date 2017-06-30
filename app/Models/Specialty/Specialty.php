@@ -120,11 +120,6 @@ class Specialty extends Model
      * Relations
      */
 
-    public function parent()
-    {
-        return $this->belongsTo(Specialty::class, 'parent_id');
-    }
-
     public function subjects()
     {
         return $this->belongsToMany(Subject::class);

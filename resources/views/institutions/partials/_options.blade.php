@@ -1,4 +1,4 @@
-<div class="ui right pointing right floated icon dropdown basic button content">
+<div class="ui right pointing right floated icon dropdown basic borderless button content">
   <i class="ellipsis vertical icon"></i>
   <div class="menu">
 
@@ -8,13 +8,24 @@
     <a href="{{ route('institutions.edit', [$institutionType, $institution]) }}"
        class="item"
        @isset ($edit_target_blank) target="_blank" @endisset>
-
       <i class="blue edit icon"></i>  Редактировать
     </a>
 
     <a href="{{ url($institution->urlAtPrimaryApp()) }}" class="item" target="_blank">
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
+
+    <div class="item">
+      <i class="left teal dropdown icon"></i>
+      <span class="text">Ваша отметка</span>
+      <div class="left menu">
+        @foreach ($markerColors as $color_eng => $color_rus)
+          <a href="{{ route('markers.') }}" class="item" target="_blank">
+            <i class="{{ $color_eng }} circle icon"></i> {{ $color_rus }}
+          </a>
+        @endforeach
+      </div>
+    </div>
 
     {{-- Editing end --}}
 

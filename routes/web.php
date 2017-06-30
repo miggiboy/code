@@ -47,7 +47,9 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Markers
      */
-    Route::post('/marker', 'MarkersController');
+    Route::post('/marker/{markableType}/{markableId}', 'MarkersController@store');
+    Route::patch('/marker/{markableType}/{markableId}', 'MarkersController@update');
+    Route::delete('/marker/{markableType}/{markableId}', 'MarkersController@destroy');
 });
 
 

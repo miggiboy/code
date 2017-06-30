@@ -50,12 +50,20 @@
     </div>
     <br>
     <div class="row">
-      @include ('institutions/partials/show/_map')
+      {{-- @include ('institutions/partials/show/_map') --}}
     </div>
   </div>
 </div>
 
-@include ('institutions/partials/show/_add_image_modal_n_button')
+@include ('institutions/partials/show/_add_image_modal')
+
+<div class="overlay">
+  <a href=""
+     onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');"
+     class="ui huge green circular icon button">
+    <i class="ui photo icon"></i>
+  </a>
+</div>
 
 @endsection
 

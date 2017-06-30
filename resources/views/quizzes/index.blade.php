@@ -3,7 +3,7 @@
 @section ('title', 'Тесты')
 
 @section ('subnavigation')
-    @include('quizzes.partials.navigation', ['pageTitle' => 'Тесты'])
+    @include('quizzes/partials/_navigation', ['heading' => 'Тесты'])
 @endsection
 
 @section ('content')
@@ -32,12 +32,13 @@
                   <td>{{ $quiz->created_at->format('d.m.y') }}</td>
                   <td>
                     <a href="#" class="ui basic icon button"
-                      onclick="event.preventDefault();
-                      document.getElementById('delete-quiz-{{ $quiz->id }}').submit();">
+                       onclick="event.preventDefault();
+                       document.getElementById('delete-quiz-{{ $quiz->id }}').submit();">
                         <i class="trash outline icon"></i>
                     </a>
                     <form action="{{ route('quizzes.destroy', $quiz) }}"
-                     id="delete-quiz-{{ $quiz->id }}" method="post">
+                          id="delete-quiz-{{ $quiz->id }}"
+                          method="post">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
                     </form>

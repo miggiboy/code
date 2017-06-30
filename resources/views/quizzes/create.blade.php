@@ -2,7 +2,7 @@
 @section ('title', 'Добавление теста')
 
 @section ('subnavigation')
-    @include ('quizzes.partials.navigation', ['pageTitle' => 'Добавление теста'])
+    @include ('quizzes/partials/_navigation', ['heading' => 'Добавление теста'])
 @endsection
 
 @section ('head')
@@ -57,7 +57,11 @@
 
         <div class="five wide field">
             <label for="comment">Коментарий</label>
-            <input type="text" name="comment" value="{{ old('comment') ?: '' }}" id="comment" placeholder="Коментарий к тесту">
+            <input type="text"
+                   name="comment"
+                   value="{{ old('comment') ?: '' }}"
+                   id="comment"
+                   placeholder="Коментарий к тесту">
         </div>
     </div>
 

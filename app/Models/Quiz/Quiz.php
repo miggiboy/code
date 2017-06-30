@@ -14,6 +14,12 @@ class Quiz extends Model
      */
     protected $dates = ['deleted_at'];
 
+
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
     /**
      * Relations
      */

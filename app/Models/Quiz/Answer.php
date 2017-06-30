@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Quiz;
 
 use App\Models\Model;
 

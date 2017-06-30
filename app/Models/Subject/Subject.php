@@ -42,8 +42,13 @@ class Subject extends Model implements HasMedia
 
     public function getSpecialties()
     {
-        return static::find($this->parent_id_or_id)
-            ->specialties();
+        $subject = $this;
+
+        if ($this->parent_id) {
+            $subject = static::find($this->parent_id);
+        }
+
+        return $subject->specialties();
     }
 
     /**

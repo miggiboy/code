@@ -4,7 +4,7 @@
 
 
 @section ('subnavigation')
-    @include('quizzes.partials.navigation', ['pageTitle' => $quiz->title])
+    @include('quizzes/partials/_navigation', ['heading' => $quiz->title])
 @endsection
 
 @section ('content')
@@ -12,22 +12,31 @@
     @for ($i = 0; $i < count($questions); $i++)
       <div class="ui green segment">
           <div class="grouped fields">
-            <label>{{ ($i + ((request('page') ?? 1) * 5 - 4)) . '. ' . $questions[$i]->text }}</label>
-                @for ($j=0; $j < count($questions[$i]->answers); $j++)
-                    <div class="field">
-                        @if (count($questions[$i]->answers) <= 5)
-                             <div class="ui radio checkbox" onclick="checkAnswer({{ $questions[$i]->answers[$j]->id }});">
-                                <input type="radio" name="answer{{ $i }}" tabindex="0" class="hidden">
-                                <label>{{ $questions[$i]->answers[$j]->text }} {{ $questions[$i]->answers[$j]->is_right ? '(right)' : '' }}</label>
-                             </div>
-                        @else
-                          <div class="ui checkbox">
-                              <input type="checkbox" name="answer{{ $i }}">
-                              <label>{{ $questions[$i]->answers[$j]->text }}</label>
-                          </div>
-                        @endif
-                    </div>
-                @endfor
+            <label>
+              {{ ($i + ((request('page') ?? 1) * 5 - 4)) . '. ' . $questions[$i]->text }}
+            </label>
+            @for ($j=0; $j < count($questions[$i]->answers); $j++)
+                <div class="field">
+                    @if (count($questions[$i]->answers) <= 5)
+                         <div class="ui radio checkbox"
+                              onclick="checkAnswer({{ $questions[$i]->answers[$j]->id }});">
+                            <input type="radio"
+                                   name="answer{{ $i }}"
+                                   tabindex="0"
+                                   class="hidden">
+
+                            <label>
+                              {{ $questions[$i]->answers[$j]->text }} {{ $questions[$i]->answers[$j]->is_right ? '(right)' : '' }}
+                            </label>
+                         </div>
+                    @else
+                      <div class="ui checkbox">
+                          <input type="checkbox" name="answer{{ $i }}">
+                          <label>{{ $questions[$i]->answers[$j]->text }}</label>
+                      </div>
+                    @endif
+                </div>
+            @endfor
           </div>
       </div>
     @endfor
@@ -36,8 +45,6 @@
 @endsection
 
 @section ('script')
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
   <script>
       function checkAnswer(answerId) {
           axios.post('/answer/' + answerId, {

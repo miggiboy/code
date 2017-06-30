@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Subject;
-use App\{Quiz, Answer};
+use App\Models\Subject\Subject;
+use App\Models\Quiz\{
+    Quiz,
+    Answer
+};
 
 use App\Modules\Quiz\{
     QuizParsing,
@@ -22,7 +25,8 @@ class QuizzesController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::with('subject')->withCount('questions')
+        $quizzes = Quiz::with('subject')
+            ->withCount('questions')
             ->orderBy('updated_at', 'desc')
             ->get();
 
@@ -36,7 +40,8 @@ class QuizzesController extends Controller
      */
     public function create()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::orderBy('title')
+            ->get();
 
         return view('quizzes.create', compact('subjects'));
     }
@@ -61,7 +66,9 @@ class QuizzesController extends Controller
 
         session()->forget(['title', 'subject_id', 'comment', 'questions', 'answers']);
 
-        return redirect()->route('quizzes')->with('message', 'Тест успешно сохранен.');
+        return redirect()
+            ->route('quizzes')
+            ->withMessage('Тест успешно сохранен');
     }
 
     public function preview(Request $request)
@@ -83,7 +90,7 @@ class QuizzesController extends Controller
             'answers'           => $parsed['answers'],
         ]);
 
-        return view('quizzes.preview')->with('message', 'Проверьте все вопросы!');
+        return view('quizzes.preview')->withMessage('Проверьте все вопросы!');
     }
 
     /**
@@ -94,7 +101,10 @@ class QuizzesController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        $questions = $quiz->questions()->paginate(5);
+        $questions = $quiz->questions()
+            ->with(['answers'])
+            ->paginate(5);
+
         return view('quizzes.show', compact('quiz', 'questions'));
     }
 
@@ -107,7 +117,7 @@ class QuizzesController extends Controller
     public function destroy(Quiz $quiz)
     {
         $quiz->delete();
-        return back()->with('message', 'Тест удален.');
+        return back()->withMessage('Тест удален');
     }
 
     public function restore($id)
@@ -122,8 +132,9 @@ class QuizzesController extends Controller
             ->getRightAnswer()
             ->id;
 
-        return [
-            'right_answer_id' => $answerId
-        ];
+        return response()
+            ->json([
+                'right_answer_id' => $answerId
+            ], 200);
     }
 }

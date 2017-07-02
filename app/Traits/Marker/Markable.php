@@ -3,6 +3,7 @@
 namespace App\Traits\Marker;
 
 use Auth;
+use App\Models\User\User;
 
 trait Markable
 {
@@ -11,12 +12,17 @@ trait Markable
         return $query->has('markers', (bool) $marked);
     }
 
-    public function isMarked($color)
+    public function isMarkedByCurrentUserWith($color)
     {
         return (bool) $this->markers
             ->where('user_id', Auth::user()->id)
             ->where('color', $color)
             ->count();
+    }
+
+    public function markersOf(User $user)
+    {
+        return $this->markers->where('user_id', $user->id);
     }
 
     public function getMarkedByCurrentUserAttribute()

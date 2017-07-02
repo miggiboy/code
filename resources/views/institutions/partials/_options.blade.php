@@ -19,37 +19,37 @@
       <i class="left teal dropdown icon"></i>
       <span class="text">Ваша отметка</span>
       <div class="left menu">
-        @foreach ($markerColors as $color_eng => $color_rus)
-          @if ($institution->isMarked($color_eng))
+        @foreach ($markerColors as $color)
+          @if ($institution->isMarkedByCurrentUserWith($color))
             <a href="#"
                onclick="event.preventDefault();
-               document.getElementById('unmark-institution-{{ $institution->id }}-{{ $color_eng }}').submit();"
+               document.getElementById('unmark-institution-{{ $institution->id }}-{{ $color }}').submit();"
                class="item"
                target="_blank">
-              <i class="{{ $color_eng }} circle icon"></i> Снять
+              <i class="{{ $color }} circle icon"></i> Снять
             </a>
 
             <form action="{{ route('markers.destroy', ['institution', $institution->id]) }}"
                   method="post"
-                  id="unmark-institution-{{ $institution->id }}-{{ $color_eng }}">
+                  id="unmark-institution-{{ $institution->id }}-{{ $color }}">
               {{ csrf_field() }}
               {{ method_field('DELETE') }}
-              <input type="hidden" name="color" value="{{ $color_eng }}">
+              <input type="hidden" name="color" value="{{ $color }}">
             </form>
           @else
             <a href="#"
                onclick="event.preventDefault();
-               document.getElementById('mark-institution-{{ $institution->id }}-{{ $color_eng }}').submit();"
+               document.getElementById('mark-institution-{{ $institution->id }}-{{ $color }}').submit();"
                class="item"
                target="_blank">
-              <i class="{{ $color_eng }} circle icon"></i> Поставить
+              <i class="{{ $color }} circle icon"></i> Поставить
             </a>
 
             <form action="{{ route('markers.store', ['institution', $institution->id]) }}"
                   method="post"
-                  id="mark-institution-{{ $institution->id }}-{{ $color_eng }}">
+                  id="mark-institution-{{ $institution->id }}-{{ $color }}">
               {{ csrf_field() }}
-              <input type="hidden" name="color" value="{{ $color_eng }}">
+              <input type="hidden" name="color" value="{{ $color }}">
             </form>
           @endif
 

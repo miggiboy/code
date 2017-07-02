@@ -45,7 +45,7 @@ class MarkersController extends Controller
         $marker->user()->associate($request->user());
         $this->model->markers()->save($marker);
 
-        return back()->withMessage('Маркер добавлен');
+        return back()->withMessage('Отметка добавлена');
     }
 
     public function destroy(Request $request)
@@ -55,6 +55,6 @@ class MarkersController extends Controller
             ->where('color', $request->color)
             ->delete();
 
-        return back()->withMessage('Маркер удален');
+        return back()->withMessage('Отметка удалена');
     }
 }

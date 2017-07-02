@@ -2,10 +2,15 @@
     <div class="ui large celled very relaxed selection list">
     @foreach ($institutions as $institution)
           <div class="custom item">
-
             @include ('institutions/partials/_options', ['edit_target_blank' => true])
             <div class="right floated content">
-              <div>ID:  {{ $institution->id }}</div>
+              <div>
+                <div>ID:  {{ $institution->id }}</div>
+                <br>
+                @foreach ($institution->markersOf(Auth::user()) as $marker)
+                  <i class="{{ $marker->color }} circle icon"></i>
+                @endforeach
+              </div>
             </div>
             @if (count($logos = $institution->getMedia('logo')))
               <img class="ui avatar image" src="{{ $logos[0]->getUrl('thumb') }}">

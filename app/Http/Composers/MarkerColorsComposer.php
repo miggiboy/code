@@ -12,11 +12,11 @@ class MarkerColorsComposer
     {
         if (! $this->markerColors) {
             $this->markerColors = [
-                'blue' => 'Синяя',
-                'red' => 'Красная',
-                'orange' => 'Оранжевая',
-                'green' => 'Зеленая',
-                'pink' => 'Розовая',
+                'blue',
+                'red',
+                'orange',
+                'green',
+                'pink',
             ];
         }
 

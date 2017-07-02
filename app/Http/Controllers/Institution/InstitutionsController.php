@@ -54,7 +54,7 @@ class InstitutionsController extends Controller
     {
         $institutions = InstitutionSearch::applyFilters($request)
             ->orderBy('title')
-            ->with(['city', 'media', 'marks'])
+            ->with(['city', 'media', 'markers'])
             ->paginate(15);
 
         return view('institutions.index', compact('institutions'));
@@ -140,7 +140,7 @@ class InstitutionsController extends Controller
     {
         $institution->delete();
 
-        return redirect()->route('institutions.index', $institutionType)->with('message', 'Учебное заведение удалено');
+        return redirect()->route('institutions.index', $institutionType)->withMessage('Учебное заведение удалено');
     }
 
     public function rtSearch(Request $request, $institutionType)

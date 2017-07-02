@@ -20,9 +20,39 @@
       <span class="text">Ваша отметка</span>
       <div class="left menu">
         @foreach ($markerColors as $color_eng => $color_rus)
-          <a href="{{ route('markers.') }}" class="item" target="_blank">
-            <i class="{{ $color_eng }} circle icon"></i> {{ $color_rus }}
-          </a>
+          @if ($institution->isMarked($color_eng))
+            <a href="#"
+               onclick="event.preventDefault();
+               document.getElementById('unmark-institution-{{ $institution->id }}-{{ $color_eng }}').submit();"
+               class="item"
+               target="_blank">
+              <i class="{{ $color_eng }} circle icon"></i> Снять
+            </a>
+
+            <form action="{{ route('markers.destroy', ['institution', $institution->id]) }}"
+                  method="post"
+                  id="unmark-institution-{{ $institution->id }}-{{ $color_eng }}">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <input type="hidden" name="color" value="{{ $color_eng }}">
+            </form>
+          @else
+            <a href="#"
+               onclick="event.preventDefault();
+               document.getElementById('mark-institution-{{ $institution->id }}-{{ $color_eng }}').submit();"
+               class="item"
+               target="_blank">
+              <i class="{{ $color_eng }} circle icon"></i> Поставить
+            </a>
+
+            <form action="{{ route('markers.store', ['institution', $institution->id]) }}"
+                  method="post"
+                  id="mark-institution-{{ $institution->id }}-{{ $color_eng }}">
+              {{ csrf_field() }}
+              <input type="hidden" name="color" value="{{ $color_eng }}">
+            </form>
+          @endif
+
         @endforeach
       </div>
     </div>
@@ -33,7 +63,9 @@
       <i class="green google icon"></i> Найти в Google
     </a>
 
-    <a href="{{ "https://www.google.kz/maps/search/{$institution->title}/@43.2351503,76.9075561,17z" }}" class="item" target="_blank">
+    <a href="{{ "https://www.google.kz/maps/search/{$institution->title}/@43.2351503,76.9075561,17z" }}"
+       class="item"
+       target="_blank">
       <i class="blue location arrow icon"></i> Google карты
     </a>
 

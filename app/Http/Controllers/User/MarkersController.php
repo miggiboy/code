@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Marker;
+use App\Models\User\Marker;
 
 use App\Models\Specialty\Specialty;
 use App\Models\Institution\Institution;
@@ -14,7 +14,7 @@ use App\Models\Article\Article;
 
 class MarkersController extends Controller
 {
-    private static $markable = [
+    protected static $markable = [
         'institution' => Institution::class,
         'specialty' => Specialty::class,
         'profession' => Profession::class,
@@ -27,14 +27,14 @@ class MarkersController extends Controller
     {
         parent::__construct();
 
-        $markableType = Request::route('markableType');
+        $markableType = request()->route('markableType');
 
         abort_unless(
-            in_array($markableType, self::$markable), 424
+            array_key_exists($markableType, self::$markable), 424
         );
 
-        $this->model = $markableType::findOrFail(
-            Request::route('markableId')
+        $this->model = self::$markable[$markableType]::findOrFail(
+            request()->route('markableId')
         );
     }
 
@@ -42,29 +42,19 @@ class MarkersController extends Controller
     {
         $marker = new Marker;
         $marker->color = $request->color;
-        $marker->user()->associate($request->user);
+        $marker->user()->associate($request->user());
         $this->model->markers()->save($marker);
 
-        return response()->json(null, 200);
-    }
-
-    public function update(Request $request)
-    {
-        $this->model->markers()
-            ->where('user_id', $request->user()->id)
-            ->update([
-                'color' => $request->color
-            ]);
-
-        return response()->json(null, 200);
+        return back()->withMessage('Маркер добавлен');
     }
 
     public function destroy(Request $request)
     {
         $this->model->markers()
-            ->wherePivot('user_id', $request->user())
-            ->detach();
+            ->where('user_id', $request->user()->id)
+            ->where('color', $request->color)
+            ->delete();
 
-        return response()->json(null, 200);
+        return back()->withMessage('Маркер удален');
     }
 }

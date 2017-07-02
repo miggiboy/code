@@ -47,9 +47,8 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Markers
      */
-    Route::post('/marker/{markableType}/{markableId}', 'MarkersController@store');
-    Route::patch('/marker/{markableType}/{markableId}', 'MarkersController@update');
-    Route::delete('/marker/{markableType}/{markableId}', 'MarkersController@destroy');
+    Route::post('/markers/{markableType}/{markableId}', 'MarkersController@store')->name('markers.store');
+    Route::delete('/markers/{markableType}/{markableId}', 'MarkersController@destroy')->name('markers.destroy');
 });
 
 
@@ -182,14 +181,6 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
      */
     Route::patch('/{institution}/status', 'InstitutionPaidStatusController@update')->name('institutions.status.update');
 
-
-    /**
-     * Institution Pins
-     */
-     Route::post('/{institution}/pin', 'InstitutionPinsController@store')->name('universities.pins.store');
-     Route::delete('/{institution}/pin', 'InstitutionPinsController@destroy')->name('universities.pins.destroy');
-
-
     /**
      * Institution Media
      */
@@ -218,30 +209,6 @@ Route::resource('quizzes', 'QuizzesController', ['except' => ['edit', 'update']]
 Route::post('/quizzes/preview', 'QuizzesController@preview')->name('quizzes.preview');
 
 Route::post('/answer/{answerId}', 'QuizzesController@check')->name('answer.check');
-
-
-/**
- * ACL
- */
-
-Route::group(['namespace' => 'AccessControl'], function () {
-
-    /**
-     * Roles
-     */
-
-    Route::patch('/roles/assign', 'RolesController@assignStore')->name('roles.assignStore');
-
-    Route::get('/roles/assign', 'RolesController@assign')->name('roles.assign');
-
-    Route::get('/roles', 'RolesController@index')->name('roles');
-
-    Route::get('/roles/create', 'RolesController@create')->name('roles.create');
-    Route::post('/roles', 'RolesController@store')->name('roles.store');
-
-    Route::get('/roles/{role}', 'RolesController@show')->name('roles.show');
-});
-
 
 /**
  * Articles

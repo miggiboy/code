@@ -44,19 +44,4 @@ class MessagesController extends Controller
 
         return back();
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Message $message)
-    {
-        if (Auth::user()->owns($message)) {
-            $message->delete();
-        }
-
-        return redirect()->route('home');
-    }
 }

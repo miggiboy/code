@@ -79,7 +79,7 @@ class InstitutionSpecialtiesController extends Controller
      */
     public function store(Request $request, Institution $institution, $studyForm)
     {
-        $institution->attachSpecialties($request, $studyForm);
+        $institution->specialties()->sync($request->specialties);
 
         if ($studyForm == 'full-time') {
             return redirect()->route('institutions.specialties.create', [$institution, 'extramural']);

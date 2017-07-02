@@ -8,7 +8,10 @@
     <div class="ui text container" style="margin-bottom: 10px;">
 
         <h2 style="margin-bottom: 20px; text-align: center;">
-            Специальности {{ Translator::get(Request::route('studyForm'), 'r') }}
+            <a href="{{ route('institutions.specialties.index', [$institution, Request::route('studyForm')]) }}">
+                Специальности
+            </a>
+            {{ Translator::get(Request::route('studyForm'), 'r') }}
 
             <br>
             <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"

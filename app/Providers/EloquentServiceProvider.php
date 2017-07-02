@@ -12,6 +12,9 @@ use App\Models\Specialty\Specialty;
 use App\Models\Profession\Profession;
 use App\Models\Institution\Institution;
 
+use App\Models\User\Marker;
+use Spatie\MediaLibrary\Media;
+
 class EloquentServiceProvider extends ServiceProvider
 {
     /**
@@ -33,6 +36,9 @@ class EloquentServiceProvider extends ServiceProvider
             'specialty' => Specialty::class,
             'profession' => Profession::class,
             'subject' => Subject::class,
+
+            'media' => Media::class,
+            'marker' => Marker::class,
         ]);
     }
 

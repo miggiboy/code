@@ -8,7 +8,15 @@ trait Markable
 {
     public function scopeMarkedByCurrentUser($query, $marked = true)
     {
-        return $query->has('marks', (bool) $marked);
+        return $query->has('markers', (bool) $marked);
+    }
+
+    public function isMarked($color)
+    {
+        return (bool) $this->markers
+            ->where('user_id', Auth::user()->id)
+            ->where('color', $color)
+            ->count();
     }
 
     public function getMarkedByCurrentUserAttribute()
@@ -17,10 +25,10 @@ trait Markable
             return false;
         }
 
-        return $this->marks->where('user_id', Auth::user()->id)->count() === 1;
+        return $this->markers->where('user_id', Auth::user()->id)->count() === 1;
     }
 
-    public function marks()
+    public function markers()
     {
         return $this->morphMany('\App\Models\User\Marker', 'markable');
     }

@@ -18,11 +18,11 @@
 
         <div class="ui medium teal buttons" style="margin-top: 15px;">
           <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}" class="ui button">
-            Редактировать цены, сроки
+            Обновить цены, сроки
           </a>
-          <div class="or"></div>
+          <div class="or" id = "or"></div>
           <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}" class="ui button">
-            Добавить специальности
+            Редактировать список
           </a>
         </div>
       @else

@@ -7,6 +7,10 @@ use Illuminate\Notifications\Notifiable;
 
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
+use Laravelrus\LocalizedCarbon\{
+    Traits\LocalizedEloquentTrait
+};
+
 class User extends Authenticatable
 {
     /**
@@ -17,6 +21,7 @@ class User extends Authenticatable
     /**
      * Package traits
      */
+    use LocalizedEloquentTrait;
     use EntrustUserTrait;
 
     /**
@@ -34,6 +39,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_active'     => 'boolean',
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -41,6 +55,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function toggleActiveStatus()
+    {
+        $this->is_active = ! $this->is_active;
+
+        return $this;
+    }
 
     public function getNameOrUsernameAttribute()
     {
@@ -73,26 +95,41 @@ class User extends Authenticatable
     }
 
     /**
-     * Checks if the user owns related model
-     *
-     * @param  Model $related
-     * @return boolean
-     */
-    public function owns($related)
-    {
-        return $this->id === $related->user_id;
-    }
-
-    /**
      * Checks if this user has any role
      *
      * @return boolean
      */
-    public function isAuthorised()
+    public function isInTeam()
     {
-        $insiders = explode('|', config('entrust.roles.insiders'));
+        $teamMembers = explode(
+            '|', config('entrust.roles.groups.team')
+        );
 
-        return $this->hasRole($insiders);
+        return $this->hasRole($teamMembers);
+    }
+
+    /**
+     * Check if user is not in web-site team
+     * @return boolean
+     */
+    public function isNotInTeam()
+    {
+        return ! $this->isInTeam();
+    }
+
+    public function isNotActive()
+    {
+        return ! $this->is_active;
+    }
+
+    public function hasNoAccess()
+    {
+        return $this->isNotInTeam() || $this->isNotActive();
+    }
+
+    public function scopeTeam($query)
+    {
+        return $query->has('roles');
     }
 
     /**

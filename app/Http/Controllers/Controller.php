@@ -13,6 +13,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->middleware('role:' . config('entrust.roles.insiders'));
+        $this->middleware('role:' . config('entrust.roles.groups.team'));
     }
 }

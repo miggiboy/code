@@ -11,7 +11,10 @@
 return [
 
     'roles' => [
-        'insiders' => 'developer|admin|moderator',
+        'groups' => [
+            'team' => 'developer|admin|moderator',
+            'role_managers' => 'developer|admin',
+        ],
     ],
 
     /*

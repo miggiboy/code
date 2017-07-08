@@ -16,7 +16,7 @@ class InstitutionPaidStatusController extends Controller
      */
     public function update(Institution $institution)
     {
-        $institution->update('is_paid', ! $institution->is_paid);
+        $institution->togglePaidStatus()->save();
 
         return back()->withMessage('Статус изменен');
     }

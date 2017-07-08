@@ -234,6 +234,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /**
+         * Package aliases
+         */
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+
+        /**
          * Custom aliases
          */
         'Translator' => \App\Support\Lang\Translator::class,

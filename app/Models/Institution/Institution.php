@@ -151,6 +151,13 @@ class Institution extends Model implements HasMediaConversions
               ->sharpen(10);
     }
 
+    public function togglePaidStatus()
+    {
+        $this->is_paid = ! $this->is_paid;
+
+        return $this;
+    }
+
     /**
      * Relations
      */

@@ -51,6 +51,12 @@
              <i class="teal user icon"></i> Мой профиль
           </a>
 
+          @role ('admin')
+            <a href="{{ route('team-members.index') }}" class="item">
+               <i class="teal users icon"></i> Команда сайта
+            </a>
+          @endrole
+
           <a href="{{ route('logout') }}" class="item">
             <i class="teal sign out icon"></i> Выход
           </a>

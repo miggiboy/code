@@ -12,13 +12,11 @@ Route::get('', 'User\MessagesController@index')->name('home');
 
 Route::group(['namespace' => 'User'], function () {
 
-    Route::get('/users/search/autocomplete', 'UsersController@autocomplete')->name('users.autocomplete');
+    /**
+     * Users
+     */
 
-    Route::get('/users/{user}', 'UsersController@show')->name('users.show');
-
-    Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
-
-    Route::patch('/users/{user}/grant', 'UsersController@grant')->name('users.grant');
+    Route::delete('users/{user}', 'UsersController@destroy')->name('users.destroy');
 
     /**
      * Registration
@@ -49,6 +47,22 @@ Route::group(['namespace' => 'User'], function () {
      */
     Route::post('/markers/{markableType}/{markableId}', 'MarkersController@store')->name('markers.store');
     Route::delete('/markers/{markableType}/{markableId}', 'MarkersController@destroy')->name('markers.destroy');
+
+    /**
+     * Team Members
+     */
+    Route::resource('team-members', 'TeamMembersController', ['only' => ['index', 'create']]);
+
+    /**
+     * User Roles
+     */
+    Route::resource('users.roles', 'UserRolesController', ['only' => ['store', 'destroy']]);
+
+    /**
+     * User Active Status
+     */
+
+    Route::patch('/users/{user}/active-status', 'UserActiveStatusesController@update')->name('users.active-status.update');
 });
 
 

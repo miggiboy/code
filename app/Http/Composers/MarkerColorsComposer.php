@@ -16,7 +16,6 @@ class MarkerColorsComposer
                 'red',
                 'orange',
                 'green',
-                'pink',
             ];
         }
 

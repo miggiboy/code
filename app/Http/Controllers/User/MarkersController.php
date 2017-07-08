@@ -30,12 +30,13 @@ class MarkersController extends Controller
         $markableType = request()->route('markableType');
 
         abort_unless(
-            array_key_exists($markableType, self::$markable), 424
+            array_key_exists($markableType, self::$markable), 404
         );
 
-        $this->model = self::$markable[$markableType]::findOrFail(
-            request()->route('markableId')
-        );
+        $this->model =
+            self::$markable[$markableType]::findOrFail(
+                request()->route('markableId')
+            );
     }
 
     public function store(Request $request)

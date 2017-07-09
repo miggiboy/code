@@ -9,7 +9,10 @@
 @section ('head')
   <style>
       .overlay {
-          position: fixed; bottom: 30px; left: 22px; z-index: 10;
+          position: fixed;
+          bottom: 30px;
+          left: 22px;
+          z-index: 10;
       }
 
       .ui.article.container img {

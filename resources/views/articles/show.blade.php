@@ -8,28 +8,37 @@
 
 @section ('head')
     <style>
-        .overlay .menu {
-            position: fixed; bottom: 60px; right: 30px; z-index: 10;
+        .overlay {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            z-index: 10;
         }
     </style>
 @endsection
 
 @section ('content')
     <div class="ui article container">
-      <span>Категории: </span><br>
+
+      <br>
+      @include ('articles/partials/show/_labels')
+      <br><br>
+      <span>Категории: </span>
       @foreach ($article->categories as $category)
-        {{ $category->title . $loop->last ? '' : ',' }}<br>
+        <a href="{{ route('articles.index', ['category' => $category->id]) }}">
+          {{ $category->title . ($loop->last ? '' : ',') }}
+        </a>
       @endforeach
+
+      <br>
+      <br>
+
       <p>{{ $article->short_description }}</p>
       <p>{!! $article->full_description !!}</p>
 
     </div>
 
     <div class="overlay">
-      <div class="ui labeled icon tiny menu">
-        <a href="{{ route('articles.edit', $article) }}" class="item">
-          <i class="ui circular blue edit icon"></i> Редактировать
-        </a>
-      </div>
+      @include ('articles/partials/_options')
     </div>
 @endsection

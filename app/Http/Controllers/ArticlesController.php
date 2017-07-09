@@ -115,7 +115,9 @@ class ArticlesController extends Controller
     {
         $article->delete();
 
-        return back()->withMessage('Статья удалена');
+        return redirect()
+            ->route('articles.index')
+            ->withMessage('Статья удалена');
     }
 
     private function getCategoriesFrom($request)

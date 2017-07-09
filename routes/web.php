@@ -193,7 +193,7 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
     /**
      * Institution Paid Status
      */
-    Route::patch('/{institution}/status', 'InstitutionPaidStatusController@update')->name('institutions.status.update');
+    Route::patch('/{institution}/paid-status', 'InstitutionPaidStatusController@update')->name('institutions.paid-status.update');
 
     /**
      * Institution Media

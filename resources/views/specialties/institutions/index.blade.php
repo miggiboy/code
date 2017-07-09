@@ -11,7 +11,7 @@
          class="custom-link">
         {{ str_limit($specialty->title, 50) }}
       </a><br>
-      Связанные {{ Translator::get($specialty->institution_type, 'i', 'p') }}
+      cвязанные {{ Translator::get($specialty->institution_type, 'i', 'p') }}
     </h2>
 
     @if ($specialty->institutions)

@@ -7,8 +7,10 @@
 @section ('content')
     <div class="ui text container" style="margin-bottom: 30px;">
         <div style="margin-bottom: 45px; text-align: center;">
-            <h2>Привязка специальностей к профессии <br>
-                <a href="{{ route('professions.show', $profession) }}" target="_blank">{{ $profession->title }}</a>
+            <h2>Специальности профессии <br>
+                <a href="{{ route('professions.show', $profession) }}" target="_blank" class="custom-link">
+                    {{ $profession->title }}
+                </a>
             </h2>
         </div>
 

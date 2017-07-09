@@ -3,7 +3,7 @@
     <h3 class="ui header" style="margin-bottom: 30px;">Связанные специальности</h3>
 
     <a href="{{ route('professions.specialties.create', $profession) }}"
-    style="position: absolute; top: 10px; right: 15px;" title="Добавить специальности">
+    style="position: absolute; top: 10px; right: 15px;" title="Прикрепить / открепить специальности">
       <i class="circular plus icon link"></i>
     </a>
 

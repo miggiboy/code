@@ -15,11 +15,15 @@
         <br>cвязанные профессии</h2>
         <a href="{{ route('specialties.professions.create', $specialty) }}"
            class="ui teal button">
-          Добавить профессии
+          @if ($count = count($specialty->professions))
+            Редактировать список
+          @else
+            Добавить профессии
+          @endif
         </a>
     </div> {{-- End of header --}}
 
-    @if ($count = count($specialty->professions))
+    @if ($count)
       <table class="ui celled table" style="margin-bottom: 25px;">
         <thead>
           <tr>

@@ -13,9 +13,9 @@
     </a>
     {{-- Editing end --}}
 
-    <a href="{{ url($article->urlAtPrimaryApp()) }}" class="item" target="_blank">
-      <i class="orange checkmark box icon"></i> Выпускник.Kz
-    </a>
+    @include ('shared/_to-primary-app-option', [
+        'model' => $article
+    ])
 
     @include ('markers/partials/_markers-option', [
         'model' => $article,

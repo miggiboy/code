@@ -9,18 +9,18 @@
       <i class="blue edit icon"></i>  Редактировать
     </a>
 
-    <a href="{{ url($specialty->urlAtPrimaryApp()) }}" class="item" target="_blank">
-      <i class="orange checkmark box icon"></i> Выпускник.Kz
-    </a>
+    @include ('shared/_to-primary-app-option', [
+        'model' => $specialty
+    ])
 
     @include ('markers/partials/_markers-option', [
         'model' => $specialty,
         'modelType' => 'specialty',
     ])
 
-    <a href="{{ url($specialty->googleSearchUrl()) }}" class="item" target="_blank">
-      <i class="green google icon"></i> Найти в Google
-    </a>
+    @include ('shared/_google-option', [
+        'model' => $specialty
+    ])
 
     <div class="divider"></div>
 

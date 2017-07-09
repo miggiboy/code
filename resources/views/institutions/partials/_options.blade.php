@@ -11,18 +11,18 @@
       <i class="blue edit icon"></i>  Редактировать
     </a>
 
-    <a href="{{ url($institution->urlAtPrimaryApp()) }}" class="item" target="_blank">
-      <i class="orange checkmark box icon"></i> Выпускник.Kz
-    </a>
+    @include ('shared/_to-primary-app-option', [
+        'model' => $institution
+    ])
 
     @include ('markers/partials/_markers-option', [
         'model' => $institution,
         'modelType' => 'institution',
     ])
 
-    <a href="{{ url($institution->googleSearchURl()) }}" class="item" target="_blank">
-      <i class="green google icon"></i> Найти в Google
-    </a>
+    @include ('shared/_google-option', [
+        'model' => $institution
+    ])
 
     <a href="{{ "https://www.google.kz/maps/search/{$institution->title}/@43.2351503,76.9075561,17z" }}"
        class="item"

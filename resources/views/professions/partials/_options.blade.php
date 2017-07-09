@@ -11,18 +11,18 @@
       <i class="blue edit icon"></i> Редактировать
     </a>
 
-    <a href="{{ url($profession->urlAtPrimaryApp()) }}" class="item" target="_blank">
-      <i class="orange checkmark box icon"></i> Выпускник.Kz
-    </a>
+    @include ('shared/_to-primary-app-option', [
+        'model' => $profession
+    ])
 
     @include ('markers/partials/_markers-option', [
         'model' => $profession,
         'modelType' => 'profession',
     ])
 
-    <a href="{{ url($profession->googleSearchUrl()) }}" class="item" target="_blank">
-      <i class="green google icon"></i> Найти в Google
-    </a>
+    @include ('shared/_google-option', [
+        'model' => $profession
+    ])
 
     <div class="divider"></div>
 

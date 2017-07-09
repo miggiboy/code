@@ -1,5 +1,3 @@
-<div class="ui purple label">ID:  {{ $institution->id }}</div>
-
 @if ($institution->is_paid)
   <div class="ui orange label">
     <i class="star icon"></i> Платник

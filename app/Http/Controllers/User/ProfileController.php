@@ -46,6 +46,6 @@ class ProfileController extends Controller
     {
         auth()->user()->update($request->all());
 
-        return redirect()->route('profile')->with('message', 'Профиль обновлен');
+        return redirect()->route('profile.show')->with('message', 'Профиль обновлен');
     }
 }

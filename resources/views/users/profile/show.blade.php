@@ -23,23 +23,13 @@
                      {{ $role->description }}
                   </div>
                 </div>
-
-                {{-- <div class="extra content">
-                  <span class="right floated">
-                    Joined in 2013
-                  </span>
-                  <span>
-                    <i class="user icon"></i>
-                    75 Friends
-                  </span>
-                </div> --}}
               </div>
             </div>
         </div>
 
         <div class="eight wide column">
 
-            @include ('layouts.form-errors')
+            @include ('includes/_form-errors')
             <form action="{{ route('profile.update') }}" method = "post" class="ui form">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
@@ -59,8 +49,7 @@
                                name="email"
                                id="email"
                                value="{{ old('email') ?: auth()->user()->email }}"
-                               required
-                        >
+                               required>
                     </div>
                 </div>
                 <div class="two fields">
@@ -69,16 +58,14 @@
                         <input type="text"
                                name="first_name"
                                id="first_name"
-                               value="{{ old('first_name') ?: auth()->user()->first_name }}"
-                        >
+                               value="{{ old('first_name') ?: auth()->user()->first_name }}">
                     </div>
                     <div class="eight wide field">
                         <label for="last_name">Фамилия</label>
                         <input type="text"
                                name="last_name"
                                id="last_name"
-                               value="{{ old('last_name') ?: auth()->user()->last_name }}"
-                        >
+                               value="{{ old('last_name') ?: auth()->user()->last_name }}">
                     </div>
                 </div><br>
                 <button class="ui teal small button">Сохранить</button>

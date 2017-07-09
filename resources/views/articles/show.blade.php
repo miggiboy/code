@@ -22,7 +22,6 @@
 
       <br>
       @include ('articles/partials/show/_labels')
-      <br><br>
       <span>Категории: </span>
       @foreach ($article->categories as $category)
         <a href="{{ route('articles.index', ['category' => $category->id]) }}">

@@ -40,7 +40,11 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Profile
      */
-    Route::resource('profile', 'ProfileController', ['only' => ['show', 'edit', 'update']]);
+
+    Route::get('/profile', 'ProfileController@show')->name('profile.show');
+
+    Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::patch('/profile', 'ProfileController@update')->name('profile.update');
 
     /**
      * Markers

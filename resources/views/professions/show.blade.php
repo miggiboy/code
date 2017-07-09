@@ -24,6 +24,7 @@
 @section ('content')
     <div class="ui article container">
       @include ('professions/partials/show/_labels')
+      <br><br>
       @include ('professions/partials/show/_profession_information')
     </div>
 

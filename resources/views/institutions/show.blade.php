@@ -87,8 +87,8 @@
     $('article').readmore({
       collapsedHeight: 110,
       speed: 500,
-      moreLink: '<a href="#">Показать полностью</a>',
-      lessLink: '<a href="#">Свернуть текст</a>'
+      moreLink: '<a href="#">Подробнее</a>',
+      lessLink: '<a href="#">Свернуть</a>'
     });
 
   </script>

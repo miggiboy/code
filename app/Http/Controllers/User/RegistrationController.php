@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\User;
+use App\Models\User\User;
 use App\Http\Requests\User\{
     StoreUserRequest
 };

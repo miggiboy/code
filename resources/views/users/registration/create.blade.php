@@ -21,7 +21,7 @@
     </head>
     <body>
         <div class="ui custom container">
-            @include ('includes.flash')
+            @include ('includes/_flash')
 
             <div class="ui middle aligned center aligned grid" style="margin-top: 150px;">
               <div class="column">

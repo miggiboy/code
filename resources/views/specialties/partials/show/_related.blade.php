@@ -1,5 +1,7 @@
 <div class="ui segment">
-  <div class="eleven wide column"><h2 class="ui header" style="margin-bottom: 33px;">Связанные</h2></div>
+  <div class="eleven wide column">
+    <h2 class="ui header" style="margin-bottom: 33px;">Связанные</h2>
+  </div>
 
   <div class="ui relaxed list">
 
@@ -18,7 +20,9 @@
       <i class="small teal travel middle aligned icon"></i>
       <div class="content">
       <a href="{{ route('specialties.professions.index', $specialty) }}"
-        class="header">Профессии ({{ count($specialty->professions) }})</a>
+         class="header">
+        Профессии ({{ $specialty->professions()->count() }})
+      </a>
       </div>
     </div>
 
@@ -28,14 +32,11 @@
       <i class="small teal university middle aligned icon"></i>
       <div class="content">
       <a href="{{ route('specialties.institutions.index', $specialty) }}"
-        class="header">
-          {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ count($specialty->institutions_distinct) }})
+         class="header">
+        {{ Translator::get($institutionType, 'i', 'p', true) }} ({{ count($specialty->institutions_distinct) }})
       </a>
       </div>
     </div>
-
-
   </div>
-
 </div>
 <br>

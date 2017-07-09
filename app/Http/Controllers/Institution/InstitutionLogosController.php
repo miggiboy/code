@@ -14,9 +14,11 @@ class InstitutionLogosController extends Controller
     {
         $image = Media::find($image);
 
-        ($image->collection_name === 'images')
-            ? $this->toLogo($institution, $image)
-            : $this->toImage($image);
+        if ($image->collection_name === 'images') {
+            $this->toLogo($institution, $image);
+        } else {
+            $this->toImage($image);
+        }
 
         return response()->json([null, 200]);
     }
@@ -25,6 +27,7 @@ class InstitutionLogosController extends Controller
     {
         $logos = $institution->getMedia('logo');
 
+        // Shouldn't be many
         foreach ($logos as $logo) {
             $logo->update(['collection_name' => 'images']);
         }

@@ -6,10 +6,9 @@
             <div class="right floated content">
               <div>
                 <div>ID:  {{ $institution->id }}</div>
-                <br>
-                @foreach ($institution->markersOf(Auth::user()) as $marker)
-                  <i class="{{ $marker->color }} circle icon"></i>
-                @endforeach
+                @include ('markers/partials/_in-list-markers', [
+                    'model' => $institution
+                ])
               </div>
             </div>
             @if (count($logos = $institution->getMedia('logo')))

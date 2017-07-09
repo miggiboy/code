@@ -15,49 +15,10 @@
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
 
-    <div class="item">
-      <i class="left teal dropdown icon"></i>
-      <span class="text">Ваша отметка</span>
-      <div class="left menu">
-        @foreach ($markerColors as $color)
-          @if ($institution->isMarkedByCurrentUserWith($color))
-            <a href="#"
-               onclick="event.preventDefault();
-               document.getElementById('unmark-institution-{{ $institution->id }}-{{ $color }}').submit();"
-               class="item"
-               target="_blank">
-              <i class="{{ $color }} circle icon"></i> Снять
-            </a>
-
-            <form action="{{ route('markers.destroy', ['institution', $institution->id]) }}"
-                  method="post"
-                  id="unmark-institution-{{ $institution->id }}-{{ $color }}">
-              {{ csrf_field() }}
-              {{ method_field('DELETE') }}
-              <input type="hidden" name="color" value="{{ $color }}">
-            </form>
-          @else
-            <a href="#"
-               onclick="event.preventDefault();
-               document.getElementById('mark-institution-{{ $institution->id }}-{{ $color }}').submit();"
-               class="item"
-               target="_blank">
-              <i class="{{ $color }} circle icon"></i> Поставить
-            </a>
-
-            <form action="{{ route('markers.store', ['institution', $institution->id]) }}"
-                  method="post"
-                  id="mark-institution-{{ $institution->id }}-{{ $color }}">
-              {{ csrf_field() }}
-              <input type="hidden" name="color" value="{{ $color }}">
-            </form>
-          @endif
-
-        @endforeach
-      </div>
-    </div>
-
-    {{-- Editing end --}}
+    @include ('markers/partials/_markers-option', [
+        'model' => $institution,
+        'modelType' => 'institution',
+    ])
 
     <a href="{{ url($institution->googleSearchURl()) }}" class="item" target="_blank">
       <i class="green google icon"></i> Найти в Google

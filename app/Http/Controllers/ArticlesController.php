@@ -28,6 +28,7 @@ class ArticlesController extends Controller
     {
         $articles = ArticleSearch::applyFilters($request)
             ->latest()
+            ->with(['markers'])
             ->paginate(15);
 
         return view('articles.index', compact('articles'));

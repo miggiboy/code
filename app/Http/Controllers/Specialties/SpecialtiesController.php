@@ -53,7 +53,7 @@ class SpecialtiesController extends Controller
     public function index(Request $request, $institutionType)
     {
         $specialties = SpecialtySearch::applyFilters($request)
-            ->with(['direction', 'marks'])
+            ->with(['direction', 'markers'])
             ->orderBy('title')
             ->paginate(15);
 

@@ -21,7 +21,7 @@
                  onclick="event.preventDefault();
                  toggleLogo('{{ $institution->slug }}', {{ $image->id }});"
                  id="toggle-logo-button-{{ $image->id }}">
-              {{ $image->collection == 'logo' ? 'Является' : 'Сделать' }} логотипом
+              {{ $image->collection_name == 'logo' ? 'Является' : 'Сделать' }} логотипом
             </div>
           </div>
           <div class="three wide column middle aligned">

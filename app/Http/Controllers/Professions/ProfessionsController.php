@@ -29,7 +29,7 @@ class ProfessionsController extends Controller
     {
         $professions = ProfessionSearch::applyFilters($request)
             ->orderBy('title')
-            ->with(['marks', 'category'])
+            ->with(['markers', 'category'])
             ->paginate(15);
 
         return view('professions.index', compact('professions'));

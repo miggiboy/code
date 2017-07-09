@@ -13,6 +13,11 @@
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
 
+    @include ('markers/partials/_markers-option', [
+        'model' => $specialty,
+        'modelType' => 'specialty',
+    ])
+
     <a href="{{ url($specialty->googleSearchUrl()) }}" class="item" target="_blank">
       <i class="green google icon"></i> Найти в Google
     </a>

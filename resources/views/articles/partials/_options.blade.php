@@ -17,6 +17,11 @@
       <i class="orange checkmark box icon"></i> Выпускник.Kz
     </a>
 
+    @include ('markers/partials/_markers-option', [
+        'model' => $article,
+        'modelType' => 'article',
+    ])
+
     <div class="divider"></div>
 
     {{-- Deleting --}}

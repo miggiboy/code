@@ -66,20 +66,7 @@ class ComposerServiceProvider extends ServiceProvider
             InstitutionTypeComposer::class
         );
 
-        View::composer(
-            [
-                'institutions.index',
-                'institutions.show',
-
-                'specialties.index',
-                'specialties.show',
-
-                'professions.index',
-                'professions.show',
-            ],
-
-            MarkerColorsComposer::class
-        );
+        View::composer('markers/partials/_markers-option', MarkerColorsComposer::class);
     }
 
     /**

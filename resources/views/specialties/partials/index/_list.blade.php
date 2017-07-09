@@ -5,6 +5,7 @@
                 @include ('specialties/partials/_options', ['edit_target_blank' => true])
                 <div class="right floated content">
                   <div>ID:  {{ $specialty->id }}</div>
+                  @include ('markers/partials/_in-list-markers', ['model' => $specialty])
                 </div>
                 <i class="teal student icon"></i>
                 <div class="content">

@@ -50,7 +50,8 @@
 
     <div class="overlay">
       <a href="" onclick="event.preventDefault(); $('.ui.modal').modal({ inverted: true }).modal('show');"
-        class="ui huge green circular icon button">
+        class="ui huge green circular icon button"
+        title="Добавить файлы">
         <i class="ui add icon"></i>
       </a>
     </div>

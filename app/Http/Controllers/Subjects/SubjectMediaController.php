@@ -13,8 +13,15 @@ use App\Http\Requests\{
 
 use Spatie\MediaLibrary\Media;
 
+use App\Support\Traits\File\ComposesFileName;
+
 class SubjectMediaController extends Controller
 {
+    /**
+     * Custom trait
+     */
+    use ComposesFileName;
+
     public function index(Subject $subject)
     {
         $subject->load(['fileCategories']);
@@ -57,10 +64,5 @@ class SubjectMediaController extends Controller
                 )
                 ->toMediaCollection($request->category);
         }
-    }
-
-    private function composeFileName($file)
-    {
-        return str_slug($file->getClientOriginalName()) . '.' . $file->extension();
     }
 }

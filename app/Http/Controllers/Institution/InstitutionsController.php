@@ -26,6 +26,7 @@ class InstitutionsController extends Controller
 {
     /**
      * Existing institution types
+     *
      * @var array
      */
     protected static $institutionTypes = [

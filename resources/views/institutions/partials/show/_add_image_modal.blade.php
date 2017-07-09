@@ -14,17 +14,17 @@
         <a href="" target="_blank">эту ссылку</a>
       </p>
       <br>
-      <form action="{{ route('instituions.media.store', [$institutionType, $institution]) }}"
+      <form action="{{ route('institutions.media.store', $institution) }}"
             method="post"
             enctype="multipart/form-data"
             id="images-form"
             class="ui form">
         {{ csrf_field() }}
 
-          <input type="hidden" name="collection" value="images">
+        <input type="hidden" name="collection" value="images">
 
         <div class="field">
-          <input type="file" name="images[]" id="" multiple>
+          <input type="file" name="images[]" multiple>
         </div>
       </form>
     </div>
@@ -34,8 +34,7 @@
     <div class="ui positive right labeled icon button"
          onclick="event.preventDefault();
          document.getElementById('images-form').submit();">
-      Загрузить
-      <i class="checkmark icon"></i>
+      Загрузить <i class="checkmark icon"></i>
     </div>
   </div>
 </div>

@@ -199,21 +199,15 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
      * Institution Media
      */
 
-    Route::group(['prefix' => '/{instituion}/media'], function () {
-        Route::post('', 'InstitutionMediaController@store')->name('instituions.media.store');
-        Route::patch('/{mediaId}', 'InstitutionMediaController@toggleLogo');
-    });
+    Route::post('/{institution}/media', 'InstitutionMediaController@store')->name('institutions.media.store');
 
-    Route::delete('/media/{mediaId}', 'InstitutionMediaController@destroy')->name('instituions.media.destroy');
+    Route::delete('/media/{media}/destroy', 'InstitutionMediaController@destroy');
 
+    /**
+     * Institution Logo
+     */
+    Route::patch('/{institution}/logos/{image}', 'InstitutionLogosController@update');
 });
-
-/**
- * Maps
- */
-Route::post('/map/{institutionType}/{id}', 'MapsController@store')->name('map.store');
-
-Route::patch('/map/{institutionType}/{id}', 'MapsController@update')->name('map.update');
 
 /**
  * Quizzes

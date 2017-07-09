@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Universities;
+namespace App\Http\Controllers\Institution;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,18 +10,18 @@ use App\Http\Requests\ImageRequest;
 
 use Spatie\MediaLibrary\Media;
 
+use App\Support\Traits\File\ComposesFileName;
+
 class InstitutionMediaController extends Controller
 {
+    /**
+     * Custom trait
+     */
+    use ComposesFileName;
+
     public function store(ImageRequest $request, Institution $institution)
     {
-        foreach ($request->file('images') as $image) {
-            $institution
-                ->addMedia($image)
-                ->usingFileName(
-                    uniqid(true) . '.' . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION)
-                )
-                ->toMediaCollection($request->collection);
-        }
+        $this->attachImages($institution, $request);
 
         return back()->withMessage('Изображения добавлены');
     }
@@ -31,33 +31,18 @@ class InstitutionMediaController extends Controller
         $media = Media::find($mediaId);
         $media->delete();
 
-        return response([
-            null, 200
-        ]);
+        return response([null, 200]);
     }
 
-    public function toggleLogo($institutionID, $mediaId)
+    private function attachImages(Institution $institution, $request)
     {
-        $media = Media::find($mediaId);
-
-        if ($media->collection_name == 'logo') {
-            $media->update(['collection_name' => 'images']);
-        } else {
-            $media->update(['collection_name' => 'logo']);
+        foreach ($request->file('images') as $image) {
+            $institution
+                ->addMedia($image)
+                ->usingFileName(
+                    $this->composeFileName($image)
+                )
+                ->toMediaCollection($request->collection);
         }
-
-        $institution = Institution::find($institutionID);
-
-        $logos = $institution->getMedia('logo');
-
-        foreach ($logos as $logo) {
-            if ($logo->id !== $media->id) {
-                $logo->update(['collection_name' => 'images']);
-            }
-        }
-
-        return response([
-            null, 200
-        ]);
     }
 }

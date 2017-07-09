@@ -23,22 +23,6 @@ trait HasSpecialties
             ->count();
     }
 
-    /**
-     * Attaches a set of specialties at a given study form
-     *
-     * @param  Illuminate\Http\Request $request
-     * @param  String  $studyForm
-     * @return void
-     */
-    public function attachSpecialties(Request $request, $studyForm)
-    {
-        foreach ($request->specialties as $specialtyID) {
-            if (! $this->hasSpecialty($specialtyID, $studyForm)) {
-                $this->specialties()->attach($specialtyID, ['form' => $studyForm]);
-            }
-        }
-    }
-
     public function specialties()
     {
         return $this->belongsToMany(Specialty::class)->withPivot('study_price', 'study_period', 'form');

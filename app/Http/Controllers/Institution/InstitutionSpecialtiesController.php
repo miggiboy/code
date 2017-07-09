@@ -16,6 +16,7 @@ class InstitutionSpecialtiesController extends Controller
 {
     /**
      * Existing institution types
+     *
      * @var array
      */
     protected static $studyForms = [
@@ -153,6 +154,6 @@ class InstitutionSpecialtiesController extends Controller
                     'study_price'      => $data['price'],
                     'study_period'     => $data['study_period'],
                 ]);
-            }
+        }
     }
 }

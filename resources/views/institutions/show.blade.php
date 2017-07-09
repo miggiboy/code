@@ -60,7 +60,8 @@
 <div class="overlay">
   <a href=""
      onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');"
-     class="ui huge green circular icon button">
+     class="ui huge green circular icon button"
+     title="Добавить изображения">
     <i class="ui photo icon"></i>
   </a>
 </div>

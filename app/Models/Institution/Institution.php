@@ -61,22 +61,6 @@ class Institution extends Model implements HasMediaConversions
         'is_paid'           => 'boolean',
     ];
 
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = ['pin'];
-
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = ['marked_by_current_user'];
-
     /**
      * Retrieves institutions of $type type
      *

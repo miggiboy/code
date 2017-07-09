@@ -1,4 +1,4 @@
-function deactivateButtons(id)
+function disableButtons(id)
 {
     $('#delete-media-' + id).removeClass('yellow').addClass('disabled')
     $('#delete-media-' + id).text('Удалено')
@@ -6,10 +6,10 @@ function deactivateButtons(id)
     $('#toggle-logo-button-' + id).addClass('disabled')
 }
 
-function deleteMedia (modelType, id)
+function deleteMedia (id)
 {
-    deactivateButtons(id)
-    axios.delete('/' + modelType + '/media/' + id)
+    disableButtons(id)
+    axios.delete('/institutions/media/' + id + '/destroy')
       .then(function (response) {
           console.log(response)
       })
@@ -30,11 +30,11 @@ function toggleLogoButtonText (id)
     }
 }
 
-function toggleLogo (modelId, modelType, id)
+function toggleLogo (institution, image)
 {
-    toggleLogoButtonText(id)
+    toggleLogoButtonText(image)
 
-    axios.patch('/' + modelType + '/' + modelId + '/media/' + id)
+    axios.patch('/institutions/' + institution + '/logos/' + image)
       .then(function (response) {
           console.log(response)
       })

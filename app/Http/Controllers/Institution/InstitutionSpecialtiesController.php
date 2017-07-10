@@ -22,6 +22,7 @@ class InstitutionSpecialtiesController extends Controller
     protected static $studyForms = [
         'full-time',
         'extramural',
+        'distant',
     ];
 
     /**
@@ -81,10 +82,6 @@ class InstitutionSpecialtiesController extends Controller
     public function store(Request $request, Institution $institution, $studyForm)
     {
         $institution->specialties()->sync($request->specialties);
-
-        if ($studyForm == 'full-time') {
-            return redirect()->route('institutions.specialties.create', [$institution, 'extramural']);
-        }
 
         return redirect()
             ->route('institutions.show', [str_plural($institution->type), $institution])

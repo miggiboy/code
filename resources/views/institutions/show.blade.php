@@ -74,7 +74,7 @@
   <script src='/js/vendor/unitegallery/package/unitegallery/js/unitegallery.min.js'></script>
   <script src='/js/vendor/unitegallery/package/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
 
-  <script src="/js/medialibrary.js"></script>
+  <script src="/js/gallery.js"></script>
 
   <script>
     jQuery("#gallery").unitegallery({

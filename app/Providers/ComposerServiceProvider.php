@@ -10,8 +10,7 @@ use App\Http\Composers\{
     CitiesComposer,
     ArticleCategoriesComposer,
     ProfessionCategoriesComposer,
-    InstitutionTypeComposer,
-    MarkerColorsComposer
+    InstitutionTypeComposer
 };
 
 class ComposerServiceProvider extends ServiceProvider
@@ -65,8 +64,6 @@ class ComposerServiceProvider extends ServiceProvider
 
             InstitutionTypeComposer::class
         );
-
-        View::composer('markers/partials/_markers-option', MarkerColorsComposer::class);
     }
 
     /**
@@ -83,7 +80,5 @@ class ComposerServiceProvider extends ServiceProvider
         $this->app->singleton(ArticleCategoriesComposer::class);
 
         $this->app->singleton(InstitutionTypeComposer::class);
-
-        $this->app->singleton(MarkerColorsComposer::class);
     }
 }

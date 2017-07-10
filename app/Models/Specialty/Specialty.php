@@ -38,8 +38,6 @@ class Specialty extends Model
      */
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['marked_by_current_user'];
-
     /**
      * Retrieve only models which type is $type
      * @param  Builder $query

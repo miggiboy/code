@@ -15,14 +15,13 @@
         <i class="idea icon"></i>
         @if ($choose_from == Request::route('studyForm'))
             @if ($choose_from != 'full-time')
-                @include (
-                    "institutions/specialties/partials/create/_not-full-time-study-form-message"
-                )
+                <a href="?choose_from=full-time">Выбрать из специальностей очной формы</a>
             @endif
         @else
-            @include (
-                'institutions/specialties/partials/create/_from-other-study-form-message'
-            )
+            Вы выбираете из специальностей очной формы.
+            <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}">
+                Вернуться назад
+            </a>
         @endif
     </div>
 

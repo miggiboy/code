@@ -20,7 +20,7 @@
                target="_blank"
                title="{{ $institution->title }}"
                class="custom-link">
-                    {{ str_limit($institution->title, 50) }}
+              {{ str_limit($institution->title, 50) }}
             </a>
         </h2>
 

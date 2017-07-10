@@ -12,11 +12,15 @@
   <div class="ui dropdown item">
     Специальности <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
-        <a href="{{ route('specialties.index', 'college') }}" class="item">
-          <p>Колледжей</p>
-        </a>
         <a href="{{ route('specialties.index', 'university') }}" class="item">
           Универстетов
+        </a>
+        <a href="{{ route('specialties.index', 'college') }}" class="item">
+          Колледжей
+        </a>
+        <div class="ui divider"></div>
+        <a href="{{ route('specialties.index', 'college') }}" class="item">
+          Квалификации
         </a>
     </div>
   </div>
@@ -51,16 +55,16 @@
              <i class="teal user icon"></i> Мой профиль
           </a>
 
-          @role ('admin')
-            <a href="{{ route('team-members.index') }}" class="item">
-               <i class="teal users icon"></i> Команда сайта
-            </a>
-          @endrole
-
           <a href="{{ route('logout') }}" class="item">
             <i class="teal sign out icon"></i> Выход
           </a>
 
+          @role ('admin' || 'developer')
+            <div class="ui divider"></div>
+            <a href="{{ route('team-members.index') }}" class="item">
+               <i class="teal users icon"></i> Команда сайта
+            </a>
+          @endrole
         </div>
       </div>
 

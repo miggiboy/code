@@ -28,8 +28,6 @@ class Profession extends Model
      */
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['marked_by_current_user'];
-
     /**
      * Filters out professions which title
      * is not like the given query parameter

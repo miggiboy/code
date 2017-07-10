@@ -14,7 +14,8 @@ class DepolimorhiseMapsTable extends Migration
     public function up()
     {
         Schema::table('maps', function (Blueprint $table) {
-            $table->dropColumn(['created_at']);
+            $table->dropColumn(['mapable_type']);
+            $table->renameColumn('mapable_id', 'institution_id');
         });
     }
 

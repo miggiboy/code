@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 use App\Models\Article\Article;
 use App\Models\Subject\Subject;
-use App\Models\Specialty\Specialty;
+use App\Models\Specialty\{
+    Specialty,
+    Qualification
+};
 use App\Models\Profession\Profession;
 use App\Models\Institution\Institution;
 
@@ -27,6 +30,7 @@ class EloquentServiceProvider extends ServiceProvider
         Subject::observe(\App\Observers\SubjectObserver::class);
         Article::observe(\App\Observers\ArticleObserver::class);
         Specialty::observe(\App\Observers\SpecialtyObserver::class);
+        Qualification::observe(\App\Observers\QualificationObserver::class);
         Profession::observe(\App\Observers\ProfessionObserver::class);
         Institution::observe(\App\Observers\InstitutionObserver::class);
 
@@ -34,6 +38,7 @@ class EloquentServiceProvider extends ServiceProvider
             'article' => Article::class,
             'institution' => Institution::class,
             'specialty' => Specialty::class,
+            'qualification' => Qualification::class,
             'profession' => Profession::class,
             'subject' => Subject::class,
 

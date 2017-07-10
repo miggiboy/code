@@ -174,7 +174,7 @@ class Translator
 
     /**
      * Primary method
-     * translates given word into russian
+     * translates given word into Russian
      * with conjugation and required number
      *
      * @param  string  $word

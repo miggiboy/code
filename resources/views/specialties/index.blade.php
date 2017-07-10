@@ -26,7 +26,9 @@
     ->except('page', '_token'))
     ->links('vendor.pagination.default')
 }}
-<br><br>
+
+<br>
+<br>
 
 @endsection
 

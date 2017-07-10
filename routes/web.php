@@ -114,6 +114,21 @@ Route::group(['namespace' => 'Specialties'], function () {
 
 
 /**
+ * Qualifications
+ */
+
+Route::group(['namespace' => 'Specialties\Qualifications'], function () {
+
+    Route::resource('qualifications', 'QualificationsController');
+
+    /**
+     * Qualification Colleges
+     */
+    Route::resource('qualifications.colleges', 'QualificationCollegesController', ['only' => ['index']]);
+});
+
+
+/**
  * Professions
  */
 

@@ -24,7 +24,8 @@
       <h5 class="ui header">Город:
         <div class="sub header">
           <a href="{{ route('institutions.index', [$institutionType, 'city' => $institution->city->id]) }}"
-             title="Уч. заведения в {{ $institution->city->title }}">
+             title="Уч. заведения в {{ $institution->city->title }}"
+             class="custom-link">
                 {{ $institution->city->title }}
           </a>
         </div>
@@ -77,7 +78,7 @@
         <div class="four wide column">
           <h5 class="ui header">Веб сайт:
             <div class="sub header">
-              <a href="{{ $institution->web_site_url }}" target="_blank">
+              <a href="{{ $institution->web_site_url }}" target="_blank" class="custom-link">
                 {{ $institution->getBaseUrl() }}
               </a>
             </div>

@@ -81,6 +81,12 @@ class InstitutionSpecialtiesController extends Controller
      */
     public function store(Request $request, Institution $institution, $studyForm)
     {
+        $this->attachSpecialties(
+            $institution,
+            $request,
+            $studyForm
+        );
+
         $institution->specialties()->sync($request->specialties);
 
         return redirect()
@@ -151,6 +157,15 @@ class InstitutionSpecialtiesController extends Controller
                     'study_price'      => $data['price'],
                     'study_period'     => $data['study_period'],
                 ]);
+        }
+    }
+
+    public function attachSpecialties(Institution $institution, $request, $studyForm)
+    {
+        foreach ($request->specialties as $specialty) {
+            if (! $institution->hasSpecialty($specialty, $studyForm)) {
+                $institution->specialties()->attach($specialty, ['form' => $studyForm]);
+            }
         }
     }
 }

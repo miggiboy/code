@@ -15,10 +15,10 @@
         <i class="idea icon"></i>
         @if ($choose_from == Request::route('studyForm'))
             @if ($choose_from != 'full-time')
-                <a href="?choose_from=full-time">Выбрать из {{ Translator::get($related, 'r', 'p') }} очной формы</a>
+                <a href="?choose_from=full-time">Выбрать из {{ translate($related, 'r', 'p') }} очной формы</a>
             @endif
         @else
-            Вы выбираете из {{ Translator::get($related, 'r', 'p') }} очной формы.
+            Вы выбираете из {{ translate($related, 'r', 'p') }} очной формы.
             <a href="{{ route("institutions.{$related}.create", [$institution, Request::route('studyForm')]) }}">
                 Вернуться назад
             </a>
@@ -30,7 +30,7 @@
                 class="ui fluid search dropdown"
                 multiple>
 
-            <option value="">{{ Translator::get($related, 'i', 'p', true) }}</option>
+            <option value="">{{ translate($related, 'i', 'p', true) }}</option>
             @foreach ($specialties as $specialty)
 
                 <option value="{{ $specialty->id }}" {{ $institution->specialties->contains($specialty) ? 'selected' : '' }}>

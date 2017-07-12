@@ -11,7 +11,7 @@
          class="custom-link">
         {{ str_limit($specialty->title, 50) }}
       </a><br>
-      cвязанные {{ Translator::get($specialty->institution_type, 'i', 'p') }}
+      cвязанные {{ translate($specialty->institution_type, 'i', 'p') }}
     </h2>
 
     @if ($specialty->institutions)
@@ -39,7 +39,7 @@
                 </h4>
               </td>
               <td>
-                {{ Translator::get($institution->pivot->form) }}
+                {{ translate($institution->pivot->form) }}
               </td>
               <td>{{ $institution->pivot->study_price }}</td>
               <td class="right aligned collapsing">{{ $institution->pivot->study_period }}</td>

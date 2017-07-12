@@ -13,6 +13,7 @@ return [
     'roles' => [
         'groups' => [
             'team' => 'developer|admin|moderator',
+
             'role_managers' => 'developer|admin',
         ],
     ],

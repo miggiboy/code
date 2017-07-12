@@ -41,7 +41,7 @@ class MarkersController extends Controller
 
     public function store(Request $request)
     {
-        if (! Marker::hasColor($request->color)) {
+        if (Marker::colorIsNotAllowed($request->color)) {
             abort(404);
         }
 

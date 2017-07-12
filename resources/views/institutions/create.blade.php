@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section ('title')
-  {{ $heading = 'Добавление ' . Translator::get($institutionType, 'r', 's') }}
+  {{ $heading = 'Добавление ' . translate($institutionType, 'r', 's') }}
 @endsection
 
 @section ('subnavigation')

@@ -13,9 +13,19 @@ class Marker extends Model
         'orange',
     ];
 
-    public static function hasColor($color)
+    public static function colorIsAllowed($color)
     {
         return in_array($color, self::COLORS);
+    }
+
+    public static function colorIsNotAllowed($color)
+    {
+        return ! static::colorIsAllowed($color);
+    }
+
+    public static function colors()
+    {
+        return self::COLORS;
     }
 
     public function user()

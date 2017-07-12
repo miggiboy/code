@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section ('title')
-    {{ $institution->title }} - добавление {{ Translator::get($related, 'r', 'p') }}
+    {{ $institution->title }} - добавление / удаление {{ translate($related, 'r', 'p') }}
 @endsection
 
 @section ('content')
@@ -11,9 +11,9 @@
             <a href="{{ route("institutions.{$related}.index", [$institution, Request::route('studyForm')]) }}"
                class="custom-link"
                target="_blank">
-                {{ Translator::get($related, 'i', 'p', true) }}
+                {{ translate($related, 'i', 'p', true) }}
             </a>
-            {{ Translator::get(Request::route('studyForm'), 'r') }}
+            {{ translate(Request::route('studyForm'), 'r') }}
 
             <br>
             <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"

@@ -4,8 +4,6 @@ namespace App\Http\Composers;
 
 use Illuminate\View\View;
 
-use App\Models\City\City;
-
 class InstitutionRelatedModelTypeComposer
 {
     protected $related;

@@ -7,7 +7,7 @@
 
     <div class="ui very relaxed divided list">
 
-      @foreach (Specialty::STUDY_FORMS as $form)
+      @foreach (Specialty::studyForms() as $form)
           <div class="item">
             <div class="ui pointing right floated icon dropdown small basic button content">
               <i class="ellipsis vertical icon"></i>
@@ -35,7 +35,7 @@
             <i class="large teal student middle aligned icon"></i>
             <div class="content">
               <a href="{{ route('institutions.specialties.index', [$institution, $form]) }}" class="header">
-                 {{ Translator::get($form, 'i', 's', true) }} ({{ $count }})
+                 {{ translate($form, 'i', 's', true) }} ({{ $count }})
               </a>
             </div>
           </div>

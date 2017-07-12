@@ -2,7 +2,7 @@
   <i class="left teal dropdown icon"></i>
   <span class="text">Ваша отметка</span>
   <div class="left menu">
-    @foreach (Marker::COLORS as $color)
+    @foreach (Marker::colors() as $color)
       @if ($model->isMarkedByCurrentUserWith($color))
         <a href="#"
            onclick="event.preventDefault();

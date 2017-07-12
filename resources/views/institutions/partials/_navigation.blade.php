@@ -12,7 +12,7 @@
     <div class="ui compact small menu">
       <a class="item" href="{{ route('institutions.index', $institutionType) }}">
         <i class="teal university icon"></i>
-        {{ Translator::get($institutionType, 'i', 'p', true) }}
+        {{ translate($institutionType, 'i', 'p', true) }}
       </a>
 
       <a class="item" href="{{ route('institutions.create', $institutionType) }}">

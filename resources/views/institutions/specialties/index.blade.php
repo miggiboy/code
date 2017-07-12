@@ -1,14 +1,14 @@
 @extends ('layouts.app')
 
 @section ('title')
-  {{ $institution->title . ' - ' . Translator::get($related, 'i', 'p') }}
+  {{ $institution->title . ' - ' . translate($related, 'i', 'p') }}
 @endsection
 
 @section ('content')
 
   <div class="ui custom-table-page container">
     <h2 class="ui header">
-      {{ Translator::get($related, 'i', 'p', true) . ' ' . Translator::get(Request::route('studyForm'), 'r', 's') }}
+      {{ translate($related, 'i', 'p', true) . ' ' . translate(Request::route('studyForm'), 'r', 's') }}
       <br>
 
       <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"
@@ -33,7 +33,7 @@
         <a href="{{ route("institutions.{$related}.create", [$institution, Request::route('studyForm')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
-          Добавить {{ Translator::get($related, 'i', 'p') }}
+          Добавить {{ translate($related, 'i', 'p') }}
         </a>
       @endif
     </h2>

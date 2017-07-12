@@ -9,7 +9,7 @@
         <tr>
           <th class="collapsing"></th>
           <th style="width: 400px;">
-            {{ Translator::get($related, 'i', 'p', true) }} ({{ count($institution->specialties) }})
+            {{ translate($related, 'i', 'p', true) }} ({{ count($institution->specialties) }})
           </th>
           <th style="width: 40px;">Цена за год</th>
           <th style="width: 280px;">Срок обучения</th>

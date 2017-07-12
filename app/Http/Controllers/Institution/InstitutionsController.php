@@ -25,16 +25,6 @@ use Translator;
 class InstitutionsController extends Controller
 {
     /**
-     * Existing institution types
-     *
-     * @var array
-     */
-    const INSTITUTION_TYPES = [
-        'colleges',
-        'universities',
-    ];
-
-    /**
      * Throw 404 exception if institution type is not in
      * self::$instituionTypes array
      */
@@ -43,7 +33,7 @@ class InstitutionsController extends Controller
         parent::__construct();
 
         abort_unless(
-            in_array(request()->route('institutionType'), self::INSTITUTION_TYPES), 404
+            Institution::hasType(request()->route('institutionType')), 404
         );
     }
 

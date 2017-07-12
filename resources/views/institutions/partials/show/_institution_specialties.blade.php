@@ -7,7 +7,7 @@
 
     <div class="ui very relaxed divided list">
 
-      @foreach (['full-time', 'extramural', 'distant'] as $form)
+      @foreach (Specialty::STUDY_FORMS as $form)
           <div class="item">
             <div class="ui pointing right floated icon dropdown small basic button content">
               <i class="ellipsis vertical icon"></i>

@@ -38,6 +38,12 @@ class Specialty extends Model
      */
     protected $dates = ['deleted_at'];
 
+    const STUDY_FORMS = [
+        'full-time',
+        'extramural',
+        'distant',
+    ];
+
     /**
      * Retrieve only models which type is $type
      * @param  Builder $query
@@ -113,6 +119,11 @@ class Specialty extends Model
     {
         return config('google.search.url') .
             \Translator::get($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
+    }
+
+    public static function hasStudyForm($studyForm)
+    {
+        return in_array(str_singular($studyForm), self::STUDY_FORMS);
     }
 
     /**

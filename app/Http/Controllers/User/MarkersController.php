@@ -14,7 +14,7 @@ use App\Models\Article\Article;
 
 class MarkersController extends Controller
 {
-    protected static $markable = [
+    const MARKABLE = [
         'institution' => Institution::class,
         'specialty' => Specialty::class,
         'profession' => Profession::class,
@@ -30,17 +30,21 @@ class MarkersController extends Controller
         $markableType = request()->route('markableType');
 
         abort_unless(
-            array_key_exists($markableType, self::$markable), 404
+            array_key_exists($markableType, self::MARKABLE), 404
         );
 
         $this->model =
-            self::$markable[$markableType]::findOrFail(
+            self::MARKABLE[$markableType]::findOrFail(
                 request()->route('markableId')
             );
     }
 
     public function store(Request $request)
     {
+        if (! Marker::hasColor($request->color)) {
+            abort(404);
+        }
+
         $marker = new Marker;
         $marker->color = $request->color;
         $marker->user()->associate($request->user());

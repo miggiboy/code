@@ -19,7 +19,7 @@
             @endif
         @else
             Вы выбираете из {{ Translator::get($related, 'r', 'p') }} очной формы.
-            <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}">
+            <a href="{{ route("institutions.{$related}.create", [$institution, Request::route('studyForm')]) }}">
                 Вернуться назад
             </a>
         @endif

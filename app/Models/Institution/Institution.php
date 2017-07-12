@@ -61,6 +61,11 @@ class Institution extends Model implements HasMediaConversions
         'is_paid'           => 'boolean',
     ];
 
+    const TYPES = [
+        'college',
+        'university',
+    ];
+
     /**
      * Retrieves institutions of $type type
      *
@@ -116,6 +121,11 @@ class Institution extends Model implements HasMediaConversions
     public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.' . 'institution') . $this->slug;
+    }
+
+    public static function hasType(String $type)
+    {
+        return in_array(str_singular($type), self::TYPES);
     }
 
     protected function formatUrl($url)

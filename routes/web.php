@@ -55,12 +55,16 @@ Route::group(['namespace' => 'User'], function () {
     /**
      * Team Members
      */
-    Route::resource('team-members', 'TeamMembersController', ['only' => ['index', 'create']]);
+    Route::resource('team-members', 'TeamMembersController', [
+        'only' => ['index', 'create']
+    ]);
 
     /**
      * User Roles
      */
-    Route::resource('users.roles', 'UserRolesController', ['only' => ['store', 'destroy']]);
+    Route::resource('users.roles', 'UserRolesController', [
+        'only' => ['store', 'destroy']
+    ]);
 
     /**
      * User Active Status
@@ -104,12 +108,16 @@ Route::group(['namespace' => 'Specialties'], function () {
     /**
      * Specialty qualifications
      */
-    Route::resource('specialties.qualifications', 'SpecialtyQualificationsController', ['except' => ['show', 'edit', 'update']]);
+    Route::resource('specialties.qualifications', 'SpecialtyQualificationsController', [
+        'except' => ['show', 'edit', 'update']
+    ]);
 
     /**
      * Specialty institutions
      */
-    Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', ['only' => ['index']]);
+    Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', [
+        'only' => ['index']
+    ]);
 });
 
 
@@ -124,7 +132,9 @@ Route::group(['namespace' => 'Specialties\Qualifications'], function () {
     /**
      * Qualification Colleges
      */
-    Route::resource('qualifications.colleges', 'QualificationCollegesController', ['only' => ['index']]);
+    Route::resource('qualifications.colleges', 'QualificationCollegesController', [
+        'only' => ['index']
+    ]);
 });
 
 
@@ -145,7 +155,9 @@ Route::group(['namespace' => 'Professions'], function () {
     /**
      * Profession Specialties
      */
-    Route::resource('professions.specialties', 'ProfessionSpecialtiesController', ['except' => ['edit', 'update', 'show']]);
+    Route::resource('professions.specialties', 'ProfessionSpecialtiesController', [
+        'except' => ['edit', 'update', 'show']
+    ]);
 });
 
 
@@ -155,17 +167,25 @@ Route::group(['namespace' => 'Professions'], function () {
 
 Route::group(['namespace' => 'Subjects'], function () {
 
-    Route::resource('subjects', 'SubjectsController', ['except' => ['edit', 'update']]);
+    Route::resource('subjects', 'SubjectsController', [
+        'except' => ['edit', 'update']
+    ]);
 
     // Subject Media
-    Route::resource('subjects.media', 'SubjectMediaController', ['only' => ['index', 'store', 'destroy']]);
+    Route::resource('subjects.media', 'SubjectMediaController', [
+        'only' => ['index', 'store', 'destroy']
+    ]);
 
-    Route::resource('subjects.specialties', 'SubjectSpecialtiesController', ['only' => ['index']]);
+    Route::resource('subjects.specialties', 'SubjectSpecialtiesController', [
+        'only' => ['index']
+    ]);
 });
 
 
 // Cities
-Route::resource('cities', 'CitiesController', ['only' => ['index', 'store', 'destroy']]);
+Route::resource('cities', 'CitiesController', [
+    'only' => ['index', 'store', 'destroy']
+]);
 
 /**
  * Institutions
@@ -247,7 +267,9 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
 /**
  * Quizzes
  */
-Route::resource('quizzes', 'QuizzesController', ['except' => ['edit', 'update']]);
+Route::resource('quizzes', 'QuizzesController', [
+    'except' => ['edit', 'update']
+]);
 
 Route::post('/quizzes/preview', 'QuizzesController@preview')->name('quizzes.preview');
 

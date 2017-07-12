@@ -20,17 +20,6 @@ class InstitutionSpecialtiesController extends Controller
     const RELATED_TYPE = 'specialties';
 
     /**
-     * Existing study forms
-     *
-     * @var array
-     */
-    const STUDY_FORMS = [
-        'full-time',
-        'extramural',
-        'distant',
-    ];
-
-    /**
      * Throw 404 exception if study form is not in
      *
      * STUDY_FORMS array
@@ -40,7 +29,7 @@ class InstitutionSpecialtiesController extends Controller
         parent::__construct();
 
         abort_unless(
-            in_array(request()->route('studyForm'), self::STUDY_FORMS), 404
+            Specialty::hasStudyForm(request()->route('studyForm')), 404
         );
     }
 

@@ -12,6 +12,8 @@ use App\Models\Specialty\{
     Specialty
 };
 
+use App\Models\Institution\Institution;
+
 use App\Http\Requests\Specialty\{
     SpecialtyFormRequest
 };
@@ -23,16 +25,6 @@ use App\Modules\Search\{
 class SpecialtiesController extends Controller
 {
     /**
-     * Existing institution types
-     *
-     * @var array
-     */
-    const INSTITUTION_TYPES = [
-        'college',
-        'university',
-    ];
-
-    /**
      * Throw 404 exception if institution type is not in
      * self::$instituionTypes array
      */
@@ -41,7 +33,7 @@ class SpecialtiesController extends Controller
         parent::__construct();
 
         abort_unless(
-            in_array(request()->route('institutionType'), self::INSTITUTION_TYPES), 404
+            Institution::hasType(request()->route('institutionType')), 404
         );
     }
 

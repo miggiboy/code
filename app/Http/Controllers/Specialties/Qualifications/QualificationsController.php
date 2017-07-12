@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Specialties\Qualifications;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\{
-    Specialty\QualificationFormRequest
-};
-
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\{
+    SpecialtyFormRequest
+};
+
 use App\Modules\Search\{
-    QualificationSearch
+    SpecialtySearch
 };
 
 use App\Models\Specialty\{
@@ -27,7 +27,7 @@ class QualificationsController extends Controller
      */
     public function index(Request $request)
     {
-        $qualifications = QualificationSearch::applyFilters($request)
+        $qualifications = SpecialtySearch::applyFilters('qualifications', $request)
             ->with(['parent_specialty', 'markers'])
             ->orderBy('title')
             ->paginate(15);
@@ -56,9 +56,9 @@ class QualificationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(QualificationFormRequest $request)
+    public function store(SpecialtyFormRequest $request)
     {
-        $qualifiaction = Qualification::create($request->all());
+        $qualifiaction = Specialty::create($request->all());
 
         return redirect()->route('qualifications.show', $qualifiaction);
     }
@@ -66,10 +66,10 @@ class QualificationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Specialty\Qualification  $qualification
+     * @param  \App\Models\Specialty\Specialty  $qualification
      * @return \Illuminate\Http\Response
      */
-    public function show(Qualification $qualification)
+    public function show(Specialty $qualification)
     {
         return view('qualifications.show', compact('qualification'));
     }
@@ -77,10 +77,10 @@ class QualificationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Specialty\Qualification  $qualification
+     * @param  \App\Models\Specialty\Specialty  $qualification
      * @return \Illuminate\Http\Response
      */
-    public function edit(Qualification $qualification)
+    public function edit(Specialty $qualification)
     {
         $specialties = Specialty::getOnly('specialties')
             ->of('college')
@@ -94,10 +94,10 @@ class QualificationsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Specialty\Qualification  $qualification
+     * @param  \App\Models\Specialty\Specialty  $qualification
      * @return \Illuminate\Http\Response
      */
-    public function update(QualificationFormRequest $request, Qualification $qualification)
+    public function update(SpecialtyFormRequest $request, Specialty $qualification)
     {
         $qualifiaction->update($request->all());
 
@@ -109,10 +109,10 @@ class QualificationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Specialty\Qualification  $qualification
+     * @param  \App\Models\Specialty\Specialty  $qualification
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Qualification $qualification)
+    public function destroy(Specialty $qualification)
     {
         $qualification->delete();
 

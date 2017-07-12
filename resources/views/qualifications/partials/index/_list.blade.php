@@ -17,7 +17,9 @@
                     {{ $qualification->getNameWithCodeOrName() }}
                   </a>
                   <br>
-                  {{ $qualification->specialty->title }}
+                  @isset ($qualification->parent_specialty)
+                    {{ $qualification->parent_specialty->title }}
+                  @endisset
                 </div>
             </div>
         @endforeach

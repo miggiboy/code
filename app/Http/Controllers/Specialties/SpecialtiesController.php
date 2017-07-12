@@ -41,7 +41,7 @@ class SpecialtiesController extends Controller
         parent::__construct();
 
         abort_unless(
-            in_array(request()->route('institutionType'), INSTITUTION_TYPES), 404
+            in_array(request()->route('institutionType'), self::INSTITUTION_TYPES), 404
         );
     }
 
@@ -53,7 +53,7 @@ class SpecialtiesController extends Controller
 
     public function index(Request $request, $institutionType)
     {
-        $specialties = SpecialtySearch::applyFilters($request)
+        $specialties = SpecialtySearch::applyFilters('specialties', $request)
             ->with(['direction', 'markers'])
             ->orderBy('title')
             ->paginate(15);

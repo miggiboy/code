@@ -7,11 +7,11 @@ use App\Models\Specialty\Specialty;
 
 class SpecialtySearch
 {
-    public static function applyFilters(Request $request)
+    public static function applyFilters($type, Request $request)
     {
         $q = Specialty::query();
 
-        $q->getOnly('specialties')->of($request->route('institutionType'));
+        $q->getOnly($type)->of($request->route('institutionType') ?? 'college');
 
         if ($request->has('query')) {
             $q->like(request('query'));

@@ -13,7 +13,6 @@
                    class="prompt"
                    placeholder="Название или код квалификации..."
                    autofocus>
-
             <i class="search icon"></i>
           </div>
         </div>

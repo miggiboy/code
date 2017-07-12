@@ -1,13 +1,15 @@
 @extends ('layouts.app')
 
 @section ('title')
-  {{ $institution->title }} - специальности
+  {{ $institution->title . ' - ' . Translator::get($related, 'i', 'p') }}
 @endsection
 
 @section ('content')
+
   <div class="ui custom-table-page container">
     <h2 class="ui header">
-      Специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}<br>
+      {{ Translator::get($related, 'i', 'p', true) . ' ' . Translator::get(Request::route('studyForm'), 'r', 's') }}
+      <br>
 
       <a href="{{ route('institutions.show', [str_plural($institution->type), $institution]) }}"
          title="{{ $institution->title }}"
@@ -17,19 +19,21 @@
       @if (count($institution->specialties))
 
         <div class="ui medium teal buttons" style="margin-top: 15px;">
-          <a href="{{ route('institutions.specialties.edit', [$institution, Request::route('studyForm')]) }}" class="ui button">
+          <a href="{{ route("institutions.{$related}.edit", [$institution, Request::route('studyForm')]) }}"
+             class="ui button">
             Обновить цены, сроки
           </a>
           <div class="or" id = "or"></div>
-          <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}" class="ui button">
+          <a href="{{ route("institutions.{$related}.create", [$institution, Request::route('studyForm')]) }}"
+             class="ui button">
             Редактировать список
           </a>
         </div>
       @else
-        <a href="{{ route('institutions.specialties.create', [$institution, Request::route('studyForm')]) }}"
+        <a href="{{ route("institutions.{$related}.create", [$institution, Request::route('studyForm')]) }}"
            class="ui teal button"
            style="margin-top: 15px;">
-          Добавить специальности
+          Добавить {{ Translator::get($related, 'i', 'p') }}
         </a>
       @endif
     </h2>

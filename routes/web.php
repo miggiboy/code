@@ -210,6 +210,22 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
     });
 
     /**
+     * Institution Qualifications
+     */
+
+    Route::group(['prefix' => '/{institution}/qualifications/{studyForm}'], function () {
+        Route::get('', 'InstitutionQualificationsController@index')->name('institutions.qualifications.index');
+
+        Route::get('/create', 'InstitutionQualificationsController@create')->name('institutions.qualifications.create');
+        Route::post('', 'InstitutionQualificationsController@store')->name('institutions.qualifications.store');
+
+        Route::get('/edit', 'InstitutionQualificationsController@edit')->name('institutions.qualifications.edit');
+        Route::patch('', 'InstitutionQualificationsController@update')->name('institutions.qualifications.update');
+
+        Route::delete('/{specialty}', 'InstitutionQualificationsController@destroy')->name('institutions.qualifications.destroy');
+    });
+
+    /**
      * Institution Paid Status
      */
     Route::patch('/{institution}/paid-status', 'InstitutionPaidStatusController@update')->name('institutions.paid-status.update');

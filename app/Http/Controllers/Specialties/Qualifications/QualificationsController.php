@@ -15,7 +15,6 @@ use App\Modules\Search\{
 };
 
 use App\Models\Specialty\{
-    Qualification,
     Specialty
 };
 
@@ -29,7 +28,7 @@ class QualificationsController extends Controller
     public function index(Request $request)
     {
         $qualifications = QualificationSearch::applyFilters($request)
-            ->with(['specialty', 'markers'])
+            ->with(['parent_specialty', 'markers'])
             ->orderBy('title')
             ->paginate(15);
 

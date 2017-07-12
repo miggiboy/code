@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section ('title')
-  {{ $institution->title }} - специальности
+  {{ $institution->title }} - {{ Translator::get($related, 'i', 'p') }}
 @endsection
 
 @section ('content')
@@ -14,7 +14,7 @@
           class="custom-link">
         {{ str_limit($institution->title, 55) }}
       </a><br>
-      специальности {{ Translator::get(Request::route('studyForm'), 'r', 's') }}
+      {{ Translator::get($related, 'i', 'p') }} {{ Translator::get(Request::route('studyForm'), 'r', 's') }}
     </h2>
     @include ('institutions/specialties/partials/_edition_form')
   </div>

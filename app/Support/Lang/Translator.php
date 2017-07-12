@@ -8,9 +8,10 @@ class Translator
 {
     /**
      * Dictionary of the translator
+     *
      * @var array
      */
-    private static $dictionary = [
+    const DICTIONARY = [
         'college' => [
             'i' => [
                 's' => 'колледж',
@@ -170,6 +171,71 @@ class Translator
                 'p' => 'дистанционных формах',
             ],
         ],
+
+        'specialty' => [
+            'i' => [
+                's' => 'специальность',
+                'p' => 'специальности',
+            ],
+
+            'r' => [
+                's' => 'специальности',
+                'p' => 'специальностей',
+            ],
+
+            'd' => [
+                's' => 'специальности',
+                'p' => 'специальностям',
+            ],
+
+            'v' => [
+                's' => 'специальность',
+                'p' => 'специальности',
+            ],
+
+            't' => [
+                's' => 'специальностью',
+                'p' => 'специальностями',
+            ],
+
+            'p' => [
+                's' => 'специальности',
+                'p' => 'специальностях',
+            ],
+        ],
+
+        'qualification' => [
+            'i' => [
+                's' => 'квалификация',
+                'p' => 'квалификации',
+            ],
+
+            'r' => [
+                's' => 'квалификации',
+                'p' => 'квалификацией',
+            ],
+
+            'd' => [
+                's' => 'квалификации',
+                'p' => 'квалификациям',
+            ],
+
+            'v' => [
+                's' => 'квалификация',
+                'p' => 'квалификации',
+            ],
+
+            't' => [
+                's' => 'квалификацию',
+                'p' => 'квалификациями',
+            ],
+
+            'p' => [
+                's' => 'квалификации',
+                'p' => 'квалификациях',
+            ],
+        ],
+
     ];
 
     /**
@@ -186,9 +252,10 @@ class Translator
     public static function get($word, $conjugation = 'i', $number = 's', $ucFirst = false)
     {
         $word = static::normalize($word);
+
         static::validate($word, $conjugation, $number);
 
-        $translated = self::$dictionary[$word][$conjugation][$number];
+        $translated = self::DICTIONARY[$word][$conjugation][$number];
 
         return $ucFirst ? static::mbUcfirst($translated) : $translated;
     }
@@ -198,6 +265,7 @@ class Translator
      * * word is not in dictionary
      * * wrong conjugation rule
      * * wrong number rule
+     *
      * @param  string $word
      * @param  char   $conjugation
      * @param  char   $number
@@ -205,15 +273,15 @@ class Translator
      */
     protected static function validate($word, $conjugation, $number)
     {
-        if (! isset(self::$dictionary[$word])) {
+        if (! isset(self::DICTIONARY[$word])) {
             throw new Exception('Word ' . $word . ' is not present in dictionary');
         }
 
-        if (! isset(self::$dictionary[$word][$conjugation])) {
+        if (! isset(self::DICTIONARY[$word][$conjugation])) {
             throw new Exception('Wrong conjugation rule ' . $conjugation);
         }
 
-        if (! isset(self::$dictionary[$word][$conjugation][$number])) {
+        if (! isset(self::DICTIONARY[$word][$conjugation][$number])) {
             throw new Exception('Wrong number rule ' . $number);
         }
     }
@@ -235,6 +303,7 @@ class Translator
 
     /**
      * Returns word in lower case and sungularized
+     *
      * @param  string $word
      * @return string
      */

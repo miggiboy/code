@@ -1,17 +1,17 @@
 @extends ('layouts.app')
 
 @section ('title')
-    {{ $institution->title }} - добавление специальностей
+    {{ $institution->title }} - добавление {{ Translator::get($related, 'r', 'p') }}
 @endsection
 
 @section ('content')
     <div class="ui text container" style="margin-bottom: 10px;">
 
         <h2 style="margin-bottom: 20px; text-align: center;">
-            <a href="{{ route('institutions.specialties.index', [$institution, Request::route('studyForm')]) }}"
+            <a href="{{ route("institutions.{$related}.index", [$institution, Request::route('studyForm')]) }}"
                class="custom-link"
                target="_blank">
-                Специальности
+                {{ Translator::get($related, 'i', 'p', true) }}
             </a>
             {{ Translator::get(Request::route('studyForm'), 'r') }}
 

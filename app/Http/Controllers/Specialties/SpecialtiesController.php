@@ -24,9 +24,10 @@ class SpecialtiesController extends Controller
 {
     /**
      * Existing institution types
+     *
      * @var array
      */
-    protected static $institutionTypes = [
+    const INSTITUTION_TYPES = [
         'college',
         'university',
     ];
@@ -40,7 +41,7 @@ class SpecialtiesController extends Controller
         parent::__construct();
 
         abort_unless(
-            in_array(request()->route('institutionType'), self::$institutionTypes), 404
+            in_array(request()->route('institutionType'), INSTITUTION_TYPES), 404
         );
     }
 

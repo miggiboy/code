@@ -1,4 +1,4 @@
-<form action="{{ route('institutions.specialties.update', [$institution, Request::route('studyForm')]) }}"
+<form action="{{ route("institutions.{$related}.update", [$institution, Request::route('studyForm')]) }}"
     method="post"
     style="text-align: center;">
     {{ method_field('PATCH') }}
@@ -8,7 +8,9 @@
       <thead>
         <tr>
           <th class="collapsing"></th>
-          <th style="width: 400px;">Специальности ({{ count($institution->specialties) }})</th>
+          <th style="width: 400px;">
+            {{ Translator::get($related, 'i', 'p', true) }} ({{ count($institution->specialties) }})
+          </th>
           <th style="width: 40px;">Цена за год</th>
           <th style="width: 280px;">Срок обучения</th>
         </tr>

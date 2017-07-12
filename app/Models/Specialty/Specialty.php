@@ -51,11 +51,11 @@ class Specialty extends Model
 
     /**
      * Gets institution type of specialty
+     *
      * @return Builder
      */
     public function getInstitutionTypeAttribute()
     {
-        // ! Shouldn't be the case
         if (! $this->direction) {
             return null;
         }
@@ -111,7 +111,8 @@ class Specialty extends Model
 
     public function googleSearchUrl()
     {
-        return config('google.search.url') . 'Специальность ' . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
+        return config('google.search.url') .
+            \Translator::get($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
     }
 
     /**
@@ -131,5 +132,13 @@ class Specialty extends Model
     public function professions()
     {
         return $this->belongsToMany(Profession::class)->select(['id', 'slug', 'title', 'category_id']);
+    }
+
+    /**
+     * Relation is specific to qualifications
+     */
+    public function parent_specialty()
+    {
+        return $this->belongsTo(Specialty::class, 'parent_id');
     }
 }

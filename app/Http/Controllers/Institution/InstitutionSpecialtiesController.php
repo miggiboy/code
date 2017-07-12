@@ -12,14 +12,19 @@ use App\Http\Requests\{
     InstitutionSpecialtyRequest as SpecialtyRequest
 };
 
+use Translator;
+
 class InstitutionSpecialtiesController extends Controller
 {
+
+    const RELATED = 'specialties';
+
     /**
      * Existing institution types
      *
      * @var array
      */
-    protected static $studyForms = [
+    const STUDY_FORMS = [
         'full-time',
         'extramural',
         'distant',
@@ -27,14 +32,15 @@ class InstitutionSpecialtiesController extends Controller
 
     /**
      * Throw 404 exception if study form is not in
-     * self::$studyForms array
+     *
+     * STUDY_FORMS array
      */
     public function __construct()
     {
         parent::__construct();
 
         abort_unless(
-            in_array(request()->route('studyForm'), self::$studyForms), 404
+            in_array(request()->route('studyForm'), self::STUDY_FORMS), 404
         );
     }
 
@@ -46,9 +52,9 @@ class InstitutionSpecialtiesController extends Controller
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
             $query
+                ->getOnly(static::RELATED)
                 ->atForm($studyForm)
-                ->orderBy('title')
-                ->with(['direction']);
+                ->orderBy('title');
         }]);
 
         return view('institutions.specialties.index', compact('institution'));
@@ -62,10 +68,12 @@ class InstitutionSpecialtiesController extends Controller
     public function create(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->atForm(request()->choose_from ?? $studyForm);
+            $query
+                ->getOnly(static::RELATED)
+                ->atForm(request()->choose_from ?? $studyForm);
         }]);
 
-        $specialties = Specialty::getOnLy('specialties')
+        $specialties = Specialty::getOnLy(static::RELATED)
             ->of($institution->type)
             ->orderBy('title')
             ->get();
@@ -91,7 +99,7 @@ class InstitutionSpecialtiesController extends Controller
 
         return redirect()
             ->route('institutions.show', [str_plural($institution->type), $institution])
-            ->withMessage('Специальности прикреплены');
+            ->withMessage(Translator::get(static::RELATED, 'i', 'p', true) . ' прикреплены');
     }
 
     /**
@@ -103,7 +111,10 @@ class InstitutionSpecialtiesController extends Controller
     public function edit(Institution $institution, $studyForm)
     {
         $institution->load(['specialties' => function ($query) use ($studyForm) {
-            $query->atForm($studyForm)->orderBy('title');
+            $query
+                ->getOnly(static::RELATED)
+                ->atForm($studyForm)
+                ->orderBy('title');
         }]);
 
         return view('institutions.specialties.edit', compact('institution'));
@@ -142,7 +153,7 @@ class InstitutionSpecialtiesController extends Controller
             ->wherePivot('form', $studyForm)
             ->detach();
 
-        return back()->withMessage('Специальность откреплена');
+        return back()->withMessage(Translator::get(static::RELATED, 'i', 's', true) . ' откреплена');
     }
 
     private function updateSpecialties(Institution $institution, $specialtyDetails, $studyForm)

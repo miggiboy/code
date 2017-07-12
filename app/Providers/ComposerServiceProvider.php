@@ -10,7 +10,8 @@ use App\Http\Composers\{
     CitiesComposer,
     ArticleCategoriesComposer,
     ProfessionCategoriesComposer,
-    InstitutionTypeComposer
+    InstitutionTypeComposer,
+    InstitutionRelatedModelTypeComposer
 };
 
 class ComposerServiceProvider extends ServiceProvider
@@ -64,6 +65,15 @@ class ComposerServiceProvider extends ServiceProvider
 
             InstitutionTypeComposer::class
         );
+
+        View::composer(
+            [
+                'institutions.specialties.index',
+                'institutions.specialties.create',
+                'institutions.specialties.edit',
+            ],
+            InstitutionRelatedModelTypeComposer::class
+        );
     }
 
     /**
@@ -80,5 +90,7 @@ class ComposerServiceProvider extends ServiceProvider
         $this->app->singleton(ArticleCategoriesComposer::class);
 
         $this->app->singleton(InstitutionTypeComposer::class);
+
+        $this->app->singleton(InstitutionRelatedModelTypeComposer::class);
     }
 }

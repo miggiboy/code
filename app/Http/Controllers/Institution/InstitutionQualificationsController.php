@@ -8,5 +8,5 @@ use App\Http\Controllers\Institution\{
 
 class InstitutionQualificationsController extends Controller
 {
-    const RELATED = 'qualifications';
+    const RELATED_TYPE = 'qualifications';
 }

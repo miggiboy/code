@@ -124,7 +124,7 @@ class SpecialtiesController extends Controller
     {
         $specialty->load(['subjects']);
 
-        $subjects = $this->getProfileSubjects()
+        $subjects = $this->getProfileSubjects();
 
         $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')

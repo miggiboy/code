@@ -15,7 +15,7 @@
 
     @include ('markers/partials/_markers-option', [
         'model' => $qualification,
-        'modelType' => 'qualification',
+        'modelType' => 'specialty',
     ])
 
     @include ('shared/_google-option', [

@@ -27,7 +27,7 @@ class QualificationsController extends Controller
      */
     public function index(Request $request)
     {
-        $qualifications = SpecialtySearch::applyFilters('qualifications', $request)
+        $qualifications = SpecialtySearch::applyFiltersTo('qualifications', $request)
             ->with(['parent_specialty', 'markers'])
             ->orderBy('title')
             ->paginate(15);
@@ -42,10 +42,7 @@ class QualificationsController extends Controller
      */
     public function create()
     {
-        $specialties = Specialty::getOnly('specialties')
-            ->of('college')
-            ->orderBy('title')
-            ->get();
+        $specialties = $this->getCollegeSpecialtes();
 
         return view('qualifications.create', compact('specialties'));
     }
@@ -82,10 +79,7 @@ class QualificationsController extends Controller
      */
     public function edit(Specialty $qualification)
     {
-        $specialties = Specialty::getOnly('specialties')
-            ->of('college')
-            ->orderBy('title')
-            ->get();
+        $specialties = $this->getCollegeSpecialtes();
 
         return view('qualifications.edit', compact('qualification'));
     }
@@ -119,5 +113,13 @@ class QualificationsController extends Controller
         return redirect()
             ->route('qualifications.index')
             ->withMessage('Квалификация удалена');
+    }
+
+    private function getCollegeSpecialtes()
+    {
+        return Specialty::getOnly('specialties')
+            ->of('college')
+            ->orderBy('title')
+            ->get();
     }
 }

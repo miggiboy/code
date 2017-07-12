@@ -53,7 +53,7 @@ class SpecialtiesController extends Controller
 
     public function index(Request $request, $institutionType)
     {
-        $specialties = SpecialtySearch::applyFilters('specialties', $request)
+        $specialties = SpecialtySearch::applyFiltersTo('specialties', $request)
             ->with(['direction', 'markers'])
             ->orderBy('title')
             ->paginate(15);
@@ -72,10 +72,7 @@ class SpecialtiesController extends Controller
      */
     public function create($institutionType)
     {
-        $subjects = Subject::where('is_profile', true)
-            ->whereNull('parent_id')
-            ->orderBy('title')
-            ->get();
+        $subjects = $this->getProfileSubjects();
 
         $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
@@ -127,10 +124,7 @@ class SpecialtiesController extends Controller
     {
         $specialty->load(['subjects']);
 
-        $subjects = Subject::where('is_profile', true)
-            ->whereNull('parent_id')
-            ->orderBy('title')
-            ->get();
+        $subjects = $this->getProfileSubjects()
 
         $directions = SpecialtyDirection::of($institutionType)
             ->orderBy('title')
@@ -195,5 +189,13 @@ class SpecialtiesController extends Controller
         });
 
         return response()->json(['results' => $specialties], 200);
+    }
+
+    public function getProfileSubjects()
+    {
+        return Subject::where('is_profile', true)
+            ->whereNull('parent_id')
+            ->orderBy('title')
+            ->get();
     }
 }

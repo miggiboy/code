@@ -76,13 +76,12 @@ class InstitutionSpecialtiesController extends Controller
      */
     public function store(Request $request, Institution $institution, $studyForm)
     {
-        $this->attachSpecialties(
-            $institution,
+        $syncData = $this->prepareSyncData(
             $request,
             $studyForm
         );
 
-        $institution->specialties()->sync($request->specialties);
+        $institution->specialties()->wherePivot('form', $studyForm)->sync($syncData);
 
         return redirect()
             ->route('institutions.show', [str_plural($institution->type), $institution])
@@ -162,12 +161,12 @@ class InstitutionSpecialtiesController extends Controller
         }
     }
 
-    public function attachSpecialties(Institution $institution, $request, $studyForm)
+    public function prepareSyncData($request, $studyForm)
     {
-        foreach ($request->specialties as $specialty) {
-            if (! $institution->hasSpecialty($specialty, $studyForm)) {
-                $institution->specialties()->attach($specialty, ['form' => $studyForm]);
-            }
-        }
+        $specialties = $request->specialties;
+
+        $studyForms = array_fill(0, count($specialties), ['form' => $studyForm]);
+
+        return array_combine($specialties, $studyForms);
     }
 }

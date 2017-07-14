@@ -5,8 +5,7 @@
       </div>
     </div>
 
-    <div class="ui very relaxed divided list">
-
+    <div class="ui relaxed list">
       @foreach (Specialty::studyForms() as $form)
           <div class="item">
             <div class="ui pointing right floated icon dropdown small basic button content">

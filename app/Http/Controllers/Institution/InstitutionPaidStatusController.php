@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Universities;
+namespace App\Http\Controllers\Institution;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +16,6 @@ class InstitutionPaidStatusController extends Controller
      */
     public function update(Institution $institution)
     {
-        dd($insittuion);
         $institution->togglePaidStatus()->save();
 
         return back()->withMessage('Статус изменен');

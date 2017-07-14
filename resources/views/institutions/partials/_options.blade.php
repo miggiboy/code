@@ -34,13 +34,13 @@
 
     <a href="#" class="item"
        onclick="event.preventDefault();
-       document.getElementById('update-model-{{ $institution->id }}-paid-status').submit();">
+       document.getElementById('update-paid-status-of-{{ $institution->id }}-form').submit();">
       <i class="yellow star icon"></i>  Сделать {{ $institution->is_paid ? 'не' : '' }}платником
     </a>
 
     <form action="{{ route('institutions.paid-status.update', $institution) }}"
           method="post"
-          id="update-model-{{ $institution->id }}-paid-status">
+          id="update-paid-status-of-{{ $institution->id }}-form">
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
     </form>

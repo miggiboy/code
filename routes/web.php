@@ -193,6 +193,15 @@ Route::resource('cities', 'CitiesController', [
 
 Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], function () {
 
+    /**
+     * Institution Paid Status
+     */
+    Route::patch('/{institution}/paid-status', 'InstitutionPaidStatusController@update')->name('institutions.paid-status.update');
+
+    /**
+     * Institutions
+     */
+
     Route::group(['prefix' => '/{institutionType}'], function () {
 
         /**
@@ -244,11 +253,6 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
 
         Route::delete('/{specialty}', 'InstitutionQualificationsController@destroy')->name('institutions.qualifications.destroy');
     });
-
-    /**
-     * Institution Paid Status
-     */
-    Route::patch('/{institution}/paid-status', 'InstitutionPaidStatusController@update')->name('institutions.paid-status.update');
 
     /**
      * Institution Media

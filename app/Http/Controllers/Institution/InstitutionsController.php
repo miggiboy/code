@@ -19,8 +19,6 @@ use App\Modules\Search\{
     InstitutionSearch
 };
 
-use Translator;
-
 
 class InstitutionsController extends Controller
 {

@@ -55,18 +55,9 @@ class Specialty extends Model
         return $query->where('type', str_singular($type));
     }
 
-    /**
-     * Gets institution type of specialty
-     *
-     * @return Builder
-     */
-    public function getInstitutionTypeAttribute()
+    public function typeIs($type)
     {
-        if (! $this->direction) {
-            return null;
-        }
-
-        return $this->direction->institution;
+        return strcmp($this->type, $type) === 0;
     }
 
     /**
@@ -118,7 +109,7 @@ class Specialty extends Model
     public function googleSearchUrl()
     {
         return config('google.search.url') .
-            \Translator::get($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
+            translate($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
     }
 
     public static function hasStudyForm($studyForm)
@@ -150,10 +141,15 @@ class Specialty extends Model
         return $this->belongsToMany(Profession::class)->select(['id', 'slug', 'title', 'category_id']);
     }
 
+    public function qualifications()
+    {
+        return $this->hasMany(Specialty::class, 'parent_id');
+    }
+
     /**
      * Relation is specific to qualifications
      */
-    public function parent_specialty()
+    public function specialty()
     {
         return $this->belongsTo(Specialty::class, 'parent_id');
     }

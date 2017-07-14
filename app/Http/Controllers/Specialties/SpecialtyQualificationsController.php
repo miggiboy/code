@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Specialties;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\Specialty\Speciality;
+use App\Models\Specialty\Specialty;
 
 class SpecialtyQualificationsController extends Controller
 {
@@ -14,9 +14,10 @@ class SpecialtyQualificationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Speciality $specialty)
+    public function index(Specialty $specialty)
     {
         $specialty->load('qualifications');
+
         return view('specialties.qualifications.index', compact('specialty'));
     }
 
@@ -25,10 +26,14 @@ class SpecialtyQualificationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Speciality $specialty)
+    public function create(Request $request, Specialty $specialty)
     {
-        $qualifications = Speciality::whereNotNull('parent_id')->get();
-        return view('specialties.qualifications.create', compact('specialty', 'qualifications'));
+        $qualifications = Specialty::getOnly('qualifications')
+            ->get();
+
+        return view(
+            'specialties.qualifications.create', compact('specialty', 'qualifications')
+        );
     }
 
     /**
@@ -37,47 +42,17 @@ class SpecialtyQualificationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Speciality $specialty)
+    public function store(Request $request, Specialty $specialty)
     {
-        foreach ($request->qualifications as $qualification) {
-            Speciality::find($qualification)->update(['parent_id' => $specialty->id]);
+        foreach ($request->qualifications as $id) {
+            Specialty::find($id)
+                ->specialty()
+                ->associate($specialty);
         }
 
-        return redirect()->route('specialties.show', $specialty)->withMessage('Квалификации прикреплены');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()
+            ->route('specialties.show', $specialty)
+            ->withMessage('Квалификации прикреплены');
     }
 
     /**
@@ -86,9 +61,10 @@ class SpecialtyQualificationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Speciality $specialty, Speciality $qualification)
+    public function destroy(Specialty $specialty, Specialty $qualification)
     {
-        $qualification->update(['parent_id' => '99999999']);
+        // TODO: use disassociate method insted
+        $qualification->update(['parent_id' => null]);
 
         return back()->withMessage('Квалификация откреплена');
     }

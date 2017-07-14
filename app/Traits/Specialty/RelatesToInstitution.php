@@ -19,6 +19,20 @@ trait RelatesToInstitution
         return $query->where('form', $studyForm);
     }
 
+    /**
+     * Gets institution type of specialty
+     *
+     * @return Builder
+     */
+    public function getInstitutionTypeAttribute()
+    {
+        if (! $this->direction) {
+            return null;
+        }
+
+        return $this->direction->institution;
+    }
+
     public function institutions()
     {
         return $this->belongsToMany(Institution::class)->withPivot('study_price', 'study_period', 'form');

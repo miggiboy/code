@@ -3,7 +3,6 @@
 namespace App\Models\User;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
@@ -13,11 +12,6 @@ use Laravelrus\LocalizedCarbon\{
 
 class User extends Authenticatable
 {
-    /**
-     * Laravel traits
-     */
-    use Notifiable;
-
     /**
      * Package traits
      */

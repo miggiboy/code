@@ -1,7 +1,8 @@
 <div class="ui grid">
   @if ($qualification->code)
     <div class="three wide column">
-      <h5 class="ui header">Код:</h5><div class="content">{{ $qualification->code }}</div>
+      <h5 class="ui header">Код:</h5>
+      <div class="content">{{ $qualification->code }}</div>
     </div>
   @endif
 
@@ -10,7 +11,7 @@
         <h5 class="ui header">Специальность:</h5>
         <div class="content">
           <a
-            href="{{ route('qualifications.index', ['specialty' => $qualification->specialty->id]) }}"
+            href="{{ route('specialties.show', [$qualification->specialty->institution_type, $qualification->specialty]) }}"
             title="{{ $qualification->specialty->title }}">
             {{ str_limit($qualification->specialty->title, 25) }}
           </a>

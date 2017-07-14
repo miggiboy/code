@@ -16,7 +16,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        $response = $this->get('/')
+            ->assertSee('Вход на сайт');
+
+        $miggi = App\Models\User\User::find(1);
+
+        $this->be($user);
 
         $response->assertStatus(403);
     }

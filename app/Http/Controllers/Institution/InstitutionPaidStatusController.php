@@ -18,6 +18,6 @@ class InstitutionPaidStatusController extends Controller
     {
         $institution->togglePaidStatus()->save();
 
-        return back()->withMessage('Статус изменен');
+        return back()->withMessage('Статус обновлен');
     }
 }

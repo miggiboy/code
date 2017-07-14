@@ -34,6 +34,8 @@
             </div>
 
         </form>
+
+        @include ('shared/_temp-notification')
     </div>
 @endsection
 

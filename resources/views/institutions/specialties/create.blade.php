@@ -25,6 +25,8 @@
         </h2>
 
     @include ('institutions/specialties/partials/_creation_form')
+
+    @include ('shared/_temp-notification')
     </div>
 
 @endsection

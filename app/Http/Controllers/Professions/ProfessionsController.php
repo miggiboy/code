@@ -32,6 +32,8 @@ class ProfessionsController extends Controller
             ->with(['markers', 'category'])
             ->paginate(15);
 
+
+
         return view('professions.index', compact('professions'));
     }
 
@@ -42,7 +44,9 @@ class ProfessionsController extends Controller
      */
     public function create()
     {
-        return view('professions.create');
+        $categories = ProfessionCategories::all()->sortBy('title')
+
+        return view('professions.create', compact('categories'));
     }
 
     /**
@@ -81,7 +85,9 @@ class ProfessionsController extends Controller
      */
     public function edit(Profession $profession)
     {
-        return view('professions.edit', compact('profession'));
+        $categories = ProfessionCategories::all()->sortBy('title')
+
+        return view('professions.edit', compact('profession', 'categories'));
     }
 
     /**

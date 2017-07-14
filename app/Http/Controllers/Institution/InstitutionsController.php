@@ -46,6 +46,8 @@ class InstitutionsController extends Controller
             ->with(['city', 'media', 'markers'])
             ->paginate(15);
 
+        $cities = City::all()->sortBy('title');
+
         return view('institutions.index', compact('institutions'));
     }
 
@@ -56,7 +58,9 @@ class InstitutionsController extends Controller
      */
     public function create()
     {
-        return view('institutions.create', compact('institution'));
+        $cities = City::all()->sortBy('title');
+
+        return view('institutions.create', compact('institution', 'cities'));
     }
 
     /**
@@ -98,7 +102,9 @@ class InstitutionsController extends Controller
      */
     public function edit($institutionType, Institution $institution)
     {
-        return view('institutions.edit', compact('institution'));
+        $cities = City::all()->sortBy('title');
+
+        return view('institutions.edit', compact('institution', 'cities'));
     }
 
     /**

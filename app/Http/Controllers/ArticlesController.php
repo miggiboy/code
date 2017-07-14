@@ -31,7 +31,9 @@ class ArticlesController extends Controller
             ->with(['markers'])
             ->paginate(15);
 
-        return view('articles.index', compact('articles'));
+        $categories = ArticleCategory::all()->sortBy('title');
+
+        return view('articles.index', compact('articles', 'categories'));
     }
 
     /**
@@ -41,7 +43,9 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = ArticleCategory::all()->sortBy('title');
+
+        return view('articles.create', compact('categories'));
     }
 
     /**
@@ -82,7 +86,9 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit', compact('article'));
+        $categories = ArticleCategory::all()->sortBy('title');
+
+        return view('articles.edit', compact('article', 'categories'));
     }
 
     /**

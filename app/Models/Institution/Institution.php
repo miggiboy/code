@@ -123,9 +123,14 @@ class Institution extends Model implements HasMediaConversions
         return config('primary_app.urls.' . 'institution') . $this->slug;
     }
 
-    public static function hasType(String $type)
+    public static function hasType($type)
     {
         return in_array(str_singular($type), self::TYPES);
+    }
+
+    public static function doesntHaveType($type)
+    {
+        return ! static::hasType($type);
     }
 
     protected function formatUrl($url)

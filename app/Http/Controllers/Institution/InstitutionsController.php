@@ -30,8 +30,8 @@ class InstitutionsController extends Controller
     {
         parent::__construct();
 
-        abort_unless(
-            Institution::hasType(request()->route('institutionType')), 404
+        abort_if(
+            Institution::doesntHaveType(request()->route('institutionType')), 404
         );
     }
 

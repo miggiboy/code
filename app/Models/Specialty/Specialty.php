@@ -117,6 +117,11 @@ class Specialty extends Model
         return in_array(str_singular($studyForm), self::STUDY_FORMS);
     }
 
+    public static function doesntHaveStudyForm($studyForm)
+    {
+        return ! static::hasStudyForm($studyForm);
+    }
+
     public static function studyForms()
     {
         return self::STUDY_FORMS;

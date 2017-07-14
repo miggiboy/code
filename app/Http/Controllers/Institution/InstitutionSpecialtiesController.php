@@ -26,8 +26,8 @@ class InstitutionSpecialtiesController extends Controller
     {
         parent::__construct();
 
-        abort_unless(
-            Specialty::hasStudyForm(request()->route('studyForm')), 404
+        abort_if(
+            Specialty::doesntHaveStudyForm(request()->route('studyForm')), 404
         );
     }
 
@@ -41,6 +41,7 @@ class InstitutionSpecialtiesController extends Controller
             $query
                 ->getOnly(static::SPECIALTY_TYPE)
                 ->atForm($studyForm)
+                ->with(['direction'])
                 ->orderBy('title');
         }]);
 

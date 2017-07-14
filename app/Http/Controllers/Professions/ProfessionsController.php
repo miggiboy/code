@@ -32,9 +32,9 @@ class ProfessionsController extends Controller
             ->with(['markers', 'category'])
             ->paginate(15);
 
+        $categories = ProfessionCategories::all()->sortBy('title')
 
-
-        return view('professions.index', compact('professions'));
+        return view('professions.index', compact('professions', 'categories'));
     }
 
     /**

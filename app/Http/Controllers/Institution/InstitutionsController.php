@@ -48,7 +48,7 @@ class InstitutionsController extends Controller
 
         $cities = City::all()->sortBy('title');
 
-        return view('institutions.index', compact('institutions'));
+        return view('institutions.index', compact('institutions', 'cities'));
     }
 
     /**

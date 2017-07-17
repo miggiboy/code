@@ -1,10 +1,7 @@
-/public/js/vendor
-/public/images
 /public/storage
 /storage
 /vendor
 .env
 .env_prod
-artisan
 *.sh
 composer.phar

@@ -7,3 +7,4 @@
 .env_prod
 artisan
 *.sh
+composer.phar

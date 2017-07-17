@@ -6,3 +6,4 @@
 .env
 .env_prod
 artisan
+.deploy.sh

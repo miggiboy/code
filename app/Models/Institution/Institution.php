@@ -94,7 +94,6 @@ class Institution extends Model implements HasMediaConversions
         return $value ? $this->formatUrl($value) : null;
     }
 
-
     /**
      * Checks if this institution has reception committee
      *

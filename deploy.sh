@@ -1,15 +1,27 @@
-# load dependencies
-/usr/local/php-cgi/7.1/bin/php composer.phar install
+#!/bin/bash
 
-# link storage
-unlink mustim09.beget.tech/public_html/public/storage
-/usr/local/php-cgi/7.1/bin/php artisan storage:link
+echo "Let's get started!"
 
-# cache config files
-/usr/local/php-cgi/7.1/bin/php artisan config:cache
+echo -n "Want to initialize a repository? [y|n] "
+read -e INITIALIZE_REPOSITORY
 
-# cache route files
-/usr/local/php-cgi/7.1/bin/php artisan route:cache
+if [ $INITIALIZE_REPOSITORY = 'y' ]
+then
+    echo -n "Enter username of the repository: "
+    read -e REPOSITORY_USERNAME
 
-# make application live
-/usr/local/php-cgi/7.1/bin/php artisan up
+    echo -n "Enter repository name: "
+    read -e REPOSITORY_NAME
+
+    echo "Initializing git repository..."
+    #git init
+
+    REPOSITORY_URL="https://github.com/$REPOSITORY_USERNAME/$REPOSITORY_NAME.git"
+
+    echo Adding origin $REPOSITORY_URL ...
+    #git remote add origin $REPOSITORY_URL
+
+    echo "Pulling from master branch..."
+    #git pull origin master
+fi
+

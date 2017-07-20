@@ -27,4 +27,15 @@ trait HasSpecialties
     {
         return $this->belongsToMany(Specialty::class)->withPivot('study_price', 'study_period', 'form');
     }
+
+    /**
+     * Use to fetch data only!
+     * Don't for attaching data!
+     */
+    public function qualifications()
+    {
+        return $this->belongsToMany(Specialty::class)
+            ->where('type', 'qualification')
+            ->withPivot('study_price', 'study_period', 'form');
+    }
 }

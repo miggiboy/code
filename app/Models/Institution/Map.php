@@ -12,9 +12,4 @@ class Map extends Model
      * @var bool
      */
     public $timestamps = false;
-
-    public function mapable()
-    {
-        return $this->belongsTo(Institution::class, 'mapable_id');
-    }
 }

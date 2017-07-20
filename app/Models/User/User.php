@@ -50,7 +50,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
     public function toggleActiveStatus()
     {
         $this->is_active = ! $this->is_active;

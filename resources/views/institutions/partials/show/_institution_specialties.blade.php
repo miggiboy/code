@@ -1,10 +1,6 @@
 <div class="ui segment">
-    <div class="ui grid">
-      <div class="eleven wide column">
-        <h2 class="ui header">Специальности</h2><br>
-      </div>
-    </div>
-
+  @foreach ($institution->specialtyTypes() as $related)
+    <h2 class="ui header">{{ translate($related, 'i', 'p', true) }}</h2><br>
     <div class="ui relaxed list">
       @foreach (Specialty::studyForms() as $form)
           <div class="item">
@@ -15,15 +11,15 @@
                 <div class="divider"></div>
 
                 @php
-                    $count = $institution->specialties()->atForm($form)->count();
+                    $count = $institution->{$related}()->atForm($form)->count();
                 @endphp
 
-                <a href="{{ route('institutions.specialties.create', [$institution, $form]) }}"   class="item">
+                <a href="{{ route("institutions.{$related}.create", [$institution, $form]) }}"   class="item">
                   <i class="circle blue icon"></i> {{ $count ? 'Редактировать список' : 'Добавить' }}
                 </a>
 
                 @if ($count)
-                  <a href="{{ route('institutions.specialties.edit', [$institution, $form]) }}"   class="item">
+                  <a href="{{ route("institutions.{$related}.edit", [$institution, $form]) }}"   class="item">
                     <i class="circle green icon"></i> Задать цены, сроки
                   </a>
                 @endif
@@ -33,11 +29,12 @@
 
             <i class="large teal student middle aligned icon"></i>
             <div class="content">
-              <a href="{{ route('institutions.specialties.index', [$institution, $form]) }}" class="header">
+              <a href="{{ route("institutions.{$related}.index", [$institution, $form]) }}" class="header">
                  {{ translate($form, 'i', 's', true) }} ({{ $count }})
               </a>
             </div>
           </div>
       @endforeach
   </div>
+  @endforeach
 </div>

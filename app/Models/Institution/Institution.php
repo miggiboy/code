@@ -78,7 +78,7 @@ class Institution extends Model implements HasMediaConversions
         return $query->where('type', str_singular($institutionType));
     }
 
-    public function typeIs($type)
+    public function isA($type)
     {
         return strcmp($this->type, str_singular($type)) === 0;
     }
@@ -107,13 +107,6 @@ class Institution extends Model implements HasMediaConversions
     public function hasReception()
     {
         return (bool) $this->reception()->count();
-    }
-
-    public function specialtyTypes()
-    {
-        return $this->typeIs('college')
-            ? ['qualifications', 'specialties']
-            : ['specialties'];
     }
 
     /**

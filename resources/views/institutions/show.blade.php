@@ -56,14 +56,21 @@
 </div>
 
 @include ('institutions/partials/show/_add_image_modal')
+@include ('institutions/partials/show/_map_modal')
 
 <div class="overlay">
-  <a href=""
-     onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');"
-     class="ui huge green circular icon button"
-     title="Добавить изображения">
-    <i class="ui photo icon"></i>
-  </a>
+  <div class="ui vertical icon menu">
+    <a class="item"
+       title="Изображения"
+       onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');">
+      <i class="green photo icon"></i>
+    </a>
+    <a class="item"
+       title="Карта ({{ $institution->has('map') ? 'Есть' : 'Нет' }})"
+       onclick="event.preventDefault(); $('#map-modal').modal({ inverted: true }).modal('show');">
+      <i class="yellow map icon"></i>
+    </a>
+  </div>
 </div>
 
 @endsection

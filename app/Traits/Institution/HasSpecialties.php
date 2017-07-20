@@ -23,6 +23,15 @@ trait HasSpecialties
             ->count();
     }
 
+    public function specialtyTypes()
+    {
+        if ($this->isA('college')) {
+            return ['qualifications', 'specialties'];
+        }
+
+        return ['specialties'];
+    }
+
     public function specialties()
     {
         return $this->belongsToMany(Specialty::class)->withPivot('study_price', 'study_period', 'form');
@@ -34,7 +43,8 @@ trait HasSpecialties
      */
     public function qualifications()
     {
-        return $this->belongsToMany(Specialty::class)
+        return $this
+            ->belongsToMany(Specialty::class)
             ->where('type', 'qualification')
             ->withPivot('study_price', 'study_period', 'form');
     }

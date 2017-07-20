@@ -28,7 +28,7 @@ trait Searchable
      */
     public function scopeIn($query, $city)
     {
-        return $query->where('city_id', $city);
+        return $query->where('city_id', get_id($city));
     }
 
     /**

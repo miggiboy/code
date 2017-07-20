@@ -51,7 +51,7 @@
 
         <div class="menu">
 
-          <a href="{{ url('profile.show') }}" class="item">
+          <a href="{{ route('profile.show') }}" class="item">
              <i class="teal user icon"></i> Мой профиль
           </a>
 

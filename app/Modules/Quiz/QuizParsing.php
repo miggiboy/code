@@ -4,7 +4,6 @@ namespace App\Modules\Quiz;
 
 class QuizParsing
 {
-
     public function parse($quizText)
     {
         $quizText = QuizParsing::toSingleString($quizText);

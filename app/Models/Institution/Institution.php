@@ -85,6 +85,12 @@ class Institution extends Model implements HasMediaConversions
 
     public function getBaseUrl()
     {
+        $exceptions = ['vk.com', ];
+
+        if (str_contains($this->web_site_url, $exceptions)) {
+            return $this->web_site_url;
+        }
+
         return parse_url($this->web_site_url)['host'] ?? $this->web_site_url;
     }
 

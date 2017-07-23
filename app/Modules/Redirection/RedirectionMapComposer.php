@@ -23,6 +23,9 @@ class RedirectionMapComposer
 
         $composer->mapProfessions();
         $composer->mapArticles();
+
+        $composer->mapUnt();
+        $composer->mapSubjects();
     }
 
     public function mapUniversities()
@@ -97,6 +100,41 @@ class RedirectionMapComposer
                 "/specialties/{$specialty->slug}"
             ]);
         }
+
+        $this->mapSpecialtyMiscellaneous();
+    }
+
+    private function mapSpecialtyMiscellaneous()
+    {
+        // Specialty groups
+        $groups = [
+            'agriculture',
+            'educationandgum',
+            'serviceandsociety',
+            'serviceandsocietyc',
+            'natural',
+            'mandatorysubjects',
+            'technique',
+        ];
+
+        foreach ($groups as $group) {
+            $this->map([
+                "/{$group}",
+                "/specialties/directions/groups/{$group}",
+            ]);
+        }
+
+        // Specialties by direction
+        $directions = \App\Models\Specialty\SpecialtyDirection::all();
+
+        foreach ($directions as $direction) {
+            $this->map([
+                "/specialitieslist/{$direction->id}",
+                "/specialties/directions/{$direction->slug}",
+            ]);
+        }
+
+        // TODO: Specialty institutions
     }
 
     public function mapArticles()
@@ -121,7 +159,7 @@ class RedirectionMapComposer
         $this->map([
             '/professions',
             '/professions/categories'
-        ])
+        ]);
 
         // Show
         $professions = Profession::all();
@@ -130,6 +168,70 @@ class RedirectionMapComposer
             $this->map([
                 "/professions/{$profession->id}",
                 "/professions/{$profession->slug}"
+            ]);
+        }
+
+        $this->mapProfessionMiscellaneous();
+    }
+
+    private function mapProfessionMiscellaneous()
+    {
+        // Professions by category
+        $categories = \App\Models\Profession\ProfessionCategories::all();
+
+        foreach ($categories as $category) {
+            $this->map([
+                "/professionslist/{$category->id}",
+                "/professions/categories/{$category->slug}",
+            ]);
+        }
+
+        // Profession lists
+
+        $lists = [
+            'mostwantedworld',
+            'mostwantedkz',
+            'wellpaidkz',
+            'wellpaidworld',
+        ];
+
+        foreach ($lists as $list) {
+            $this->map([
+                "/{$list}",
+                "/professions/lists/{$list}",
+            ]);
+        }
+    }
+
+    public function mapUnt()
+    {
+        // testent
+        $this->map([
+            '/testent',
+            '/articles/testent',
+        ]);
+
+        // ent
+        // The same
+    }
+
+    public function mapSubjects()
+    {
+        // Index
+        //No index
+
+        // Show
+        $subjects = \App\Models\Subject\Subject::all();
+
+        foreach ($subjects as $subject) {
+            $this->map([
+                "/predmety/{$subject->id}",
+                "/subjects/{$subject->slug}",
+            ]);
+
+            $this->map([
+                "/predmety/{$subject->slug}",
+                "/subjects/{$subject->slug}",
             ]);
         }
     }

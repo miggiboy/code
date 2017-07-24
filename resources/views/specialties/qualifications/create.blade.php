@@ -7,17 +7,26 @@
 @section ('content')
     <div class="ui text container" style="margin-bottom: 30px;">
         <div style="margin-bottom: 45px; text-align: center;">
-            <h2>Привязка квалификаций к специальности <br><a href="{{ route('specialties.show', $specialty) }}" target="_blank">{{ $specialty->title }}</a></h2>
+            <h2>Привязка квалификаций к специальности <br>
+                <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}"
+                   target="_blank"
+                   class="custom-link">
+                    {{ $specialty->getNameWithCodeOrName() }}
+                </a>
+            </h2>
         </div>
 
-        <form action="{{ route('specialties.qualifications.index', $specialty) }}" method="post">
+        <form action="{{ route('specialties.qualifications.store', $specialty) }}" method="post">
             {{ csrf_field() }}
 
             <div class="ui form" style="position: relative; margin-bottom: 33px;">
                 <select name="qualifications[]" class="ui fluid search dropdown" multiple="">
                     <option value="">Квалификации</option>
                     @foreach ($qualifications as $qualification)
-                        <option value="{{ $qualification->id }}">{{ $qualification->title }}</option>
+                        <option value="{{ $qualification->id }}"
+                                {{ $specialty->qualifications->contains($qualification) ? 'selected' : '' }}>
+                            {{ $qualification->getNameWithCodeOrName() }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -27,9 +36,11 @@
             </div>
 
         </form>
+
+        @include ('shared/_temp-notification')
     </div>
 @endsection
 
 @section ('script')
-    @include ('includes/_multiple-search-dropdown-script', ['allowAdditions' => false])
+    @include ('includes/_multiple-selection-dropdown-script')
 @endsection

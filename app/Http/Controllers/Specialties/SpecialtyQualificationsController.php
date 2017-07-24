@@ -16,7 +16,9 @@ class SpecialtyQualificationsController extends Controller
      */
     public function index(Specialty $specialty)
     {
-        $specialty->load('qualifications');
+        $specialty->load(['qualifications' => function ($q) {
+            $q->orderBy('title');
+        }]);
 
         return view('specialties.qualifications.index', compact('specialty'));
     }
@@ -29,6 +31,7 @@ class SpecialtyQualificationsController extends Controller
     public function create(Request $request, Specialty $specialty)
     {
         $qualifications = Specialty::getOnly('qualifications')
+            ->orderBy('title')
             ->get();
 
         return view(
@@ -44,15 +47,17 @@ class SpecialtyQualificationsController extends Controller
      */
     public function store(Request $request, Specialty $specialty)
     {
-        foreach ($request->qualifications as $id) {
-            Specialty::find($id)
-                ->specialty()
-                ->associate($specialty);
+        foreach ($request->qualifications as $qualification) {
+            Specialty::find($qualification)->specialty()->associate($specialty);
         }
 
+        Specialty::where('parent_id', $specialty->id)
+            ->whereNotIn('id', $request->qualifications)
+            ->delete();
+
         return redirect()
-            ->route('specialties.show', $specialty)
-            ->withMessage('Квалификации прикреплены');
+            ->route('specialties.show', [$specialty->institution_type, $specialty])
+            ->withMessage('Список квалификаций обновлен');
     }
 
     /**

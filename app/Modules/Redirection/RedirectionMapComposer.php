@@ -19,7 +19,7 @@ class RedirectionMapComposer
         $composer->mapColleges();
 
         $composer->mapSpecialties();
-        $composer->mapQualifications();
+        // $composer->mapQualifications();
 
         $composer->mapProfessions();
         $composer->mapArticles();

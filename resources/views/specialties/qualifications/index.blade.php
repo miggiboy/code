@@ -18,7 +18,13 @@
         $count = $specialty->qualifications->count();
       @endphp
 
+      <a href="{{ route("specialties.qualifications.create", $specialty) }}"
+         class="ui teal button">
+        {{ $count ? 'Редактировать список' : 'Добавить квалификации' }}
+      </a>
+
       @if ($count)
+
         <table class="ui celled table" style="margin-bottom: 25px;">
           <thead>
             <tr>
@@ -59,12 +65,6 @@
             @endforeach
           </tbody>
         </table>
-      @else
-        <a href="{{ route('specialties.qualifications.create', $specialty) }}"
-           class="ui teal button"
-           style="margin-top: 15px;">
-          Добавить калификации
-        </a>
       @endif
     </div>
   </div>

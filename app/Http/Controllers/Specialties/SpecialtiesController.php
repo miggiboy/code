@@ -168,6 +168,19 @@ class SpecialtiesController extends Controller
      * Search methods
      */
 
+    public function search(Request $request)
+    {
+        $specialties = Specialty::query();
+
+        if ($request->has('query')) {
+            $specialties->like($request->input('query'));
+        }
+
+        $specialties->orderBy('type');
+
+        return view('specialties.index', compact('specialties'));
+    }
+
     public function rtSearch(Request $request, $institutionType)
     {
         $specialties = Specialty::select('slug as url', 'title', 'code as description')

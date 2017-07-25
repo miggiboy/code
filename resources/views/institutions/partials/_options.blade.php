@@ -24,7 +24,7 @@
         'model' => $institution
     ])
 
-    <a href="{{ "https://www.google.kz/maps/search/{$institution->title}/@43.2351503,76.9075561,17z" }}"
+    <a href="{{ $institution->googleMapsUrl() }}"
        class="item"
        target="_blank">
       <i class="blue location arrow icon"></i> Google карты

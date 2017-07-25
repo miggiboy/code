@@ -31,8 +31,8 @@ class InstitutionSearch
             $q->has('map', (bool) $request->has_map);
         }
 
-        if ($request->has('marked')) {
-            $q->markedByCurrentUser($request->marked);
+        if ($request->has('markers_of')) {
+            $q->markedBy(request('markers_of'));
         }
 
         if ($request->has('is_paid')) {

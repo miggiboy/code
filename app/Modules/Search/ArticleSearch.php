@@ -18,6 +18,10 @@ class ArticleSearch
             $q->inCategory($request->category);
         }
 
+        if ($request->has('markers_of')) {
+            $q->markedBy(request('markers_of'));
+        }
+
         return $q;
     }
 }

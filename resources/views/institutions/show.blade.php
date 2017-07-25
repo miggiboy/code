@@ -10,6 +10,12 @@
     .overlay {
         position: fixed; bottom: 42px; right: 37px; z-index: 10;
     }
+
+    #map > iframe {
+      width: 850px;
+      height: 400px;
+      margin: 15px 0 15px 25px;
+    }
   </style>
 @endsection
 
@@ -49,9 +55,6 @@
       @include ('institutions/partials/show/_institution_specialties')
     </div>
     <br>
-    <div class="row">
-      {{-- @include ('institutions/partials/show/_map') --}}
-    </div>
   </div>
 </div>
 
@@ -66,9 +69,9 @@
       <i class="green photo icon"></i>
     </a>
     <a class="item"
-       title="Карта ({{ $institution->has('map') ? 'Есть' : 'Нет' }})"
+       title="Карта ({{ $institution->hasMap() ? 'Есть' : 'Нет' }})"
        onclick="event.preventDefault(); $('#map-modal').modal({ inverted: true }).modal('show');">
-      <i class="yellow map icon"></i>
+      <i class="{{ $institution->hasMap() ? 'yellow' : 'red' }} map icon"></i>
     </a>
   </div>
 </div>
@@ -97,6 +100,13 @@
       moreLink: '<a href="#">Подробнее</a>',
       lessLink: '<a href="#">Свернуть</a>'
     });
+
+    $('#update-map-button').click(function () {
+        $('#map').parent().detach()
+        $('#update-map-button').detach()
+
+        $('#update-map-form').show()
+    })
 
   </script>
 @endsection

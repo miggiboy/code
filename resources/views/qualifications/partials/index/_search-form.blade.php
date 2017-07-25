@@ -41,14 +41,16 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="marked"
-                 value="1"
+                 name="has_specialty"
+                 value="0"
                  tabindex="0"
                  class="hidden"
-                 {{ (request('marked') == "1") ? 'checked' : '' }}>
-          <label>Отмеченные</label>
+                 {{ (request('has_specialty') == "0") ? 'checked' : '' }}>
+          <label>Без специальности</label>
         </div>
       </div>
+
+      @include ('markers/partials/_marked-by-filter')
 
     </div>
 

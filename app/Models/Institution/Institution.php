@@ -116,12 +116,31 @@ class Institution extends Model implements HasMediaConversions
     }
 
     /**
+     * Checks if this institution has map
+     *
+     * @return boolean
+     */
+    public function hasMap()
+    {
+        return (bool) $this->map()->count();
+    }
+
+    /**
      * Google search
      */
 
     public function googleSearchUrl()
     {
         return config('google.search.url') . trim($this->title) . ', ' . trim($this->city->title);
+    }
+
+    /**
+     * Google maps url
+     */
+
+    public function googleMapsUrl()
+    {
+        return config('google.maps.url') . trim($this->title);
     }
 
     /**
@@ -183,6 +202,6 @@ class Institution extends Model implements HasMediaConversions
 
     public function map()
     {
-        return $this->hasOne(Map::class, 'mapable_id');
+        return $this->hasOne(Map::class);
     }
 }

@@ -12,14 +12,14 @@
   <div class="ui dropdown item">
     Специальности <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
-        <a href="{{ route('specialties.index', 'university') }}" class="item">
+        <a href="{{ route('specialties.index', 'university') }}" title="Специальности университетов" class="item">
           Универстетов
         </a>
-        <a href="{{ route('specialties.index', 'college') }}" class="item">
+        <a href="{{ route('specialties.index', 'college') }}" title="Специальности колледжей" class="item">
           Колледжей
         </a>
         <div class="ui divider"></div>
-        <a href="{{ route('qualifications.index') }}" class="item">
+        <a href="{{ route('qualifications.index') }}" title="Квалификации колледжей" class="item">
           Квалификации
         </a>
     </div>

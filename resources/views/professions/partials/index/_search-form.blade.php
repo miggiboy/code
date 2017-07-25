@@ -61,17 +61,7 @@
       </div>
     </div>
 
-    <div class="three wide field" style="margin-top: 7px; margin-top: 7px;">
-      <div class="ui checkbox">
-        <input type="checkbox"
-               name="marked"
-               value="1"
-               tabindex="0"
-               class="hidden"
-               {{ (request('marked') == "1") ? 'checked' : '' }}>
-        <label>Отмеченные</label>
-      </div>
-    </div>
+    @include ('markers/partials/_marked-by-filter')
   </div>
 
   <p>Результатов: {{ $professions->total() }}</p>

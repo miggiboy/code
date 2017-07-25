@@ -115,6 +115,11 @@ class User extends Authenticatable
         return ! $this->is_active;
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
     public function hasNoAccess()
     {
         return $this->isNotInTeam() || $this->isNotActive();

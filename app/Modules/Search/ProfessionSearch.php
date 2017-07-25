@@ -26,8 +26,8 @@ class ProfessionSearch
             $q->has('specialties', (bool) $request->has_specialties);
         }
 
-        if ($request->has('marked')) {
-            $q->markedByCurrentUser($request->marked);
+        if ($request->has('markers_of')) {
+            $q->markedBy(request('markers_of'));
         }
 
         return $q;

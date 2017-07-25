@@ -6,18 +6,21 @@
     </div>
   @endif
 
-  @isset($qualification->specialty)
     <div class="seven wide column">
         <h5 class="ui header">Специальность:</h5>
         <div class="content">
-          <a
-            href="{{ route('specialties.show', [$qualification->specialty->institution_type, $qualification->specialty]) }}"
-            title="{{ $qualification->specialty->title }}">
-            {{ str_limit($qualification->specialty->title, 25) }}
-          </a>
+          @if($qualification->specialty)
+            <a
+              href="{{ route('specialties.show', [$qualification->specialty->institution_type, $qualification->specialty]) }}"
+              title="{{ $qualification->specialty->title }}">
+              {{ str_limit($qualification->specialty->title, 25) }}
+            </a>
+          @else
+            <a href="{{ route('qualifications.edit', $qualification) }}">Указать</a>
+          @endif
         </div>
     </div>
-  @endisset
+
 
 </div>
 <br>

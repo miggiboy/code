@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\View;
 
 use App\Http\Composers\{
     InstitutionTypeComposer,
-    InstitutionRelatedModelTypeComposer
+    InstitutionRelatedModelTypeComposer,
+    TeamMembersComposer
 };
 
 class ComposerServiceProvider extends ServiceProvider
@@ -44,6 +45,8 @@ class ComposerServiceProvider extends ServiceProvider
             ],
             InstitutionRelatedModelTypeComposer::class
         );
+
+        View::composer('markers.partials._marked-by-filter', TeamMembersComposer::class);
     }
 
     /**
@@ -56,5 +59,7 @@ class ComposerServiceProvider extends ServiceProvider
         $this->app->singleton(InstitutionTypeComposer::class);
 
         $this->app->singleton(InstitutionRelatedModelTypeComposer::class);
+
+        $this->app->singleton(TeamMembersComposer::class);
     }
 }

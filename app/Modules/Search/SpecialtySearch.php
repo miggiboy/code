@@ -33,8 +33,13 @@ class SpecialtySearch
             $q->has('subjects', (bool) $request->has_subjects);
         }
 
-        if ($request->has('marked')) {
-            $q->markedByCurrentUser($request->marked);
+        if ($request->has('markers_of')) {
+            $q->markedBy(request('markers_of'));
+        }
+
+        // Qualification filters
+        if ($request->has('has_specialty')) {
+            $q->has('specialty', (bool) $request->has_specialty);
         }
 
         return $q;

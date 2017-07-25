@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Institution;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use App\Models\Institution\{
     Map,

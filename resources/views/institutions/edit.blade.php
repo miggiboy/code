@@ -8,13 +8,25 @@
     @include ('institutions/partials/_navigation', ['heading' => $heading])
 @endsection
 
+@section ('head')
+  <style>
+      .overlay {
+          position: fixed;
+          bottom: 42px;
+          right: 30px;
+          z-index: 10;
+      }
+  </style>
+@endsection
+
 @section ('content')
     @include ('includes/_ckeditor')
     <br><br>
 
     <form action="{{ route('institutions.update', [$institutionType, $institution]) }}"
           method="post"
-          class="ui form">
+          class="ui form"
+          id="edit-institution-form">
 
       {{ csrf_field() }}
       {{ method_field('PATCH') }}
@@ -34,6 +46,25 @@
       <button class="ui big teal button" type="submit" id="form-submit-button">Сохранить</button>
     </form>
     <br><br>
+
+    <div class="overlay">
+      <div class="ui vertical icon menu">
+
+        <a class="item {{ !isset($institution->web_site_url) ? 'disabled' : '' }}"
+           href="{{ $institution->web_site_url }}"
+           title="Перейти на сайт {{ translate($institution->type, 'r', 's') }}"
+           target="_blank">
+          <i class="blue external icon"></i>
+        </a>
+
+        <a class="item"
+           title="Сохранить"
+           onclick="event.preventDefault(); document.getElementById('edit-institution-form').submit();">
+          <i class="green save icon"></i>
+        </a>
+
+      </div>
+    </div>
 @endsection
 
 @section('script')

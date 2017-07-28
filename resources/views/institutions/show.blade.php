@@ -8,7 +8,10 @@
   <link rel='stylesheet' href='/js/vendor/unitegallery/package/unitegallery/css/unite-gallery.css'>
   <style>
     .overlay {
-        position: fixed; bottom: 42px; right: 37px; z-index: 10;
+        position: fixed;
+        bottom: 42px;
+        right: 30px;
+        z-index: 10;
     }
 
     #map > iframe {
@@ -63,20 +66,7 @@
 @include ('institutions/partials/show/_add_image_modal')
 @include ('institutions/partials/show/_map_modal')
 
-<div class="overlay">
-  <div class="ui vertical icon menu">
-    <a class="item"
-       title="Изображения"
-       onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');">
-      <i class="green photo icon"></i>
-    </a>
-    <a class="item"
-       title="Карта ({{ $institution->hasMap() ? 'Есть' : 'Нет' }})"
-       onclick="event.preventDefault(); $('#map-modal').modal({ inverted: true }).modal('show');">
-      <i class="{{ $institution->hasMap() ? 'yellow' : 'red' }} map icon"></i>
-    </a>
-  </div>
-</div>
+@include ('institutions/partials/show/_overlay-menu')
 
 @endsection
 

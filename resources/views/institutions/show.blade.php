@@ -29,7 +29,9 @@
               </div>
 
               <div class="one wide column">
-                  @include ('institutions/partials/_options')
+                  @include ('institutions/partials/_options', [
+                      'show_google_map_option' => true
+                  ])
               </div>
           </div>
       </div>

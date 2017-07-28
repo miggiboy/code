@@ -24,11 +24,13 @@
         'model' => $institution
     ])
 
-    <a href="{{ $institution->googleMapsUrl() }}"
-       class="item"
-       target="_blank">
-      <i class="blue location arrow icon"></i> Google карты
-    </a>
+    @isset ($show_google_map_option)
+      <a href="{{ $institution->googleMapsUrl() }}"
+         class="item"
+         target="_blank">
+        <i class="blue location arrow icon"></i> Google карты
+      </a>
+    @endisset
 
     <div class="divider"></div>
 

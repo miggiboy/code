@@ -151,7 +151,7 @@ class Institution extends Model implements HasMediaConversions
 
     public function urlAtPrimaryApp()
     {
-        return config('primary_app.urls.' . 'institution') . $this->slug;
+        return config('primary_app.urls.institutions') . str_plural($this->type) . '/' . $this->slug;
     }
 
     public static function hasType($type)

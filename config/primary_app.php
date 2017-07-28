@@ -3,15 +3,10 @@
 return [
 
     'urls' => [
-        'base' => 'https://vipusknik.kz',
-
-        /**
-         * Web-site categories
-         */
-        'articles' => 'https://vipusknik.kz/articles/',
-        'professions' => 'https://vipusknik.kz/professions/',
-        'specialties' => 'https://vipusknik.kz/specialities/',
-        'institutions' => 'https://vipusknik.kz/institutions/',
+        'articles' => env('PRIMARY_APP_URL') . '/articles/',
+        'specialties' => env('PRIMARY_APP_URL') . '/specialties/',
+        'professions' => env('PRIMARY_APP_URL') . '/professions/',
+        'institutions' => env('PRIMARY_APP_URL') . '/institutions/',
     ],
 
 ];

@@ -47,24 +47,7 @@
     </form>
     <br><br>
 
-    <div class="overlay">
-      <div class="ui vertical icon menu">
-
-        <a class="item {{ !isset($institution->web_site_url) ? 'disabled' : '' }}"
-           href="{{ $institution->web_site_url }}"
-           title="Перейти на сайт {{ translate($institution->type, 'r', 's') }}"
-           target="_blank">
-          <i class="blue external icon"></i>
-        </a>
-
-        <a class="item"
-           title="Сохранить"
-           onclick="event.preventDefault(); document.getElementById('edit-institution-form').submit();">
-          <i class="green save icon"></i>
-        </a>
-
-      </div>
-    </div>
+    @include ('institutions/partials/edit/_overlay-menu')
 @endsection
 
 @section('script')

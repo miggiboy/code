@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    @if ($specialty->typeIs('specialty'))
+    @if ($specialty->typeIs('specialty') && $specialty->belongsToA('college'))
       <br>
       <div class="item">
         <div class="ui right pointing right floated icon dropdown small basic button content">

@@ -19,6 +19,13 @@ trait RelatesToInstitution
         return $query->where('form', $studyForm);
     }
 
+    public function belongsToA($institutionType)
+    {
+        return strcmp(
+            $this->institution_type, str_singular($institutionType)
+        ) === 0;
+    }
+
     /**
      * Gets institution type of specialty
      *

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Marker\Markable;
 use App\Traits\Specialty\Searchable;
+
 use App\Traits\Specialty\{
     RelatesToInstitution
 };

@@ -17,14 +17,7 @@
         </div>
     </div>
 
-    <div id="update-map-form" style="display: none;">
-      @include ('institutions/partials/show/_upload-map-form', [
-          'action' => 'update',
-          'method' => 'PATCH',
-      ])
-    </div>
-
-    <div class="ui fluid teal button" id="update-map-button">
+    <div class="ui teal fluid button" id="update-map-form">
       Загрузить новую карту
     </div>
   @else
@@ -34,3 +27,5 @@
     ])
   @endif
 </div>
+
+

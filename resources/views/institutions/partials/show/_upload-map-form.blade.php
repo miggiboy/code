@@ -24,7 +24,7 @@
   </div>
 
 </div>
-<div class="actions">
+<div class="actions" {{ $institution->hasMap() ? 'style=\"display: none;\"' : '' }}>
   <div class="ui positive right labeled icon button"
        onclick="event.preventDefault();
        document.getElementById('map-form').submit();">

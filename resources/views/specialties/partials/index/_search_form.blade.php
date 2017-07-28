@@ -40,17 +40,19 @@
 
     <div class="four fields" style="margin-bottom: 17px;">
 
-      <div class="three wide field" style="margin-top: 7px;">
-        <div class="ui checkbox">
-          <input type="checkbox"
-                 name="has_subjects"
-                 value="0"
-                 tabindex="0"
-                 class="hidden"
-                 {{ (request('has_subjects') == "0") ? 'checked' : '' }}>
-          <label>Без предметов</label>
+      @if (str_is($institutionType, 'university'))
+        <div class="three wide field" style="margin-top: 7px;">
+          <div class="ui checkbox">
+            <input type="checkbox"
+                   name="has_subjects"
+                   value="0"
+                   tabindex="0"
+                   class="hidden"
+                   {{ (request('has_subjects') == "0") ? 'checked' : '' }}>
+            <label>Без предметов</label>
+          </div>
         </div>
-      </div>
+      @endif
 
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
@@ -64,7 +66,7 @@
         </div>
       </div>
 
-      <div class="four wide field" style="margin-top: 7px;">
+      <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
                  name="has_direction"
@@ -73,6 +75,18 @@
                  class="hidden"
                  {{ (request('has_direction') == "0") ? 'checked' : '' }}>
           <label>Без направления</label>
+        </div>
+      </div>
+
+      <div class="three wide field" style="margin-top: 7px;">
+        <div class="ui checkbox">
+          <input type="checkbox"
+                 name="has_professions"
+                 value="0"
+                 tabindex="0"
+                 class="hidden"
+                 {{ (request('has_professions') == "0") ? 'checked' : '' }}>
+          <label>Без профессий</label>
         </div>
       </div>
 

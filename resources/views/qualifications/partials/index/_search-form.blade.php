@@ -29,24 +29,24 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="has_description"
-                 value="0"
-                 tabindex="0"
-                 class="hidden"
-                 {{ (request('has_description') == "0") ? 'checked' : '' }}>
-          <label>Без описания</label>
-        </div>
-      </div>
-
-      <div class="three wide field" style="margin-top: 7px;">
-        <div class="ui checkbox">
-          <input type="checkbox"
                  name="has_specialty"
                  value="0"
                  tabindex="0"
                  class="hidden"
                  {{ (request('has_specialty') == "0") ? 'checked' : '' }}>
           <label>Без специальности</label>
+        </div>
+      </div>
+
+      <div class="three wide field" style="margin-top: 7px;">
+        <div class="ui checkbox">
+          <input type="checkbox"
+                 name="has_description"
+                 value="0"
+                 tabindex="0"
+                 class="hidden"
+                 {{ (request('has_description') == "0") ? 'checked' : '' }}>
+          <label>Без описания</label>
         </div>
       </div>
 

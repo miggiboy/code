@@ -100,13 +100,5 @@
       moreLink: '<a href="#">Подробнее</a>',
       lessLink: '<a href="#">Свернуть</a>'
     });
-
-    $('#update-map-button').click(function () {
-        $('#map').parent().detach()
-        $('#update-map-button').detach()
-
-        $('#update-map-form').show()
-    })
-
   </script>
 @endsection

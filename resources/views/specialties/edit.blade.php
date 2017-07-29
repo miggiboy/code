@@ -13,7 +13,7 @@
 
     <br><br>
     <form action="{{ route('specialties.update', [$institutionType, $specialty]) }}"
-          method="POST"
+          method="post"
           class="ui form">
 
       {{ csrf_field() }}

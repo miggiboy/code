@@ -118,6 +118,8 @@ Route::group(['namespace' => 'Specialties'], function () {
     Route::resource('specialties.institutions', 'SpecialtyInstitutionsController', [
         'only' => ['index']
     ]);
+
+    Route::patch('/specialies/{specialty}/type', 'SpecialtyTypesController@update')->name('specialties.types.update');
 });
 
 

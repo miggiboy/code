@@ -24,6 +24,10 @@
 
     <div class="divider"></div>
 
+    @include ('specialties/partials/_change-type-option', [
+        'model' => $qualification
+    ])
+
     {{-- Deleting --}}
     <a href="#" class="item"
        onclick="event.preventDefault();

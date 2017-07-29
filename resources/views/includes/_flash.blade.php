@@ -10,13 +10,13 @@
         "onclick": null,
         "showDuration": "30",
         "hideDuration": "80",
-        "timeOut": "900",
+        "timeOut": "{{ session('timeOut') ?? 90 }}",
         "extendedTimeOut": "150",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
       }
-      toastr["info"]("{{ session('message') }}")
+      toastr["{{ session('notification') ?? 'info' }}"]("{{ session('message') }}")
     </script>
 @endif

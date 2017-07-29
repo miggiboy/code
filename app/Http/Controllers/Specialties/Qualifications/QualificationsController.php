@@ -81,7 +81,7 @@ class QualificationsController extends Controller
     {
         $specialties = $this->getCollegeSpecialtes();
 
-        return view('qualifications.edit', compact('qualification'));
+        return view('qualifications.edit', compact('qualification', 'specialties'));
     }
 
     /**

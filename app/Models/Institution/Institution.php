@@ -10,7 +10,8 @@ use App\Traits\Marker\Markable;
 
 use App\Traits\Institution\{
     HasSpecialties,
-    Searchable
+    Searchable,
+    HasType
 };
 
 use Spatie\MediaLibrary\HasMedia\{
@@ -40,6 +41,7 @@ class Institution extends Model implements HasMediaConversions
      */
     use Markable;
     use Searchable;
+    use HasType;
     use HasSpecialties;
 
     /**
@@ -65,25 +67,6 @@ class Institution extends Model implements HasMediaConversions
         'college',
         'university',
     ];
-
-    /**
-     * Retrieves institutions of $type type
-     *
-     * @param  Builder $query
-     * @param  string $institutionType
-     * @return Builder
-     */
-    public function scopeOfType($query, $institutionType)
-    {
-        return $query->where('type', str_singular($institutionType));
-    }
-
-    public function isA($type)
-    {
-        return strcmp(
-            $this->type, str_singular($type)
-        ) === 0;
-    }
 
     public function getBaseUrl()
     {
@@ -152,21 +135,6 @@ class Institution extends Model implements HasMediaConversions
     public function urlAtPrimaryApp()
     {
         return config('primary_app.urls.institutions') . str_plural($this->type) . '/' . $this->slug;
-    }
-
-    public static function hasType($type)
-    {
-        return in_array(str_singular($type), self::TYPES);
-    }
-
-    public static function types()
-    {
-        return self::TYPES;
-    }
-
-    public static function doesntHaveType($type)
-    {
-        return ! static::hasType($type);
     }
 
     protected function formatUrl($url)

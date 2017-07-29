@@ -18,9 +18,7 @@ trait HasType
 
     public function isA($type)
     {
-        return strcmp(
-            $this->type, str_singular($type)
-        ) === 0;
+        return strcmp($this->type, str_singular($type)) === 0;
     }
 
     public static function types()

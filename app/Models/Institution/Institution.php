@@ -11,7 +11,8 @@ use App\Traits\Marker\Markable;
 use App\Traits\Institution\{
     HasSpecialties,
     Searchable,
-    HasType
+    HasType,
+    ComposesUrls
 };
 
 use Spatie\MediaLibrary\HasMedia\{
@@ -42,6 +43,7 @@ class Institution extends Model implements HasMediaConversions
     use Markable;
     use Searchable;
     use HasType;
+    use ComposesUrls;
     use HasSpecialties;
 
     /**
@@ -67,17 +69,6 @@ class Institution extends Model implements HasMediaConversions
         'college',
         'university',
     ];
-
-    public function getBaseUrl()
-    {
-        $exceptions = ['vk.com', ];
-
-        if (str_contains($this->web_site_url, $exceptions)) {
-            return $this->web_site_url;
-        }
-
-        return parse_url($this->web_site_url)['host'] ?? $this->web_site_url;
-    }
 
     /**
      * Always returns web_site_url attribute with http(s)
@@ -108,42 +99,6 @@ class Institution extends Model implements HasMediaConversions
     public function hasMap()
     {
         return (bool) $this->map()->count();
-    }
-
-    /**
-     * Google search
-     */
-
-    public function googleSearchUrl()
-    {
-        return config('google.search.url') . trim($this->title) . ', ' . trim($this->city->title);
-    }
-
-    /**
-     * Google maps url
-     */
-
-    public function googleMapsUrl()
-    {
-        return config('google.maps.url') . trim($this->title);
-    }
-
-    /**
-     * Redirects to primary app (vipusknik.kz)
-     */
-
-    public function urlAtPrimaryApp()
-    {
-        return config('primary_app.urls.institutions') . str_plural($this->type) . '/' . $this->slug;
-    }
-
-    protected function formatUrl($url)
-    {
-        if (! preg_match('/^http(s)?:\/\//', $url)) {
-            return "http://{$url}";
-        }
-
-        return $url;
     }
 
     public function registerMediaConversions()

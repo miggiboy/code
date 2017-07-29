@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Institution;
 
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InstitutionFormRequest extends FormRequest
@@ -38,7 +39,10 @@ class InstitutionFormRequest extends FormRequest
             'title'             => $titleRule,
             'abbreviation'      => 'nullable|max:255',
             'city_id'           => 'required|exists:cities,id',
-            'type'              => 'required',
+            'type'              => [
+                'required',
+                Rule::in(\Institution::types()),
+            ],
             'has_dormitory'     => 'nullable|boolean',
             'has_military_dep'  => 'nullable|boolean',
             'foundation_year'   => 'nullable|integer|between:1800,' . Carbon::now()->year,
@@ -67,6 +71,7 @@ class InstitutionFormRequest extends FormRequest
             'city_id.exists'            => 'Город - неверные данные.',
 
             'type.required'             => 'Тип - обязательное поле',
+            'type.in'                   => 'Тип - неверные данные',
 
             'has_dormitory.boolean'     => 'Общежитие - неверные данные.',
             'has_military_dep.boolean'  => 'Военная.каф - неверные данные.',

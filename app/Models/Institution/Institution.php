@@ -159,6 +159,11 @@ class Institution extends Model implements HasMediaConversions
         return in_array(str_singular($type), self::TYPES);
     }
 
+    public static function types()
+    {
+        return self::TYPES;
+    }
+
     public static function doesntHaveType($type)
     {
         return ! static::hasType($type);

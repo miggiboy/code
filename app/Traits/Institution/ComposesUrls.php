@@ -39,7 +39,7 @@ trait ComposesUrls
 
     public function urlAtPrimaryApp()
     {
-        return config('primary_app.urls.institutions') . str_plural($this->type) . '/' . $this->slug;
+        return config('primary_app.url') . '/institutions/' . str_plural($this->type) . '/' . $this->slug;
     }
 
     protected function formatUrl($url)

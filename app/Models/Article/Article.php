@@ -60,7 +60,7 @@ class Article extends Model
 
     public function urlAtPrimaryApp()
     {
-        return config('primary_app.urls.' . 'articles') . $this->slug;
+        return config('primary_app.url') . '/articles/' . $this->slug;
     }
 
     /**

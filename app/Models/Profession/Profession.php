@@ -69,7 +69,7 @@ class Profession extends Model
 
     public function urlAtPrimaryApp()
     {
-        return config('primary_app.urls.' . 'professions') . $this->slug;
+        return config('primary_app.url') . '/professions/' . $this->slug;
     }
 
     /**

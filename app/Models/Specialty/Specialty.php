@@ -100,7 +100,7 @@ class Specialty extends Model
 
     public function urlAtPrimaryApp()
     {
-        return config('primary_app.urls.specialties') . $this->slug;
+        return config('primary_app.url') . '/specialties/' . $this->slug;
     }
 
     /**

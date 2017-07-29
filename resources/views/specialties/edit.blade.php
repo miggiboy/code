@@ -21,7 +21,7 @@
 
       @include ('includes/_form-errors')
 
-      <input type="hidden" name="type" value="{{ $specialty->type }}">
+      <input type="hidden" name="type" value="specialty">
 
       <div class="two fields">
         <div class="ten wide required field{{ $errors->has('title') ? ' error' : '' }}">

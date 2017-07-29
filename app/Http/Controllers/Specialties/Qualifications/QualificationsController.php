@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\{
-    SpecialtyFormRequest
+    Specialty\SpecialtyFormRequest
 };
 
 use App\Modules\Search\{
@@ -93,10 +93,10 @@ class QualificationsController extends Controller
      */
     public function update(SpecialtyFormRequest $request, Specialty $qualification)
     {
-        $qualifiaction->update($request->all());
+        $qualification->update($request->all());
 
         return redirect()
-            ->route('qualifications.show', $qualifiaction)
+            ->route('qualifications.show', $qualification)
             ->withMessage('Квалификация обновлена');
     }
 

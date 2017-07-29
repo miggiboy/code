@@ -17,6 +17,8 @@
 
       @include ('includes/_form-errors')
 
+      <input type="hidden" name="type" value="qualification">
+
       <div class="two fields">
 
         <div class="ten wide required field{{ $errors->has('title') ? ' error' : '' }}">
@@ -43,8 +45,8 @@
       </div>
 
       <div class="required field">
-        <label for="title">Специальность</label>
-        <select name="specialty_id" class="ui search dropdown" id="specialty_id">
+        <label for="parent_id">Специальность</label>
+        <select name="parent_id" class="ui search dropdown" id="parent_id">
           <option value="">Связанная специальность</option>
           @foreach ($specialties as $specialty)
             <option value="{{ $specialty->id }}"

@@ -31,15 +31,16 @@ class SpecialtyFormRequest extends FormRequest
          * on update
          */
         if ($this->method() == 'PATCH') {
-            $codeRule .= ',code,' . $this->specialty->id;
+            $codeRule .= ',code,' . ($this->specialty->id ?? $this->qualification->id);
         }
 
         return [
             'title'         => 'required|max:255',
             'code'          => $codeRule,
-            'subjects.*'    => 'nullable|integer',
-            'type'          => 'required',
-            'direction_id'  => 'required',
+            'subjects.*'    => 'nullable|integer|exists:subjects,id',
+            'type'          => 'required|in:specialty,qualification',
+            'direction_id'  => 'nullable|exists:specialty_directions,id',
+            'parent_id'     => 'nullable|exists:specialties,id',
         ];
     }
 
@@ -54,10 +55,14 @@ class SpecialtyFormRequest extends FormRequest
             'code.alpha_num'        => 'Код специальности может состоять только из букв и цифр.',
 
             'subjects.*.integer'    => 'Предмет - неверные данные.',
+            'subjects.*.exists'     => 'Предмет - неверные данные.',
 
             'type.required'         => 'Поле тип - обязательное',
+            'type.in'               => 'Поле тип - неверные данные.',
 
-            'direction_id.required' => 'Направление - обязательное поле',
+            'direction_id.exists'   => 'Направление - неверные данные.',
+
+            'parent_id.exists'      => 'Родительская специальность - неверные данные.',
         ];
     }
 }

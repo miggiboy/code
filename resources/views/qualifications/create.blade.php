@@ -14,6 +14,8 @@
 
       @include ('includes/_form-errors')
 
+      <input type="hidden" name="type" value="qualification">
+
       <div class="two fields">
 
         <div class="ten wide required field{{ $errors->has('title') ? ' error' : '' }}">

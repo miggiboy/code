@@ -3,7 +3,9 @@
 @foreach ($professions as $profession)
       <div class="custom item">
 
-        @include ('professions/partials/_options', ['edit_target_blank' => true])
+        @include ('professions/partials/_options', [
+            'edit_target_blank' => true
+        ])
         <div class="right floated content">
           <div>ID:  {{ $profession->id }}</div>
           @include ('markers/partials/_in-list-markers', [

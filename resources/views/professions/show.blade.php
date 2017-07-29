@@ -11,7 +11,7 @@
       .overlay {
           position: fixed;
           bottom: 30px;
-          left: 22px;
+          right: 22px;
           z-index: 10;
       }
 
@@ -31,9 +31,7 @@
     @include ('professions/partials/show/_related')
 
     <div class="overlay">
-      @include ('professions/partials/_options', [
-          'menu_direction' => 'left',
-      ])
+      @include ('professions/partials/_options')
     </div>
 @endsection
 

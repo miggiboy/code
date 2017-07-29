@@ -1,5 +1,5 @@
 <div
-  class="ui {{ $menu_direction ?? 'right' }} pointing {{ $menu_direction ?? 'right' }} floated icon dropdown basic button content">
+  class="ui right pointing right floated icon dropdown basic button content">
   <i class="ellipsis vertical icon"></i>
   <div class="menu">
     <div class="header"><i class="tags icon"></i>  Опции </div>
@@ -17,7 +17,7 @@
 
     @include ('markers/partials/_markers-option', [
         'model' => $profession,
-        'modelType' => 'profession',
+        'modelType' => 'profession'
     ])
 
     @include ('shared/_google-option', [

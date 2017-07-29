@@ -32,7 +32,7 @@ class ProfessionFormRequest extends FormRequest
 
         return [
             'title'             => $titleRule,
-            'category_id'       => 'required|integer',
+            'category_id'       => 'required|exists:profession_categories,id',
         ];
     }
 
@@ -44,7 +44,7 @@ class ProfessionFormRequest extends FormRequest
             'title.unique'                  => 'Профессия с таким названием уже существует.',
 
             'category_id.required'          => 'Категория профессии - обязательное поле.',
-            'category_id.integer'           => 'Категория профессии - неверные данные.',
+            'category_id.exists'            => 'Категория профессии - неверные данные.',
         ];
     }
 }

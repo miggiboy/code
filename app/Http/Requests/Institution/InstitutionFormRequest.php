@@ -37,8 +37,9 @@ class InstitutionFormRequest extends FormRequest
         return [
             'title'             => $titleRule,
             'abbreviation'      => 'nullable|max:255',
-            'city_id'           => 'required|integer',
-            'type'              => 'required',            'has_dormitory'     => 'nullable|boolean',
+            'city_id'           => 'required|exists:cities,id',
+            'type'              => 'required',
+            'has_dormitory'     => 'nullable|boolean',
             'has_military_dep'  => 'nullable|boolean',
             'foundation_year'   => 'nullable|integer|between:1800,' . Carbon::now()->year,
             'address'           => 'nullable|max:255',
@@ -63,7 +64,7 @@ class InstitutionFormRequest extends FormRequest
             'abbreviation.max'          => 'Аббревиатура слишком длинная.',
 
             'city_id.required'          => 'Город - обязательное поле.',
-            'city_id.integer'           => 'Город - неверные данные.',
+            'city_id.exists'            => 'Город - неверные данные.',
 
             'type.required'             => 'Тип - обязательное поле',
 

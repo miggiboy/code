@@ -37,7 +37,7 @@ class SpecialtyFormRequest extends FormRequest
         return [
             'title'         => 'required|max:255',
             'code'          => $codeRule,
-            'subjects.*'    => 'nullable|integer|exists:subjects,id',
+            'subjects.*'    => 'nullable|exists:subjects,id',
             'type'          => 'required|in:specialty,qualification',
             'direction_id'  => 'nullable|exists:specialty_directions,id',
             'parent_id'     => 'nullable|exists:specialties,id',
@@ -54,7 +54,6 @@ class SpecialtyFormRequest extends FormRequest
             'code.max'              => 'Код специальности слишком длинный.',
             'code.alpha_num'        => 'Код специальности может состоять только из букв и цифр.',
 
-            'subjects.*.integer'    => 'Предмет - неверные данные.',
             'subjects.*.exists'     => 'Предмет - неверные данные.',
 
             'type.required'         => 'Поле тип - обязательное',

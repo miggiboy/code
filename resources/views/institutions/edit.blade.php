@@ -45,7 +45,9 @@
       @include ('institutions/partials/edit/_reception_committee_fields')
       <button class="ui big teal button" type="submit" id="form-submit-button">Сохранить</button>
     </form>
-    <br><br>
+
+    <br>
+    <br>
 
     @include ('institutions/partials/edit/_overlay-menu')
 @endsection

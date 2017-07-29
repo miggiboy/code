@@ -10,7 +10,7 @@
         "onclick": null,
         "showDuration": "30",
         "hideDuration": "80",
-        "timeOut": "{{ session('timeOut') ?? 90 }}",
+        "timeOut": "{{ session('timeOut') ?? 490 }}",
         "extendedTimeOut": "150",
         "showEasing": "swing",
         "hideEasing": "linear",

@@ -31,23 +31,10 @@ class InstitutionMapsController extends Controller
         return back()->withMessage('Карта добалена');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Map  $map
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Institution $institution)
+    public function destroy(Institution $institution)
     {
-        $this->validate($request, [
-            'source_code' => 'required'
-        ]);
+        $institution->map->delete();
 
-        $institution->map()->update([
-            'source_code' => $request->source_code
-        ]);
-
-        return back()->withMessage('Карта обновлена');
+        return back()->withMessage('Карта удалена');
     }
 }

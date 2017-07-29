@@ -4,13 +4,10 @@ $('.ui.checkbox').checkbox();
 
 $('.ui.dropdown').dropdown();
 
-// Institution map
-function showMapReplacementForm() {
-    hideButtonMap();
-    $('#map-update-form').show();
-}
+$('.icon').popup();
 
-function hideButtonMap() {
-    $('#replace-map-button').hide();
-    $('#map').hide();
+// Institution map
+function confirmMapDeletion() {
+  $delete = confirm('Вы действительно хотите удалить карту?');
+  if ($delete) $('#delete-map-form').submit();
 }

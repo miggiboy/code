@@ -1,14 +1,21 @@
 <div class="overlay">
   <div class="ui vertical icon menu">
 
-    @isset ($institution->web_site_url)
+    @if (isset($institution->web_site_url))
       <a class="item"
          href="{{ $institution->web_site_url }}"
          title="Перейти на сайт {{ translate($institution->type, 'r', 's') }}"
          target="_blank">
         <i class="blue external icon"></i>
       </a>
-    @endisset
+    @else
+      <a class="disabled item"
+         title="У {{ translate($institution->type, 'r', 's') }} нет сайта"
+         target="_blank"
+         disabled>
+        <i class="grey external icon"></i>
+      </a>
+    @endif
 
     <a class="item"
        href="{{ url($institution->googleSearchURl()) }}"
@@ -18,7 +25,7 @@
     </a>
 
     <a class="item"
-       title="Сохранить"
+       title="Сохранить изменения"
        onclick="event.preventDefault(); document.getElementById('edit-institution-form').submit();">
       <i class="green save icon"></i>
     </a>

@@ -201,6 +201,12 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
     Route::patch('/{institution}/paid-status', 'InstitutionPaidStatusController@update')->name('institutions.paid-status.update');
 
     /**
+     * Institution Maps
+     */
+    Route::delete('/{institution}/map', 'InstitutionMapsController@destroy')->name('institutions.maps.destroy');
+    Route::post('/{institution}/map', 'InstitutionMapsController@store')->name('institutions.maps.store');
+
+    /**
      * Institutions
      */
 
@@ -268,12 +274,6 @@ Route::group(['namespace' => 'Institution', 'prefix' => '/institutions'], functi
      * Institution Logo
      */
     Route::patch('/{institution}/logos/{image}', 'InstitutionLogosController@update');
-
-    /**
-     * Institution Maps
-     */
-    Route::post('/{institution}/map', 'InstitutionMapsController@store')->name('institutions.maps.store');
-    Route::patch('/{institution}/map', 'InstitutionMapsController@update')->name('institutions.maps.update');
 });
 
 /**

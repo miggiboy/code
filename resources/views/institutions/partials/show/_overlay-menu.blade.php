@@ -7,7 +7,7 @@
     </a>
 
     <a class="item"
-       title="Изображения"
+       title="Добавить изображения"
        onclick="event.preventDefault(); $('#add-media-modal').modal({ inverted: true }).modal('show');">
       <i class="green photo icon"></i>
     </a>

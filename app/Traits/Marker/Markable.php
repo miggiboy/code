@@ -21,9 +21,10 @@ trait Markable
 
     public function scopeMarkedBy($query, $user)
     {
-        return $query->whereHas('markers', function ($q) use ($user) {
-            $q->where('user_id', get_id($user));
-        });
+        return
+            $query->whereHas('markers', function ($q) use ($user) {
+                $q->where('user_id', get_id($user));
+            });
     }
 
     public function markers()

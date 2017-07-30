@@ -8,8 +8,8 @@ trait RelatesToInstitution
 {
     public function scopeOf($query, $institutionType)
     {
-        return $query
-            ->whereHas('direction', function ($q) use ($institutionType) {
+        return
+            $query->whereHas('direction', function ($q) use ($institutionType) {
                 $q->of($institutionType);
             });
     }

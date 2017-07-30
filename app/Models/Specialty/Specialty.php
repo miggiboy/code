@@ -61,6 +61,21 @@ class Specialty extends Model
         return strcmp($this->type, $type) === 0;
     }
 
+    public static function studyForms()
+    {
+        return self::STUDY_FORMS;
+    }
+
+    public static function hasStudyForm($studyForm)
+    {
+        return in_array(str_singular($studyForm), self::STUDY_FORMS);
+    }
+
+    public static function doesntHaveStudyForm($studyForm)
+    {
+        return ! static::hasStudyForm($studyForm);
+    }
+
     /**
      * Check if the specialty has any subjects
      *
@@ -111,21 +126,6 @@ class Specialty extends Model
     {
         return config('google.search.url') .
             translate($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
-    }
-
-    public static function hasStudyForm($studyForm)
-    {
-        return in_array(str_singular($studyForm), self::STUDY_FORMS);
-    }
-
-    public static function doesntHaveStudyForm($studyForm)
-    {
-        return ! static::hasStudyForm($studyForm);
-    }
-
-    public static function studyForms()
-    {
-        return self::STUDY_FORMS;
     }
 
     /**

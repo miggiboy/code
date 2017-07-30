@@ -12,8 +12,8 @@ trait Searchable
      */
     public function scopeInDirection($query, $direction)
     {
-        return $query
-            ->whereHas('direction', function($q) use ($direction) {
+        return
+            $query->whereHas('direction', function($q) use ($direction) {
                 $q->where('id', $direction);
             });
     }
@@ -48,8 +48,8 @@ trait Searchable
      */
     public function scopeHasDirection($query, $has = true)
     {
-        return $query
-            ->whereHas('direction', function($q) use ($has) {
+        return
+            $query->whereHas('direction', function($q) use ($has) {
                 $q->where('title', ((bool) $has ? '!=' : '='), 'Без направления');
             });
     }

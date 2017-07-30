@@ -81,6 +81,13 @@ class Institution extends Model implements HasMediaConversions
         return $value ? $this->formatUrl($value) : null;
     }
 
+    public function togglePaidStatus()
+    {
+        $this->is_paid = ! $this->is_paid;
+
+        return $this;
+    }
+
     /**
      * Checks if this institution has reception committee
      *
@@ -107,13 +114,6 @@ class Institution extends Model implements HasMediaConversions
               ->width(368)
               ->height(232)
               ->sharpen(10);
-    }
-
-    public function togglePaidStatus()
-    {
-        $this->is_paid = ! $this->is_paid;
-
-        return $this;
     }
 
     /**

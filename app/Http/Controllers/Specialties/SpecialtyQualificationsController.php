@@ -48,7 +48,11 @@ class SpecialtyQualificationsController extends Controller
     public function store(Request $request, Specialty $specialty)
     {
         foreach ($request->qualifications as $qualification) {
-            Specialty::find($qualification)->specialty()->associate($specialty);
+            $qualification = Specialty::find($qualification);
+
+            $qualification->specialty()->associate($specialty);
+
+            $qualification->save();
         }
 
         Specialty::where('parent_id', $specialty->id)

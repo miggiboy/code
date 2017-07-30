@@ -13,7 +13,7 @@
           <div class="header"><i class="tags icon"></i>  Опции </div>
             <div class="divider"></div>
             <a href="{{ route('specialties.professions.create', $specialty) }}" class="item">
-              <i class="circle green add icon"></i>Добавить
+              <i class="blue circle icon"></i>Редактировать список
             </a>
         </div>
       </div>
@@ -45,7 +45,7 @@
             <div class="header"><i class="tags icon"></i>  Опции </div>
               <div class="divider"></div>
               <a href="{{ route('specialties.qualifications.create', $specialty) }}" class="item">
-                <i class="circle green add icon"></i>Добавить
+                <i class="blue circle icon"></i>Редактировать список
               </a>
           </div>
         </div>

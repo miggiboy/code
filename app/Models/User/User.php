@@ -130,6 +130,11 @@ class User extends Authenticatable
         return $query->has('roles');
     }
 
+    public function scopeExcept($query, $user)
+    {
+        return $query->where('id', '!=', get_id($user));
+    }
+
     /**
      * Relations
      */

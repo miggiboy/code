@@ -72,8 +72,9 @@ class SpecialtyQualificationsController extends Controller
      */
     public function destroy(Specialty $specialty, Specialty $qualification)
     {
-        // TODO: use disassociate method insted
-        $qualification->update(['parent_id' => null]);
+        $qualification->specialty()->dissociate();
+
+        $qualification->save();
 
         return back()->withMessage('Квалификация откреплена');
     }

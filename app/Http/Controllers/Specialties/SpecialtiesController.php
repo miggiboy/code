@@ -184,6 +184,7 @@ class SpecialtiesController extends Controller
     public function rtSearch(Request $request, $institutionType)
     {
         $specialties = Specialty::select('slug as url', 'title', 'code as description')
+            ->getOnly('specialties')
             ->of($institutionType)
             ->like($request->input('query'))
             ->orderBy('title')
@@ -196,7 +197,7 @@ class SpecialtiesController extends Controller
         return response()->json(['results' => $specialties], 200);
     }
 
-    public function getProfileSubjects()
+    private function getProfileSubjects()
     {
         return Subject::where('is_profile', true)
             ->whereNull('parent_id')

@@ -33,11 +33,15 @@
 
 </div>
 <br>
-<div class="ui divider"></div>
-@if ($specialty->description)
-  <p>
-    {!! $specialty->description !!}
-  </p>
-  <br>
-@endif
+<div class="ui grid">
+  <div class="fourteen wide column">
+  <div class="ui divider"></div>
+    @if ($specialty->description)
+      <p>
+        {!! $specialty->description !!}
+      </p>
+      <br>
+    @endif
+  </div>
+</div>
 <br>

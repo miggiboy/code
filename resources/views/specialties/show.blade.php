@@ -25,7 +25,9 @@
   <div class="ui very relaxed grid">
     <div class="ten wide column">
       @include ('specialties/partials/show/_labels')
-      <div><br></div>
+      <div>
+        <br>
+      </div>
       @include ('specialties/partials/show/_specialty_information')
     </div>
     <div class="one wide column"></div>

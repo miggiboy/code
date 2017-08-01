@@ -37,6 +37,11 @@ class SpecialtySearch
             $q->has('professions', (bool) $request->has_professions);
         }
 
+        // No GUI for this option
+        if ($request->has('has_institutions')) {
+            $q->has('institutions', (bool) $request->has_institutions);
+        }
+
         if ($request->has('markers_of')) {
             $q->markedBy(request('markers_of'));
         }

@@ -1,13 +1,13 @@
 @extends ('layouts.app')
 
 @section ('title')
-    {{ $specialty->title }} - привязка квалификаций
+    {{ $specialty->title }} - квалификации
 @endsection
 
 @section ('content')
     <div class="ui text container" style="margin-bottom: 30px;">
         <div style="margin-bottom: 45px; text-align: center;">
-            <h2>Привязка квалификаций к специальности <br>
+            <h2>Квалификаций специальности <br>
                 <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}"
                    target="_blank"
                    class="custom-link">

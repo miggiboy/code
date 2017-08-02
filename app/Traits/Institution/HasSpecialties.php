@@ -37,6 +37,11 @@ trait HasSpecialties
         return $this->belongsToMany(Specialty::class)->withPivot('study_price', 'study_period', 'form');
     }
 
+    public function specialties_distinct()
+    {
+        return $this->belongsToMany(Specialty::class)->groupBy('specialty_id');
+    }
+
     /**
      * Use to fetch data only!
      * Don't for attaching data!
@@ -47,5 +52,13 @@ trait HasSpecialties
             ->belongsToMany(Specialty::class)
             ->where('type', 'qualification')
             ->withPivot('study_price', 'study_period', 'form');
+    }
+
+    public function qualifications_distinct()
+    {
+        return $this
+            ->belongsToMany(Specialty::class)
+            ->where('type', 'qualification')
+            ->groupBy('specialty_id');
     }
 }

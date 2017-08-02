@@ -51,7 +51,7 @@
                       class="ui basic icon button"
                       onclick="event.preventDefault();
                       document.getElementById('specialty-detach-qualification-{{ $qualification->id }}-form').submit();"
-                      title="Открпить квалификацию">
+                      title="Открепить квалификацию">
                       <i class="trash outline icon"></i>
                   </a>
                 </td>

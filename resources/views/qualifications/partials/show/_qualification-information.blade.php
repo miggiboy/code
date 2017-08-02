@@ -24,11 +24,15 @@
 
 </div>
 <br>
-<div class="ui divider"></div>
-@if ($qualification->description)
-  <p>
-    {!! $qualification->description !!}
-  </p>
-  <br>
-@endif
+<div class="ui grid">
+  <div class="fourteen wide column">
+    <div class="ui divider"></div>
+      @if ($qualification->description)
+        <p>
+          {!! $qualification->description !!}
+        </p>
+        <br>
+      @endif
+  </div>
+</div>
 <br>

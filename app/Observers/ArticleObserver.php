@@ -9,11 +9,11 @@ class ArticleObserver
 {
     public function creating(Article $article)
     {
-        $article->slug = (new UniqueSlug)->createFor($article);
+        $article->slug = UniqueSlug::makeFor($article);
     }
 
     public function updating(Article $article)
     {
-        $article->slug = (new UniqueSlug)->createFor($article);
+        $article->slug = UniqueSlug::makeFor($article);
     }
 }

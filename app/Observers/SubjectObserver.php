@@ -9,11 +9,11 @@ class SubjectObserver
 {
     public function creating(Subject $subject)
     {
-        $subject->slug = (new UniqueSlug)->createFor($subject);
+        $subject->slug = UniqueSlug::makeFor($subject);
     }
 
     public function updating(Subject $subject)
     {
-        $subject->slug = (new UniqueSlug)->createFor($subject);
+        $subject->slug = UniqueSlug::makeFor($subject);
     }
 }

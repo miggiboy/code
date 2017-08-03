@@ -9,11 +9,11 @@ class ProfessionObserver
 {
     public function creating(Profession $profession)
     {
-        $profession->slug = (new UniqueSlug)->createFor($profession);
+        $profession->slug = UniqueSlug::makeFor($profession);
     }
 
     public function updating(Profession $profession)
     {
-        $profession->slug = (new UniqueSlug)->createFor($profession);
+        $profession->slug = UniqueSlug::makeFor($profession);
     }
 }

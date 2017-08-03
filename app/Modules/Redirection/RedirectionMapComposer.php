@@ -7,22 +7,32 @@ use App\Models\Specialty\Specialty;
 use App\Models\Profession\Profession;
 use App\Models\Institution\Institution;
 
+use App\Support\Slug\UniqueSlug;
+
 use App\Models\RedirectionMap;
 
 class RedirectionMapComposer
 {
-    public static function handle()
+    public static function start()
     {
         $composer = new static;
 
-        $composer->mapUniversities();
-        $composer->mapColleges();
+        // $universities = Profession::all();
 
-        $composer->mapSpecialties();
-        // $composer->mapQualifications();
+        // foreach ($universities as $university) {
+        //     $university->update([
+        //         'slug' => UniqueSlug::makeFor($university)
+        //     ]);
+        // }
 
-        $composer->mapProfessions();
-        $composer->mapArticles();
+        // $composer->mapUniversities();
+        // $composer->mapColleges();
+
+        // $composer->mapSpecialties();
+        // // $composer->mapQualifications();
+
+        // $composer->mapProfessions();
+        // $composer->mapArticles();
 
         $composer->mapUnt();
         $composer->mapSubjects();
@@ -32,8 +42,8 @@ class RedirectionMapComposer
     {
         // index
         $this->map([
-            '/vuz',
-            "/institutions/universities"
+            'vuz',
+            "institutions/universities"
         ]);
 
         // show
@@ -42,13 +52,13 @@ class RedirectionMapComposer
         foreach ($universities as $university) {
 
             $this->map([
-                "/universities/{$university->id}",
-                "/institutions/universities/{$university->slug}"
+                "universities/{$university->id}",
+                "institutions/universities/{$university->slug}"
             ]);
 
             $this->map([
-                "/universities/{$university->slug}",
-                "/institutions/universities/{$university->slug}"
+                "universities/{$university->slug}",
+                "institutions/universities/{$university->slug}"
             ]);
         }
     }
@@ -57,8 +67,8 @@ class RedirectionMapComposer
     {
         // index
         $this->map([
-            '/college',
-            '/institutions/colleges'
+            'college',
+            'institutions/colleges'
         ]);
 
         // show
@@ -67,13 +77,13 @@ class RedirectionMapComposer
         foreach ($colleges as $college) {
 
             $this->map([
-                "/colleges/{$college->id + 7000}",
-                "/institutions/colleges/{$college->slug}"
+                "colleges/{($college->id + 7000)}",
+                "institutions/colleges/{$college->slug}"
             ]);
 
             $this->map([
-                "/colleges/{$college->slug}",
-                "/institutions/colleges/{$college->slug}"
+                "colleges/{$college->slug}",
+                "institutions/colleges/{$college->slug}"
             ]);
         }
     }
@@ -82,8 +92,8 @@ class RedirectionMapComposer
     {
         // Index
         $this->map([
-            '/specialities',
-            '/specialties/directions'
+            'specialities',
+            'specialties/directions'
         ]);
 
         // Show
@@ -91,13 +101,13 @@ class RedirectionMapComposer
 
         foreach ($specialties as $specialty) {
             $this->map([
-                "/specialities/{$specialty->id}",
-                "/specialties/{$specialty->slug}"
+                "specialities/{$specialty->id}",
+                "specialties/{$specialty->slug}"
             ]);
 
             $this->map([
-                "/specialities/{$specialty->slug}",
-                "/specialties/{$specialty->slug}"
+                "specialities/{$specialty->slug}",
+                "specialties/{$specialty->slug}"
             ]);
         }
 
@@ -119,8 +129,8 @@ class RedirectionMapComposer
 
         foreach ($groups as $group) {
             $this->map([
-                "/{$group}",
-                "/specialties/directions/groups/{$group}",
+                "{$group}",
+                "specialties/directions/groups/{$group}",
             ]);
         }
 
@@ -129,8 +139,8 @@ class RedirectionMapComposer
 
         foreach ($directions as $direction) {
             $this->map([
-                "/specialitieslist/{$direction->id}",
-                "/specialties/directions/{$direction->slug}",
+                "specialitieslist/{$direction->id}",
+                "specialties/directions/{$direction->slug}",
             ]);
         }
 
@@ -147,8 +157,8 @@ class RedirectionMapComposer
 
         foreach ($articles as $article) {
             $this->map([
-                "/articles/{$article->id}",
-                "/articles/{$article->slug}"
+                "articles/{$article->id}",
+                "articles/{$article->slug}"
             ]);
         }
     }
@@ -157,8 +167,8 @@ class RedirectionMapComposer
     {
         // Index
         $this->map([
-            '/professions',
-            '/professions/categories'
+            'professions',
+            'professions/categories'
         ]);
 
         // Show
@@ -166,8 +176,8 @@ class RedirectionMapComposer
 
         foreach ($professions as $profession) {
             $this->map([
-                "/professions/{$profession->id}",
-                "/professions/{$profession->slug}"
+                "professions/{$profession->id}",
+                "professions/{$profession->slug}"
             ]);
         }
 
@@ -181,8 +191,8 @@ class RedirectionMapComposer
 
         foreach ($categories as $category) {
             $this->map([
-                "/professionslist/{$category->id}",
-                "/professions/categories/{$category->slug}",
+                "professionslist/{$category->id}",
+                "professions/categories/{$category->slug}",
             ]);
         }
 
@@ -197,8 +207,8 @@ class RedirectionMapComposer
 
         foreach ($lists as $list) {
             $this->map([
-                "/{$list}",
-                "/professions/lists/{$list}",
+                "{$list}",
+                "professions/lists/{$list}",
             ]);
         }
     }
@@ -207,8 +217,8 @@ class RedirectionMapComposer
     {
         // testent
         $this->map([
-            '/testent',
-            '/articles/testent',
+            'testent',
+            'articles/testent',
         ]);
 
         // ent
@@ -225,13 +235,13 @@ class RedirectionMapComposer
 
         foreach ($subjects as $subject) {
             $this->map([
-                "/predmety/{$subject->id}",
-                "/subjects/{$subject->slug}",
+                "predmety/{$subject->id}",
+                "subjects/{$subject->slug}",
             ]);
 
             $this->map([
-                "/predmety/{$subject->slug}",
-                "/subjects/{$subject->slug}",
+                "predmety/{$subject->slug}",
+                "subjects/{$subject->slug}",
             ]);
         }
     }

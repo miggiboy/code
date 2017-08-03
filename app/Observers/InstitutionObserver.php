@@ -9,11 +9,11 @@ class InstitutionObserver
 {
     public function creating(Institution $institution)
     {
-        $institution->slug = (new UniqueSlug)->createFor($institution);
+        $institution->slug = UniqueSlug::makeFor($institution);
     }
 
     public function updating(Institution $institution)
     {
-        $institution->slug = (new UniqueSlug)->createFor($institution);
+        $institution->slug = UniqueSlug::makeFor($institution);
     }
 }

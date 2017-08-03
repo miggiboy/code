@@ -4,30 +4,38 @@ namespace App\Support\Slug;
 
 class UniqueSlug
 {
-    public function createFor($object)
+    private $object;
+
+    private $initialSlug;
+
+    public function __construct($object)
     {
-        $slug = str_slug($object->title);
-        $allSlugs = $this->getAllSlugs($object);
+        $this->object = $object;
 
-        if (! $allSlugs->contains('slug', $slug)) {
-            return $slug;
-        }
-
-        for ($i = 1; $i <= 100; $i++) {
-            $newSlug = $slug . '-' . $i;
-            if (! $this->getAllSlugs($object)->contains('slug', $newSlug)) {
-                return $newSlug;
-            }
-        }
-
-        throw new \Exception('Can not create a unique slug');
+        $this->initialSlug = str_slug($this->object->title);
     }
 
-    private function getAllSlugs($object)
+    public static function makeFor($object)
     {
-        return get_class($object)::select('slug')
-            ->where('slug', 'like', $object->slug.'%')
-            ->where('id', '<>', $object->id)
+        $generator = new static($object);
+
+        $slug = $generator->initialSlug;
+        $postFix = 1;
+
+        while($generator->isNotUnique($slug)) {
+            $slug = $generator->initialSlug . '-' . $postFix++;
+        }
+
+        return $slug;
+    }
+
+    public function isNotUnique($slug)
+    {
+        $similarSlugs = get_class($this->object)::select('slug')
+            ->where('id', '<>', $this->object->id)
+            ->where('slug', 'like', "{$slug}%")
             ->get();
+
+        return $similarSlugs->contains('slug', $slug);
     }
 }

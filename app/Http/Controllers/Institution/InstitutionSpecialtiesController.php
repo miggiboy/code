@@ -41,7 +41,7 @@ class InstitutionSpecialtiesController extends Controller
             $query
                 ->getOnly(static::SPECIALTY_TYPE)
                 ->atForm($studyForm)
-                ->with(['direction'])
+                ->with('direction')
                 ->orderBy('title');
         }]);
 

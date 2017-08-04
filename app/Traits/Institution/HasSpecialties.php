@@ -39,7 +39,9 @@ trait HasSpecialties
 
     public function specialties_distinct()
     {
-        return $this->belongsToMany(Specialty::class)->groupBy('specialty_id');
+        return $this->belongsToMany(Specialty::class)
+            ->where('type', 'specialty')
+            ->groupBy('specialty_id');
     }
 
     /**

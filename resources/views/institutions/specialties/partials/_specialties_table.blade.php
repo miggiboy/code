@@ -1,7 +1,7 @@
 <table class="ui celled table">
   <thead>
     <th style="width: 400px;">
-      {{ translate($related, 'i', 'p', true) }} ({{ $institution->specialties->count() }})
+      {{ translate($related, 'i', 'p', true) }} ({{ $institution->{"{$related}_distinct"}->count() }})
     </th>
     <th style="width: 120px;">Цена за год</th>
     <th style="width: 240px;">Срок обучения</th>

@@ -3,8 +3,10 @@
 namespace App\Models\Article;
 
 use App\Models\Model;
-use App\Traits\Marker\Markable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
+
+use App\Traits\Marker\Markable;
 
 class Article extends Model
 {
@@ -12,6 +14,11 @@ class Article extends Model
      * Laravel traits
      */
     use SoftDeletes;
+
+    /**
+     * Package traits
+     */
+    use Sluggable;
 
     /**
      * Custom traits
@@ -61,6 +68,20 @@ class Article extends Model
     public function urlAtPrimaryApp()
     {
         return config('primary_app.url') . '/articles/' . $this->slug;
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     /**

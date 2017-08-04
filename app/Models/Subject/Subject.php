@@ -12,12 +12,15 @@ use Spatie\MediaLibrary\{
     HasMedia\Interfaces\HasMedia
 };
 
+use Cviebrock\EloquentSluggable\Sluggable;
+
 class Subject extends Model implements HasMedia
 {
     /**
      * Package traits
      */
     use HasMediaTrait;
+    use Sluggable;
 
     /**
      * Indicates if the model should be timestamped.
@@ -49,6 +52,20 @@ class Subject extends Model implements HasMedia
         }
 
         return $subject->specialties();
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     /**

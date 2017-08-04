@@ -1,9 +1,5 @@
 <?php
 
-Route::get('/map', function () {
-    App\Modules\Redirection\RedirectionMapComposer::start();
-});
-
 /**
  * Home
  */

@@ -24,12 +24,6 @@ class EloquentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Subject::observe(\App\Observers\SubjectObserver::class);
-        Article::observe(\App\Observers\ArticleObserver::class);
-        Specialty::observe(\App\Observers\SpecialtyObserver::class);
-        Profession::observe(\App\Observers\ProfessionObserver::class);
-        Institution::observe(\App\Observers\InstitutionObserver::class);
-
         Relation::morphMap([
             'article' => Article::class,
             'institution' => Institution::class,

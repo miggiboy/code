@@ -4,6 +4,7 @@ namespace App\Models\Profession;
 
 use App\Models\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Models\Specialty\Specialty;
 
@@ -15,6 +16,11 @@ class Profession extends Model
      * Laravel traits
      */
     use SoftDeletes;
+
+    /**
+     * Package traits
+     */
+    use Sluggable;
 
     /**
      * Custom traits
@@ -79,6 +85,20 @@ class Profession extends Model
     public function googleSearchUrl()
     {
         return config('google.search.url') . 'Профессия ' . trim($this->title);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     public function category()

@@ -11,7 +11,7 @@
                 <div class="divider"></div>
 
                 @php
-                    $count = $institution->{$related}()->atForm($form)->count();
+                    $count = $institution->{"{$related}_distinct"}()->atForm($form)->count();
                 @endphp
 
                 <a href="{{ route("institutions.{$related}.create", [$institution, $form]) }}"   class="item">

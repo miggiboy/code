@@ -3,8 +3,8 @@
 namespace App\Models\Institution;
 
 use App\Models\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Traits\Marker\Markable;
 
@@ -36,6 +36,7 @@ class Institution extends Model implements HasMediaConversions
      * Package traits
      */
     use HasMediaTrait;
+    use Sluggable;
 
     /**
      * Custom traits
@@ -114,6 +115,20 @@ class Institution extends Model implements HasMediaConversions
               ->width(368)
               ->height(232)
               ->sharpen(10);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models\Specialty;
 use App\Models\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Traits\Marker\Markable;
 use App\Traits\Specialty\Searchable;
@@ -24,6 +25,11 @@ class Specialty extends Model
      * Laravel traits
      */
     use SoftDeletes;
+
+    /**
+     * Package traits
+     */
+    use Sluggable;
 
     /**
      * Custom traits
@@ -126,6 +132,20 @@ class Specialty extends Model
     {
         return config('google.search.url') .
             translate($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     /**

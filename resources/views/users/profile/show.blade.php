@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', auth()->user()->getNameOrUsername())
+@section('title', Auth::user()->getNameOrUsername())
 
 @section('content')
     <div class="ui grid">
@@ -13,9 +13,9 @@
                 </div>
 
                 <div class="content">
-                  <div class="header">{{ auth()->user()->getNameOrUsername() }}</div>
+                  <div class="header">{{ Auth::user()->getNameOrUsername() }}</div>
                   <div class="meta">
-                    @foreach (auth()->user()->roles as $role)
+                    @foreach (Auth::user()->roles as $role)
                       <p>{{ $role->display_name }}</p>
                     @endforeach
                   </div>
@@ -39,7 +39,7 @@
                         <input type="text"
                                name="username"
                                id="username"
-                               value="{{ old('username') ?: auth()->user()->username }}"
+                               value="{{ old('username') ?: Auth::user()->username }}"
                                required
                         >
                     </div>
@@ -48,7 +48,7 @@
                         <input type="text"
                                name="email"
                                id="email"
-                               value="{{ old('email') ?: auth()->user()->email }}"
+                               value="{{ old('email') ?: Auth::user()->email }}"
                                required>
                     </div>
                 </div>
@@ -58,20 +58,20 @@
                         <input type="text"
                                name="first_name"
                                id="first_name"
-                               value="{{ old('first_name') ?: auth()->user()->first_name }}">
+                               value="{{ old('first_name') ?: Auth::user()->first_name }}">
                     </div>
                     <div class="eight wide field">
                         <label for="last_name">Фамилия</label>
                         <input type="text"
                                name="last_name"
                                id="last_name"
-                               value="{{ old('last_name') ?: auth()->user()->last_name }}">
+                               value="{{ old('last_name') ?: Auth::user()->last_name }}">
                     </div>
                 </div><br>
                 <button class="ui teal small button">Сохранить</button>
             </form>
 
-            @if (! auth()->user()->first_name)
+            @if (! Auth::user()->first_name)
               <br>
               <div class="ui info message">
                 <div class="header">

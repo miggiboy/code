@@ -49,7 +49,7 @@
     @include ('subjects/media/partials/index/_media-add-modal')
 
     <div class="overlay">
-      <a href="" onclick="event.preventDefault(); $('.ui.modal').modal({ inverted: true }).modal('show');"
+      <a onclick="event.preventDefault(); $('.ui.modal').modal({ inverted: true }).modal('show');"
         class="ui huge green circular icon button"
         title="Добавить файлы">
         <i class="ui add icon"></i>
@@ -61,4 +61,29 @@
         ->links('vendor.pagination.default')
     }}
     <br><br>
+@endsection
+
+@section ('script')
+  <script>
+      function sendForm(form) {
+        if (validateForm(form)) {
+          setButtonStatus(form.submitButtonId, 'loading');
+          submitForm(form.id);
+        }
+      }
+
+      function validateForm(form) {
+        if (! isSelected(form.selectId)) {
+          errorize(form.selectId);
+          return false;
+        }
+
+        if (! fileIsUploaded(form.fileInputId)) {
+          errorize(form.fileInputId);
+          return false;
+        }
+
+        return true;
+      }
+  </script>
 @endsection

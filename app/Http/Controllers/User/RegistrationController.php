@@ -5,10 +5,12 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Models\User\User;
 use App\Http\Requests\User\{
     StoreUserRequest
 };
+use App\Models\User\User;
+
+use Identicon\Identicon;
 
 class RegistrationController extends Controller
 {
@@ -39,13 +41,13 @@ class RegistrationController extends Controller
             'username'      => $request->username,
             'email'         => $request->email,
             'password'      => bcrypt($request->password),
-            'identicon'     => (new \Identicon\Identicon)->getImageDataUri($request->email) // TODO: fails
+            'identicon'     => (new Identicon)->getImageDataUri($request->email) // TODO: fails
         ]);
 
        return redirect()
             ->route('login')
             ->withMessage(
-                'Вы зарегистрированы, обратитесь к администраторам для получения доступа'
+                'Вы зарегистрированы. Обратитесь к администраторам для получения доступа'
             );
     }
 }

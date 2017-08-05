@@ -93,4 +93,22 @@
       lessLink: '<a href="#">Свернуть</a>'
     });
   </script>
+
+  <script>
+    function sendForm(form) {
+        if (validateForm(form)) {
+          setButtonStatus(form.submitButtonId, 'loading');
+          submitForm(form.id);
+        }
+      }
+
+      function validateForm(form) {
+        if (! fileIsUploaded(form.fileInputId)) {
+          errorize(form.fileInputId);
+          return false;
+        }
+
+        return true;
+      }
+  </script>
 @endsection

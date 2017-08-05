@@ -1,6 +1,6 @@
 <div class="ui modal">
   <i class="close icon"></i>
-  <div class="header">
+  <div class="header" id="modal-header">
     Добавление файлов
   </div>
   <div class="image content">
@@ -24,7 +24,7 @@
 
         <div class="field">
           <label for="">Категория файлов</label>
-          <select class="ui dropdown" name="category">
+          <select class="ui dropdown" name="category" id="category-select">
             <option value="">Тип файла</option>
             @foreach ($subject->fileCategories as $category)
               <option value="{{ $category->title }}">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="field">
-          <input type="file" name="files[]" id="" multiple>
+          <input type="file" name="files[]" id="file-input" multiple>
         </div>
       </form>
     </div>
@@ -43,8 +43,14 @@
   </div>
   <div class="actions">
     <div class="ui positive right labeled icon button"
-         onclick="event.preventDefault();
-         document.getElementById('subject-files').submit();">
+         id="form-submit-button"
+         onclick="event.stopPropagation();
+         sendForm({
+          id: 'subject-files',
+          selectId: 'category-select',
+          fileInputId: 'file-input',
+          submitButtonId: 'form-submit-button'
+        });">
       Загрузить
       <i class="checkmark icon"></i>
     </div>

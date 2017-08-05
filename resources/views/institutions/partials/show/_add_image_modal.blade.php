@@ -24,7 +24,7 @@
         <input type="hidden" name="collection" value="images">
 
         <div class="field">
-          <input type="file" name="images[]" multiple>
+          <input type="file" name="images[]" id="file-input" multiple>
         </div>
       </form>
     </div>
@@ -32,8 +32,13 @@
   </div>
   <div class="actions">
     <div class="ui positive right labeled icon button"
-         onclick="event.preventDefault();
-         document.getElementById('images-form').submit();">
+         id="form-submit-button"
+         onclick="event.stopPropagation();
+         sendForm({
+          id: 'images-form',
+          fileInputId: 'file-input',
+          submitButtonId: 'form-submit-button'
+         });">
       Загрузить <i class="checkmark icon"></i>
     </div>
   </div>

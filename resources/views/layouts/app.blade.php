@@ -42,4 +42,5 @@
     @yield ('script')
 
     <script src="/js/app.js"></script>
+    <script src="/js/form.js"></script>
 </html>

@@ -28,11 +28,10 @@
                 {{ method_field('DELETE') }}
               </form>
           @else
-            <a href="#"
-                 class="item"
-                 onclick="event.preventDefault();
-                 document.getElementById('store-user-{{ $user->id }}-role-{{ $role->id }}').submit();"
-                 title="Дать роль">
+            <a class="item"
+                onclick="event.preventDefault();
+                document.getElementById('store-user-{{ $user->id }}-role-{{ $role->id }}').submit();"
+                title="Дать роль">
                 <i class="blue circle icon"></i> {{ $role->display_name }}
               </a>
 
@@ -50,8 +49,7 @@
 
     <div class="divider"></div>
 
-    <a href="#"
-       class="item"
+    <a class="item"
        onclick="event.preventDefault();
        document.getElementById('user-{{ $user->id }}-update-active-status').submit()">
       <i class="orange trash icon"></i> {{ $user->is_active ? 'Деактивировать' : 'Активировать' }}
@@ -64,10 +62,8 @@
       {{ method_field('PATCH') }}
     </form>
 
-    <a href="#"
-       class="item"
-       onclick="event.preventDefault();
-       document.getElementById('delete-user-{{ $user->id }}').submit()">
+    <a class="item"
+       onclick="confirmDeletion('delete-user-{{ $user->id }}', '{{ $user->getNameOrUsername() }}');">
       <i class="red trash icon"></i> Удалить
     </a>
 

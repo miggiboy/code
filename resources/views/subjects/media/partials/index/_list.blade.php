@@ -12,9 +12,8 @@
                    download>
                   Скачать
                 </a>
-                <a href="#" class="ui mini yellow button"
-                   onclick="event.preventDefault();
-                   document.getElementById('destroy-media-{{ $media->id }}-form').submit();">
+                <a class="ui mini yellow button"
+                   onclick="confirmDeletion('destroy-media-{{ $media->id }}-form', '{{ $media->name }}');">
                   Удалить
                 </a>
                 <form action="{{ route('subjects.media.destroy', [$subject, $media]) }}"

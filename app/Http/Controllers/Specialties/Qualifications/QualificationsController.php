@@ -115,6 +115,21 @@ class QualificationsController extends Controller
             ->withMessage('Квалификация удалена');
     }
 
+    public function rtSearch(Request $request)
+    {
+        $qualifications = Specialty::select('slug as url', 'title', 'code as description')
+            ->getOnly('qualifications')
+            ->like($request->input('query'))
+            ->orderBy('title')
+            ->get();
+
+        $qualifications = $qualifications->each(function ($item, $key) {
+            $item->url = config('app.url') . "/qualifications/" . $item->url;
+        });
+
+        return response()->json(['results' => $qualifications], 200);
+    }
+
     private function getCollegeSpecialtes()
     {
         return Specialty::getOnly('specialties')

@@ -190,7 +190,7 @@ class SpecialtiesController extends Controller
             ->orderBy('title')
             ->get();
 
-        $specialties = $specialties->each(function ($item, $key) use ($request, $institutionType) {
+        $specialties = $specialties->each(function ($item, $key) use ($institutionType) {
             $item->url = config('app.url') . "/{$institutionType}-specialties/" . $item->url;
         });
 

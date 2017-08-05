@@ -31,14 +31,13 @@
 
 @endsection
 
-{{-- @section ('script')
+@section ('script')
 
   @include ('includes/_rt-search-script', [
     'search_class' => '.ui.search',
-    'path' => Request::route('institutionType') . "-specialties/rt-search",
+    'path' => 'qualifications/rt-search',
     'fields' => [
-        'description' => 'description',
         'url' => 'url',
     ]
   ])
-@endsection --}}
+@endsection

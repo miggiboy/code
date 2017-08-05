@@ -129,6 +129,11 @@ Route::group(['namespace' => 'Specialties'], function () {
 
 Route::group(['namespace' => 'Specialties\Qualifications'], function () {
 
+    /**
+     * Real-time dropdown search
+     */
+    Route::get('qualifications/rt-search', 'QualificationsController@rtSearch');
+
     Route::resource('qualifications', 'QualificationsController');
 
     /**

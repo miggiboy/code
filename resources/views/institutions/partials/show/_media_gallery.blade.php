@@ -1,8 +1,8 @@
 @if ($institution->media->count())
   <div id="gallery" style="display:none;">
 
-    @if ($logo = $institution->getMedia('logo')->first())
-        @include ('institutions/partials/show/_gallery-image', ['image' => $logo])
+    @if ($institution->hasLogo())
+        @include ('institutions/partials/show/_gallery-image', ['image' => $institution->logo()])
     @endif
 
     @if ($media = $institution->getMedia('images'))

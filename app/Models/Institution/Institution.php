@@ -109,6 +109,16 @@ class Institution extends Model implements HasMediaConversions
         return (bool) $this->map()->count();
     }
 
+    public function logo()
+    {
+        return $this->getMedia('logo')->first();
+    }
+
+    public function hasLogo()
+    {
+        return $this->logo() !== null;
+    }
+
     public function registerMediaConversions()
     {
         $this->addMediaConversion('thumb')

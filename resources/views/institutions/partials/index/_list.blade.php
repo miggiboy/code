@@ -11,8 +11,8 @@
                 ])
               </div>
             </div>
-            @if (count($logos = $institution->getMedia('logo')))
-              <img class="ui avatar image" src="{{ $logos[0]->getUrl('thumb') }}">
+            @if ($institution->hasLogo())
+              <img class="ui avatar image" src="{{ $institution->logo()->getUrl('thumb') }}">
             @else
               <i class="teal university icon"></i>
             @endif

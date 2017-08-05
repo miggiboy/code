@@ -3,7 +3,6 @@
 namespace App\Models\Institution;
 
 use App\Models\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Traits\Marker\Markable;
@@ -28,11 +27,6 @@ use Illuminate\Http\Request;
 class Institution extends Model implements HasMediaConversions
 {
     /**
-     * Laravel traits
-     */
-    use SoftDeletes;
-
-    /**
      * Package traits
      */
     use HasMediaTrait;
@@ -46,14 +40,6 @@ class Institution extends Model implements HasMediaConversions
     use HasType;
     use ComposesUrls;
     use HasSpecialties;
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
-
 
     /**
      * The attributes that should be cast to native types.

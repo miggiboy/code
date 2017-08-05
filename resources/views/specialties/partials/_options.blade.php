@@ -30,8 +30,7 @@
 
     {{-- Deleting --}}
     <a href="#" class="item"
-       onclick="event.preventDefault();
-       document.getElementById('delete-specialty-{{ $specialty->id }}').submit();">
+       onclick="confirmDeletion('delete-specialty-{{ $specialty->id }}', '{{ $specialty->title }}');">
       <i class="red delete icon"></i>  Удалить
     </a>
     <form action="{{ route('specialties.destroy', [$institutionType, $specialty]) }}"

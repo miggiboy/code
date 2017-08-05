@@ -30,8 +30,8 @@
 
     {{-- Deleting --}}
     <a href="#" class="item"
-       onclick="event.preventDefault();
-       document.getElementById('delete-qualification-{{ $qualification->id }}').submit();">
+       onclick="
+        confirmDeletion('delete-qualification-{{ $qualification->id }}', '{{ $qualification->title }}');">
       <i class="red delete icon"></i>  Удалить
     </a>
     <form action="{{ route('qualifications.destroy', $qualification) }}"

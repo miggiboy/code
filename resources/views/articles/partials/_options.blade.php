@@ -26,8 +26,7 @@
 
     {{-- Deleting --}}
     <a href="#" class="item"
-      onclick="event.preventDefault();
-        document.getElementById('delete-article-{{ $article->id }}').submit();">
+      onclick="confirmDeletion('delete-article-{{ $article->id }}', '{{ $article->title }}');">
       <i class="red delete icon"></i>  Удалить
     </a>
     <form action="{{ route('articles.destroy', $article) }}" method="post"

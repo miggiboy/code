@@ -3,18 +3,12 @@
 namespace App\Models\Article;
 
 use App\Models\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Traits\Marker\Markable;
 
 class Article extends Model
 {
-    /**
-     * Laravel traits
-     */
-    use SoftDeletes;
-
     /**
      * Package traits
      */
@@ -24,14 +18,6 @@ class Article extends Model
      * Custom traits
      */
     use Markable;
-
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     /**
      * Includes only articles which title

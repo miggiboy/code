@@ -46,7 +46,7 @@
 
     <script>
         function confirmDeletion(deletionFormId, itemTitle) {
-            var doDelete = confirm('Вы уверены что хотите удалить ' + itemTitle + ' ?\nВосстановить данные будет невозможно.');
+            var doDelete = confirm('Вы уверены что хотите удалить \"' + itemTitle + '\" ?\n\nВосстановить данные будет невозможно!');
 
             if (doDelete) {
                 submitForm(deletionFormId);

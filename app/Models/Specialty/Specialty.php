@@ -3,8 +3,6 @@
 namespace App\Models\Specialty;
 
 use App\Models\Model;
-
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Traits\Marker\Markable;
@@ -22,11 +20,6 @@ use \App\Models\Subject\Subject;
 class Specialty extends Model
 {
     /**
-     * Laravel traits
-     */
-    use SoftDeletes;
-
-    /**
      * Package traits
      */
     use Sluggable;
@@ -37,13 +30,6 @@ class Specialty extends Model
     use Searchable;
     use Markable;
     use RelatesToInstitution;
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     const STUDY_FORMS = [
         'full-time',

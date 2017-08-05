@@ -27,9 +27,9 @@
     <div class="divider"></div>
 
     {{-- Deleting --}}
-    <a href="#" class="item"
-      onclick="event.preventDefault();
-        document.getElementById('delete-profession-{{ $profession->id }}').submit();">
+    <a class="item"
+      onclick="
+      confirmDeletion('delete-profession-{{ $profession->id }}', '{{ $profession->title }}');">
       <i class="red delete icon"></i>  Удалить
     </a>
     <form action="{{ route('professions.destroy', $profession) }}" method="post"

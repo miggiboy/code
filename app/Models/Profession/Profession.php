@@ -3,7 +3,6 @@
 namespace App\Models\Profession;
 
 use App\Models\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 use App\Models\Specialty\Specialty;
@@ -13,11 +12,6 @@ use App\Traits\Marker\Markable;
 class Profession extends Model
 {
     /**
-     * Laravel traits
-     */
-    use SoftDeletes;
-
-    /**
      * Package traits
      */
     use Sluggable;
@@ -26,13 +20,6 @@ class Profession extends Model
      * Custom traits
      */
     use Markable;
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     /**
      * Filters out professions which title

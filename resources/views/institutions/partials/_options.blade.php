@@ -49,9 +49,8 @@
 
 
     {{-- Deleting --}}
-    <a href="#" class="item"
-       onclick="event.stopPropagation();
-       confirmDeletion('delete-institution-{{ $institution->id }}', '{{ $institution->title }}');">
+    <a class="item"
+       onclick="confirmDeletion('delete-institution-{{ $institution->id }}', '{{ $institution->title }}');">
       <i class="red delete icon"></i>  Удалить
     </a>
     <form action="{{ route('institutions.destroy', [$institutionType, $institution]) }}" method="post"

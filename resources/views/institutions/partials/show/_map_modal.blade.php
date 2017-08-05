@@ -24,8 +24,7 @@
 
     <div class="actions">
       <div class="ui right labeled icon button"
-           onclick="event.preventDefault();
-           confirmMapDeletion();">
+           onclick="confirmDeletion('delete-map-form', 'Карту');">
         Удалить карту <i class="delete icon"></i>
       </div>
     </div>

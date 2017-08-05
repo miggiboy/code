@@ -1,13 +1,13 @@
-// General scripts
-
 $('.ui.checkbox').checkbox();
 
 $('.ui.dropdown').dropdown();
 
 $('.icon').popup();
 
-// Institution map
-function confirmMapDeletion() {
-  $delete = confirm('Вы действительно хотите удалить карту?');
-  if ($delete) $('#delete-map-form').submit();
+function confirmDeletion(deletionFormId, itemTitle) {
+    var doDelete = confirm('Вы уверены что хотите удалить \"' + itemTitle + '\" ?\n\nВосстановить данные будет невозможно!');
+
+    if (doDelete) {
+        submitForm(deletionFormId);
+    }
 }

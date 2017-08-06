@@ -25,10 +25,6 @@ class SpecialtySearch
             $q->hasDescription($request->has_description);
         }
 
-        if ($request->has('has_direction')) {
-            $q->hasDirection($request->has_direction);
-        }
-
         if ($request->has('has_subjects')) {
             $q->has('subjects', (bool) $request->has_subjects);
         }

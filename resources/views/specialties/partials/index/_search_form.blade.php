@@ -69,18 +69,6 @@
       <div class="three wide field" style="margin-top: 7px;">
         <div class="ui checkbox">
           <input type="checkbox"
-                 name="has_direction"
-                 value="0"
-                 tabindex="0"
-                 class="hidden"
-                 {{ (request('has_direction') == "0") ? 'checked' : '' }}>
-          <label>Без направления</label>
-        </div>
-      </div>
-
-      <div class="three wide field" style="margin-top: 7px;">
-        <div class="ui checkbox">
-          <input type="checkbox"
                  name="has_professions"
                  value="0"
                  tabindex="0"

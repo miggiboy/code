@@ -6,14 +6,14 @@
          href="{{ $institution->web_site_url }}"
          title="Перейти на сайт {{ translate($institution->type, 'r', 's') }}"
          target="_blank">
-        <i class="blue external icon"></i>
+        <i class="blue world icon"></i>
       </a>
     @else
       <a class="disabled item"
-         title="У {{ translate($institution->type, 'r', 's') }} нет сайта"
+         title="Для {{ translate($institution->type, 'r', 's') }} не задан сайт. Воспользуйтесь кнопкой поиска в Google (ниже)"
          target="_blank"
          disabled>
-        <i class="grey external icon"></i>
+        <i class="grey world icon"></i>
       </a>
     @endif
 
@@ -21,13 +21,13 @@
        href="{{ url($institution->googleSearchURl()) }}"
        title="Найти {{ translate($institution->type, 'i', 's') }} в Google"
        target="_blank">
-      <i class="orange google icon"></i>
+      <i class="green google icon"></i>
     </a>
 
     <a class="item"
        title="Сохранить изменения"
        onclick="event.preventDefault(); document.getElementById('edit-institution-form').submit();">
-      <i class="green save icon"></i>
+      <i class="teal save icon"></i>
     </a>
 
   </div>

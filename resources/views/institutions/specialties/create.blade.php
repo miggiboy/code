@@ -30,7 +30,3 @@
   </div>
 
 @endsection
-
-@section ('script')
-    @include ('includes/_multiple-selection-dropdown-script')
-@endsection

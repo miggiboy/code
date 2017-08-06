@@ -11,7 +11,7 @@
       <div class="content">
           <p>
             @foreach ($specialty->subjects as $subject)
-              {{ $subject->title }}<br>
+              <a href="{{ route('subjects.show', $subject) }}">{{ $subject->title }}</a><br>
             @endforeach
           </p>
       </div>

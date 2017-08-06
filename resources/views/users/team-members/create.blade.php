@@ -7,10 +7,14 @@
 @endsection
 
 @section ('content')
-  @include ('users/team-members/partials/_users-table', [
-      'table_heading' => 'Пользователи без ролей',
-      'users' => $newComers,
-  ])
+  @if ($newComers->count())
+    @include ('users/team-members/partials/_users-table', [
+          'table_heading' => 'Пользователи без ролей',
+          'users' => $newComers,
+      ])
+  @else
+    Новых зарегистрированных пользователей нет!
+  @endif
   <br>
   <br>
 @endsection

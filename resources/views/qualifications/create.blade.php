@@ -43,11 +43,12 @@
 
       <div class="required field">
         <label for="title">Специальность</label>
-        <select name="specialty_id" class="ui search dropdown" id="specialty_id">
-          <option value="">Связанная специальность</option>
+        <select name="parent_id" class="ui search dropdown" id="parent_id">
+          <option value="">Введите название или код специальности...</option>
+          <option value=" ">Не выбрано</option>
           @foreach ($specialties as $specialty)
             <option value="{{ $specialty->id }}"
-                    {{ (old('specialty_id') == $specialty->id) ? 'selected' : '' }}>
+                    {{ (old('parent_id') == $specialty->id) ? 'selected' : '' }}>
               {{ $specialty->getNameWithCodeOrName() }}
             </option>
           @endforeach
@@ -56,7 +57,7 @@
 
       <div class="field">
         <label for="short_description">Краткое описание</label>
-        <textarea name="short_description" id="short_description" rows="7">{{ old('short_description') }}</textarea>
+        <textarea name="short_description" rows="4" id="short_description">{{ old('short_description') }}</textarea>
       </div>
 
       <div class="field">
@@ -77,6 +78,4 @@
         height: 350
       });
   </script>
-
-  @include ('includes/_multiple-selection-dropdown-script')
 @endsection

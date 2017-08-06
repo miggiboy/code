@@ -7,7 +7,7 @@
 @section ('content')
     <div class="ui text container" style="margin-bottom: 30px;">
         <div style="margin-bottom: 45px; text-align: center;">
-            <h2>Профессий специальности <br>
+            <h2>Профессии специальности <br>
                 <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}"
                    target="_blank"
                    class="custom-link">

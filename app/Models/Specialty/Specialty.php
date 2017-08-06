@@ -117,7 +117,7 @@ class Specialty extends Model
     public function googleSearchUrl()
     {
         return config('google.search.url') .
-            translate($this->type, 'i', 's', true) . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
+            translate($this->type, 'i', 's', true) . ' ' . trim($this->title) . ' ' . trim($this->code) . ' Казахстан';
     }
 
     /**

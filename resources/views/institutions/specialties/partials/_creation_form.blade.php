@@ -30,7 +30,7 @@
                 class="ui fluid search dropdown"
                 multiple>
 
-            <option value="">{{ translate($related, 'i', 'p', true) }}</option>
+            <option value="">Название или код {{ translate($related, 'r', 's') }}...</option>
             @foreach ($specialties as $specialty)
 
                 <option value="{{ $specialty->id }}" {{ $institution->specialties->contains($specialty) ? 'selected' : '' }}>

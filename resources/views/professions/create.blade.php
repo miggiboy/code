@@ -45,14 +45,12 @@
 
       <div class="field">
         <label for="short_description">Краткое описание</label>
-        <textarea name="short_description" id="short_description" rows="3">{{ (old('short_description')) }}
-        </textarea>
+        <textarea name="short_description" id="short_description" rows="3">{{ (old('short_description')) }}</textarea>
       </div>
 
       <div class="field">
         <label for="full_description">Полное описание</label>
-        <textarea name="full_description" id="full_description">{{ (old('full_description')) }}
-        </textarea>
+        <textarea name="full_description" id="full_description">{{ (old('full_description')) }}</textarea>
       </div>
 
       <button class="ui big teal button">Сохранить</button>

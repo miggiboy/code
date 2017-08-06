@@ -14,9 +14,15 @@
       <td>
         <h4 class="ui header">
           <div class="content">
-            <a href="{{ route("{$related}.show", [$specialty->institution_type, $specialty]) }}" class="custom-link">
-              {{ $specialty->title }}
-            </a>
+            @if ($specialty->typeIs('qualification'))
+              <a href="{{ route("{$related}.show", $specialty) }}" class="custom-link">
+                {{ $specialty->title }}
+              </a>
+            @else
+              <a href="{{ route("{$related}.show", [$specialty->institution_type, $specialty]) }}" class="custom-link">
+                {{ $specialty->title }}
+              </a>
+            @endif
             <div class="sub header"> {{ $specialty->code }}
           </div>
         </div>

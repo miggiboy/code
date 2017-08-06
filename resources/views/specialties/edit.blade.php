@@ -94,7 +94,7 @@
 
       <div class="field">
         <label for="short_description">Краткое описание</label>
-        <textarea name="short_description" id="short_description">{{ old('short_description', $specialty->short_description) }}</textarea>
+        <textarea name="short_description" rows="5" id="short_description">{{ old('short_description', $specialty->short_description) }}</textarea>
       </div>
 
       <div class="field">

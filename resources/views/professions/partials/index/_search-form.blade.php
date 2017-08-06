@@ -19,7 +19,7 @@
 
     <div class="four wide field">
         <select class="ui selection search dropdown" name="category">
-          <option value="">Проф-направление</option>
+          <option value="">Категория</option>
           <option value=" ">Не выбрано</option>
            @foreach ($categories as $category)
              <option value="{{ $category->id }}"

@@ -46,14 +46,18 @@
 
     <div class="field">
         <label for="short_description">Короткое описание</label>
-        <textarea name="short_description" id="short_description" rows="3" required>{{ old('short_description', $profession->short_description) }}
-        </textarea>
+        <textarea name="short_description"
+                  id="short_description"
+                  rows="3"
+                  required>{{ old('short_description', $profession->short_description) }}</textarea>
     </div>
 
     <div class="field">
         <label for="full_description">Полное описание</label>
-        <textarea name="full_description" id="full_description" rows="20" required>{{ old('full_description', $profession->full_description) }}
-        </textarea>
+        <textarea name="full_description"
+                  id="full_description"
+                  rows="20"
+                  required>{{ old('full_description', $profession->full_description) }}</textarea>
     </div>
 
     <button class="ui big teal button">Сохранить</button>

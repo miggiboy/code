@@ -28,7 +28,7 @@ class QualificationsController extends Controller
     public function index(Request $request)
     {
         $qualifications = SpecialtySearch::applyFiltersTo('qualifications', $request)
-            ->with(['specialty', 'markers'])
+            ->with(['specialty', 'direction', 'markers'])
             ->orderBy('title')
             ->paginate(15);
 

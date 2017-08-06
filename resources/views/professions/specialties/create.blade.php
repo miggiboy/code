@@ -19,7 +19,7 @@
 
             <div class="ui form" style="position: relative; margin-bottom: 33px;">
                 <select name="specialties[]" class="ui fluid search dropdown" multiple="">
-                    <option value="">Специальности</option>
+                    <option value="">Название или код специальности...</option>
                     @foreach ($specialties as $specialty)
                         <option value="{{ $specialty->id }}"
                         {{ $profession->specialties->contains($specialty) ? 'selected' : '' }}>
@@ -37,8 +37,4 @@
 
         @include ('shared/_temp-notification')
     </div>
-@endsection
-
-@section ('script')
-    @include ('includes/_multiple-selection-dropdown-script')
 @endsection

@@ -14,7 +14,7 @@
     <a class="item"
        title="Карта ({{ $institution->hasMap() ? 'Есть' : 'Нет' }})"
        onclick="event.preventDefault(); $('#map-modal').modal({ inverted: true }).modal('show');">
-      <i class="{{ $institution->hasMap() ? 'yellow' : 'red' }} map icon"></i>
+      <i class="{{ $institution->hasMap() ? 'yellow' : 'grey' }} map icon"></i>
     </a>
   </div>
 </div>

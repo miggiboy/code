@@ -9,7 +9,7 @@
       <div class="content">
       <a href="{{ route('qualifications.colleges.index', $qualification) }}"
          class="header">
-        Колледжи ({{ count($qualification->colleges_distinct) }})
+        Колледжи ({{ count($qualification->institutions_distinct) }})
       </a>
       </div>
     </div>

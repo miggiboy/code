@@ -14,7 +14,6 @@ use App\Http\Requests\{
 
 class InstitutionSpecialtiesController extends Controller
 {
-
     const SPECIALTY_TYPE = 'specialties';
 
     /**
@@ -77,17 +76,22 @@ class InstitutionSpecialtiesController extends Controller
      */
     public function store(Request $request, Institution $institution, $studyForm)
     {
+        $specialties = $this->getSpecialtiesByTypeFor($institution);
+
         $syncData = $this->prepareSyncData(
             $request,
             $studyForm
         );
 
-        $institution->specialties()->wherePivot('form', $studyForm)->sync($syncData);
+        $institution->specialties()
+            ->wherePivotIn('specialty_id', $specialties)
+            ->wherePivot('form', $studyForm)
+            ->sync($syncData);
 
         return redirect()
             ->route('institutions.show', [str_plural($institution->type), $institution])
             ->withMessage(
-                translate(static::SPECIALTY_TYPE, 'i', 'p', true) . ' прикреплены'
+                'Список ' . translate(static::SPECIALTY_TYPE, 'r', 'p') . ' обновлен'
             );
     }
 
@@ -147,6 +151,10 @@ class InstitutionSpecialtiesController extends Controller
         );
     }
 
+    private function getSpecialtiesByTypeFor($institution) {
+        return $institution->specialties()->getOnly(static::SPECIALTY_TYPE)->pluck('id');
+    }
+
     private function updateSpecialties(Institution $institution, $specialtyDetails, $studyForm)
     {
         $specialtyDetails = collect($specialtyDetails);
@@ -164,7 +172,7 @@ class InstitutionSpecialtiesController extends Controller
 
     public function prepareSyncData($request, $studyForm)
     {
-        $specialties = $request->specialties;
+        $specialties = $request->specialties ?? [];
 
         $studyForms = array_fill(0, count($specialties), ['form' => $studyForm]);
 

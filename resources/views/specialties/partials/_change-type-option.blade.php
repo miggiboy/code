@@ -7,7 +7,7 @@
     Сделать {{ $model->typeIs('qualification') ? 'специальностью' : 'квалификацией' }}
   </a>
 
-  <form action="{{ route('specialties.types.update', $model) }}"
+  <form action="{{ route(str_plural($model->type) . '.types.update', $model) }}"
         method="post"
         id="update-specialty-{{ $model->id }}-type-form">
       {{ csrf_field() }}

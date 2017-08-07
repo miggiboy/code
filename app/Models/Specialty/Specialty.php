@@ -68,6 +68,21 @@ class Specialty extends Model
         return ! static::hasStudyForm($studyForm);
     }
 
+    // This method is for qualifications only
+    // Using with specialties is harmful
+    public function setDirection()
+    {
+        $parent = $this->specialty;
+
+        if ($parent) {
+            $this->direction_id = $parent->direction_id;
+        } else {
+            $this->direction_id = SpecialtyDirection::getDefaultFor('colleges');
+        }
+
+        return $this;
+    }
+
     /**
      * Check if the specialty has any subjects
      *

@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /**
  * Home
  */
@@ -121,6 +123,7 @@ Route::group(['namespace' => 'Specialties'], function () {
     ]);
 
     Route::patch('/specialies/{specialty}/type', 'SpecialtyTypesController@update')->name('specialties.types.update');
+    // NOTICE: Qualification type is processed in separate controller
 });
 
 
@@ -136,6 +139,12 @@ Route::group(['namespace' => 'Specialties\Qualifications'], function () {
     Route::get('qualifications/rt-search', 'QualificationsController@rtSearch');
 
     Route::resource('qualifications', 'QualificationsController');
+
+    /**
+     * Qualification types
+     */
+    Route::patch('/qualifications/{qualification}/type', 'QualificationTypesController@update')
+                ->name('qualifications.types.update');
 
     /**
      * Qualification Colleges

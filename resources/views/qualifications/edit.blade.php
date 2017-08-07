@@ -67,6 +67,7 @@
         <label for="description">Описание</label>
         <textarea name="description" id="description">{{ old('description', $qualification->description) }}</textarea>
       </div>
+
       <br>
       <button class="ui big teal button" type="submit">Сохранить</button>
     </form>

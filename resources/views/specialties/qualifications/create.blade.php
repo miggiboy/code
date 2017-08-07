@@ -31,6 +31,8 @@
                 </select>
             </div>
 
+            <input type="hidden" name="direction_id" value="404">
+
             <div class="thirteen wide column">
                 <button class="ui large teal button" type="submit">Сохранить</button>
             </div>
@@ -39,8 +41,4 @@
 
         @include ('shared/_temp-notification')
     </div>
-@endsection
-
-@section ('script')
-    @include ('includes/_multiple-selection-dropdown-script')
 @endsection

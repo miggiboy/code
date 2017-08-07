@@ -14,7 +14,7 @@ class SpecialtyTypesController extends Controller
         if ($specialty->typeIs('qualification')) {
             $specialty->update([
                 'type' => 'specialty',
-                'parent_id' => null,
+                'parent_id' => null
             ]);
 
             return redirect()
@@ -26,8 +26,7 @@ class SpecialtyTypesController extends Controller
                 ]);
         } else {
             $specialty->update([
-                'type' => 'qualification',
-                'direction_id' => null,
+                'type' => 'qualification'
             ]);
 
             return redirect()

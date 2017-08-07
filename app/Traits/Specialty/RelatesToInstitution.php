@@ -33,8 +33,14 @@ trait RelatesToInstitution
      */
     public function getInstitutionTypeAttribute()
     {
+        // Instituion type of a specialty/qualification is obtained through
+        // its direction which has institution column
+
         if (! $this->direction) {
-            return null;
+            // Only qualifications don't have direction_id.
+            // So instituion type is college
+            // Validation makes sure that every specialty has direction_id
+            return 'college';
         }
 
         return $this->direction->institution;

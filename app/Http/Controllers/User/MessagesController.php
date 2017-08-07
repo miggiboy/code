@@ -44,4 +44,15 @@ class MessagesController extends Controller
 
         return back();
     }
+
+    public function destroy(Request $request)
+    {
+        $message = Message::findOrFail($request->message);
+
+        if (Auth::user()->owns($message)) {
+            $message->delete();
+        }
+
+        return redirect()->back()->withMessage('Сообщение удалено');
+    }
 }

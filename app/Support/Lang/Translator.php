@@ -212,7 +212,7 @@ class Translator
 
             'r' => [
                 's' => 'квалификации',
-                'p' => 'квалификацией',
+                'p' => 'квалификаций',
             ],
 
             'd' => [
@@ -273,16 +273,20 @@ class Translator
      */
     protected static function validate($word, $conjugation, $number)
     {
+        if (empty(trim($word))) {
+            throw new Exception('Word is empty');
+        }
+
         if (! isset(self::DICTIONARY[$word])) {
-            throw new Exception('Word ' . $word . ' is not present in dictionary');
+            throw new Exception('Word "' . $word . '" is not present in dictionary');
         }
 
         if (! isset(self::DICTIONARY[$word][$conjugation])) {
-            throw new Exception('Wrong conjugation rule ' . $conjugation);
+            throw new Exception('Wrong conjugation rule "' . $conjugation . '"');
         }
 
         if (! isset(self::DICTIONARY[$word][$conjugation][$number])) {
-            throw new Exception('Wrong number rule ' . $number);
+            throw new Exception('Wrong number rule ' . $number . '"');
         }
     }
 

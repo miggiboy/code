@@ -135,6 +135,11 @@ class User extends Authenticatable
         return $query->where('id', '!=', get_id($user));
     }
 
+    public function owns($related)
+    {
+        return $this->id === $related->user_id;
+    }
+
     /**
      * Relations
      */

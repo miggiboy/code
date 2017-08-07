@@ -39,7 +39,7 @@ class SpecialtyFormRequest extends FormRequest
             'code'          => $codeRule,
             'subjects.*'    => 'nullable|exists:subjects,id',
             'type'          => 'required|in:specialty,qualification',
-            'direction_id'  => 'nullable|exists:specialty_directions,id',
+            'direction_id'  => 'required_if:type,specialty|exists:specialty_directions,id',
             'parent_id'     => 'nullable|exists:specialties,id',
         ];
     }
@@ -59,6 +59,7 @@ class SpecialtyFormRequest extends FormRequest
             'type.required'         => 'Поле тип - обязательное',
             'type.in'               => 'Поле тип - неверные данные.',
 
+            'direction_id.required_if' => 'Направление - обязательное поле.',
             'direction_id.exists'   => 'Направление - неверные данные.',
 
             'parent_id.exists'      => 'Родительская специальность - неверные данные.',

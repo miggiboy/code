@@ -36,6 +36,7 @@ Route::group(['namespace' => 'User'], function () {
      * Feed messages
      */
     Route::post('/message', 'MessagesController@store')->name('messages.store');
+    Route::delete('/message', 'MessagesController@destroy')->name('messages.destroy');
 
     /**
      * Profile

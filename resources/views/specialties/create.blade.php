@@ -14,7 +14,7 @@
 
       @include ('includes/_form-errors')
 
-      <input type="hidden" name="type" value="specialty"> {{-- TODO: needs to be uniq --}}
+      <input type="hidden" name="type" value="specialty">
 
       <div class="two fields">
 

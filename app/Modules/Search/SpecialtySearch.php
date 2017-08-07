@@ -11,7 +11,12 @@ class SpecialtySearch
     {
         $q = Specialty::query();
 
-        $q->getOnly($type)->of($request->route('institutionType') ?? 'college');
+        $q->getOnly($type);
+
+        // Qualifications don't send institution type
+        if ($request->route('institutionType')) {
+            $q->of($request->route('institutionType'));
+        }
 
         if ($request->has('query')) {
             $q->like(request('query'));

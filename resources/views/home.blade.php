@@ -40,6 +40,23 @@
             <div class="extra text">
               {{ $message->text }}
             </div>
+
+            @if (Auth::user()->owns($message))
+              <div class="meta">
+                <a class="like"
+                   title="Удалить сообщение"
+                   onclick="confirmDeletion('delete-message-{{ $message->id }}', 'сообщение');">
+                  Удалить
+                </a>
+              </div>
+            @endif
+
+            <form action="{{ route('messages.destroy') }}" method="post" id="delete-message-{{ $message->id }}">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <input type="hidden" name="message" value="{{ $message->id }}">
+            </form>
+
           </div>
         </div>
         @endforeach

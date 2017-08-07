@@ -28,7 +28,7 @@
 
             <i class="small teal student middle aligned icon"></i>
             <div class="content">
-              <a href="#"
+              <a href="{{ route('specialties.show', [$specialty->institution_type, $specialty]) }}"
                  class="header"
                  title="{{ $specialty->title }}">
                 {{ str_limit($specialty->title, 25) }}

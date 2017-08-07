@@ -70,7 +70,7 @@ class ProfessionsController extends Controller
      */
     public function show(Profession $profession)
     {
-        $profession->load(['specialties' => function ($query) {
+        $profession->load(['specialties.direction' => function ($query) {
             $query->orderBy('title');
         }]);
 

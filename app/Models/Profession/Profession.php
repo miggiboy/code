@@ -95,6 +95,6 @@ class Profession extends Model
 
     public function specialties()
     {
-        return $this->belongsToMany(Specialty::class)->select(['id', 'slug', 'title', 'code']);
+        return $this->belongsToMany(Specialty::class)->select(['id', 'slug', 'title', 'code', 'direction_id']);
     }
 }

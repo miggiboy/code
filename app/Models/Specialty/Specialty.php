@@ -53,6 +53,11 @@ class Specialty extends Model
         return strcmp($this->type, $type) === 0;
     }
 
+    public function typeIsNot($type)
+    {
+        return ! $this->typeIs($type);
+    }
+
     public static function studyForms()
     {
         return self::STUDY_FORMS;
@@ -66,21 +71,6 @@ class Specialty extends Model
     public static function doesntHaveStudyForm($studyForm)
     {
         return ! static::hasStudyForm($studyForm);
-    }
-
-    // This method is for qualifications only
-    // Using with specialties is harmful
-    public function setDirection()
-    {
-        $parent = $this->specialty;
-
-        if ($parent) {
-            $this->direction_id = $parent->direction_id;
-        } else {
-            $this->direction_id = SpecialtyDirection::getDefaultFor('colleges');
-        }
-
-        return $this;
     }
 
     /**
@@ -114,6 +104,21 @@ class Specialty extends Model
         }
 
         return $this->title;
+    }
+
+    public function setDirection()
+    {
+        if ($this->typeIsNot('qualification')) {
+            throw new \Exception("Using 'setDirection' method is only allowed for qualifications");
+        }
+
+        $parent = $this->specialty;
+
+        if ($parent) {
+            $this->direction_id = $parent->direction_id;
+        } else {
+            $this->direction_id = SpecialtyDirection::getDefaultFor('colleges');
+        }
     }
 
     /**

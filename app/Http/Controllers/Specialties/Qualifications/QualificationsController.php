@@ -57,8 +57,6 @@ class QualificationsController extends Controller
     {
         $qualifiaction = Specialty::create($request->all());
 
-        $qualification->setDirection()->save();
-
         return redirect()->route('qualifications.show', $qualifiaction);
     }
 
@@ -96,8 +94,6 @@ class QualificationsController extends Controller
     public function update(SpecialtyFormRequest $request, Specialty $qualification)
     {
         $qualification->update($request->all());
-
-        $qualification->setDirection()->save();
 
         return redirect()
             ->route('qualifications.show', $qualification)

@@ -12,8 +12,6 @@ class SpecialtyTypesController extends Controller
     {
         $specialty->update(['type' => 'qualification']);
 
-        $specialty->setDirection()->save();
-
         return redirect()
             ->route('qualifications.edit', $specialty)
             ->with([

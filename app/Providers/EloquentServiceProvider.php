@@ -34,6 +34,8 @@ class EloquentServiceProvider extends ServiceProvider
             'media' => Media::class,
             'marker' => Marker::class,
         ]);
+
+        Specialty::observe(\App\Observers\QualificationObserver::class);
     }
 
     /**

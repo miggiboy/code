@@ -1,6 +1,6 @@
-<div class="ui dropdown" style="margin-top: 6px;">
+<div class="ui dropdown" style="margin-top: 5px;">
   <input type="hidden" name="markers_of" value="{{ request('markers_of') }}">
-  Отмеченные &nbsp;
+  <i class="teal filter icon"></i> Отметки &nbsp;
   <span class="text"></span>
   <div class="menu">
     <div class="header">

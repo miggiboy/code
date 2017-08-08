@@ -1,8 +1,10 @@
 @if ($model->belongsToA('college'))
+  @php
+    $newType = $model->typeIs('qualification') ? 'специальностью' : 'квалификацией';
+  @endphp
   <a class="item"
-     title="Сделать {{ $model->typeIs('qualification') ? 'специальностью' : 'квалификацией' }}"
-     onclick="event.preventDefault();
-     document.getElementById('update-specialty-{{ $model->id }}-type-form').submit();">
+     title="Сделать {{ $newType }}"
+     onclick="confirmSpecialtyTypeUpdate('update-specialty-{{ $model->id }}-type-form', '{{ $model->title }}', '{{ $newType }}');">
     <i class="violet exchange icon"></i>
     Сделать {{ $model->typeIs('qualification') ? 'специальностью' : 'квалификацией' }}
   </a>

@@ -29,7 +29,7 @@
     ])
 
     {{-- Deleting --}}
-    <a href="#" class="item"
+    <a class="item"
        onclick="confirmDeletion('delete-specialty-{{ $specialty->id }}', '{{ $specialty->title }}');">
       <i class="red delete icon"></i>  Удалить
     </a>

@@ -13,9 +13,10 @@
       </div>
       @foreach ($team as $member)
         <div class="item {{ request('markers_of') == $member->id ? 'active selected' : '' }}"
-             data-value="{{ $member->id }}">
+             data-value="{{ $member->id }}"
+             title="{{ $member->getNameOrUsername() }}">
           <img class="ui avatar image" src="{{ $member->avatar_path }}">
-          {{ $member->getNameOrUsername() }}
+          {{ str_limit($member->getNameOrUsername(), 12) }}
         </div>
       @endforeach
     </div>

@@ -28,8 +28,6 @@
   <a href="{{ route('professions.index') }}" class="item">Профессии </a>
   <a href="{{ route('articles.index') }}" class="item">Статьи </a>
 
-  {{-- <a href="{{ route('advertisements.index') }}" class="item">Реклама </a> --}}
-
   <div class="ui dropdown item">
     Предметы <i class="dropdown icon"></i>
     <div class="menu" style="font-size: 14px;">
@@ -45,7 +43,7 @@
       <div class="ui floating dropdown link item">
         <div class="text">
           <img class="logo" src="{{ auth()->user()->avatar_path }}">
-          {{ auth()->user()->nameOrUsername }}
+          {{ str_limit(auth()->user()->nameOrUsername, 15) }}
         </div>
         <i class="dropdown icon"></i>
 
@@ -55,16 +53,16 @@
              <i class="teal user icon"></i> Мой профиль
           </a>
 
-          <a href="{{ route('logout') }}" class="item">
-            <i class="teal sign out icon"></i> Выход
-          </a>
-
           @role ('admin' || 'developer')
-            <div class="ui divider"></div>
             <a href="{{ route('team-members.index') }}" class="item">
                <i class="teal users icon"></i> Команда сайта
             </a>
+            <div class="ui divider"></div>
           @endrole
+
+          <a href="{{ route('logout') }}" class="item">
+            <i class="teal sign out icon"></i> Выход
+          </a>
         </div>
       </div>
 

@@ -17,3 +17,11 @@ function confirmDeletion(deletionFormId, itemTitle) {
         submitForm(deletionFormId);
     }
 }
+
+function confirmSpecialtyTypeUpdate(updatingFormId, itemTitle, newType) {
+    var proceed = confirm('Вы уверены что хотите сделать \"' + itemTitle + '\" ' + newType + ' ?');
+
+    if (proceed) {
+        submitForm(updatingFormId);
+    }
+}

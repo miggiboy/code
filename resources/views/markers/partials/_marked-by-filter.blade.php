@@ -14,7 +14,7 @@
       @foreach ($team as $member)
         <div class="item {{ request('markers_of') == $member->id ? 'active selected' : '' }}"
              data-value="{{ $member->id }}">
-          <img class="ui avatar image" src="{{ $member->identicon }}">
+          <img class="ui avatar image" src="{{ $member->avatar_path }}">
           {{ $member->getNameOrUsername() }}
         </div>
       @endforeach

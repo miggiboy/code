@@ -9,7 +9,7 @@
             <div class="ui link cards">
               <div class="card">
                 <div class="image">
-                  <img class="ui wireframe image" src="/images/wireframe/image.png">
+                  <img class="ui wireframe image" src="{{ Auth::user()->avatar_path ?? '/images/wireframe/image.png' }}">
                 </div>
 
                 <div class="content">
@@ -30,7 +30,7 @@
         <div class="eight wide column">
 
             @include ('includes/_form-errors')
-            <form action="{{ route('profile.update') }}" method = "post" class="ui form">
+            <form action="{{ route('profile.update') }}" method="post" class="ui form">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
                 <div class="two fields">
@@ -40,8 +40,7 @@
                                name="username"
                                id="username"
                                value="{{ old('username') ?: Auth::user()->username }}"
-                               required
-                        >
+                               required>
                     </div>
                     <div class="eight wide field">
                         <label for="email">E-mail</label>

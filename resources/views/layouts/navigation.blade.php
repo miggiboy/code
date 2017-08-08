@@ -44,7 +44,7 @@
 
       <div class="ui floating dropdown link item">
         <div class="text">
-          <img class="logo" src="{{ auth()->user()->identicon }}">
+          <img class="logo" src="{{ auth()->user()->avatar_path }}">
           {{ auth()->user()->nameOrUsername }}
         </div>
         <i class="dropdown icon"></i>

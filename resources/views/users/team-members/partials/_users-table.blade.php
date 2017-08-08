@@ -11,7 +11,7 @@
       <tr>
         <td>
           <h4 class="ui image header">
-            <img src="{{ $user->identicon }}" class="ui mini rounded image">
+            <img src="{{ $user->avatar_path }}" class="ui mini rounded image">
             <div class="content">
               {{ $user->getNameOrUsername() }}
               @if ($user->isNotActive())

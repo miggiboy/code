@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\{
     StoreUserRequest
 };
+
 use App\Models\User\User;
 
-use Identicon\Identicon;
+use App\Modules\Identicon\Identicon;
 
 class RegistrationController extends Controller
 {
@@ -41,8 +42,10 @@ class RegistrationController extends Controller
             'username'      => $request->username,
             'email'         => $request->email,
             'password'      => bcrypt($request->password),
-            'identicon'     => (new Identicon)->getImageDataUri($request->email) // TODO: fails
         ]);
+
+        $user->avatar_path = (new Identicon)->storeAfterGeneratingFrom($request->email);
+        $user->save();
 
        return redirect()
             ->route('login')

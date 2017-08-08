@@ -28,7 +28,7 @@
         @foreach ($messages as $message)
         <div class="event" style="margin-bottom: 15px;">
           <div class="label">
-            <img src="{{ $message->user->identicon }}" alt="identicon">
+            <img src="{{ $message->user->avatar_path }}" alt="identicon">
           </div>
           <div class="content">
             <div class="summary">
